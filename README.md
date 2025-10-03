@@ -111,7 +111,7 @@ All Spexop packages are released under the [MIT License](https://github.com/spex
 
 <div align="center">
 
-**Built with ❤️ by the Spexop Team**
+Built by Cuneyt Cakar (<https://github.com/olmstedian>)
 
 [GitHub](https://github.com/spexop-ui) • [npm](https://www.npmjs.com/org/spexop) • [Website](https://spexop.com)
 
