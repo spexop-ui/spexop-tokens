@@ -102,3 +102,10 @@ Feel free to open a [GitHub Discussion](https://github.com/spexop-ui/design-syst
 ## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
+
+## Author
+
+Cuneyt Cakar (olmstedian)
+
+## Built by Cuneyt Cakar (olmstedian)
+

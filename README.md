@@ -2,7 +2,7 @@
 
 A professional TypeScript design system with comprehensive design tokens and built-in theming support.
 
-## 📦 Packages
+## Packages
 
 ### [@spexop/tokens](./packages/tokens)
 
@@ -18,7 +18,7 @@ Production-ready design tokens package with 389+ tokens covering:
 - **Accessibility** - Focus indicators, constraints
 - **Theme System** - 6 built-in themes with dark mode
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install the tokens package
@@ -31,7 +31,7 @@ pnpm add @spexop/tokens
 yarn add @spexop/tokens
 ```
 
-## 📖 Usage
+## Usage
 
 ```typescript
 import {
@@ -53,7 +53,7 @@ const styles = {
 import "@spexop/tokens/tokens.css";
 ```
 
-## 🎨 Features
+## Features
 
 - **389+ Design Tokens** - Comprehensive token library
 - **Built-in Themes** - 6 themes (3 light + 3 dark)
@@ -64,28 +64,28 @@ import "@spexop/tokens/tokens.css";
 - **Well Tested** - 34 automated tests
 - **Accessibility-First** - WCAG-compliant
 
-## 📚 Documentation
+## Documentation
 
 - [Tokens Package Documentation](./packages/tokens/README.md)
 - [Theme System Guide](./packages/tokens/src/themes/README.md)
 - [Semantic Tokens Guide](./packages/tokens/src/semantic/README.md)
 - [Contributing Guide](./CONTRIBUTING.md)
 
-## 🔗 Links
+## Links
 
 - **Repository**: <https://github.com/spexop-ui/design-system>
 - **npm Package**: <https://www.npmjs.com/package/@spexop/tokens>
 - **Website**: <https://www.spexop.com>
 - **Issues**: <https://github.com/spexop-ui/design-system/issues>
 
-## 📄 License
+## License
 
 MIT © Spexop Team
 
-## 🤝 Contributing
+## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute.
 
 ---
 
-**Built with ❤️ by the Spexop team**
+Built with ❤️ by Cuneyt Cakar (olmstedian)
