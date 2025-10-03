@@ -18,20 +18,19 @@ Production-ready design tokens package with comprehensive token library covering
 - **Accessibility** - Focus indicators, constraints
 - **Theme System** - 6 built-in themes with dark mode
 
-### Recommended: Lucide Icons
+### [@spexop/icons](./packages/icons)
 
-For icons, we recommend using [**Lucide Icons**](https://lucide.dev/) - a beautiful, consistent open-source icon library that perfectly complements our design tokens:
+Production-ready icon library with optimized SVG icons:
 
-- **1000+ icons** - Comprehensive coverage
-- **Consistent style** - Stroke-based, matches our minimal theme
-- **Framework support** - React, Vue, Angular, Svelte, Vanilla JS
-- **ISC License** - Free and open-source
-- **Tree-shakeable** - Import only what you need
+- **Framework-agnostic** - Works with React, Vue, Angular, Svelte, or vanilla JS
+- **Tree-shakeable** - Import only the icons you need
+- **Zero dependencies** - Lightweight and fast
+- **TypeScript support** - Full type definitions included
+- **Consistent design** - Icons designed to match our design system
+- **Accessible** - Built with accessibility in mind
 
 ```bash
-npm install lucide-react    # For React
-npm install lucide          # For Vanilla JS
-npm install lucide-vue-next # For Vue
+npm install @spexop/icons
 ```
 
 ## Quick Start
@@ -40,14 +39,14 @@ npm install lucide-vue-next # For Vue
 # Install tokens package
 npm install @spexop/tokens
 
+# Install icons package
+npm install @spexop/icons
+
 # Or with pnpm
-pnpm add @spexop/tokens
+pnpm add @spexop/tokens @spexop/icons
 
 # Or with yarn
-yarn add @spexop/tokens
-
-# Optional: Add Lucide Icons
-npm install lucide-react  # or lucide / lucide-vue-next
+yarn add @spexop/tokens @spexop/icons
 ```
 
 ## Usage
@@ -74,27 +73,21 @@ const styles = {
 import "@spexop/tokens/tokens.css";
 ```
 
-### Icons (with Lucide)
+### Icons
 
 ```typescript
-// React
-import { Search, Plus } from "lucide-react";
+// Import specific icons
+import { Search, Plus, Home } from "@spexop/icons";
 
+// Use in your components
 <button>
   <Search size={20} />
   Search
 </button>
 
-// Vue
-import { Search } from "lucide-vue-next";
-
-<Search :size="20" />
-
-// Vanilla JS
-import { Search } from "lucide";
-
-const icon = Search;
-document.getElementById('icon').appendChild(icon);
+// Or import from specific categories
+import { Search } from "@spexop/icons/actions";
+import { Home } from "@spexop/icons/navigation";
 ```
 
 ## Features
