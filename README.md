@@ -1,131 +1,101 @@
-# Spexop Design System
+# 🏆 Spexop Design System
 
-A professional TypeScript design system with comprehensive design tokens and built-in theming support.
+### Enterprise-grade React components with 317 TypeScript design tokens and Porsche-inspired theming
 
-## Packages
+Build stunning web applications with production-ready components, a complete token system, and flexible theming out of the box.
 
-### [@spexop/tokens](./packages/tokens)
+## ✨ Key Features
 
-Production-ready design tokens package with comprehensive token library covering:
+- **🎨 Design Tokens** - Complete TypeScript-first token system with s-prefix naming convention
+- **⚡ React Components** - Production-ready, fully typed, and tree-shakeable
+- **🎭 Built-in Themes** 
+- **📦 Icon Library** - Optimized SVG icons with automatic tree-shaking
+- **♿ Accessible** - WCAG 2.1 AA compliant components
+- **🚀 High Performance** - Sub-millisecond rendering, optimized bundles
+- **💯 TypeScript** - 100% type coverage with full IntelliSense support
+- **📱 Responsive** - Mobile-first design approach
 
-- **Colors** - Blue, Red, Slate, Neutral scales + Glass effects
-- **Spacing** - 0-32 scale with component-specific variants
-- **Typography** - Complete font system with responsive sizes
-- **Effects** - Shadows, blur, backdrop filters
-- **Borders** - Radius, widths, styles
-- **Motion** - Duration, easing, transitions
-- **Layout** - Breakpoints, media queries, grid, containers
-- **Accessibility** - Focus indicators, constraints
-- **Theme System** - 6 built-in themes with dark mode
-
-### [@spexop/icons](./packages/icons)
-
-Production-ready icon library with optimized SVG icons:
-
-- **Framework-agnostic** - Works with React, Vue, Angular, Svelte, or vanilla JS
-- **Tree-shakeable** - Import only the icons you need
-- **Zero dependencies** - Lightweight and fast
-- **TypeScript support** - Full type definitions included
-- **Consistent design** - Icons designed to match our design system
-- **Accessible** - Built with accessibility in mind
+## 🚀 Quick Start
 
 ```bash
-npm install @spexop/icons
-```
+# Install React components (includes tokens and icons)
+npm install @spexop/react
 
-## Quick Start
-
-```bash
-# Install tokens package
+# Or install tokens separately
 npm install @spexop/tokens
-
-# Install icons package
-npm install @spexop/icons
-
-# Or with pnpm
-pnpm add @spexop/tokens @spexop/icons
-
-# Or with yarn
-yarn add @spexop/tokens @spexop/icons
 ```
 
-## Usage
+```tsx
+import { ThemeProvider, Button, Card, Text } from "@spexop/react";
 
-### Tokens
-
-```typescript
-import {
-  sColorBlue500,
-  sSpacing4,
-  sFontSizeBase,
-  minimalTheme,
-  professionalTheme
-} from "@spexop/tokens";
-
-// Use tokens in your app
-const styles = {
-  color: sColorBlue500,      // '#3b82f6'
-  padding: sSpacing4,        // '16px'
-  fontSize: sFontSizeBase    // '16px'
-};
-
-// Apply themes via CSS
-import "@spexop/tokens/tokens.css";
+function App() {
+  return (
+    <ThemeProvider initialTheme="porsche">
+      <Card variant="glass" padding="large">
+        <Text size="2xl" weight="bold">
+          Welcome to Spexop
+        </Text>
+        <Button variant="primary" size="large">
+          Get Started
+        </Button>
+      </Card>
+    </ThemeProvider>
+  );
+}
 ```
-
-### Icons
-
-```typescript
-// Import specific icons
-import { Search, Plus, Home } from "@spexop/icons";
-
-// Use in your components
-<button>
-  <Search size={20} />
-  Search
-</button>
-
-// Or import from specific categories
-import { Search } from "@spexop/icons/actions";
-import { Home } from "@spexop/icons/navigation";
-```
-
-## Features
-
-- **Comprehensive Design Tokens** - Complete token library across multiple categories
-- **Built-in Themes** - 6 themes (3 light + 3 dark)
-- **TypeScript First** - Full type safety and IntelliSense
-- **Multiple Exports** - ESM, CJS, CSS variables, JSON
-- **Tree-Shakeable** - Import only what you need
-- **Zero Dependencies** - Lightweight and fast
-- **Well Tested** - Comprehensive automated test coverage
-- **Accessibility-First** - WCAG 2.2 compliant
-- **Icon Integration** - Works seamlessly with Lucide Icons
-
-## Documentation
-
-- [Tokens Package Documentation](./packages/tokens/README.md)
-- [Theme System Guide](./packages/tokens/src/themes/README.md)
-- [Semantic Tokens Guide](./packages/tokens/src/semantic/README.md)
-- [Lucide Icons Documentation](https://lucide.dev/guide/)
-- [Contributing Guide](./CONTRIBUTING.md)
-
-## Links
-
-- **Repository**: <https://github.com/spexop-ui/design-system>
-- **npm Package**: <https://www.npmjs.com/package/@spexop/tokens>
-- **Website**: <https://www.spexop.com>
-- **Icons**: <https://lucide.dev>
-- **Issues**: <https://github.com/spexop-ui/design-system/issues>
-
-## License
-
-MIT © Spexop Team
-
-## Contributing
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute.
 
 ---
 
-Built with ❤️ by Cuneyt Cakar (olmstedian)
+## 📦 Packages
+
+| Package | Description | Status |
+|---------|-------------|--------|
+| [`@spexop/react`](https://github.com/spexop-ui/design-system/tree/main/packages/react) | React component library | ✅ Production Ready |
+| [`@spexop/tokens`](https://github.com/spexop-ui/design-system/tree/main/packages/tokens) | Design tokens (colors, spacing, typography, etc.) | ✅ Production Ready |
+| [`@spexop/icons`](https://github.com/spexop-ui/design-system/tree/main/packages/icons) | Icon library with tree-shaking | ✅ Production Ready |
+| [`@spexop/utils`](https://github.com/spexop-ui/design-system/tree/main/packages/utils) | Utility functions | ✅ Production Ready |
+| `@spexop/vue` | Vue 3 adapters | 🚧 Planned |
+| `@spexop/angular` | Angular adapters | 🚧 Planned |
+
+---
+
+## 🎨 Component Categories
+
+**Layout:** Container, Grid, Section  
+**UI:** Button, Card, Text, Badge, Alert  
+**Forms:** Input, Textarea, Select, Checkbox, Radio, Switch  
+**Navigation:** Header, Sidebar, Tabs, PageHeader  
+**Advanced:** Hero, FeatureCard, Toast, Skeleton, SettingsPanel  
+**Animation:** Motion, FadeIn, SlideIn, ZoomIn, Stagger
+
+---
+
+## 📚 Resources
+
+- **[Main Repository](https://github.com/spexop-ui/design-system)** - Source code and full documentation
+- **[Documentation Site](https://spexop.design)** - Live examples and guides *(coming soon)*
+- **[Storybook](https://storybook.spexop.design)** - Interactive component explorer *(coming soon)*
+- **[npm Packages](https://www.npmjs.com/org/spexop)** - Published packages
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Check out our [Contributing Guidelines](https://github.com/spexop-ui/design-system/blob/main/CONTRIBUTING.md) to get started.
+
+---
+
+## 📄 License
+
+All Spexop packages are released under the [MIT License](https://github.com/spexop-ui/design-system/blob/main/LICENSE).
+
+---
+
+<div align="center">
+
+**Built with ❤️ by the Spexop Team**
+
+[GitHub](https://github.com/spexop-ui) • [npm](https://www.npmjs.com/org/spexop) • [Website](https://spexop.com)
+
+</div>
+
