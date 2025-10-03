@@ -1,0 +1,32 @@
+{
+  "name": "@spexop/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TypeScript design system with comprehensive design tokens and theming",
+  "author": "Spexop Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spexop-ui/design-system.git"
+  },
+  "homepage": "https://www.spexop.com",
+  "bugs": {
+    "url": "https://github.com/spexop-ui/design-system/issues"
+  },
+  "scripts": {
+    "build": "pnpm --filter @spexop/tokens build",
+    "test": "pnpm --filter @spexop/tokens test",
+    "clean": "pnpm --filter @spexop/tokens clean:build"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "typescript",
+    "theming",
+    "tokens"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

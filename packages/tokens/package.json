@@ -1,0 +1,69 @@
+{
+  "name": "@spexop/tokens",
+  "version": "0.1.0",
+  "description": "TypeScript design tokens with built-in theming and CSS variable generation",
+  "author": "Spexop Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spexop-ui/design-system.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://www.spexop.com",
+  "bugs": {
+    "url": "https://github.com/spexop-ui/design-system/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "tokens",
+    "css-variables",
+    "typescript",
+    "theming",
+    "colors",
+    "spacing",
+    "typography"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "pnpm clean:build && pnpm build:ts && pnpm build:css && pnpm build:json",
+    "build:ts": "tsup",
+    "build:css": "tsx scripts/generate-css.ts",
+    "build:json": "tsx scripts/generate-json.ts",
+    "dev": "tsup --watch",
+    "test": "pnpm test:unit",
+    "test:unit": "vitest --run",
+    "clean:build": "rm -rf ./dist"
+  },
+  "devDependencies": {
+    "@spexop/tsconfig": "workspace:*",
+    "tsup": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  }
+}

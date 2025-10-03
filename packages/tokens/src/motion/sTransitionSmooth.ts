@@ -1,0 +1,5 @@
+/**
+ * Smooth transition easing
+ * Cubic bezier for smooth, natural motion
+ */
+export const sTransitionSmooth = "cubic-bezier(0.4, 0, 0.2, 1)";
