@@ -83,14 +83,19 @@ import { minimalDarkTheme, professionalDarkTheme, boldDarkTheme } from "@spexop/
 
 **Base Colors:**
 
-- Neutrals (50-950)
-- Slate (50-900)
-- Blues (50-900)
-- Reds (50-800)
+- Neutrals (50-950) - 12 shades
+- Slate (50-900) - 10 shades
+- Blues (50-900) - 10 shades
+- Reds (50-900) - 10 shades
+- Purples (50-900) - 10 shades
+- Greens (50-900) - 10 shades
 
 **Semantic Colors:**
 
-- Success, Warning, Info, Error (50, 500, 700)
+- Success (50-900) - 10 shades for positive feedback
+- Warning (50-900) - 10 shades for cautionary messages
+- Info (50-900) - 10 shades for informational content
+- Error (50-900) - 10 shades for error states
 - Glass colors for glassmorphism effects
 
 **Theme Colors:**

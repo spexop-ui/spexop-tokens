@@ -1,6 +1,6 @@
 {
   "name": "@spexop/tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript design tokens with built-in theming and CSS variable generation",
   "author": "Spexop Team",
   "license": "MIT",
@@ -47,7 +47,10 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist/",
-    "README.md"
+    "README.md",
+    "TOKENS-REFERENCE.md",
+    "tokens-demo.html",
+    "tokens-quick-reference.txt"
   ],
   "scripts": {
     "build": "pnpm clean:build && pnpm build:ts && pnpm build:css && pnpm build:json",

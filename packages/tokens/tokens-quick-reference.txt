@@ -1,0 +1,321 @@
+@spexop/tokens - Quick Reference v0.2.0
+===========================================
+
+Total: 441 tokens | Colors: 148 | Last Updated: 2025-01-07
+
+COLORS (148 tokens)
+===================
+
+NEUTRALS (12)
+-------------
+sColorNeutral50     #fafafa
+sColorNeutral100    #f5f5f5
+sColorNeutral200    #e5e5e5
+sColorNeutral300    #d4d4d4
+sColorNeutral400    #a3a3a3
+sColorNeutral500    #737373
+sColorNeutral600    #525252
+sColorNeutral700    #404040
+sColorNeutral800    #262626
+sColorNeutral850    #1f1f1f
+sColorNeutral900    #171717
+sColorNeutral950    #0a0a0a
+
+BLUE (10)
+---------
+sColorBlue50        #eff6ff
+sColorBlue100       #dbeafe
+sColorBlue200       #cbd5e1
+sColorBlue300       #93c5fd
+sColorBlue400       #60a5fa
+sColorBlue500       #3b82f6
+sColorBlue600       #2563eb
+sColorBlue700       #1d4ed8
+sColorBlue800       #1e40af
+sColorBlue900       #1e3a8a
+
+RED (10)
+--------
+sColorRed50         #f8eff0
+sColorRed100        #f0dce0
+sColorRed200        #e8c5cb
+sColorRed300        #d9a0ab
+sColorRed400        #c5707f
+sColorRed500        #b04554
+sColorRed600        #9d3b4a
+sColorRed700        #8a3240
+sColorRed800        #762837
+sColorRed900        #5a1e28
+
+PURPLE (10)
+-----------
+sColorPurple50      #f3e5f5
+sColorPurple100     #e1bee7
+sColorPurple200     #ce93d8
+sColorPurple300     #ba68c8
+sColorPurple400     #ab47bc
+sColorPurple500     #9c27b0
+sColorPurple600     #8e24aa
+sColorPurple700     #7b1fa2
+sColorPurple800     #6a1b9a
+sColorPurple900     #4a148c
+
+GREEN (10)
+----------
+sColorGreen50       #ecfdf5
+sColorGreen100      #d1fae5
+sColorGreen200      #a7f3d0
+sColorGreen300      #6ee7b7
+sColorGreen400      #34d399
+sColorGreen500      #10b981
+sColorGreen600      #059669
+sColorGreen700      #047857
+sColorGreen800      #065f46
+sColorGreen900      #064e3b
+
+SUCCESS (10)
+------------
+sColorSuccess50     #e8f5e9
+sColorSuccess100    #c8e6c9
+sColorSuccess200    #a5d6a7
+sColorSuccess300    #81c784
+sColorSuccess400    #66bb6a
+sColorSuccess500    #4caf50
+sColorSuccess600    #43a047
+sColorSuccess700    #388e3c
+sColorSuccess800    #2e7d32
+sColorSuccess900    #1b5e20
+
+WARNING (10)
+------------
+sColorWarning50     #fff3e0
+sColorWarning100    #ffe0b2
+sColorWarning200    #ffcc80
+sColorWarning300    #ffb74d
+sColorWarning400    #ffa726
+sColorWarning500    #ff9800
+sColorWarning600    #fb8c00
+sColorWarning700    #f57c00
+sColorWarning800    #ef6c00
+sColorWarning900    #e65100
+
+INFO (10)
+---------
+sColorInfo50        #e3f2fd
+sColorInfo100       #bbdefb
+sColorInfo200       #90caf9
+sColorInfo300       #64b5f6
+sColorInfo400       #42a5f5
+sColorInfo500       #2196f3
+sColorInfo600       #1e88e5
+sColorInfo700       #1976d2
+sColorInfo800       #1565c0
+sColorInfo900       #0d47a1
+
+ERROR (10)
+----------
+sColorError50       #ffebee
+sColorError100      #ffcdd2
+sColorError200      #ef9a9a
+sColorError300      #e57373
+sColorError400      #ef5350
+sColorError500      #f44336
+sColorError600      #e53935
+sColorError700      #d32f2f
+sColorError800      #c62828
+sColorError900      #b71c1c
+
+SPACING (19 tokens)
+===================
+sSpacing0           0px
+sSpacing1           4px
+sSpacing2           8px
+sSpacing3           12px
+sSpacing4           16px
+sSpacing5           20px
+sSpacing6           24px
+sSpacing8           32px
+sSpacing10          40px
+sSpacing12          48px
+sSpacing14          56px
+sSpacing16          64px
+sSpacing20          80px
+sSpacing24          96px
+sSpacing32          128px
+
+TYPOGRAPHY (34 tokens)
+======================
+
+Font Sizes (13)
+---------------
+sFontSize3xs        10px
+sFontSizeXxs        11px
+sFontSize2xs        11px
+sFontSizeXs         12px
+sFontSizeSm         14px
+sFontSizeBase       16px
+sFontSizeLg         18px
+sFontSizeXl         20px
+sFontSize2xl        24px
+sFontSize3xl        30px
+sFontSize4xl        36px
+sFontSize5xl        48px
+sFontSizeHero       72px
+
+Font Weights (6)
+----------------
+sFontWeightNormal     400
+sFontWeightMedium     500
+sFontWeightSemibold   600
+sFontWeightBold       700
+sFontWeightExtrabold  800
+sFontWeightBlack      900
+
+Line Heights (5)
+----------------
+sLineHeightNone       1
+sLineHeightTight      1.25
+sLineHeightSnug       1.375
+sLineHeightNormal     1.5
+sLineHeightRelaxed    1.625
+
+Letter Spacing (6)
+------------------
+sLetterSpacingTighter  -0.05em
+sLetterSpacingTight    -0.025em
+sLetterSpacingNormal   0em
+sLetterSpacingWide     0.025em
+sLetterSpacingWider    0.05em
+sLetterSpacingWidest   0.1em
+
+BORDER RADIUS (6 tokens)
+=========================
+sRadiusNone         0px
+sRadiusTight        4px
+sRadiusSubtle       8px
+sRadiusRelaxed      12px
+sRadiusLiquid       16px
+sRadiusPill         9999px
+
+MOTION (15 tokens)
+==================
+
+Durations (4)
+-------------
+sDurationFast       150ms
+sDurationNormal     250ms
+sDurationRipple     600ms
+sDurationSlow       400ms
+
+Easing (3)
+----------
+sEaseSmooth         cubic-bezier(0.4, 0, 0.2, 1)
+sEaseDecelerate     cubic-bezier(0, 0, 0.2, 1)
+sEaseBounce         cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+Transitions (8)
+---------------
+sTransitionBase       all 250ms ease
+sTransitionFast       all 150ms ease
+sTransitionSlow       all 400ms ease
+sTransitionSmooth     all 250ms cubic-bezier(...)
+sTransitionColors     background-color, border-color, color...
+sTransitionOpacity    opacity 250ms ease
+sTransitionTransform  transform 250ms ease
+sTransitionReveal     Multi-property reveal
+
+BREAKPOINTS (6 tokens)
+======================
+sBreakpointXs       480px
+sBreakpointSm       640px
+sBreakpointMd       768px
+sBreakpointLg       1024px
+sBreakpointXl       1280px
+sBreakpoint2xl      1536px
+
+Z-INDEX (13 tokens)
+===================
+sZIndexBase              0
+sZIndexContent           10
+sZIndexSticky            100
+sZIndexFloating          500
+sZIndexDropdown          1000
+sZIndexPopover           1500
+sZIndexOverlayBackground 1900
+sZIndexOverlay           2000
+sZIndexBanner            2500
+sZIndexAnnouncement      2600
+sZIndexToast             3000
+sZIndexTooltip           3500
+sZIndexVideoBackground   -1
+
+CONTAINERS (7 tokens)
+=====================
+sContainerXs        480px
+sContainerSm        640px
+sContainerMd        768px
+sContainerLg        1024px
+sContainerXl        1280px
+sContainer2xl       1536px
+sContainerFull      100%
+
+CONSTRAINTS (8 tokens)
+======================
+sMinWidthButton     88px
+sMinWidthInput      200px
+sMinWidthCard       280px
+sMaxWidthText       65ch
+sMaxWidthProse      75ch
+sMinHeightButton    44px
+sMinHeightInput     44px
+sMaxHeightModal     90vh
+
+GRID (6 tokens)
+===============
+sGridColumns12      12
+sGridColumns16      16
+sGridColumns24      24
+sGridGutterSm       16px
+sGridGutterMd       24px
+sGridGutterLg       32px
+
+ASPECT RATIOS (7 tokens)
+=========================
+sAspectRatioSquare     1 / 1
+sAspectRatioVideo      16 / 9
+sAspectRatioWide       21 / 9
+sAspectRatioUltraWide  32 / 9
+sAspectRatioClassic    4 / 3
+sAspectRatioPortrait   3 / 4
+sAspectRatioGolden     1.618 / 1
+
+CURSORS (8 tokens)
+==================
+sCursorAuto          auto
+sCursorDefault       default
+sCursorPointer       pointer
+sCursorText          text
+sCursorMove          move
+sCursorGrab          grab
+sCursorHelp          help
+sCursorNotAllowed    not-allowed
+
+USAGE
+=====
+
+TypeScript:
+  import { sColorPurple500, sSpacing4 } from "@spexop/tokens";
+
+CSS Variables:
+  background-color: var(--s-color-purple-500);
+  padding: var(--s-spacing-4);
+
+Documentation:
+  - Full Reference: TOKENS-REFERENCE.md
+  - Visual Demo: tokens-demo.html
+  - GitHub: https://github.com/spexop-ui/design-system
+
+Search Tips:
+  - grep "Purple" tokens-quick-reference.txt
+  - grep "#3b82f6" tokens-quick-reference.txt
+  - grep "spacing" tokens-quick-reference.txt

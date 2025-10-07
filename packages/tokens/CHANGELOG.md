@@ -5,9 +5,101 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2025-10-03
+## [0.2.0] - 2025-10-07
 
 ### Added
+
+#### New Color Scales (48 new color tokens)
+
+- **Purple Color Scale** (10 tokens) - Contemporary purple for premium/innovation themes
+  - `sColorPurple50` through `sColorPurple900` (#f3e5f5 → #4a148c)
+  - Perfect for premium features, creativity, innovation themes
+  - Used by: Stripe, Figma, Twitch
+
+- **Green Color Scale** (10 tokens) - Modern emerald-green distinct from Success
+  - `sColorGreen50` through `sColorGreen900` (#ecfdf5 → #064e3b)
+  - Contemporary teal-infused emerald palette
+  - Ideal for: nature, growth, money, environmental themes
+  - Distinct from Success green (material design green)
+
+- **Complete Red Color Scale** (4 new tokens added)
+  - Added: `sColorRed200`, `sColorRed300`, `sColorRed400`, `sColorRed900`
+  - Now complete 10-shade scale matching other brand colors
+
+#### Expanded Semantic Color Scales (28 new tokens)
+
+All semantic colors expanded from 3 shades to full 10-shade scales:
+
+- **Success Colors** - Added 7 shades (100, 200, 300, 400, 600, 800, 900)
+  - Now supports: light backgrounds, hover states, text colors, disabled states
+  
+- **Warning Colors** - Added 7 shades (100, 200, 300, 400, 600, 800, 900)
+  - Complete orange-based warning palette for all use cases
+  
+- **Info Colors** - Added 7 shades (100, 200, 300, 400, 600, 800, 900)
+  - Full blue-based informational color range
+  
+- **Error Colors** - Added 7 shades (100, 200, 300, 400, 600, 800, 900)
+  - Comprehensive red-based error state palette
+
+#### Documentation & Developer Experience
+
+- **TOKENS-REFERENCE.md** (13 KB) - Complete markdown reference guide
+  - All 441 tokens organized by category
+  - Usage examples (TypeScript, CSS Variables, Styled Components)
+  - Quick search tips
+  
+- **tokens-demo.html** (43 KB) - Interactive visual showcase
+  - Beautiful color swatch gallery with all 148 colors
+  - Click-to-copy hex codes
+  - Responsive design
+  - Complete standalone HTML (no dependencies)
+  
+- **tokens-quick-reference.txt** (7.4 KB) - Plain text quick reference
+  - Terminal-friendly format
+  - Perfect for grep/cat/less commands
+  - All colors with hex values
+
+### Changed
+
+- **Total Token Count**: Increased from 393 to 441 tokens (+12%)
+- **Color Token Count**: Increased from ~100 to 148 tokens (+48%)
+- **Color Families**: Now 10 complete color families (up from 6)
+  - Neutrals, Slate, Blue, Red, Purple, Green (all 10+ shades)
+  - Success, Warning, Info, Error (all expanded to 10 shades)
+
+### Improved
+
+- **Semantic Color System** - Now production-ready with complete scales
+  - Can handle all component states: default, hover, active, disabled
+  - Supports backgrounds, borders, text, icons
+  - No more missing shades for edge cases
+
+- **Brand Color Versatility** - Added Purple and Green for richer palette
+  - 6 brand color families provide wide design flexibility
+  - Matches or exceeds industry standards (Material Design, Tailwind, Chakra UI)
+
+- **Package Distribution** - All documentation now included in npm package
+  - Users can access visual demo and references locally
+  - Better developer experience with multiple reference formats
+
+### Documentation
+
+- Updated README with new color scales
+- Added comprehensive usage examples for all new colors
+- Updated all documentation to reflect 441 tokens
+- Added visual comparison between Success (material green) and Green (emerald)
+
+### Developer Experience
+
+- All documentation files included in npm package distribution
+- Multiple reference formats (Markdown, HTML, TXT) for different workflows
+- Visual demo for designers and developers
+- No breaking changes - fully backward compatible
+
+## [0.1.0] - 2025-10-03
+
+### Added to 0.1.0
 
 #### New Token Categories
 
@@ -70,7 +162,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Container Sizes**: 7 max-width presets
 - **Viewport Sizes**: Percentage-based sizing utilities
 
-### Documentation
+### Documentation of 0.1.0
 
 - Comprehensive README with usage examples
 - Theme system documentation (`src/themes/README.md`)
@@ -78,7 +170,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Media query utilities guide (`src/media/README.md`)
 - TypeScript type definitions included
 
-### Developer Experience
+### Developer Experience of 0.1.0
 
 - Full TypeScript support with exported types
 - ES Module and CommonJS exports
@@ -87,4 +179,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Watch mode for development (`pnpm dev`)
 - Automated testing with Vitest
 
+[0.2.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.0
 [0.1.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.1.0

@@ -49,6 +49,19 @@ function App() {
 
 ---
 
+## 🆕 What's New in v0.2.0
+
+**@spexop/tokens v0.2.0** - Major color system expansion! 🎨
+
+- **441 design tokens** (up from 393) - 48 new color tokens
+- **10 complete color families** - Added Purple & Green, expanded all semantic colors
+- **Interactive documentation** - New HTML demo, markdown reference, and text quick reference
+- **Production-ready semantic system** - All semantic colors (Success, Warning, Info, Error) now have full 10-shade scales
+
+[See full changelog →](https://github.com/spexop-ui/design-system/blob/main/packages/tokens/CHANGELOG.md)
+
+---
+
 ## 📦 Packages
 
 | Package | Description | Status |
