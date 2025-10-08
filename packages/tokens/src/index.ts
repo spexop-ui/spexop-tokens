@@ -459,7 +459,7 @@ export { sZIndexToast } from "./zIndex/sZIndexToast.js";
 export { sZIndexTooltip } from "./zIndex/sZIndexTooltip.js";
 export { sZIndexVideoBackground } from "./zIndex/sZIndexVideoBackground.js";
 
-export const version = "1.0.0";
+export const version = "0.2.1";
 
 export { sColorRipple } from "./color/effect/sColorRipple.js";
 // Additional Button Tokens
@@ -550,7 +550,7 @@ export function injectTokens() {
 }
 
 export const tokenMetadata = {
-  version: "1.0.0",
+  version: "0.2.1",
   generated: new Date().toISOString(),
   count: 0, // Will be populated at runtime
 };

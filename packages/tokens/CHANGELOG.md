@@ -5,6 +5,47 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-01-08
+
+### Changed
+
+#### Breakpoint Updates for Modern Displays
+
+Updated breakpoint, container, and media query tokens to better support modern screen sizes:
+
+**Breakpoint Tokens (3 tokens):**
+
+- `sBreakpointLg`: `1024px` → `1280px` (+256px)
+- `sBreakpointXl`: `1280px` → `1920px` (+640px)
+- `sBreakpoint2xl`: `1536px` → `2560px` (+1024px)
+
+**Container Tokens (3 tokens):**
+
+- `sContainerLg`: `1024px` → `1280px` (+256px)
+- `sContainerXl`: `1280px` → `1920px` (+640px)
+- `sContainer2xl`: `1536px` → `2560px` (+1024px)
+
+**Media Query Tokens (11 tokens automatically updated):**
+
+- `sMediaMinLg`, `sMediaMaxLg` - Now use 1280px
+- `sMediaMinXl`, `sMediaMaxXl` - Now use 1920px
+- `sMediaMin2xl`, `sMediaMax2xl` - Now use 2560px
+- `sMediaOnlyLg`, `sMediaOnlyMd`, `sMediaOnlyXl` - Updated ranges
+- `sMediaMobile`, `sMediaTabletDesktop` - Updated ranges
+
+### Improved
+
+- **Better tablet breakpoint**: 768px-1280px (was 768px-1024px) aligns with modern tablet displays
+- **Full HD support**: 1920px breakpoint matches standard Full HD (1080p) monitors
+- **2K/QHD support**: 2560px breakpoint for modern high-resolution displays
+- **More appropriate responsive ranges** for contemporary device landscape
+
+### Technical Details
+
+- Total tokens affected: 17 (6 base tokens + 11 computed media queries)
+- No breaking changes - all token names remain the same
+- Only token values updated for better modern display support
+
 ## [0.2.0] - 2025-10-07
 
 ### Added
@@ -60,7 +101,7 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
   - Perfect for grep/cat/less commands
   - All colors with hex values
 
-### Changed
+### Changed of 0.2.0
 
 - **Total Token Count**: Increased from 393 to 441 tokens (+12%)
 - **Color Token Count**: Increased from ~100 to 148 tokens (+48%)
@@ -68,7 +109,7 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
   - Neutrals, Slate, Blue, Red, Purple, Green (all 10+ shades)
   - Success, Warning, Info, Error (all expanded to 10 shades)
 
-### Improved
+### Improved of 0.2.0
 
 - **Semantic Color System** - Now production-ready with complete scales
   - Can handle all component states: default, hover, active, disabled
@@ -179,5 +220,6 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
 - Watch mode for development (`pnpm dev`)
 - Automated testing with Vitest
 
+[0.2.1]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.1
 [0.2.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.0
 [0.1.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.1.0

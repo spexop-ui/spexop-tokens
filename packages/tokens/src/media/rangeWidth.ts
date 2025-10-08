@@ -29,46 +29,46 @@ export const sMediaOnlyXs = `(min-width: ${sBreakpointXs}) and (max-width: calc(
 export const sMediaOnlySm = `(min-width: ${sBreakpointSm}) and (max-width: calc(${sBreakpointMd} - 0.02px))`;
 
 /**
- * Media query for tablets only (≥768px and <1024px)
+ * Media query for tablets only (≥768px and <1280px)
  * @example
  * ```css
- * @media screen and (min-width: 768px) and (max-width: 1023.98px) { ... }
+ * @media screen and (min-width: 768px) and (max-width: 1279.98px) { ... }
  * ```
  */
 export const sMediaOnlyMd = `(min-width: ${sBreakpointMd}) and (max-width: calc(${sBreakpointLg} - 0.02px))`;
 
 /**
- * Media query for desktops only (≥1024px and <1280px)
+ * Media query for desktops only (≥1280px and <1920px)
  * @example
  * ```css
- * @media screen and (min-width: 1024px) and (max-width: 1279.98px) { ... }
+ * @media screen and (min-width: 1280px) and (max-width: 1919.98px) { ... }
  * ```
  */
 export const sMediaOnlyLg = `(min-width: ${sBreakpointLg}) and (max-width: calc(${sBreakpointXl} - 0.02px))`;
 
 /**
- * Media query for large desktops only (≥1280px and <1440px)
+ * Media query for large desktops only (≥1920px and <2560px)
  * @example
  * ```css
- * @media screen and (min-width: 1280px) and (max-width: 1439.98px) { ... }
+ * @media screen and (min-width: 1920px) and (max-width: 2559.98px) { ... }
  * ```
  */
 export const sMediaOnlyXl = `(min-width: ${sBreakpointXl}) and (max-width: calc(${sBreakpoint2xl} - 0.02px))`;
 
 /**
- * Media query for mobile and tablet range (>=480px and <1024px)
+ * Media query for mobile and tablet range (>=480px and <1280px)
  * @example
  * ```css
- * @media screen and (min-width: 480px) and (max-width: 1023.98px) { ... }
+ * @media screen and (min-width: 480px) and (max-width: 1279.98px) { ... }
  * ```
  */
 export const sMediaMobile = `(min-width: ${sBreakpointXs}) and (max-width: calc(${sBreakpointLg} - 0.02px))`;
 
 /**
- * Media query for tablet and desktop range (>=768px and <1440px)
+ * Media query for tablet and desktop range (>=768px and <2560px)
  * @example
  * ```css
- * @media screen and (min-width: 768px) and (max-width: 1439.98px) { ... }
+ * @media screen and (min-width: 768px) and (max-width: 2559.98px) { ... }
  * ```
  */
 export const sMediaTabletDesktop = `(min-width: ${sBreakpointMd}) and (max-width: calc(${sBreakpoint2xl} - 0.02px))`;

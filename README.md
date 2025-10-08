@@ -49,14 +49,20 @@ function App() {
 
 ---
 
-## 🆕 What's New in v0.2.0
+## 🆕 What's New in v0.2.1
 
-**@spexop/tokens v0.2.0** - Major color system expansion! 🎨
+**@spexop/tokens v0.2.1** - Modern breakpoint updates! 📱
 
-- **441 design tokens** (up from 393) - 48 new color tokens
-- **10 complete color families** - Added Purple & Green, expanded all semantic colors
-- **Interactive documentation** - New HTML demo, markdown reference, and text quick reference
-- **Production-ready semantic system** - All semantic colors (Success, Warning, Info, Error) now have full 10-shade scales
+- **Updated breakpoints** for modern displays (Lg: 1280px, Xl: 1920px, 2xl: 2560px)
+- **Better tablet support** - Expanded tablet range to 768px-1280px
+- **Full HD & 2K support** - Proper breakpoints for 1080p and QHD displays
+- **17 responsive tokens updated** - Breakpoints, containers, and media queries
+
+**Previous: v0.2.0** - Major color system expansion! 🎨
+
+- 441 design tokens (up from 393) - 48 new color tokens
+- 10 complete color families - Added Purple & Green, expanded all semantic colors
+- Interactive documentation - HTML demo, markdown reference, text quick reference
 
 [See full changelog →](https://github.com/spexop-ui/design-system/blob/main/packages/tokens/CHANGELOG.md)
 

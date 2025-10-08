@@ -1,7 +1,7 @@
-@spexop/tokens - Quick Reference v0.2.0
+@spexop/tokens - Quick Reference v0.2.1
 ===========================================
 
-Total: 441 tokens | Colors: 148 | Last Updated: 2025-01-07
+Total: 441 tokens | Colors: 148 | Last Updated: 2025-01-08
 
 COLORS (148 tokens)
 ===================
@@ -229,9 +229,9 @@ BREAKPOINTS (6 tokens)
 sBreakpointXs       480px
 sBreakpointSm       640px
 sBreakpointMd       768px
-sBreakpointLg       1024px
-sBreakpointXl       1280px
-sBreakpoint2xl      1536px
+sBreakpointLg       1280px
+sBreakpointXl       1920px
+sBreakpoint2xl      2560px
 
 Z-INDEX (13 tokens)
 ===================
@@ -254,9 +254,9 @@ CONTAINERS (7 tokens)
 sContainerXs        480px
 sContainerSm        640px
 sContainerMd        768px
-sContainerLg        1024px
-sContainerXl        1280px
-sContainer2xl       1536px
+sContainerLg        1280px
+sContainerXl        1920px
+sContainer2xl       2560px
 sContainerFull      100%
 
 CONSTRAINTS (8 tokens)

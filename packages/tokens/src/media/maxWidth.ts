@@ -38,28 +38,28 @@ export const sMediaMaxSm = `(max-width: calc(${sBreakpointSm} - 0.02px))`;
 export const sMediaMaxMd = `(max-width: calc(${sBreakpointMd} - 0.02px))`;
 
 /**
- * Media query for screens smaller than large (<1024px)
- * @example
- * ```css
- * @media screen and (max-width: 1023.98px) { ... }
- * ```
- */
-export const sMediaMaxLg = `(max-width: calc(${sBreakpointLg} - 0.02px))`;
-
-/**
- * Media query for screens smaller than extra large (<1280px)
+ * Media query for screens smaller than large (<1280px)
  * @example
  * ```css
  * @media screen and (max-width: 1279.98px) { ... }
  * ```
  */
+export const sMediaMaxLg = `(max-width: calc(${sBreakpointLg} - 0.02px))`;
+
+/**
+ * Media query for screens smaller than extra large (<1920px)
+ * @example
+ * ```css
+ * @media screen and (max-width: 1919.98px) { ... }
+ * ```
+ */
 export const sMediaMaxXl = `(max-width: calc(${sBreakpointXl} - 0.02px))`;
 
 /**
- * Media query for screens smaller than 2x large (<1440px)
+ * Media query for screens smaller than 2x large (<2560px)
  * @example
  * ```css
- * @media screen and (max-width: 1439.98px) { ... }
+ * @media screen and (max-width: 2559.98px) { ... }
  * ```
  */
 export const sMediaMax2xl = `(max-width: calc(${sBreakpoint2xl} - 0.02px))`;

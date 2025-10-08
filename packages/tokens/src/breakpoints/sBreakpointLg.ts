@@ -1,4 +1,4 @@
 /**
  * Breakpoint LG - Desktops
  */
-export const sBreakpointLg = "1024px";
+export const sBreakpointLg = "1280px";

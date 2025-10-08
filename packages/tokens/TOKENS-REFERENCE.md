@@ -3,7 +3,7 @@
 Quick reference for all design tokens in `@spexop/tokens`.
 
 **Total Tokens:** 441  
-**Version:** 0.2.0
+**Version:** 0.2.1
 
 ---
 
@@ -352,9 +352,9 @@ sTransitionReveal     // Multi-property reveal
 sBreakpointXs     // 480px
 sBreakpointSm     // 640px
 sBreakpointMd     // 768px
-sBreakpointLg     // 1024px
-sBreakpointXl     // 1280px
-sBreakpoint2xl    // 1536px
+sBreakpointLg     // 1280px
+sBreakpointXl     // 1920px
+sBreakpoint2xl    // 2560px
 ```
 
 ---
@@ -424,9 +424,9 @@ sZIndexVideoBackground   // -1
 sContainerXs      // 480px
 sContainerSm      // 640px
 sContainerMd      // 768px
-sContainerLg      // 1024px
-sContainerXl      // 1280px
-sContainer2xl     // 1536px
+sContainerLg      // 1280px
+sContainerXl      // 1920px
+sContainer2xl     // 2560px
 sContainerFull    // 100%
 ```
 
@@ -591,5 +591,5 @@ const Button = styled.button`
 
 ---
 
-**Documentation Version:** 0.2.0  
-**Last Updated:** 2025-01-07
+**Documentation Version:** 0.2.1  
+**Last Updated:** 2025-01-08
