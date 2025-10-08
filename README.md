@@ -49,10 +49,11 @@ function App() {
 
 ---
 
-## 🆕 What's New in v0.2.1
+## 🆕 What's New in v0.2.2
 
-**@spexop/tokens v0.2.1** - Modern breakpoint updates! 📱
+**@spexop/tokens v0.2.2** - Critical CSS fix + Modern breakpoints! 📱
 
+- **Critical bug fix** - CSS variables now have consistent naming (--s-color-red-500 not --s-color-red-5-0-0)
 - **Updated breakpoints** for modern displays (Lg: 1280px, Xl: 1920px, 2xl: 2560px)
 - **Better tablet support** - Expanded tablet range to 768px-1280px
 - **Full HD & 2K support** - Proper breakpoints for 1080p and QHD displays

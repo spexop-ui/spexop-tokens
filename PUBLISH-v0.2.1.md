@@ -5,7 +5,7 @@
 ✅ **Ready to Publish**
 
 **Version:** 0.2.1  
-**Build Date:** 2025-01-08  
+**Build Date:** 2025-10-08  
 **Total Tokens:** 441  
 **Status:** All tests passing ✅
 
@@ -28,6 +28,26 @@
 ---
 
 ## 📋 What's New in v0.2.1
+
+### 🐛 Critical Bug Fix: CSS Variable Naming
+
+Fixed a critical bug where CSS variables had inconsistent naming:
+
+**Before (v0.2.0 - Broken):**
+
+```css
+--s-color-red-5-0-0: #b04554;    /* ❌ Numbers split up */
+--s-color-blue-1-0-0: #dbeafe;  /* ❌ Inconsistent */
+```
+
+**After (v0.2.1 - Fixed):**
+
+```css
+--s-color-red-500: #b04554;     /* ✅ Clean, consistent */
+--s-color-blue-100: #dbeafe;   /* ✅ Predictable */
+```
+
+**Impact:** All 148 color tokens now have clean, consistent CSS variable names.
 
 ### Breakpoint & Responsive Token Updates
 
@@ -611,7 +631,7 @@ pnpm --filter @spexop/react build
 
 ---
 
-Generated: 2025-01-08  
+Generated: 2025-10-08  
 Package: @spexop/tokens  
 Version: 0.2.1  
 Status: ✅ Ready for Publication

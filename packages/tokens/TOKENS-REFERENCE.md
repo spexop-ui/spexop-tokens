@@ -3,7 +3,7 @@
 Quick reference for all design tokens in `@spexop/tokens`.
 
 **Total Tokens:** 441  
-**Version:** 0.2.1
+**Version:** 0.2.2
 
 ---
 
@@ -591,5 +591,5 @@ const Button = styled.button`
 
 ---
 
-**Documentation Version:** 0.2.1  
-**Last Updated:** 2025-01-08
+**Documentation Version:** 0.2.2  
+**Last Updated:**10-08

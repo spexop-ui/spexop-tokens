@@ -5,7 +5,61 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.1] - 2025-01-08
+## [0.2.2] - 2025-10-08
+
+### Fixed
+
+#### CSS Variable Naming Bug (Critical Fix for v0.2.1)
+
+Fixed the critical CSS variable naming bug that was present in v0.2.1:
+
+**Before (v0.2.1 - Broken):**
+
+```css
+--s-color-red-5-0-0: #b04554;    /* ❌ Wrong - numbers split up */
+--s-color-blue-1-0-0: #dbeafe;  /* ❌ Wrong - inconsistent */
+```
+
+**After (v0.2.2 - Fixed):**
+
+```css
+--s-color-red-500: #b04554;     /* ✅ Correct - clean naming */
+--s-color-blue-100: #dbeafe;   /* ✅ Correct - consistent */
+```
+
+**Impact:** All 148 color tokens now have consistent, predictable CSS variable names
+**Root Cause:** Regex in `generate-css.ts` was splitting each digit separately
+**Solution:** Updated regex to preserve number sequences as single units
+
+**⚠️ IMPORTANT:** If you installed v0.2.1, please upgrade to v0.2.2 immediately to get correct CSS variable names.
+
+## [0.2.1] - 2025-10-08
+
+⚠️ **This version has a CSS variable naming bug. Please use v0.2.2 instead.**
+
+### Fixed on 2025-10-08
+
+#### CSS Variable Naming Bug (Critical)
+
+Fixed a critical bug in the CSS generation script that was creating inconsistent variable names:
+
+**Before (Broken):**
+
+```css
+--s-color-red-5-0-0: #b04554;    /* ❌ Wrong - numbers split up */
+--s-color-blue-1-0-0: #dbeafe;  /* ❌ Wrong - inconsistent */
+```
+
+**After (Fixed):**
+
+```css
+--s-color-red-500: #b04554;     /* ✅ Correct - clean naming */
+--s-color-blue-100: #dbeafe;   /* ✅ Correct - consistent */
+```
+
+**Impact:** All 148 color tokens now have consistent, predictable CSS variable names
+**Root Cause:** Regex in `generate-css.ts` was splitting each digit separately
+**Solution:** Updated regex to preserve number sequences as single units
 
 ### Changed
 
@@ -220,6 +274,7 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
 - Watch mode for development (`pnpm dev`)
 - Automated testing with Vitest
 
+[0.2.2]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.2
 [0.2.1]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.1
 [0.2.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.0
 [0.1.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.1.0

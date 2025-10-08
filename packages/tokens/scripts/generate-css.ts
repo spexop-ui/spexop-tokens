@@ -38,7 +38,10 @@ async function generateCSS() {
         // Convert camelCase to kebab-case
         // sColorRed500 → --s-color-red-500
         const cssName = key
-          .replace(/([A-Z0-9])/g, "-$1")
+          // Insert hyphens before capital letters and before number sequences
+          .replace(/([A-Z])/g, "-$1")
+          // Handle number sequences (e.g., 500 stays as -500, not -5-0-0)
+          .replace(/([a-z])(\d+)/g, "$1-$2")
           .toLowerCase()
           .replace(/^s-/, "--s-");
 

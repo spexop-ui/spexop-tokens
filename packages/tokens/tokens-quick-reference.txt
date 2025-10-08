@@ -1,7 +1,7 @@
-@spexop/tokens - Quick Reference v0.2.1
+@spexop/tokens - Quick Reference v0.2.2
 ===========================================
 
-Total: 441 tokens | Colors: 148 | Last Updated: 2025-01-08
+Total: 441 tokens | Colors: 148 | Last Updated: 2025-10-08
 
 COLORS (148 tokens)
 ===================
