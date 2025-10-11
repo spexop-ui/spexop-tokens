@@ -2,8 +2,8 @@
 
 Quick reference for all design tokens in `@spexop/tokens`.
 
-**Total Tokens:** 441  
-**Version:** 0.2.2
+**Total Tokens:** 452  
+**Version:** 0.2.3
 
 ---
 
@@ -174,7 +174,7 @@ sColorWhite       // #ffffff
 
 ---
 
-## 📏 Spacing (19 tokens)
+## 📏 Spacing (21 tokens)
 
 ```typescript
 sSpacing0         // 0px
@@ -184,7 +184,9 @@ sSpacing3         // 12px
 sSpacing4         // 16px
 sSpacing5         // 20px
 sSpacing6         // 24px
+sSpacing7         // 28px
 sSpacing8         // 32px
+sSpacing9         // 36px
 sSpacing10        // 40px
 sSpacing12        // 48px
 sSpacing14        // 56px
@@ -202,7 +204,7 @@ sPaddingSectionHorizontal    // 16px
 
 ---
 
-## 🔤 Typography (34 tokens)
+## 🔤 Typography (43 tokens)
 
 ### Font Families
 
@@ -226,18 +228,30 @@ sFontSize2xl      // 24px
 sFontSize3xl      // 30px
 sFontSize4xl      // 36px
 sFontSize5xl      // 48px
-sFontSizeHero     // 72px
+sFontSize6xl      // 60px
+sFontSize7xl      // 72px
+sFontSizeHero     // clamp(36px, 5vw, 56px)
 ```
 
 ### Font Weights
 
 ```typescript
+// Named versions (semantic)
 sFontWeightNormal     // 400
 sFontWeightMedium     // 500
 sFontWeightSemibold   // 600
 sFontWeightBold       // 700
 sFontWeightExtrabold  // 800
 sFontWeightBlack      // 900
+
+// Numbered versions (flexibility)
+sFontWeight300        // 300 (Light)
+sFontWeight400        // 400 (Normal)
+sFontWeight500        // 500 (Medium)
+sFontWeight600        // 600 (Semibold)
+sFontWeight700        // 700 (Bold)
+sFontWeight800        // 800 (Extrabold)
+sFontWeight900        // 900 (Black)
 ```
 
 ### Line Heights

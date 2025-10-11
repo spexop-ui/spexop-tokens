@@ -1,7 +1,7 @@
-@spexop/tokens - Quick Reference v0.2.2
+@spexop/tokens - Quick Reference v0.2.3
 ===========================================
 
-Total: 441 tokens | Colors: 148 | Last Updated: 2025-10-08
+Total: 452 tokens | Colors: 148 | Last Updated: 2025-10-11
 
 COLORS (148 tokens)
 ===================
@@ -125,7 +125,7 @@ sColorError700      #d32f2f
 sColorError800      #c62828
 sColorError900      #b71c1c
 
-SPACING (19 tokens)
+SPACING (21 tokens)
 ===================
 sSpacing0           0px
 sSpacing1           4px
@@ -134,7 +134,9 @@ sSpacing3           12px
 sSpacing4           16px
 sSpacing5           20px
 sSpacing6           24px
+sSpacing7           28px
 sSpacing8           32px
+sSpacing9           36px
 sSpacing10          40px
 sSpacing12          48px
 sSpacing14          56px
@@ -143,10 +145,10 @@ sSpacing20          80px
 sSpacing24          96px
 sSpacing32          128px
 
-TYPOGRAPHY (34 tokens)
+TYPOGRAPHY (43 tokens)
 ======================
 
-Font Sizes (13)
+Font Sizes (15)
 ---------------
 sFontSize3xs        10px
 sFontSizeXxs        11px
@@ -160,16 +162,25 @@ sFontSize2xl        24px
 sFontSize3xl        30px
 sFontSize4xl        36px
 sFontSize5xl        48px
-sFontSizeHero       72px
+sFontSize6xl        60px
+sFontSize7xl        72px
+sFontSizeHero       clamp(36px, 5vw, 56px)
 
-Font Weights (6)
-----------------
+Font Weights (13)
+-----------------
 sFontWeightNormal     400
 sFontWeightMedium     500
 sFontWeightSemibold   600
 sFontWeightBold       700
 sFontWeightExtrabold  800
 sFontWeightBlack      900
+sFontWeight300        300
+sFontWeight400        400
+sFontWeight500        500
+sFontWeight600        600
+sFontWeight700        700
+sFontWeight800        800
+sFontWeight900        900
 
 Line Heights (5)
 ----------------

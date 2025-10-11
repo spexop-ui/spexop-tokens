@@ -393,7 +393,9 @@ export { sSpacing3 } from "./spacing/sSpacing3.js";
 export { sSpacing4 } from "./spacing/sSpacing4.js";
 export { sSpacing5 } from "./spacing/sSpacing5.js";
 export { sSpacing6 } from "./spacing/sSpacing6.js";
+export { sSpacing7 } from "./spacing/sSpacing7.js";
 export { sSpacing8 } from "./spacing/sSpacing8.js";
+export { sSpacing9 } from "./spacing/sSpacing9.js";
 export { sSpacing10 } from "./spacing/sSpacing10.js";
 export { sSpacing12 } from "./spacing/sSpacing12.js";
 export { sSpacing16 } from "./spacing/sSpacing16.js";
@@ -420,6 +422,8 @@ export { sFontSize3xl } from "./typography/sFontSize3xl.js";
 export { sFontSize3xs } from "./typography/sFontSize3xs.js";
 export { sFontSize4xl } from "./typography/sFontSize4xl.js";
 export { sFontSize5xl } from "./typography/sFontSize5xl.js";
+export { sFontSize6xl } from "./typography/sFontSize6xl.js";
+export { sFontSize7xl } from "./typography/sFontSize7xl.js";
 export { sFontSizeBase } from "./typography/sFontSizeBase.js";
 export { sFontSizeHero } from "./typography/sFontSizeHero.js";
 export { sFontSizeLg } from "./typography/sFontSizeLg.js";
@@ -432,6 +436,13 @@ export { sFontWeightExtrabold } from "./typography/sFontWeightExtrabold.js";
 export { sFontWeightMedium } from "./typography/sFontWeightMedium.js";
 export { sFontWeightNormal } from "./typography/sFontWeightNormal.js";
 export { sFontWeightSemibold } from "./typography/sFontWeightSemibold.js";
+export { sFontWeight300 } from "./typography/sFontWeight300.js";
+export { sFontWeight400 } from "./typography/sFontWeight400.js";
+export { sFontWeight500 } from "./typography/sFontWeight500.js";
+export { sFontWeight600 } from "./typography/sFontWeight600.js";
+export { sFontWeight700 } from "./typography/sFontWeight700.js";
+export { sFontWeight800 } from "./typography/sFontWeight800.js";
+export { sFontWeight900 } from "./typography/sFontWeight900.js";
 export { sLetterSpacingNormal } from "./typography/sLetterSpacingNormal.js";
 export { sLetterSpacingTight } from "./typography/sLetterSpacingTight.js";
 export { sLetterSpacingTighter } from "./typography/sLetterSpacingTighter.js";
@@ -459,7 +470,7 @@ export { sZIndexToast } from "./zIndex/sZIndexToast.js";
 export { sZIndexTooltip } from "./zIndex/sZIndexTooltip.js";
 export { sZIndexVideoBackground } from "./zIndex/sZIndexVideoBackground.js";
 
-export const version = "0.2.2";
+export const version = "0.2.3";
 
 export { sColorRipple } from "./color/effect/sColorRipple.js";
 // Additional Button Tokens
@@ -550,7 +561,7 @@ export function injectTokens() {
 }
 
 export const tokenMetadata = {
-  version: "0.2.2",
+  version: "0.2.3",
   generated: new Date().toISOString(),
   count: 0, // Will be populated at runtime
 };

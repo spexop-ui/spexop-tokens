@@ -5,6 +5,55 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.3] - 2025-10-11
+
+### Added on 2025-10-11
+
+#### New Spacing Tokens (2 tokens)
+
+Added missing spacing tokens to fill gaps in the scale:
+
+- `sSpacing7` = "28px" - Fills gap between 24px and 32px
+- `sSpacing9` = "36px" - Fills gap between 32px and 40px
+
+Complete spacing scale now: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 20, 24, 32
+
+#### New Font Size Tokens (2 tokens)
+
+Added larger font sizes for headlines and hero sections:
+
+- `sFontSize6xl` = "60px" - Extra large headlines
+- `sFontSize7xl` = "72px" - Hero headlines
+
+Complete font size scale now: 3xs, 2xs, xxs, xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, hero
+
+#### New Font Weight Tokens (7 tokens)
+
+Added numbered font weight tokens for flexibility and consistency with industry standards (Tailwind, etc.):
+
+- `sFontWeight300` = "300" (Light)
+- `sFontWeight400` = "400" (Normal/Regular)
+- `sFontWeight500` = "500" (Medium)
+- `sFontWeight600` = "600" (Semibold)
+- `sFontWeight700` = "700" (Bold)
+- `sFontWeight800` = "800" (Extrabold)
+- `sFontWeight900` = "900" (Black/Heavy)
+
+Note: These are provided alongside existing named versions (sFontWeightNormal, sFontWeightBold, etc.) for flexibility. Use whichever naming convention you prefer - both point to the same values.
+
+### Changed
+
+- **Total Token Count**: 441 → 452 tokens (+11 tokens, +2.5%)
+- **Repository Name**: Renamed from "spexop-design-system-public" to "spexop-tokens" for clarity
+- All GitHub URLs updated to reflect new repository name
+
+### Improved
+
+- **More complete spacing scale** - Fewer gaps, better granularity
+- **Larger font sizes** - Better support for hero sections and large headlines
+- **Flexible font weights** - Both semantic names and numeric values available
+- **Clearer repository focus** - Name now reflects that this is a tokens-focused package
+
 ## [0.2.2] - 2025-10-08
 
 ### Fixed
@@ -61,7 +110,7 @@ Fixed a critical bug in the CSS generation script that was creating inconsistent
 **Root Cause:** Regex in `generate-css.ts` was splitting each digit separately
 **Solution:** Updated regex to preserve number sequences as single units
 
-### Changed
+### Changed on 2025-10-11
 
 #### Breakpoint Updates for Modern Displays
 
@@ -87,7 +136,7 @@ Updated breakpoint, container, and media query tokens to better support modern s
 - `sMediaOnlyLg`, `sMediaOnlyMd`, `sMediaOnlyXl` - Updated ranges
 - `sMediaMobile`, `sMediaTabletDesktop` - Updated ranges
 
-### Improved
+### Improved on 2025-10-11
 
 - **Better tablet breakpoint**: 768px-1280px (was 768px-1024px) aligns with modern tablet displays
 - **Full HD support**: 1920px breakpoint matches standard Full HD (1080p) monitors
@@ -102,7 +151,7 @@ Updated breakpoint, container, and media query tokens to better support modern s
 
 ## [0.2.0] - 2025-10-07
 
-### Added
+### Added on 2025-10-07
 
 #### New Color Scales (48 new color tokens)
 
@@ -274,7 +323,8 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
 - Watch mode for development (`pnpm dev`)
 - Automated testing with Vitest
 
-[0.2.2]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.2
-[0.2.1]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.1
-[0.2.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.2.0
-[0.1.0]: https://github.com/spexop-ui/design-system/releases/tag/tokens-v0.1.0
+[0.2.3]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.3
+[0.2.2]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.2
+[0.2.1]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.1
+[0.2.0]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.0
+[0.1.0]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.1.0

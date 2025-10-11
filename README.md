@@ -49,23 +49,24 @@ function App() {
 
 ---
 
-## 🆕 What's New in v0.2.2
+## 🆕 What's New in v0.2.3
 
-**@spexop/tokens v0.2.2** - Critical CSS fix + Modern breakpoints! 📱
+**@spexop/tokens v0.2.3** - Complete token scale! 🎯
 
-- **Critical bug fix** - CSS variables now have consistent naming (--s-color-red-500 not --s-color-red-5-0-0)
-- **Updated breakpoints** for modern displays (Lg: 1280px, Xl: 1920px, 2xl: 2560px)
-- **Better tablet support** - Expanded tablet range to 768px-1280px
-- **Full HD & 2K support** - Proper breakpoints for 1080p and QHD displays
-- **17 responsive tokens updated** - Breakpoints, containers, and media queries
+- **11 new tokens added** - Spacing, font sizes, and font weights
+- **452 total tokens** (up from 441, +2.5%)
+- **sSpacing7, sSpacing9** - Fill gaps in spacing scale (28px, 36px)
+- **sFontSize6xl (60px), sFontSize7xl (72px)** - Larger headlines for hero sections
+- **sFontWeight300-900** - Numbered font weights for flexibility
+- **Repository renamed** to spexop-tokens for clarity
 
-**Previous: v0.2.0** - Major color system expansion! 🎨
+**Previous: v0.2.2** - Critical CSS fix + Modern breakpoints! 📱
 
-- 441 design tokens (up from 393) - 48 new color tokens
-- 10 complete color families - Added Purple & Green, expanded all semantic colors
-- Interactive documentation - HTML demo, markdown reference, text quick reference
+- Fixed CSS variable naming bug (--s-color-red-500 format)
+- Updated breakpoints for modern displays (Lg: 1280px, Xl: 1920px, 2xl: 2560px)
+- ⚠️ Skip v0.2.1 (has CSS bug)
 
-[See full changelog →](https://github.com/spexop-ui/design-system/blob/main/packages/tokens/CHANGELOG.md)
+[See full changelog →](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)
 
 ---
 
@@ -73,9 +74,9 @@ function App() {
 
 | Package | Description | Status |
 |---------|-------------|--------|
-| [`@spexop/react`](https://github.com/spexop-ui/design-system/tree/main/packages/react) | React component library | ✅ Available |
-| [`@spexop/tokens`](https://github.com/spexop-ui/design-system/tree/main/packages/tokens) | Design tokens (colors, spacing, typography, etc.) | ✅ Available |
-| [`@spexop/utils`](https://github.com/spexop-ui/design-system/tree/main/packages/utils) | Utility functions | ✅ Available |
+| [`@spexop/react`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/react) | React component library | ✅ Available |
+| [`@spexop/tokens`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/tokens) | Design tokens (colors, spacing, typography, etc.) | ✅ Available |
+| [`@spexop/utils`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/utils) | Utility functions | ✅ Available |
 | `@spexop/vue` | Vue 3 adapters | 🚧 In Development |
 | `@spexop/angular` | Angular adapters | 🚧 In Development |
 
@@ -110,7 +111,7 @@ npm install lucide-vue-next # For Vue
 
 ## 📚 Resources
 
-- **[Main Repository](https://github.com/spexop-ui/design-system)** - Source code and documentation
+- **[Main Repository](https://github.com/spexop-ui/spexop-tokens)** - Source code and documentation
 - **[Documentation Site](https://spexop.design)** - Live examples and guides *(coming soon)*
 - **[Storybook](https://storybook.spexop.design)** - Interactive component explorer *(coming soon)*
 - **[npm Packages](https://www.npmjs.com/org/spexop)** - Published packages
@@ -119,13 +120,13 @@ npm install lucide-vue-next # For Vue
 
 ## 🤝 Contributing
 
-We welcome contributions! Check out our [Contributing Guidelines](https://github.com/spexop-ui/design-system/blob/main/CONTRIBUTING.md) to get started.
+We welcome contributions! Check out our [Contributing Guidelines](https://github.com/spexop-ui/spexop-tokens/blob/main/CONTRIBUTING.md) to get started.
 
 ---
 
 ## 📄 License
 
-All Spexop packages are released under the [MIT License](https://github.com/spexop-ui/design-system/blob/main/LICENSE).
+All Spexop packages are released under the [MIT License](https://github.com/spexop-ui/spexop-tokens/blob/main/LICENSE).
 
 ---
 

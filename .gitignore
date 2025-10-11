@@ -51,3 +51,6 @@ coverage/
 
 *storybook.log
 storybook-static
+
+# Publish docs
+publish-docs/

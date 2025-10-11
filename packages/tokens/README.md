@@ -448,6 +448,6 @@ MIT © Spexop Team
 
 ## Links
 
-- [GitHub Repository](https://github.com/spexop-ui/design-system)
-- [Documentation](https://github.com/spexop-ui/design-system/tree/main/packages/tokens)
-- [Issues](https://github.com/spexop-ui/design-system/issues)
+- [GitHub Repository](https://github.com/spexop-ui/spexop-tokens)
+- [Documentation](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/tokens)
+- [Issues](https://github.com/spexop-ui/spexop-tokens/issues)

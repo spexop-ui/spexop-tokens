@@ -1,17 +1,17 @@
 {
   "name": "@spexop/tokens",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "TypeScript design tokens with built-in theming and CSS variable generation",
   "author": "Spexop Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/spexop-ui/design-system.git",
+    "url": "https://github.com/spexop-ui/spexop-tokens.git",
     "directory": "packages/tokens"
   },
   "homepage": "https://www.spexop.com",
   "bugs": {
-    "url": "https://github.com/spexop-ui/design-system/issues"
+    "url": "https://github.com/spexop-ui/spexop-tokens/issues"
   },
   "keywords": [
     "design-tokens",
