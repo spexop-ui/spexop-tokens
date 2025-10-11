@@ -1,49 +1,63 @@
-# Spexop Design System
+# Spexop Design Tokens
 
-A professional TypeScript design system with comprehensive design tokens and built-in theming support.
+A comprehensive TypeScript design token system with 452+ tokens for building modern, consistent UIs.
 
 ## ✨ Key Features
 
-- **🎨 Design Tokens** - Complete TypeScript-first token system with s-prefix naming convention
-- **⚡ React Components** - Fully typed and tree-shakeable
-- **🎭 Built-in Themes** - Multiple theme options with dark mode support
-- **📦 Icon Integration** - Works seamlessly with Lucide Icons
-- **♿ Accessible** - WCAG 2.1 AA compliant components
-- **🚀 High Performance** - Optimized bundles and fast rendering
-- **💯 TypeScript** - Full type coverage with IntelliSense support
-- **📱 Responsive** - Mobile-first design approach
+- **🎨 452+ Design Tokens** - Complete token system covering colors, spacing, typography, effects, and more
+- **💯 TypeScript-First** - Full type coverage with IntelliSense support
+- **📦 Multiple Formats** - ES Modules, CommonJS, CSS variables, and JSON
+- **🎭 Built-in Themes** - Pre-configured theme tokens with dark mode support
+- **🔧 Flexible** - Use with any framework (React, Vue, Angular, vanilla JS)
+- **📱 Responsive** - Modern breakpoints for all screen sizes
+- **⚡ Tree-Shakeable** - Import only the tokens you need
+- **🚀 Zero Dependencies** - Lightweight and fast
 
 ## 🚀 Quick Start
 
 ```bash
-# Install React components (includes tokens)
-npm install @spexop/react
-
-# Or install tokens separately
+# Install with npm
 npm install @spexop/tokens
 
-# Recommended: Add Lucide Icons
-npm install lucide-react
+# Or with pnpm
+pnpm add @spexop/tokens
+
+# Or with yarn
+yarn add @spexop/tokens
 ```
 
-```tsx
-import { ThemeProvider, Button, Card, Text } from "@spexop/react";
-import { Search, Plus } from "lucide-react";
+### TypeScript/JavaScript
 
-function App() {
-  return (
-    <ThemeProvider initialTheme="minimal">
-      <Card variant="glass" padding="large">
-        <Text size="2xl" weight="bold">
-          Welcome to Spexop
-        </Text>
-        <Button variant="primary" size="large">
-          <Search size={20} />
-          Get Started
-        </Button>
-      </Card>
-    </ThemeProvider>
-  );
+```typescript
+import { 
+  sColorBlue500, 
+  sSpacing4, 
+  sFontSizeXl,
+  sFontWeightBold,
+  sRadiusMd 
+} from '@spexop/tokens';
+
+const buttonStyles = {
+  backgroundColor: sColorBlue500,  // "#3b82f6"
+  padding: sSpacing4,               // "16px"
+  fontSize: sFontSizeXl,            // "20px"
+  fontWeight: sFontWeightBold,      // "700"
+  borderRadius: sRadiusMd,          // "8px"
+};
+```
+
+### CSS Variables
+
+```css
+/* Import CSS variables */
+@import '@spexop/tokens/dist/tokens.css';
+
+.button {
+  background-color: var(--s-color-blue-500);
+  padding: var(--s-spacing-4);
+  font-size: var(--s-font-size-xl);
+  font-weight: var(--s-font-weight-bold);
+  border-radius: var(--s-radius-md);
 }
 ```
 
@@ -51,14 +65,14 @@ function App() {
 
 ## 🆕 What's New in v0.2.3
 
-**@spexop/tokens v0.2.3** - Complete token scale! 🎯
+**Current Version: v0.2.3** - Complete token scale! 🎯
 
-- **11 new tokens added** - Spacing, font sizes, and font weights
-- **452 total tokens** (up from 441, +2.5%)
-- **sSpacing7, sSpacing9** - Fill gaps in spacing scale (28px, 36px)
-- **sFontSize6xl (60px), sFontSize7xl (72px)** - Larger headlines for hero sections
-- **sFontWeight300-900** - Numbered font weights for flexibility
-- **Repository renamed** to spexop-tokens for clarity
+- ✅ **452 total tokens** - Complete design system coverage
+- ✅ **11 new tokens** - Filled gaps in spacing, font sizes, and font weights
+- ✅ **sSpacing7, sSpacing9** - New spacing values (28px, 36px)
+- ✅ **sFontSize6xl, sFontSize7xl** - Extra large headlines (60px, 72px)
+- ✅ **sFontWeight300-900** - Numbered font weights for flexibility
+- ✅ **Repository renamed** to `spexop-tokens` for clarity
 
 **Previous: v0.2.2** - Critical CSS fix + Modern breakpoints! 📱
 
@@ -70,70 +84,124 @@ function App() {
 
 ---
 
-## 📦 Packages
+## 📦 Token Categories
 
-| Package | Description | Status |
-|---------|-------------|--------|
-| [`@spexop/react`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/react) | React component library | ✅ Available |
-| [`@spexop/tokens`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/tokens) | Design tokens (colors, spacing, typography, etc.) | ✅ Available |
-| [`@spexop/utils`](https://github.com/spexop-ui/spexop-tokens/tree/main/packages/utils) | Utility functions | ✅ Available |
-| `@spexop/vue` | Vue 3 adapters | 🚧 In Development |
-| `@spexop/angular` | Angular adapters | 🚧 In Development |
+| Category | Token Count | Examples |
+|----------|-------------|----------|
+| **Colors** | 148 | `sColorBlue500`, `sColorRed600`, `sColorGray100` |
+| **Spacing** | 21 | `sSpacing0` - `sSpacing32` (0px to 128px) |
+| **Typography** | 43 | Font sizes, weights, line heights, letter spacing |
+| **Border Radius** | 6 | `sRadiusNone` to `sRadiusFull` |
+| **Shadows** | 10 | `sShadowXs` to `sShadow2xl`, semantic shadows |
+| **Breakpoints** | 6 | `sBreakpointXs` to `sBreakpoint2xl` |
+| **Effects** | 20+ | Backdrop blur, glass effects, glows |
+| **Layout** | 40+ | Grid, containers, constraints, z-index |
+| **Motion** | 15+ | Durations, easings, transitions |
+| **Other** | 143+ | Aspect ratios, opacity, cursors, transforms |
+| **Total** | **452** | Comprehensive design system |
 
-### Recommended Icons
+### Package Contents
 
-We recommend using [**Lucide Icons**](https://lucide.dev/) - a beautiful, consistent open-source icon library that perfectly complements our design system:
+The `@spexop/tokens` package includes:
 
-- **1000+ icons** - Comprehensive coverage
-- **Consistent style** - Stroke-based, matches our minimal theme
-- **Framework support** - React, Vue, Angular, Svelte, Vanilla JS
-- **ISC License** - Free and open-source
-- **Tree-shakeable** - Import only what you need
+- **TypeScript/JavaScript** - ES Modules (`index.js`) and CommonJS (`index.cjs`)
+- **Type Definitions** - Full TypeScript support (`index.d.ts`, `index.d.cts`)
+- **CSS Variables** - All tokens as CSS custom properties (`tokens.css`)
+- **JSON Export** - Token values in JSON format (`tokens.json`)
+- **Documentation** - Reference guide and demo HTML (`TOKENS-REFERENCE.md`, `tokens-demo.html`)
 
-```bash
-npm install lucide-react    # For React
-npm install lucide          # For Vanilla JS
-npm install lucide-vue-next # For Vue
+---
+
+## 📚 Token Usage Examples
+
+### Spacing System
+
+```typescript
+import { sSpacing0, sSpacing4, sSpacing8, sSpacing16 } from '@spexop/tokens';
+
+// Component spacing
+const cardStyles = {
+  padding: sSpacing4,        // 16px
+  marginBottom: sSpacing8,   // 32px
+  gap: sSpacing2,            // 8px
+};
+```
+
+### Color System
+
+```typescript
+import { sColorBlue500, sColorGray100, sColorRed600 } from '@spexop/tokens';
+
+// Semantic usage
+const buttonStyles = {
+  primary: sColorBlue500,    // "#3b82f6"
+  background: sColorGray100, // "#f3f4f6"
+  error: sColorRed600,       // "#dc2626"
+};
+```
+
+### Typography System
+
+```typescript
+import { 
+  sFontSizeBase, 
+  sFontSizeXl, 
+  sFontSize3xl,
+  sFontWeightBold,
+  sLineHeightRelaxed 
+} from '@spexop/tokens';
+
+const typographyStyles = {
+  body: {
+    fontSize: sFontSizeBase,      // "16px"
+    lineHeight: sLineHeightRelaxed, // "1.625"
+  },
+  heading: {
+    fontSize: sFontSize3xl,       // "30px"
+    fontWeight: sFontWeightBold,  // "700"
+  },
+};
+```
+
+### Responsive Breakpoints
+
+```typescript
+import { sBreakpointMd, sBreakpointLg } from '@spexop/tokens';
+
+// Media query usage
+const mediaQuery = `@media (min-width: ${sBreakpointMd})`; // "@media (min-width: 768px)"
 ```
 
 ---
 
-## 🎨 Component Categories
+## 📚 Documentation
 
-**Layout:** Container, Grid, Section  
-**UI:** Button, Card, Text, Badge, Alert  
-**Forms:** Input, Textarea, Select, Checkbox, Radio, Switch  
-**Navigation:** Header, Sidebar, Tabs, PageHeader  
-**Advanced:** Hero, FeatureCard, Toast, Skeleton, SettingsPanel  
-**Animation:** Motion, FadeIn, SlideIn, ZoomIn, Stagger
-
----
-
-## 📚 Resources
-
-- **[Main Repository](https://github.com/spexop-ui/spexop-tokens)** - Source code and documentation
-- **[Documentation Site](https://spexop.design)** - Live examples and guides *(coming soon)*
-- **[Storybook](https://storybook.spexop.design)** - Interactive component explorer *(coming soon)*
-- **[npm Packages](https://www.npmjs.com/org/spexop)** - Published packages
+- **[GitHub Repository](https://github.com/spexop-ui/spexop-tokens)** - Source code and documentation
+- **[npm Package](https://www.npmjs.com/package/@spexop/tokens)** - Published package on npm
+- **[Token Reference](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/TOKENS-REFERENCE.md)** - Complete token list
+- **[Changelog](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)** - Version history
+- **[Demo HTML](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/tokens-demo.html)** - Interactive token showcase
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Check out our [Contributing Guidelines](https://github.com/spexop-ui/spexop-tokens/blob/main/CONTRIBUTING.md) to get started.
+Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/spexop-ui/spexop-tokens).
 
 ---
 
 ## 📄 License
 
-All Spexop packages are released under the [MIT License](https://github.com/spexop-ui/spexop-tokens/blob/main/LICENSE).
+MIT License - see [LICENSE](https://github.com/spexop-ui/spexop-tokens/blob/main/LICENSE) for details.
 
 ---
 
 <div align="center">
 
-Built by Cuneyt Cakar (<https://github.com/olmstedian>)
+**[@spexop/tokens](https://www.npmjs.com/package/@spexop/tokens)** • Built with TypeScript
 
-[GitHub](https://github.com/spexop-ui) • [npm](https://www.npmjs.com/org/spexop) • [Website](https://spexop.com)
+[GitHub](https://github.com/spexop-ui/spexop-tokens) • [npm](https://www.npmjs.com/package/@spexop/tokens) • [Issues](https://github.com/spexop-ui/spexop-tokens/issues)
+
+[github]: <https://github.com/olmstedian> | <ccakar@spexop.com> | <https://spexop.com>
 
 </div>
