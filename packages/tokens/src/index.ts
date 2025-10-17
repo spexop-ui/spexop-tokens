@@ -328,6 +328,16 @@ export { sSpacing16 } from "./spacing/sSpacing16.js";
 export { sSpacing20 } from "./spacing/sSpacing20.js";
 export { sSpacing24 } from "./spacing/sSpacing24.js";
 export { sSpacing32 } from "./spacing/sSpacing32.js";
+export { sSpacing40 } from "./spacing/sSpacing40.js";
+export { sSpacing48 } from "./spacing/sSpacing48.js";
+export { sSpacing56 } from "./spacing/sSpacing56.js";
+export { sSpacing64 } from "./spacing/sSpacing64.js";
+export { sSpacing80 } from "./spacing/sSpacing80.js";
+export { sSpacing96 } from "./spacing/sSpacing96.js";
+export { sSpacing100 } from "./spacing/sSpacing100.js";
+export { sSpacing128 } from "./spacing/sSpacing128.js";
+export { sSpacing160 } from "./spacing/sSpacing160.js";
+export { sSpacing192 } from "./spacing/sSpacing192.js";
 export { sSpacing14 } from "./spacing/static/sSpacing14.js";
 export { sScaleGrow } from "./transform/sScaleGrow.js";
 export { sScaleGrowLarge } from "./transform/sScaleGrowLarge.js";
@@ -396,7 +406,7 @@ export { sZIndexToast } from "./zIndex/sZIndexToast.js";
 export { sZIndexTooltip } from "./zIndex/sZIndexTooltip.js";
 export { sZIndexVideoBackground } from "./zIndex/sZIndexVideoBackground.js";
 
-export const version = "0.3.0";
+export const version = "0.4.0";
 
 export { sColorRipple } from "./color/effect/sColorRipple.js";
 // Additional Button Tokens
@@ -474,7 +484,7 @@ export function injectTokens() {
 }
 
 export const tokenMetadata = {
-  version: "0.3.0",
+  version: "0.4.0",
   generated: new Date().toISOString(),
   count: 0, // Will be populated at runtime
 };

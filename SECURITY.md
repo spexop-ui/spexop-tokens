@@ -18,7 +18,7 @@ We take the security of @spexop/tokens seriously. If you believe you have found 
 
 Instead, please report them via email to:
 
-**security@spexop.com** (or create a private security advisory on GitHub)
+**<contact@spexop.com>**
 
 You should receive a response within 48 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
 
@@ -43,4 +43,3 @@ We prefer all communications to be in English.
 We follow the principle of [Coordinated Vulnerability Disclosure](https://vuls.cert.org/confluence/display/CVD).
 
 Thank you for helping keep @spexop/tokens and our users safe!
-

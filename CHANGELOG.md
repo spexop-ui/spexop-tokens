@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [@spexop/tokens@0.4.0] - 2025-10-17
+
+### Added
+
+- **10 new large spacing tokens** (sSpacing40 through sSpacing192)
+  - Supports hero sections, full-height layouts, and modern responsive designs
+  - Range: 160px (sSpacing40) to 768px (sSpacing192)
+  - sSpacing160 and sSpacing192 align with sBreakpointSm and sBreakpointMd
+
+### Changed
+
+- **Total Token Count**: 369 → 379 tokens (+2.7%)
+
+---
+
 ## [@spexop/tokens@0.3.0] - 2025-10-17
 
 ### ⚠️ BREAKING CHANGES - Refined Minimalism Alignment
@@ -43,7 +58,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 ## [@spexop/tokens@0.2.3] - 2025-10-11
 
-### Added
+### Added Tokens
 
 - `sSpacing7` (28px) - Fills gap between 24px and 32px
 - `sSpacing9` (36px) - Fills gap between 32px and 40px
@@ -51,7 +66,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 - `sFontSize7xl` (72px) - Hero headlines
 - `sFontWeight300` through `sFontWeight900` - Numbered font weight tokens
 
-### Changed
+### What Changed
 
 - **Total Token Count**: 441 → 452 tokens (+11 tokens)
 - **Repository Name**: Renamed from "spexop-design-system-public" to "spexop-tokens"
@@ -66,7 +81,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
   - Before: `--s-color-red-5-0-0` (broken)
   - After: `--s-color-red-500` (correct)
 
-### Changed
+### Updated
 
 - Updated breakpoints for modern displays:
   - `sBreakpointLg`: 1024px → 1280px
@@ -83,7 +98,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 ## [@spexop/tokens@0.2.0] - 2025-10-06
 
-### Added
+### Added on 2025-10-06
 
 - Complete redesign with 441 tokens
 - TypeScript-first design tokens
@@ -100,4 +115,3 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 - [Detailed Package Changelog](./packages/tokens/CHANGELOG.md)
 - [NPM Package](https://www.npmjs.com/package/@spexop/tokens)
 - [GitHub Repository](https://github.com/spexop-ui/spexop-tokens)
-

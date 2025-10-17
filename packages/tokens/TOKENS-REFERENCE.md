@@ -2,10 +2,10 @@
 
 Quick reference for all design tokens in `@spexop/tokens`.
 
-**Total Tokens:** 369  
-**Version:** 0.3.0
+**Total Tokens:** 379  
+**Version:** 0.4.0
 
-> **v0.3.0 Breaking Changes**: Removed 83 tokens for Refined Minimalism alignment. See CHANGELOG.md for migration guide.
+> **v0.4.0 Updates**: Added 10 large spacing tokens (40-192) for hero sections and large layouts. See CHANGELOG.md for details.
 
 ---
 
@@ -161,9 +161,10 @@ sColorWhite       // #ffffff
 
 ---
 
-## 📏 Spacing (21 tokens)
+## 📏 Spacing (31 tokens)
 
 ```typescript
+// Base spacing scale
 sSpacing0         // 0px
 sSpacing1         // 4px
 sSpacing2         // 8px
@@ -182,7 +183,19 @@ sSpacing20        // 80px
 sSpacing24        // 96px
 sSpacing32        // 128px
 
-// Layout-specific
+// Large layout spacing (NEW in v0.4.0)
+sSpacing40        // 160px
+sSpacing48        // 192px
+sSpacing56        // 224px
+sSpacing64        // 256px
+sSpacing80        // 320px
+sSpacing96        // 384px
+sSpacing100       // 400px
+sSpacing128       // 512px
+sSpacing160       // 640px (matches sBreakpointSm)
+sSpacing192       // 768px (matches sBreakpointMd)
+
+// Layout-specific padding
 sPaddingContainerMobile      // 16px
 sPaddingContainerDesktop     // 24px
 sPaddingSectionVertical      // 48px

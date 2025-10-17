@@ -431,10 +431,10 @@
   <div class="container">
     <header>
       <h1>@spexop/tokens</h1>
-      <p class="subtitle">Complete Design Token Reference v0.3.0</p>
+      <p class="subtitle">Complete Design Token Reference v0.4.0</p>
       <div class="stats">
         <div class="stat">
-          <div class="stat-number">369</div>
+          <div class="stat-number">379</div>
           <div class="stat-label">Total Tokens</div>
         </div>
         <div class="stat">
@@ -743,7 +743,7 @@
     <!-- SPACING -->
     <section id="spacing" class="section">
       <h2 class="section-title">📏 Spacing</h2>
-      <p class="section-description">21 spacing tokens (0px - 128px)</p>
+      <p class="section-description">31 spacing tokens (0px - 768px) - Extended in v0.4.0</p>
       <div class="token-grid">
         <div class="token-card" onclick="copyToken('0px')">
           <div class="token-name">sSpacing0</div>
@@ -814,6 +814,81 @@
           <div class="token-demo">
             <div class="spacing-visual" style="width: 64px;"></div>
           </div>
+        </div>
+        <div class="token-card" onclick="copyToken('80px')">
+          <div class="token-name">sSpacing20</div>
+          <div class="token-value">80px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 80px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('96px')">
+          <div class="token-name">sSpacing24</div>
+          <div class="token-value">96px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 96px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('128px')">
+          <div class="token-name">sSpacing32</div>
+          <div class="token-value">128px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 128px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Large Layout Spacing (NEW in v0.4.0)</h3>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('160px')">
+          <div class="token-name">sSpacing40</div>
+          <div class="token-value">160px</div>
+          <div class="token-demo">Large component spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('192px')">
+          <div class="token-name">sSpacing48</div>
+          <div class="token-value">192px</div>
+          <div class="token-demo">Section spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('224px')">
+          <div class="token-name">sSpacing56</div>
+          <div class="token-value">224px</div>
+          <div class="token-demo">Large section spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('256px')">
+          <div class="token-name">sSpacing64</div>
+          <div class="token-value">256px</div>
+          <div class="token-demo">Hero section vertical spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('320px')">
+          <div class="token-name">sSpacing80</div>
+          <div class="token-value">320px</div>
+          <div class="token-demo">Extra large spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('384px')">
+          <div class="token-name">sSpacing96</div>
+          <div class="token-value">384px</div>
+          <div class="token-demo">Massive spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('400px')">
+          <div class="token-name">sSpacing100</div>
+          <div class="token-value">400px</div>
+          <div class="token-demo">Ultra spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('512px')">
+          <div class="token-name">sSpacing128</div>
+          <div class="token-value">512px</div>
+          <div class="token-demo">Full-viewport-like spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('640px')">
+          <div class="token-name">sSpacing160</div>
+          <div class="token-value">640px (matches sBreakpointSm)</div>
+          <div class="token-demo">Breakpoint-aligned spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('768px')">
+          <div class="token-name">sSpacing192</div>
+          <div class="token-value">768px (matches sBreakpointMd)</div>
+          <div class="token-demo">Breakpoint-aligned spacing</div>
         </div>
       </div>
     </section>
@@ -1400,17 +1475,17 @@
     </section>
 
     <footer>
-      <p><strong>@spexop/tokens</strong> v0.3.0</p>
+      <p><strong>@spexop/tokens</strong> v0.4.0</p>
       <p style="margin-top: 8px;">
         <a href="https://github.com/spexop-ui/spexop-tokens" style="color: #3b82f6; text-decoration: none;">GitHub</a> · 
         <a href="./TOKENS-REFERENCE.md" style="color: #3b82f6; text-decoration: none; margin-left: 16px;">Full Documentation</a> ·
         <a href="./CHANGELOG.md" style="color: #3b82f6; text-decoration: none; margin-left: 16px;">Changelog</a>
       </p>
       <p style="margin-top: 16px; font-size: 12px;">
-        369 tokens · 17 categories · TypeScript-first · Refined Minimalism
+        379 tokens · 17 categories · TypeScript-first · Refined Minimalism
       </p>
       <p style="margin-top: 8px; font-size: 11px; color: #a3a3a3;">
-        v0.3.0: Removed 83 tokens for design system alignment
+        v0.4.0: Added 10 large spacing tokens (40-192) for hero sections
       </p>
     </footer>
   </div>

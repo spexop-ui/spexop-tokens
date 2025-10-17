@@ -1,10 +1,10 @@
 # Spexop Design Tokens
 
-A comprehensive TypeScript design token system with 369 tokens for building modern, consistent UIs.
+A comprehensive TypeScript design token system with 379 tokens for building modern, consistent UIs.
 
 ## ✨ Key Features
 
-- **🎨 369 Design Tokens** - Refined token system following Refined Minimalism principles
+- **🎨 379 Design Tokens** - Refined token system following Refined Minimalism principles
 - **💯 TypeScript-First** - Full type coverage with IntelliSense support
 - **📦 Multiple Formats** - ES Modules, CommonJS, CSS variables, and JSON
 - **🎭 Built-in Themes** - Pre-configured theme tokens with dark mode support
@@ -63,24 +63,39 @@ const buttonStyles = {
 
 ---
 
-## 🆕 What's New in v0.3.0
+## 🆕 What's New in v0.4.0
 
-**Current Version: v0.3.0** - Refined Minimalism Alignment 🎯
+**Current Version: v0.4.0** - Large Spacing Tokens 🎯
 
-⚠️ **BREAKING CHANGES** - This release removes 83 tokens that don't align with Refined Minimalism principles
+✨ **NEW FEATURES** - Added 10 new large spacing tokens for hero sections and modern layouts
 
-**Removed:**
-- ❌ **Slate color palette** (10 tokens) - Use Neutral palette instead
-- ❌ **Glass effects** (37 tokens) - Contradicts minimal decoration principle
-- ❌ **Heavy shadows** (8 tokens) - Violates "Borders before shadows" principle
-- ❌ **Blur/Backdrop effects** (7 tokens) - Anti-pattern for refined aesthetic
-- ❌ **Container duplicates** (6 tokens) - Use breakpoints instead
-- ❌ **Ultra-wide aspect ratios** (2 tokens) - Niche use cases removed
+**Added:**
+
+- ✅ **10 large spacing tokens** (sSpacing40 through sSpacing192)
+- ✅ **Extended spacing scale** - Now covers 0px to 768px (was 0px to 128px)
+- ✅ **Breakpoint-aligned** - sSpacing160 and sSpacing192 match responsive breakpoints
+- ✅ **Better large-screen support** - Perfect for 1920px+, 2560px+ displays
+
+**New Tokens:**
+
+| Token | Value | Use Case |
+|-------|-------|----------|
+| `sSpacing40` | 160px | Large component spacing |
+| `sSpacing48` | 192px | Section spacing |
+| `sSpacing56` | 224px | Large section spacing |
+| `sSpacing64` | 256px | Hero section vertical spacing |
+| `sSpacing80` | 320px | Extra large spacing |
+| `sSpacing96` | 384px | Massive spacing |
+| `sSpacing100` | 400px | Ultra spacing |
+| `sSpacing128` | 512px | Full-viewport-like spacing |
+| `sSpacing160` | 640px | Matches sBreakpointSm |
+| `sSpacing192` | 768px | Matches sBreakpointMd |
 
 **Result:**
-- ✅ **369 tokens** (down from 452) - Leaner, more focused package
-- ✅ **Fully aligned** with "Borders before shadows" and "Minimal decoration" principles
-- ✅ **Comprehensive migration guide** in CHANGELOG.md
+
+- ✅ **379 tokens** (up from 369) - Complete spacing scale
+- ✅ **Backward compatible** - No breaking changes
+- ✅ **Modern layout support** - Hero sections, full-height designs
 
 [See full changelog →](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)
 
@@ -91,7 +106,7 @@ const buttonStyles = {
 | Category | Token Count | Examples |
 |----------|-------------|----------|
 | **Colors** | 98 | `sColorBlue500`, `sColorRed600`, `sColorNeutral100` |
-| **Spacing** | 21 | `sSpacing0` - `sSpacing32` (0px to 128px) |
+| **Spacing** | 31 | `sSpacing0` - `sSpacing192` (0px to 768px) |
 | **Typography** | 43 | Font sizes, weights, line heights, letter spacing |
 | **Border Radius** | 8 | `sRadiusNone` to `sRadiusPill` |
 | **Shadows** | 2 | `sShadowNone`, `sShadowSubtle` (minimal use) |
@@ -99,7 +114,7 @@ const buttonStyles = {
 | **Layout** | 30+ | Grid, constraints, z-index |
 | **Motion** | 15+ | Durations, easings, transitions |
 | **Other** | 146+ | Aspect ratios, opacity, cursors, transforms |
-| **Total** | **369** | Refined design system |
+| **Total** | **379** | Refined design system |
 
 ### Package Contents
 
@@ -118,13 +133,27 @@ The `@spexop/tokens` package includes:
 ### Spacing System
 
 ```typescript
-import { sSpacing0, sSpacing4, sSpacing8, sSpacing16 } from '@spexop/tokens';
+import { 
+  sSpacing0, 
+  sSpacing4, 
+  sSpacing8, 
+  sSpacing16,
+  sSpacing64,
+  sSpacing160 
+} from '@spexop/tokens';
 
 // Component spacing
 const cardStyles = {
   padding: sSpacing4,        // 16px
   marginBottom: sSpacing8,   // 32px
   gap: sSpacing2,            // 8px
+};
+
+// Large layout spacing (NEW in v0.4.0)
+const heroStyles = {
+  paddingTop: sSpacing64,    // 256px
+  paddingBottom: sSpacing64,
+  minHeight: sSpacing160,    // 640px
 };
 ```
 

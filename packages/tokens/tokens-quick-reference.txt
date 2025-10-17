@@ -1,7 +1,7 @@
-@spexop/tokens - Quick Reference v0.3.0
+@spexop/tokens - Quick Reference v0.4.0
 ===========================================
 
-Total: 369 tokens | Colors: 98 | Last Updated: 2025-10-17
+Total: 379 tokens | Colors: 98 | Last Updated: 2025-10-17
 
 COLORS (98 tokens)
 ==================
@@ -125,8 +125,10 @@ sColorError700      #d32f2f
 sColorError800      #c62828
 sColorError900      #b71c1c
 
-SPACING (21 tokens)
+SPACING (31 tokens)
 ===================
+Base Spacing Scale
+-------------------
 sSpacing0           0px
 sSpacing1           4px
 sSpacing2           8px
@@ -144,6 +146,19 @@ sSpacing16          64px
 sSpacing20          80px
 sSpacing24          96px
 sSpacing32          128px
+
+Large Layout Spacing (NEW v0.4.0)
+-----------------------------------
+sSpacing40          160px
+sSpacing48          192px
+sSpacing56          224px
+sSpacing64          256px
+sSpacing80          320px
+sSpacing96          384px
+sSpacing100         400px
+sSpacing128         512px
+sSpacing160         640px  (matches sBreakpointSm)
+sSpacing192         768px  (matches sBreakpointMd)
 
 TYPOGRAPHY (43 tokens)
 ======================

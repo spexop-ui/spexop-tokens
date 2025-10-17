@@ -105,8 +105,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ## Author
 
-Cuneyt Cakar (olmstedian)
-
-## Built by Cuneyt Cakar (olmstedian)
-
-## End of CONTRIBUTING
+Spexop Team

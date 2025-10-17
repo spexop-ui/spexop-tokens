@@ -5,6 +5,49 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-10-17
+
+### Added
+
+#### Large Spacing Tokens (10 new tokens)
+
+Added spacing tokens for large layouts, hero sections, and full-height designs:
+
+- `sSpacing40` = "160px" (10rem) - Large component spacing
+- `sSpacing48` = "192px" (12rem) - Section spacing
+- `sSpacing56` = "224px" (14rem) - Large section spacing
+- `sSpacing64` = "256px" (16rem) - Hero section vertical spacing
+- `sSpacing80` = "320px" (20rem) - Extra large spacing
+- `sSpacing96` = "384px" (24rem) - Massive spacing
+- `sSpacing100` = "400px" (25rem) - Ultra spacing
+- `sSpacing128` = "512px" (32rem) - Full-viewport-like spacing
+- `sSpacing160` = "640px" (40rem) - Matches sBreakpointSm
+- `sSpacing192` = "768px" (48rem) - Matches sBreakpointMd
+
+**Usage Examples:**
+
+```typescript
+// Large hero section
+paddingTop: sSpacing64,     // 256px
+paddingBottom: sSpacing64,
+
+// Full-height section divider
+marginBottom: sSpacing160,  // 640px (breakpoint-aligned)
+```
+
+### Changed
+
+- **Total Token Count**: 369 → 379 tokens (+10 tokens, +2.7%)
+- **Spacing Scale**: Now covers 0px to 768px (was 0px to 128px)
+
+### Improved
+
+- Better support for modern large-screen layouts (1920px+, 2560px+)
+- Spacing tokens aligned with breakpoints for consistent responsive design
+- Complete spacing scale for hero sections and full-height designs
+
+---
+
 ## [0.3.0] - 2025-10-17
 
 ### ⚠️ BREAKING CHANGES - Refined Minimalism Alignment
@@ -26,9 +69,11 @@ This release removes **83 tokens (18.3%)** that don't align with the Spexop desi
 **Reason**: Redundant with Neutral palette
 
 **Removed:**
+
 - `sColorSlate50` through `sColorSlate900` (10 shades)
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 import { sColorSlate500 } from '@spexop/tokens';
@@ -44,11 +89,13 @@ color: sColorNeutral500;
 **Reason**: Contradicts minimal decoration principle
 
 **Removed:**
+
 - All files in `/color/glass/` directory (15 tokens)
 - `sColorGlassDark4` through `sColorGlassDark95` (13 tokens)
 - `sColorGlassLight8` through `sColorGlassLight75` (9 tokens)
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 background: sColorGlassLight20;
@@ -64,11 +111,13 @@ background: 'rgba(255, 255, 255, 0.2)';
 **Reason**: Glass aesthetic contradicts Refined Minimalism
 
 **Removed:**
+
 - `sGlassSurface`, `sGlassOverlay`, `sGlassNav`, `sGlassHero`
 - `sGlassLight10`, `sGlassLight20`, `sGlassLight30`, `sGlassLight50`
 - `sGlassDark10`, `sGlassDark20`, `sGlassDark30`, `sGlassDark50`
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 import { sGlassSurface } from '@spexop/tokens';
@@ -85,6 +134,7 @@ border: `1px solid ${sColorBorder}`;
 **Reason**: Violates "Borders before shadows" principle
 
 **Removed from `/effects/`:**
+
 - `sShadowCard` - Use border instead
 - `sShadowDrawer` - Use border instead
 - `sShadowFloat` - Use border instead
@@ -92,15 +142,18 @@ border: `1px solid ${sColorBorder}`;
 - `sShadowGlassDark` - Glass effect removed
 
 **Removed from `/shadow/`:**
+
 - `sShadowFloating` - Use border instead
 - `sShadowFloatingActive` - Use border color change
 - `sShadowFloatingHover` - Use border color change
 
 **Kept (minimal use only):**
+
 - `sShadowNone` - No shadow
 - `sShadowSubtle` - Minimal shadow for rare cases
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 boxShadow: sShadowDrawer; // Heavy shadow
@@ -119,6 +172,7 @@ border: '2px solid var(--s-color-neutral-400)'; // Border instead
 **Reason**: Anti-pattern for minimal decoration
 
 **Removed:**
+
 - `sBlurSubtle` - blur(4px)
 - `sBlurGlass` - blur(12px)
 - `sBlurStrong` - blur(24px)
@@ -129,6 +183,7 @@ border: '2px solid var(--s-color-neutral-400)'; // Border instead
 - `sEffectGlassBlur` - Combined glass effect
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 backdropFilter: sBlurGlass;
@@ -144,6 +199,7 @@ background: 'rgba(0, 0, 0, 0.8)'; // Solid overlay
 **Reason**: Duplicate breakpoint values - use breakpoints directly
 
 **Removed:**
+
 - `sContainerXs` - Use `sBreakpointXs` (480px)
 - `sContainerSm` - Use `sBreakpointSm` (640px)
 - `sContainerMd` - Use `sBreakpointMd` (768px)
@@ -152,9 +208,11 @@ background: 'rgba(0, 0, 0, 0.8)'; // Solid overlay
 - `sContainer2xl` - Use `sBreakpoint2xl` (2560px)
 
 **Kept:**
+
 - `sContainerFull` - 100% width
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 maxWidth: sContainerLg; // 1280px
@@ -168,10 +226,12 @@ maxWidth: sBreakpointLg; // 1280px (same value)
 **Reason**: Niche use cases not core to design system
 
 **Removed:**
+
 - `sAspectRatioWide` - 21:9 (ultra-wide monitors)
 - `sAspectRatioUltraWide` - 32:9 (super ultra-wide)
 
 **Kept (core ratios):**
+
 - `sAspectRatioSquare` - 1:1
 - `sAspectRatioVideo` - 16:9
 - `sAspectRatioClassic` - 4:3
@@ -179,6 +239,7 @@ maxWidth: sBreakpointLg; // 1280px (same value)
 - `sAspectRatioGolden` - 1.618:1
 
 **Migration:**
+
 ```typescript
 // Before (v0.2.3)
 aspectRatio: sAspectRatioUltraWide; // 32/9
@@ -285,13 +346,13 @@ Added numbered font weight tokens for flexibility and consistency with industry 
 
 Note: These are provided alongside existing named versions (sFontWeightNormal, sFontWeightBold, etc.) for flexibility. Use whichever naming convention you prefer - both point to the same values.
 
-### Changed
+### Changed on 2025-10-11
 
 - **Total Token Count**: 441 → 452 tokens (+11 tokens, +2.5%)
 - **Repository Name**: Renamed from "spexop-design-system-public" to "spexop-tokens" for clarity
 - All GitHub URLs updated to reflect new repository name
 
-### Improved
+### Improved on 2025-10-11
 
 - **More complete spacing scale** - Fewer gaps, better granularity
 - **Larger font sizes** - Better support for hero sections and large headlines
@@ -354,7 +415,7 @@ Fixed a critical bug in the CSS generation script that was creating inconsistent
 **Root Cause:** Regex in `generate-css.ts` was splitting each digit separately
 **Solution:** Updated regex to preserve number sequences as single units
 
-### Changed on 2025-10-11
+### Changed Tokens
 
 #### Breakpoint Updates for Modern Displays
 
@@ -380,7 +441,7 @@ Updated breakpoint, container, and media query tokens to better support modern s
 - `sMediaOnlyLg`, `sMediaOnlyMd`, `sMediaOnlyXl` - Updated ranges
 - `sMediaMobile`, `sMediaTabletDesktop` - Updated ranges
 
-### Improved on 2025-10-11
+### Improved Functionality
 
 - **Better tablet breakpoint**: 768px-1280px (was 768px-1024px) aligns with modern tablet displays
 - **Full HD support**: 1920px breakpoint matches standard Full HD (1080p) monitors
@@ -567,6 +628,8 @@ All semantic colors expanded from 3 shades to full 10-shade scales:
 - Watch mode for development (`pnpm dev`)
 - Automated testing with Vitest
 
+[0.4.0]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.4.0
+[0.3.0]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.3.0
 [0.2.3]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.3
 [0.2.2]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.2
 [0.2.1]: https://github.com/spexop-ui/spexop-tokens/releases/tag/tokens-v0.2.1

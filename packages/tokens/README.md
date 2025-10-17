@@ -105,7 +105,9 @@ import { minimalDarkTheme, professionalDarkTheme, boldDarkTheme } from "@spexop/
 
 ### Spacing
 
-Consistent spacing scale from 0 to 32:
+Consistent spacing scale from 0 to 192 (0px to 768px):
+
+**Base Spacing (0-32):**
 
 ```typescript
 sSpacing0   // '0px'
@@ -113,8 +115,29 @@ sSpacing1   // '4px'
 sSpacing2   // '8px'
 sSpacing4   // '16px'
 sSpacing8   // '32px'
-// ... up to sSpacing32
+sSpacing12  // '48px'
+sSpacing16  // '64px'
+sSpacing20  // '80px'
+sSpacing24  // '96px'
+sSpacing32  // '128px'
 ```
+
+**Large Layout Spacing (NEW in v0.4.0):**
+
+```typescript
+sSpacing40   // '160px' - Large component spacing
+sSpacing48   // '192px' - Section spacing
+sSpacing56   // '224px' - Large section spacing
+sSpacing64   // '256px' - Hero section vertical spacing
+sSpacing80   // '320px' - Extra large spacing
+sSpacing96   // '384px' - Massive spacing
+sSpacing100  // '400px' - Ultra spacing
+sSpacing128  // '512px' - Full-viewport-like spacing
+sSpacing160  // '640px' - Matches sBreakpointSm
+sSpacing192  // '768px' - Matches sBreakpointMd
+```
+
+Perfect for hero sections, full-height layouts, and modern large-screen designs.
 
 ### Typography
 
