@@ -9,16 +9,15 @@ import { sColorBlack } from "../color/sColorBlack.js";
 import { sColorBlue600 } from "../color/sColorBlue600.js";
 import { sColorBlue700 } from "../color/sColorBlue700.js";
 import { sColorBlue800 } from "../color/sColorBlue800.js";
+import { sColorNeutral50 } from "../color/sColorNeutral50.js";
+import { sColorNeutral500 } from "../color/sColorNeutral500.js";
+import { sColorNeutral600 } from "../color/sColorNeutral600.js";
+import { sColorNeutral700 } from "../color/sColorNeutral700.js";
 import { sColorNeutral800 } from "../color/sColorNeutral800.js";
 import { sColorNeutral900 } from "../color/sColorNeutral900.js";
 import { sColorRed500 } from "../color/sColorRed500.js";
 import { sColorRed600 } from "../color/sColorRed600.js";
 import { sColorRed700 } from "../color/sColorRed700.js";
-import { sColorSlate50 } from "../color/sColorSlate50.js";
-import { sColorSlate500 } from "../color/sColorSlate500.js";
-import { sColorSlate600 } from "../color/sColorSlate600.js";
-import { sColorSlate700 } from "../color/sColorSlate700.js";
-import { sColorSlate800 } from "../color/sColorSlate800.js";
 import { sColorWhite } from "../color/sColorWhite.js";
 
 /**
@@ -56,20 +55,20 @@ export interface ThemeColors {
  */
 export const minimalTheme: ThemeColors = {
   primary: sColorNeutral900, // #1a1a1a - Near black
-  primaryHover: sColorSlate800, // Slightly lighter on hover
+  primaryHover: sColorNeutral800, // Slightly lighter on hover
   primaryActive: sColorBlack, // Pure black when pressed
   primaryText: sColorWhite,
 
-  secondary: sColorSlate600, // Cool gray accent
-  secondaryHover: sColorSlate700,
-  secondaryActive: sColorSlate800,
+  secondary: sColorNeutral600, // Cool gray accent
+  secondaryHover: sColorNeutral700,
+  secondaryActive: sColorNeutral800,
   secondaryText: sColorWhite,
 
   surface: sColorWhite,
-  surfaceHover: sColorSlate50,
+  surfaceHover: sColorNeutral50,
 
   text: sColorNeutral900,
-  textMuted: sColorSlate500,
+  textMuted: sColorNeutral500,
   textInverted: sColorWhite,
 };
 
@@ -83,16 +82,16 @@ export const professionalTheme: ThemeColors = {
   primaryActive: sColorBlue800,
   primaryText: sColorWhite,
 
-  secondary: sColorSlate600,
-  secondaryHover: sColorSlate700,
-  secondaryActive: sColorSlate800,
+  secondary: sColorNeutral600,
+  secondaryHover: sColorNeutral700,
+  secondaryActive: sColorNeutral800,
   secondaryText: sColorWhite,
 
   surface: sColorWhite,
-  surfaceHover: sColorSlate50,
+  surfaceHover: sColorNeutral50,
 
   text: sColorNeutral900,
-  textMuted: sColorSlate500,
+  textMuted: sColorNeutral500,
   textInverted: sColorWhite,
 };
 
@@ -112,10 +111,10 @@ export const boldTheme: ThemeColors = {
   secondaryText: sColorWhite,
 
   surface: sColorWhite,
-  surfaceHover: sColorSlate50,
+  surfaceHover: sColorNeutral50,
 
   text: sColorNeutral900,
-  textMuted: sColorSlate500,
+  textMuted: sColorNeutral500,
   textInverted: sColorWhite,
 };
 

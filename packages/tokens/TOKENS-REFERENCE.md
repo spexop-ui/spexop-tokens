@@ -2,12 +2,14 @@
 
 Quick reference for all design tokens in `@spexop/tokens`.
 
-**Total Tokens:** 452  
-**Version:** 0.2.3
+**Total Tokens:** 369  
+**Version:** 0.3.0
+
+> **v0.3.0 Breaking Changes**: Removed 83 tokens for Refined Minimalism alignment. See CHANGELOG.md for migration guide.
 
 ---
 
-## 🎨 Colors (148 tokens)
+## 🎨 Colors (98 tokens)
 
 ### Base Colors
 
@@ -26,21 +28,6 @@ sColorNeutral800   // #262626
 sColorNeutral850   // #1f1f1f
 sColorNeutral900   // #171717
 sColorNeutral950   // #0a0a0a
-```
-
-#### Slate (10 shades)
-
-```typescript
-sColorSlate50     // #f8fafc
-sColorSlate100    // #f1f5f9
-sColorSlate200    // #e2e8f0
-sColorSlate300    // #cbd5e1
-sColorSlate400    // #94a3b8
-sColorSlate500    // #64748b
-sColorSlate600    // #475569
-sColorSlate700    // #334155
-sColorSlate800    // #1e293b
-sColorSlate900    // #0f172a
 ```
 
 #### Blue (10 shades)
@@ -277,39 +264,18 @@ sLetterSpacingWidest   // 0.1em
 
 ---
 
-## 🎭 Effects (20 tokens)
+## 🎭 Shadows (2 tokens)
 
-### Shadows
+Following the **"Borders before shadows"** principle, only minimal shadows are provided:
 
 ```typescript
 sShadowNone              // none
-sShadowSubtle            // 0 1px 2px rgba(0,0,0,0.05)
-sShadowCard              // 0 1px 3px rgba(0,0,0,0.1)
-sShadowFloat             // 0 4px 6px rgba(0,0,0,0.1)
-sShadowDrawer            // 0 10px 15px rgba(0,0,0,0.1)
-sShadowGlassLight        // Glass effect shadow (light)
-sShadowGlassDark         // Glass effect shadow (dark)
-sShadowFloating          // Floating button shadow
-sShadowFloatingHover     // Floating button hover
-sShadowFloatingActive    // Floating button active
+sShadowSubtle            // 0 1px 2px rgba(0,0,0,0.05) - Rare use only
 ```
 
-### Blur
-
-```typescript
-sBlurSubtle       // blur(4px)
-sBlurGlass        // blur(12px)
-sBlurStrong       // blur(24px)
-sBlurLiquid       // blur(40px)
-```
-
-### Backdrop
-
-```typescript
-sBackdropLight    // blur(8px)
-sBackdropGlass    // blur(12px)
-sBackdropStrong   // blur(16px)
-```
+> **v0.3.0 Change**: Removed 8 heavy shadow tokens, all blur effects, and backdrop filters. Use borders for structure.
+>
+> **Migration**: Replace `sShadowCard`, `sShadowDrawer`, etc. with `border: 2px solid var(--s-color-neutral-400)`
 
 ---
 
@@ -432,17 +398,15 @@ sZIndexVideoBackground   // -1
 
 ---
 
-## 📦 Containers (7 tokens)
+## 📦 Containers (1 token)
 
 ```typescript
-sContainerXs      // 480px
-sContainerSm      // 640px
-sContainerMd      // 768px
-sContainerLg      // 1280px
-sContainerXl      // 1920px
-sContainer2xl     // 2560px
 sContainerFull    // 100%
 ```
+
+> **v0.3.0 Change**: Container duplicates removed. Use `sBreakpoint*` tokens for max-widths instead.
+>
+> **Migration**: Replace `sContainerLg` with `sBreakpointLg` (same values)
 
 ---
 
@@ -480,17 +444,17 @@ sGridGutterLg     // 32px
 
 ---
 
-## 📐 Aspect Ratios (7 tokens)
+## 📐 Aspect Ratios (5 tokens)
 
 ```typescript
 sAspectRatioSquare     // 1 / 1
 sAspectRatioVideo      // 16 / 9
-sAspectRatioWide       // 21 / 9
-sAspectRatioUltraWide  // 32 / 9
 sAspectRatioClassic    // 4 / 3
 sAspectRatioPortrait   // 3 / 4
 sAspectRatioGolden     // 1.618 / 1
 ```
+
+> **v0.3.0 Change**: Removed ultra-wide aspect ratios (21:9, 32:9). Define manually if needed.
 
 ---
 
@@ -537,13 +501,7 @@ sColorInteractiveHover, sColorInteractiveFocus, sColorInteractiveActive
 sColorOverlay, sColorOverlayLight, sColorOverlayHeavy
 ```
 
-### Glass Semantics
-
-```typescript
-sGlassSurface, sGlassOverlay, sGlassNav, sGlassHero
-sGlassLight10, sGlassLight20, sGlassLight30, sGlassLight50
-sGlassDark10, sGlassDark20, sGlassDark30, sGlassDark50
-```
+> **v0.3.0 Change**: All glass semantic tokens removed (12 tokens). Use `sColorSurface` with borders instead.
 
 ---
 
@@ -555,14 +513,15 @@ sGlassDark10, sGlassDark20, sGlassDark30, sGlassDark50
 import { 
   sColorPrimary, 
   sSpacing4, 
-  sShadowCard,
+  sColorBorder,
+  sBorderWidthRegular,
   sRadiusSubtle 
 } from "@spexop/tokens";
 
 const buttonStyles = {
   backgroundColor: sColorPrimary,
   padding: sSpacing4,
-  boxShadow: sShadowCard,
+  border: `${sBorderWidthRegular} solid ${sColorBorder}`,
   borderRadius: sRadiusSubtle,
 };
 ```
@@ -575,7 +534,7 @@ const buttonStyles = {
 .button {
   background-color: var(--s-color-primary);
   padding: var(--s-spacing-4);
-  box-shadow: var(--s-shadow-card);
+  border: var(--s-border-width-regular) solid var(--s-color-border);
   border-radius: var(--s-radius-subtle);
 }
 ```
@@ -605,5 +564,22 @@ const Button = styled.button`
 
 ---
 
-**Documentation Version:** 0.2.2  
-**Last Updated:**10-08
+**Documentation Version:** 0.3.0  
+**Last Updated:** 2025-10-17
+
+---
+
+## 🚀 What's New in v0.3.0
+
+**Breaking Changes** - 83 tokens removed for Refined Minimalism alignment:
+
+- ❌ **Slate colors** (10) - Use Neutral instead
+- ❌ **Glass effects** (37) - Use solid colors + borders
+- ❌ **Heavy shadows** (8) - Use borders (2px solid)
+- ❌ **Blur/Backdrop** (7) - Use solid backgrounds
+- ❌ **Container duplicates** (6) - Use sBreakpoint* instead
+- ❌ **Ultra-wide ratios** (2) - Define manually if needed
+
+**Result**: 369 tokens (down from 452) - leaner, clearer, fully aligned with design principles.
+
+See [CHANGELOG.md](./CHANGELOG.md) for complete migration guide.

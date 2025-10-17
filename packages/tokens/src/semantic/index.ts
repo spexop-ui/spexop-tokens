@@ -40,19 +40,3 @@ export {
   sColorTextPrimary,
   sColorTextSecondary,
 } from "./colors.js";
-
-// Glass semantic tokens (consolidated - shorter names)
-export {
-  sGlassDark10,
-  sGlassDark20,
-  sGlassDark30,
-  sGlassDark50,
-  sGlassHero,
-  sGlassLight10,
-  sGlassLight20,
-  sGlassLight30,
-  sGlassLight50,
-  sGlassNav,
-  sGlassOverlay,
-  sGlassSurface,
-} from "./glass.js";

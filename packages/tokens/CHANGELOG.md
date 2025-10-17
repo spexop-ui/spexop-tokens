@@ -5,6 +5,250 @@ All notable changes to `@spexop/tokens` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2025-10-17
+
+### ⚠️ BREAKING CHANGES - Refined Minimalism Alignment
+
+This release removes **83 tokens (18.3%)** that don't align with the Spexop design system's core principles of **Refined Minimalism**. The package now contains **369 tokens** (down from 452).
+
+#### Design Principles Enforced
+
+1. **"Borders before shadows"** - Heavy drop shadows removed; use borders for structure
+2. **"Minimal decoration"** - Glass effects and blur removed; favor clean aesthetics
+3. **"Purpose over decoration"** - Ultra-wide aspect ratios and niche tokens removed
+
+---
+
+### Removed Tokens (83 total)
+
+#### 1. Slate Color Palette (10 tokens) - ❌ REMOVED
+
+**Reason**: Redundant with Neutral palette
+
+**Removed:**
+- `sColorSlate50` through `sColorSlate900` (10 shades)
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+import { sColorSlate500 } from '@spexop/tokens';
+color: sColorSlate500;
+
+// After (v0.3.0)
+import { sColorNeutral500 } from '@spexop/tokens';
+color: sColorNeutral500;
+```
+
+#### 2. Glass Color Tokens (37 tokens) - ❌ REMOVED
+
+**Reason**: Contradicts minimal decoration principle
+
+**Removed:**
+- All files in `/color/glass/` directory (15 tokens)
+- `sColorGlassDark4` through `sColorGlassDark95` (13 tokens)
+- `sColorGlassLight8` through `sColorGlassLight75` (9 tokens)
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+background: sColorGlassLight20;
+backdropFilter: sBlurGlass;
+
+// After (v0.3.0)
+background: 'rgba(255, 255, 255, 0.2)';
+// No backdrop filter - use solid colors
+```
+
+#### 3. Glass Semantic Tokens (12 tokens) - ❌ REMOVED
+
+**Reason**: Glass aesthetic contradicts Refined Minimalism
+
+**Removed:**
+- `sGlassSurface`, `sGlassOverlay`, `sGlassNav`, `sGlassHero`
+- `sGlassLight10`, `sGlassLight20`, `sGlassLight30`, `sGlassLight50`
+- `sGlassDark10`, `sGlassDark20`, `sGlassDark30`, `sGlassDark50`
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+import { sGlassSurface } from '@spexop/tokens';
+background: sGlassSurface;
+
+// After (v0.3.0)
+import { sColorSurface, sColorBorder } from '@spexop/tokens';
+background: sColorSurface;
+border: `1px solid ${sColorBorder}`;
+```
+
+#### 4. Heavy Shadow Tokens (8 tokens) - ❌ REMOVED
+
+**Reason**: Violates "Borders before shadows" principle
+
+**Removed from `/effects/`:**
+- `sShadowCard` - Use border instead
+- `sShadowDrawer` - Use border instead
+- `sShadowFloat` - Use border instead
+- `sShadowGlassLight` - Glass effect removed
+- `sShadowGlassDark` - Glass effect removed
+
+**Removed from `/shadow/`:**
+- `sShadowFloating` - Use border instead
+- `sShadowFloatingActive` - Use border color change
+- `sShadowFloatingHover` - Use border color change
+
+**Kept (minimal use only):**
+- `sShadowNone` - No shadow
+- `sShadowSubtle` - Minimal shadow for rare cases
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+boxShadow: sShadowDrawer; // Heavy shadow
+
+// After (v0.3.0)
+border: '2px solid var(--s-color-neutral-400)'; // Border instead
+
+// For hover states
+'&:hover': {
+  borderColor: sColorNeutral500,
+}
+```
+
+#### 5. Blur & Backdrop Effects (7 tokens) - ❌ REMOVED
+
+**Reason**: Anti-pattern for minimal decoration
+
+**Removed:**
+- `sBlurSubtle` - blur(4px)
+- `sBlurGlass` - blur(12px)
+- `sBlurStrong` - blur(24px)
+- `sBlurLiquid` - blur(40px)
+- `sBackdropLight` - blur(8px)
+- `sBackdropGlass` - blur(12px)
+- `sBackdropStrong` - blur(16px)
+- `sEffectGlassBlur` - Combined glass effect
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+backdropFilter: sBlurGlass;
+background: sColorGlassLight20;
+
+// After (v0.3.0)
+background: 'rgba(0, 0, 0, 0.8)'; // Solid overlay
+// No backdrop-filter
+```
+
+#### 6. Container Duplicate Tokens (6 tokens) - ❌ REMOVED
+
+**Reason**: Duplicate breakpoint values - use breakpoints directly
+
+**Removed:**
+- `sContainerXs` - Use `sBreakpointXs` (480px)
+- `sContainerSm` - Use `sBreakpointSm` (640px)
+- `sContainerMd` - Use `sBreakpointMd` (768px)
+- `sContainerLg` - Use `sBreakpointLg` (1280px)
+- `sContainerXl` - Use `sBreakpointXl` (1920px)
+- `sContainer2xl` - Use `sBreakpoint2xl` (2560px)
+
+**Kept:**
+- `sContainerFull` - 100% width
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+maxWidth: sContainerLg; // 1280px
+
+// After (v0.3.0)
+maxWidth: sBreakpointLg; // 1280px (same value)
+```
+
+#### 7. Ultra-Wide Aspect Ratios (2 tokens) - ❌ REMOVED
+
+**Reason**: Niche use cases not core to design system
+
+**Removed:**
+- `sAspectRatioWide` - 21:9 (ultra-wide monitors)
+- `sAspectRatioUltraWide` - 32:9 (super ultra-wide)
+
+**Kept (core ratios):**
+- `sAspectRatioSquare` - 1:1
+- `sAspectRatioVideo` - 16:9
+- `sAspectRatioClassic` - 4:3
+- `sAspectRatioPortrait` - 3:4
+- `sAspectRatioGolden` - 1.618:1
+
+**Migration:**
+```typescript
+// Before (v0.2.3)
+aspectRatio: sAspectRatioUltraWide; // 32/9
+
+// After (v0.3.0)
+aspectRatio: '32 / 9'; // Define manually if needed
+```
+
+---
+
+### Migration Summary
+
+| Category | Tokens Removed | Migration Strategy |
+|----------|----------------|-------------------|
+| **Slate Colors** | 10 | Replace with Neutral colors |
+| **Glass Colors** | 37 | Use solid colors with rgba() |
+| **Glass Semantic** | 12 | Use sColorSurface + borders |
+| **Heavy Shadows** | 8 | Use borders (2px solid) |
+| **Blur/Backdrop** | 7 | Use solid backgrounds |
+| **Containers** | 6 | Use breakpoint tokens |
+| **Ultra-wide Ratios** | 2 | Define manually if needed |
+| **Total** | **83** | **Borders before shadows** |
+
+---
+
+### Updated Token Count
+
+- **v0.2.3**: 452 tokens
+- **v0.3.0**: 369 tokens
+- **Change**: -83 tokens (-18.3%)
+
+---
+
+### Package Size Impact
+
+- **v0.2.3**: ~15KB minified CSS
+- **v0.3.0**: ~13KB minified CSS
+- **Savings**: ~2KB (13% reduction)
+
+---
+
+### Benefits
+
+✅ **Leaner package** - 13% smaller bundle size  
+✅ **Clearer philosophy** - Fully aligned with Refined Minimalism  
+✅ **Easier decisions** - Less redundancy, clearer token purposes  
+✅ **Better maintenance** - Fewer tokens to maintain and document  
+✅ **Consistent aesthetic** - All tokens support the same design language  
+
+---
+
+### Breaking Change Checklist
+
+If you're using any of these tokens, you'll need to update your code:
+
+- [ ] Replace `sColorSlate*` with `sColorNeutral*`
+- [ ] Replace `sGlass*` tokens with solid colors + borders
+- [ ] Replace heavy shadows (`sShadowCard`, `sShadowDrawer`, etc.) with borders
+- [ ] Remove all `blur` and `backdrop-filter` effects
+- [ ] Replace `sContainer*` with `sBreakpoint*` tokens
+- [ ] Define custom aspect ratios for ultra-wide displays if needed
+
+---
+
+### Support
+
+Need help migrating? Open an issue on [GitHub](https://github.com/spexop-ui/spexop-tokens/issues) or check the updated documentation.
+
+---
+
 ## [0.2.3] - 2025-10-11
 
 ### Added on 2025-10-11

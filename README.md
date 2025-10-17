@@ -1,10 +1,10 @@
 # Spexop Design Tokens
 
-A comprehensive TypeScript design token system with 452+ tokens for building modern, consistent UIs.
+A comprehensive TypeScript design token system with 369 tokens for building modern, consistent UIs.
 
 ## ✨ Key Features
 
-- **🎨 452+ Design Tokens** - Complete token system covering colors, spacing, typography, effects, and more
+- **🎨 369 Design Tokens** - Refined token system following Refined Minimalism principles
 - **💯 TypeScript-First** - Full type coverage with IntelliSense support
 - **📦 Multiple Formats** - ES Modules, CommonJS, CSS variables, and JSON
 - **🎭 Built-in Themes** - Pre-configured theme tokens with dark mode support
@@ -63,22 +63,24 @@ const buttonStyles = {
 
 ---
 
-## 🆕 What's New in v0.2.3
+## 🆕 What's New in v0.3.0
 
-**Current Version: v0.2.3** - Complete token scale! 🎯
+**Current Version: v0.3.0** - Refined Minimalism Alignment 🎯
 
-- ✅ **452 total tokens** - Complete design system coverage
-- ✅ **11 new tokens** - Filled gaps in spacing, font sizes, and font weights
-- ✅ **sSpacing7, sSpacing9** - New spacing values (28px, 36px)
-- ✅ **sFontSize6xl, sFontSize7xl** - Extra large headlines (60px, 72px)
-- ✅ **sFontWeight300-900** - Numbered font weights for flexibility
-- ✅ **Repository renamed** to `spexop-tokens` for clarity
+⚠️ **BREAKING CHANGES** - This release removes 83 tokens that don't align with Refined Minimalism principles
 
-**Previous: v0.2.2** - Critical CSS fix + Modern breakpoints! 📱
+**Removed:**
+- ❌ **Slate color palette** (10 tokens) - Use Neutral palette instead
+- ❌ **Glass effects** (37 tokens) - Contradicts minimal decoration principle
+- ❌ **Heavy shadows** (8 tokens) - Violates "Borders before shadows" principle
+- ❌ **Blur/Backdrop effects** (7 tokens) - Anti-pattern for refined aesthetic
+- ❌ **Container duplicates** (6 tokens) - Use breakpoints instead
+- ❌ **Ultra-wide aspect ratios** (2 tokens) - Niche use cases removed
 
-- Fixed CSS variable naming bug (--s-color-red-500 format)
-- Updated breakpoints for modern displays (Lg: 1280px, Xl: 1920px, 2xl: 2560px)
-- ⚠️ Skip v0.2.1 (has CSS bug)
+**Result:**
+- ✅ **369 tokens** (down from 452) - Leaner, more focused package
+- ✅ **Fully aligned** with "Borders before shadows" and "Minimal decoration" principles
+- ✅ **Comprehensive migration guide** in CHANGELOG.md
 
 [See full changelog →](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)
 
@@ -88,17 +90,16 @@ const buttonStyles = {
 
 | Category | Token Count | Examples |
 |----------|-------------|----------|
-| **Colors** | 148 | `sColorBlue500`, `sColorRed600`, `sColorGray100` |
+| **Colors** | 98 | `sColorBlue500`, `sColorRed600`, `sColorNeutral100` |
 | **Spacing** | 21 | `sSpacing0` - `sSpacing32` (0px to 128px) |
 | **Typography** | 43 | Font sizes, weights, line heights, letter spacing |
-| **Border Radius** | 6 | `sRadiusNone` to `sRadiusFull` |
-| **Shadows** | 10 | `sShadowXs` to `sShadow2xl`, semantic shadows |
+| **Border Radius** | 8 | `sRadiusNone` to `sRadiusPill` |
+| **Shadows** | 2 | `sShadowNone`, `sShadowSubtle` (minimal use) |
 | **Breakpoints** | 6 | `sBreakpointXs` to `sBreakpoint2xl` |
-| **Effects** | 20+ | Backdrop blur, glass effects, glows |
-| **Layout** | 40+ | Grid, containers, constraints, z-index |
+| **Layout** | 30+ | Grid, constraints, z-index |
 | **Motion** | 15+ | Durations, easings, transitions |
-| **Other** | 143+ | Aspect ratios, opacity, cursors, transforms |
-| **Total** | **452** | Comprehensive design system |
+| **Other** | 146+ | Aspect ratios, opacity, cursors, transforms |
+| **Total** | **369** | Refined design system |
 
 ### Package Contents
 

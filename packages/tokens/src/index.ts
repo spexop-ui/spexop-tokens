@@ -9,9 +9,7 @@ export { sAspectRatioGolden } from "./aspectRatio/sAspectRatioGolden.js";
 export { sAspectRatioPortrait } from "./aspectRatio/sAspectRatioPortrait.js";
 // Aspect Ratios
 export { sAspectRatioSquare } from "./aspectRatio/sAspectRatioSquare.js";
-export { sAspectRatioUltraWide } from "./aspectRatio/sAspectRatioUltraWide.js";
 export { sAspectRatioVideo } from "./aspectRatio/sAspectRatioVideo.js";
-export { sAspectRatioWide } from "./aspectRatio/sAspectRatioWide.js";
 // Background
 export { sBackgroundTransparent } from "./background/sBackgroundTransparent.js";
 // Border Width
@@ -25,7 +23,6 @@ export { sBorderStyleDouble } from "./border/style/sBorderStyleDouble.js";
 export { sBorderStyleNone } from "./border/style/sBorderStyleNone.js";
 // Border Style
 export { sBorderStyleSolid } from "./border/style/sBorderStyleSolid.js";
-export { sBorderWidthGlass } from "./border/width/sBorderWidthGlass.js";
 export { sBreakpoint2xl } from "./breakpoints/sBreakpoint2xl.js";
 export { sBreakpointLg } from "./breakpoints/sBreakpointLg.js";
 export { sBreakpointMd } from "./breakpoints/sBreakpointMd.js";
@@ -34,22 +31,6 @@ export { sBreakpointXl } from "./breakpoints/sBreakpointXl.js";
 // Breakpoints (Responsive)
 export { sBreakpointXs } from "./breakpoints/sBreakpointXs.js";
 export { sColorGrayDark } from "./color/dark/sColorGrayDark.js";
-export { sColorGlassBorder25 } from "./color/glass/sColorGlassBorder25.js";
-export { sColorGlassBorder30 } from "./color/glass/sColorGlassBorder30.js";
-export { sColorGlassBorder35 } from "./color/glass/sColorGlassBorder35.js";
-export { sColorGlassBorder40 } from "./color/glass/sColorGlassBorder40.js";
-export { sColorGlassBorderDark } from "./color/glass/sColorGlassBorderDark.js";
-export { sColorGlassBorderLight } from "./color/glass/sColorGlassBorderLight.js";
-// Glass Colors (Hero Buttons)
-export { sColorGlassWhite08 } from "./color/glass/sColorGlassWhite08.js";
-export { sColorGlassWhite10 } from "./color/glass/sColorGlassWhite10.js";
-export { sColorGlassWhite12 } from "./color/glass/sColorGlassWhite12.js";
-export { sColorGlassWhite15 } from "./color/glass/sColorGlassWhite15.js";
-export { sColorGlassWhite20 } from "./color/glass/sColorGlassWhite20.js";
-export { sColorGlassWhite25 } from "./color/glass/sColorGlassWhite25.js";
-export { sColorGlassWhite50 } from "./color/glass/sColorGlassWhite50.js";
-export { sColorWhite30 } from "./color/glass/sColorWhite30.js";
-export { sColorWhite95 } from "./color/glass/sColorWhite95.js";
 export { sColorBlack } from "./color/sColorBlack.js";
 // Blue Colors (Professional Theme)
 export { sColorBlue50 } from "./color/sColorBlue50.js";
@@ -72,29 +53,6 @@ export { sColorError600 } from "./color/sColorError600.js";
 export { sColorError700 } from "./color/sColorError700.js";
 export { sColorError800 } from "./color/sColorError800.js";
 export { sColorError900 } from "./color/sColorError900.js";
-export { sColorGlassDark4 } from "./color/sColorGlassDark4.js";
-export { sColorGlassDark6 } from "./color/sColorGlassDark6.js";
-export { sColorGlassDark8 } from "./color/sColorGlassDark8.js";
-export { sColorGlassDark10 } from "./color/sColorGlassDark10.js";
-export { sColorGlassDark12 } from "./color/sColorGlassDark12.js";
-export { sColorGlassDark15 } from "./color/sColorGlassDark15.js";
-export { sColorGlassDark20 } from "./color/sColorGlassDark20.js";
-export { sColorGlassDark25 } from "./color/sColorGlassDark25.js";
-export { sColorGlassDark40 } from "./color/sColorGlassDark40.js";
-export { sColorGlassDark50 } from "./color/sColorGlassDark50.js";
-export { sColorGlassDark60 } from "./color/sColorGlassDark60.js";
-export { sColorGlassDark85 } from "./color/sColorGlassDark85.js";
-export { sColorGlassDark95 } from "./color/sColorGlassDark95.js";
-export { sColorGlassLight8 } from "./color/sColorGlassLight8.js";
-export { sColorGlassLight12 } from "./color/sColorGlassLight12.js";
-export { sColorGlassLight15 } from "./color/sColorGlassLight15.js";
-export { sColorGlassLight20 } from "./color/sColorGlassLight20.js";
-export { sColorGlassLight25 } from "./color/sColorGlassLight25.js";
-export { sColorGlassLight30 } from "./color/sColorGlassLight30.js";
-export { sColorGlassLight35 } from "./color/sColorGlassLight35.js";
-export { sColorGlassLight40 } from "./color/sColorGlassLight40.js";
-export { sColorGlassLight50 } from "./color/sColorGlassLight50.js";
-export { sColorGlassLight75 } from "./color/sColorGlassLight75.js";
 export { sColorInfo50 } from "./color/sColorInfo50.js";
 export { sColorInfo100 } from "./color/sColorInfo100.js";
 export { sColorInfo200 } from "./color/sColorInfo200.js";
@@ -150,17 +108,6 @@ export { sColorRed600 } from "./color/sColorRed600.js";
 export { sColorRed700 } from "./color/sColorRed700.js";
 export { sColorRed800 } from "./color/sColorRed800.js";
 export { sColorRed900 } from "./color/sColorRed900.js";
-// Slate Colors (Cool Grays)
-export { sColorSlate50 } from "./color/sColorSlate50.js";
-export { sColorSlate100 } from "./color/sColorSlate100.js";
-export { sColorSlate200 } from "./color/sColorSlate200.js";
-export { sColorSlate300 } from "./color/sColorSlate300.js";
-export { sColorSlate400 } from "./color/sColorSlate400.js";
-export { sColorSlate500 } from "./color/sColorSlate500.js";
-export { sColorSlate600 } from "./color/sColorSlate600.js";
-export { sColorSlate700 } from "./color/sColorSlate700.js";
-export { sColorSlate800 } from "./color/sColorSlate800.js";
-export { sColorSlate900 } from "./color/sColorSlate900.js";
 // Semantic Colors (Success, Warning, Info, Error)
 export { sColorSuccess50 } from "./color/sColorSuccess50.js";
 export { sColorSuccess100 } from "./color/sColorSuccess100.js";
@@ -192,14 +139,8 @@ export { sMinHeightInput } from "./constraints/sMinHeightInput.js";
 export { sMinWidthButton } from "./constraints/sMinWidthButton.js";
 export { sMinWidthCard } from "./constraints/sMinWidthCard.js";
 export { sMinWidthInput } from "./constraints/sMinWidthInput.js";
-export { sContainer2xl } from "./container/sContainer2xl.js";
-export { sContainerFull } from "./container/sContainerFull.js";
-export { sContainerLg } from "./container/sContainerLg.js";
-export { sContainerMd } from "./container/sContainerMd.js";
-export { sContainerSm } from "./container/sContainerSm.js";
-export { sContainerXl } from "./container/sContainerXl.js";
 // Container Sizes (Max Widths)
-export { sContainerXs } from "./container/sContainerXs.js";
+export { sContainerFull } from "./container/sContainerFull.js";
 // Cursor (Interaction)
 export { sCursorAuto } from "./cursor/sCursorAuto.js";
 export { sCursorDefault } from "./cursor/sCursorDefault.js";
@@ -209,20 +150,7 @@ export { sCursorMove } from "./cursor/sCursorMove.js";
 export { sCursorNotAllowed } from "./cursor/sCursorNotAllowed.js";
 export { sCursorPointer } from "./cursor/sCursorPointer.js";
 export { sCursorText } from "./cursor/sCursorText.js";
-export { sBackdropGlass } from "./effects/sBackdropGlass.js";
-export { sBackdropLight } from "./effects/sBackdropLight.js";
-export { sBackdropStrong } from "./effects/sBackdropStrong.js";
-export { sBlurGlass } from "./effects/sBlurGlass.js";
-export { sBlurLiquid } from "./effects/sBlurLiquid.js";
-export { sBlurStrong } from "./effects/sBlurStrong.js";
 // Effects (Blur, Shadows, Backdrop)
-export { sBlurSubtle } from "./effects/sBlurSubtle.js";
-export { sEffectGlassBlur } from "./effects/sEffectGlassBlur.js";
-export { sShadowCard } from "./effects/sShadowCard.js";
-export { sShadowDrawer } from "./effects/sShadowDrawer.js";
-export { sShadowFloat } from "./effects/sShadowFloat.js";
-export { sShadowGlassDark } from "./effects/sShadowGlassDark.js";
-export { sShadowGlassLight } from "./effects/sShadowGlassLight.js";
 export { sShadowSubtle } from "./effects/sShadowSubtle.js";
 // Grid Layout (Columns, Gutters)
 export { sGridColumns12 } from "./grid/sGridColumns12.js";
@@ -313,17 +241,15 @@ export { sOutlineWidth1 } from "./outline/sOutlineWidth1.js";
 export { sOutlineWidth2 } from "./outline/sOutlineWidth2.js";
 export { sOutlineWidth3 } from "./outline/sOutlineWidth3.js";
 export { sOutlineWidth4 } from "./outline/sOutlineWidth4.js";
-export { sRadiusLiquid } from "./radius/sRadiusLiquid.js";
 // Border Radius
 export { sRadiusNone } from "./radius/sRadiusNone.js";
-export { sRadiusPill } from "./radius/sRadiusPill.js";
-export { sRadiusRelaxed } from "./radius/sRadiusRelaxed.js";
 export { sRadiusSubtle } from "./radius/sRadiusSubtle.js";
 export { sRadiusTight } from "./radius/sRadiusTight.js";
-// Floating Shadows
-export { sShadowFloating } from "./shadow/sShadowFloating.js";
-export { sShadowFloatingActive } from "./shadow/sShadowFloatingActive.js";
-export { sShadowFloatingHover } from "./shadow/sShadowFloatingHover.js";
+export { sRadiusBase } from "./radius/sRadiusBase.js";
+export { sRadiusRelaxed } from "./radius/sRadiusRelaxed.js";
+export { sRadiusLiquid } from "./radius/sRadiusLiquid.js";
+export { sRadiusLarge } from "./radius/sRadiusLarge.js";
+export { sRadiusPill } from "./radius/sRadiusPill.js";
 export { sShadowHeroSecondaryActive } from "./shadow/sShadowHeroSecondaryActive.js";
 export { sShadowHeroSecondaryHover } from "./shadow/sShadowHeroSecondaryHover.js";
 export { sShadowNone } from "./shadow/sShadowNone.js";
@@ -470,7 +396,7 @@ export { sZIndexToast } from "./zIndex/sZIndexToast.js";
 export { sZIndexTooltip } from "./zIndex/sZIndexTooltip.js";
 export { sZIndexVideoBackground } from "./zIndex/sZIndexVideoBackground.js";
 
-export const version = "0.2.3";
+export const version = "0.3.0";
 
 export { sColorRipple } from "./color/effect/sColorRipple.js";
 // Additional Button Tokens
@@ -510,19 +436,6 @@ export {
   sColorTextMuted,
   sColorTextPrimary,
   sColorTextSecondary,
-  // Glass Semantic Tokens (Consolidated - 12 instead of 36, shorter names)
-  sGlassDark10,
-  sGlassDark20,
-  sGlassDark30,
-  sGlassDark50,
-  sGlassHero,
-  sGlassLight10,
-  sGlassLight20,
-  sGlassLight30,
-  sGlassLight50,
-  sGlassNav,
-  sGlassOverlay,
-  sGlassSurface,
 } from "./semantic/index.js";
 // Theme System with Dark Mode Support
 export {
@@ -561,7 +474,7 @@ export function injectTokens() {
 }
 
 export const tokenMetadata = {
-  version: "0.2.3",
+  version: "0.3.0",
   generated: new Date().toISOString(),
   count: 0, // Will be populated at runtime
 };

@@ -1,6 +1,6 @@
 {
   "name": "@spexop/tokens",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "TypeScript design tokens with built-in theming and CSS variable generation",
   "author": "Spexop Team",
   "license": "MIT",

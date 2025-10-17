@@ -34,15 +34,15 @@ pnpm add @spexop/tokens
 import { 
   sColorNeutral900, 
   sSpacing4, 
-  sShadowCard,
   sFontSizeLg,
-  sRadiusSubtle
+  sRadiusSubtle,
+  sBorderWidthRegular
 } from "@spexop/tokens";
 
 const styles = {
   backgroundColor: sColorNeutral900,   // '#1a1a1a'
   padding: sSpacing4,                  // '16px'  
-  boxShadow: sShadowCard,              // Elevation shadow
+  border: `${sBorderWidthRegular} solid`,  // Borders before shadows
   fontSize: sFontSizeLg,               // '18px'
   borderRadius: sRadiusSubtle,         // '8px'
 };
@@ -57,7 +57,7 @@ const styles = {
 .my-component {
   background-color: var(--s-color-neutral-900);
   padding: var(--s-spacing-4);
-  box-shadow: var(--s-shadow-card);
+  border: var(--s-border-width-regular) solid var(--s-color-border);
   font-size: var(--s-font-size-lg);
   border-radius: var(--s-radius-subtle);
 }
@@ -84,7 +84,6 @@ import { minimalDarkTheme, professionalDarkTheme, boldDarkTheme } from "@spexop/
 **Base Colors:**
 
 - Neutrals (50-950) - 12 shades
-- Slate (50-900) - 10 shades
 - Blues (50-900) - 10 shades
 - Reds (50-900) - 10 shades
 - Purples (50-900) - 10 shades
@@ -96,12 +95,13 @@ import { minimalDarkTheme, professionalDarkTheme, boldDarkTheme } from "@spexop/
 - Warning (50-900) - 10 shades for cautionary messages
 - Info (50-900) - 10 shades for informational content
 - Error (50-900) - 10 shades for error states
-- Glass colors for glassmorphism effects
 
 **Theme Colors:**
 
 - Semantic tokens that adapt to active theme
 - Support for light and dark modes
+
+> **v0.3.0 Breaking Changes**: Removed Slate colors (use Neutral), removed glass effects, heavy shadows, and blur/backdrop tokens to align with Refined Minimalism principles. See CHANGELOG.md for migration guide.
 
 ### Spacing
 
@@ -148,18 +148,12 @@ sFontSizeLg   // '18px'
 
 ### Effects
 
-**Shadows:**
+**Shadows (Minimal Use):**
 
-- `sShadowCard`, `sShadowFloat`, `sShadowDrawer`
-- `sShadowGlassLight`, `sShadowGlassDark`
+- `sShadowNone` - No shadow
+- `sShadowSubtle` - Minimal shadow for rare use cases
 
-**Blur:**
-
-- `sBlurSubtle`, `sBlurGlass`, `sBlurStrong`, `sBlurLiquid`
-
-**Backdrop:**
-
-- `sBackdropLight`, `sBackdropGlass`, `sBackdropStrong`
+> **Note**: Following "Borders before shadows" principle, use borders for structure instead of heavy shadows.
 
 ### Border Radius
 
@@ -293,7 +287,7 @@ sGridGutterMd  // '24px' - Medium gutter
 sGridGutterLg  // '32px' - Large gutter
 ```
 
-> **Note:** Container max widths are available via `sContainer*` tokens (see existing container tokens: `sContainerXs`, `sContainerSm`, `sContainerMd`, `sContainerLg`, `sContainerXl`, `sContainer2xl`, `sContainerFull`).
+> **Note:** For container max widths, use `sBreakpoint*` tokens or `sContainerFull` (100%).
 
 ### Aspect Ratios
 
@@ -302,11 +296,9 @@ Standard aspect ratios for media and containers:
 ```typescript
 sAspectRatioSquare     // '1 / 1'    - Perfect square
 sAspectRatioVideo      // '16 / 9'   - Standard video
-sAspectRatioWide       // '21 / 9'   - Ultra-wide
 sAspectRatioClassic    // '4 / 3'    - Classic/standard
 sAspectRatioPortrait   // '3 / 4'    - Portrait orientation
 sAspectRatioGolden     // '1.618 / 1' - Golden ratio
-sAspectRatioUltraWide  // '32 / 9'   - Ultra-wide/panoramic
 ```
 
 ### Constraints
@@ -395,7 +387,7 @@ import {
   sColorBackgroundPrimary,
   sColorTextPrimary,
   sColorBorder,
-  sGlassSurface
+  sColorSurface
 } from "@spexop/tokens";
 ```
 

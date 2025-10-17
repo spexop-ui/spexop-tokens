@@ -15,9 +15,6 @@ import { sColorNeutral900 } from "../color/sColorNeutral900.js";
 import { sColorRed500 } from "../color/sColorRed500.js";
 import { sColorRed600 } from "../color/sColorRed600.js";
 import { sColorRed700 } from "../color/sColorRed700.js";
-import { sColorSlate700 } from "../color/sColorSlate700.js";
-import { sColorSlate800 } from "../color/sColorSlate800.js";
-import { sColorSlate900 } from "../color/sColorSlate900.js";
 import { sColorWhite } from "../color/sColorWhite.js";
 import type { ThemeColors } from "./colors.js";
 
@@ -54,17 +51,17 @@ export const professionalDarkTheme: ThemeColors = {
   primaryActive: sColorBlue700,
   primaryText: sColorWhite,
 
-  secondary: sColorSlate700,
-  secondaryHover: sColorSlate800,
-  secondaryActive: sColorSlate900,
+  secondary: sColorNeutral700,
+  secondaryHover: sColorNeutral800,
+  secondaryActive: sColorNeutral900,
   secondaryText: sColorWhite,
 
-  surface: sColorSlate800,
-  surfaceHover: sColorSlate700,
+  surface: sColorNeutral800,
+  surfaceHover: sColorNeutral700,
 
   text: sColorWhite,
   textMuted: sColorNeutral400,
-  textInverted: sColorSlate900,
+  textInverted: sColorNeutral900,
 };
 
 /**

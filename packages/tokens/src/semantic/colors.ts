@@ -24,13 +24,11 @@ import { sColorBlue600 } from "../color/sColorBlue600.js";
 import { sColorNeutral50 } from "../color/sColorNeutral50.js";
 import { sColorNeutral100 } from "../color/sColorNeutral100.js";
 import { sColorNeutral200 } from "../color/sColorNeutral200.js";
+import { sColorNeutral300 } from "../color/sColorNeutral300.js";
+import { sColorNeutral500 } from "../color/sColorNeutral500.js";
 import { sColorNeutral700 } from "../color/sColorNeutral700.js";
+import { sColorNeutral800 } from "../color/sColorNeutral800.js";
 import { sColorNeutral900 } from "../color/sColorNeutral900.js";
-import { sColorSlate200 } from "../color/sColorSlate200.js";
-import { sColorSlate300 } from "../color/sColorSlate300.js";
-import { sColorSlate500 } from "../color/sColorSlate500.js";
-import { sColorSlate700 } from "../color/sColorSlate700.js";
-import { sColorSlate800 } from "../color/sColorSlate800.js";
 import { sColorWhite } from "../color/sColorWhite.js";
 
 // ============================================
@@ -42,8 +40,8 @@ import { sColorWhite } from "../color/sColorWhite.js";
  * Used for main actions, links, and brand elements
  */
 export const sColorPrimary = sColorBlue600;
-export const sColorPrimaryHover = sColorSlate700;
-export const sColorPrimaryActive = sColorSlate800;
+export const sColorPrimaryHover = sColorNeutral700;
+export const sColorPrimaryActive = sColorNeutral800;
 
 /**
  * Text Colors
@@ -51,8 +49,8 @@ export const sColorPrimaryActive = sColorSlate800;
  */
 export const sColorTextPrimary = sColorNeutral900;
 export const sColorTextSecondary = sColorNeutral700;
-export const sColorTextMuted = sColorSlate500;
-export const sColorTextDisabled = sColorSlate300;
+export const sColorTextMuted = sColorNeutral500;
+export const sColorTextDisabled = sColorNeutral300;
 export const sColorTextInverted = sColorWhite;
 
 /**
@@ -68,8 +66,8 @@ export const sColorBackgroundHover = sColorNeutral50;
  * Border Colors
  * For dividers, outlines, and separators
  */
-export const sColorBorder = sColorSlate200;
-export const sColorBorderHover = sColorSlate300;
+export const sColorBorder = sColorNeutral200;
+export const sColorBorderHover = sColorNeutral300;
 export const sColorBorderFocus = sColorPrimary;
 export const sColorBorderSubtle = sColorNeutral200;
 

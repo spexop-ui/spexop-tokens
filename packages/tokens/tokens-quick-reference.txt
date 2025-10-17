@@ -1,10 +1,10 @@
-@spexop/tokens - Quick Reference v0.2.3
+@spexop/tokens - Quick Reference v0.3.0
 ===========================================
 
-Total: 452 tokens | Colors: 148 | Last Updated: 2025-10-11
+Total: 369 tokens | Colors: 98 | Last Updated: 2025-10-17
 
-COLORS (148 tokens)
-===================
+COLORS (98 tokens)
+==================
 
 NEUTRALS (12)
 -------------
@@ -260,15 +260,10 @@ sZIndexToast             3000
 sZIndexTooltip           3500
 sZIndexVideoBackground   -1
 
-CONTAINERS (7 tokens)
-=====================
-sContainerXs        480px
-sContainerSm        640px
-sContainerMd        768px
-sContainerLg        1280px
-sContainerXl        1920px
-sContainer2xl       2560px
+CONTAINERS (1 token)
+====================
 sContainerFull      100%
+(Use sBreakpoint* tokens for max-widths)
 
 CONSTRAINTS (8 tokens)
 ======================
@@ -290,12 +285,10 @@ sGridGutterSm       16px
 sGridGutterMd       24px
 sGridGutterLg       32px
 
-ASPECT RATIOS (7 tokens)
+ASPECT RATIOS (5 tokens)
 =========================
 sAspectRatioSquare     1 / 1
 sAspectRatioVideo      16 / 9
-sAspectRatioWide       21 / 9
-sAspectRatioUltraWide  32 / 9
 sAspectRatioClassic    4 / 3
 sAspectRatioPortrait   3 / 4
 sAspectRatioGolden     1.618 / 1

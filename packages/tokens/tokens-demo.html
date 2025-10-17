@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@spexop/tokens - Color Reference</title>
+  <title>@spexop/tokens - Complete Token Reference</title>
   <style>
     * {
       margin: 0;
@@ -70,6 +70,42 @@
       letter-spacing: 0.05em;
     }
 
+    nav {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 48px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 150ms ease;
+      text-decoration: none;
+      color: #171717;
+    }
+
+    .nav-link:hover {
+      background: #3b82f6;
+      color: white;
+    }
+
     .usage-guide {
       background: white;
       border-radius: 12px;
@@ -94,8 +130,9 @@
       overflow-x: auto;
     }
 
-    .color-section {
+    .section {
       margin-bottom: 64px;
+      scroll-margin-top: 100px;
     }
 
     .section-title {
@@ -111,6 +148,7 @@
       margin-bottom: 24px;
     }
 
+    /* Color Grid */
     .color-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -180,6 +218,164 @@
       font-family: 'SF Mono', Monaco, monospace;
     }
 
+    /* Token Grid - for non-color tokens */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .token-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      cursor: pointer;
+    }
+
+    .token-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .token-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #171717;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .token-value {
+      font-size: 13px;
+      color: #737373;
+      font-family: 'SF Mono', Monaco, monospace;
+      margin-bottom: 8px;
+    }
+
+    .token-demo {
+      margin-top: 12px;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #525252;
+    }
+
+    /* Spacing demos */
+    .spacing-visual {
+      height: 20px;
+      background: linear-gradient(90deg, #3b82f6, #9c27b0);
+      border-radius: 4px;
+    }
+
+    /* Typography demos */
+    .typography-demo {
+      color: #171717;
+    }
+
+    /* Shadow demos */
+    .shadow-demo {
+      width: 100%;
+      height: 80px;
+      background: white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #737373;
+      font-size: 12px;
+    }
+
+    /* Border radius demos */
+    .radius-demo {
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(135deg, #3b82f6, #9c27b0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Opacity demos */
+    .opacity-demo {
+      width: 100%;
+      height: 60px;
+      background: #3b82f6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+
+    /* Motion demos */
+    .motion-demo {
+      width: 100%;
+      height: 60px;
+      background: #9c27b0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      transition: all 250ms ease;
+    }
+
+    .motion-demo:hover {
+      transform: scale(1.05);
+    }
+
+    /* Cursor demos */
+    .cursor-demo {
+      width: 100%;
+      height: 60px;
+      background: #f5f5f5;
+      border: 2px dashed #d4d4d4;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #737373;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* Z-Index demos */
+    .zindex-visual {
+      position: relative;
+      height: 60px;
+    }
+
+    .zindex-layer {
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(135deg, #3b82f6, #9c27b0);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Container demos */
+    .container-demo {
+      height: 40px;
+      background: linear-gradient(90deg, #3b82f6, #9c27b0);
+      border-radius: 6px;
+      margin: 0 auto;
+    }
+
     .copied-notification {
       position: fixed;
       bottom: 24px;
@@ -202,35 +398,6 @@
       transform: translateY(0);
     }
 
-    .filter-tabs {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .filter-tab {
-      padding: 8px 16px;
-      background: white;
-      border: 2px solid #e5e5e5;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 150ms ease;
-    }
-
-    .filter-tab:hover {
-      border-color: #3b82f6;
-      color: #3b82f6;
-    }
-
-    .filter-tab.active {
-      background: #3b82f6;
-      border-color: #3b82f6;
-      color: white;
-    }
-
     footer {
       text-align: center;
       margin-top: 64px;
@@ -245,8 +412,17 @@
         font-size: 32px;
       }
 
-      .color-grid {
+      .color-grid, .token-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .nav-links {
+        gap: 8px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+        padding: 6px 12px;
       }
     }
   </style>
@@ -255,129 +431,151 @@
   <div class="container">
     <header>
       <h1>@spexop/tokens</h1>
-      <p class="subtitle">Design Token Color Reference v0.2.3</p>
+      <p class="subtitle">Complete Design Token Reference v0.3.0</p>
       <div class="stats">
         <div class="stat">
-          <div class="stat-number">452</div>
+          <div class="stat-number">369</div>
           <div class="stat-label">Total Tokens</div>
         </div>
         <div class="stat">
-          <div class="stat-number">148</div>
-          <div class="stat-label">Color Tokens</div>
+          <div class="stat-number">17</div>
+          <div class="stat-label">Categories</div>
         </div>
         <div class="stat">
-          <div class="stat-number">10</div>
-          <div class="stat-label">Color Families</div>
+          <div class="stat-number">98</div>
+          <div class="stat-label">Color Tokens</div>
         </div>
       </div>
     </header>
 
+    <nav>
+      <div class="nav-links">
+        <a href="#colors" class="nav-link">Colors</a>
+        <a href="#spacing" class="nav-link">Spacing</a>
+        <a href="#typography" class="nav-link">Typography</a>
+        <a href="#shadows" class="nav-link">Shadows</a>
+        <a href="#radius" class="nav-link">Border Radius</a>
+        <a href="#opacity" class="nav-link">Opacity</a>
+        <a href="#motion" class="nav-link">Motion</a>
+        <a href="#breakpoints" class="nav-link">Breakpoints</a>
+        <a href="#containers" class="nav-link">Containers</a>
+        <a href="#cursors" class="nav-link">Cursors</a>
+        <a href="#zindex" class="nav-link">Z-Index</a>
+        <a href="#grid" class="nav-link">Grid</a>
+        <a href="#aspectRatio" class="nav-link">Aspect Ratios</a>
+        <a href="#constraints" class="nav-link">Constraints</a>
+      </div>
+    </nav>
+
     <section class="usage-guide">
       <h2>Quick Usage Guide</h2>
       <p>Import tokens in your JavaScript/TypeScript:</p>
-      <div class="usage-example">import { sColorPurple500, sColorSuccess700 } from "@spexop/tokens";</div>
+      <div class="usage-example">import { sColorPurple500, sSpacing4, sShadowCard } from "@spexop/tokens";</div>
       
       <p style="margin-top: 16px;">Or use CSS variables:</p>
       <div class="usage-example">background-color: var(--s-color-purple-500);</div>
 
-      <p style="margin-top: 16px;"><strong>Click any color swatch to copy its hex value!</strong></p>
+      <p style="margin-top: 16px;"><strong>Click any token card to copy its value!</strong></p>
     </section>
 
-    <!-- Neutral Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Neutral Colors</h2>
-      <p class="section-description">12 shades from lightest to darkest</p>
+    <!-- COLORS -->
+    <section id="colors" class="section">
+      <h2 class="section-title">🎨 Colors</h2>
+      <p class="section-description">98 color tokens across 8 families (Slate removed in v0.3.0)</p>
+
+      <!-- Neutral Colors -->
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Neutral (12 shades)</h3>
       <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #fafafa" onclick="copyColor('#fafafa')"></div>
+        <div class="color-card" onclick="copyToken('#fafafa')">
+          <div class="color-swatch" style="background: #fafafa"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral50</div>
             <div class="color-value">#fafafa</div>
             <div class="color-css">--s-color-neutral-50</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f5f5f5" onclick="copyColor('#f5f5f5')"></div>
+        <div class="color-card" onclick="copyToken('#f5f5f5')">
+          <div class="color-swatch" style="background: #f5f5f5"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral100</div>
             <div class="color-value">#f5f5f5</div>
             <div class="color-css">--s-color-neutral-100</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e5e5e5" onclick="copyColor('#e5e5e5')"></div>
+        <div class="color-card" onclick="copyToken('#e5e5e5')">
+          <div class="color-swatch" style="background: #e5e5e5"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral200</div>
             <div class="color-value">#e5e5e5</div>
             <div class="color-css">--s-color-neutral-200</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #d4d4d4" onclick="copyColor('#d4d4d4')"></div>
+        <div class="color-card" onclick="copyToken('#d4d4d4')">
+          <div class="color-swatch" style="background: #d4d4d4"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral300</div>
             <div class="color-value">#d4d4d4</div>
             <div class="color-css">--s-color-neutral-300</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #a3a3a3" onclick="copyColor('#a3a3a3')"></div>
+        <div class="color-card" onclick="copyToken('#a3a3a3')">
+          <div class="color-swatch" style="background: #a3a3a3"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral400</div>
             <div class="color-value">#a3a3a3</div>
             <div class="color-css">--s-color-neutral-400</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #737373" onclick="copyColor('#737373')"></div>
+        <div class="color-card" onclick="copyToken('#737373')">
+          <div class="color-swatch" style="background: #737373"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral500</div>
             <div class="color-value">#737373</div>
             <div class="color-css">--s-color-neutral-500</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #525252" onclick="copyColor('#525252')"></div>
+        <div class="color-card" onclick="copyToken('#525252')">
+          <div class="color-swatch" style="background: #525252"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral600</div>
             <div class="color-value">#525252</div>
             <div class="color-css">--s-color-neutral-600</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #404040" onclick="copyColor('#404040')"></div>
+        <div class="color-card" onclick="copyToken('#404040')">
+          <div class="color-swatch" style="background: #404040"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral700</div>
             <div class="color-value">#404040</div>
             <div class="color-css">--s-color-neutral-700</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #262626" onclick="copyColor('#262626')"></div>
+        <div class="color-card" onclick="copyToken('#262626')">
+          <div class="color-swatch" style="background: #262626"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral800</div>
             <div class="color-value">#262626</div>
             <div class="color-css">--s-color-neutral-800</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1f1f1f" onclick="copyColor('#1f1f1f')"></div>
+        <div class="color-card" onclick="copyToken('#1f1f1f')">
+          <div class="color-swatch" style="background: #1f1f1f"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral850</div>
             <div class="color-value">#1f1f1f</div>
             <div class="color-css">--s-color-neutral-850</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #171717" onclick="copyColor('#171717')"></div>
+        <div class="color-card" onclick="copyToken('#171717')">
+          <div class="color-swatch" style="background: #171717"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral900</div>
             <div class="color-value">#171717</div>
             <div class="color-css">--s-color-neutral-900</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #0a0a0a" onclick="copyColor('#0a0a0a')"></div>
+        <div class="color-card" onclick="copyToken('#0a0a0a')">
+          <div class="color-swatch" style="background: #0a0a0a"></div>
           <div class="color-info">
             <div class="color-name">sColorNeutral950</div>
             <div class="color-value">#0a0a0a</div>
@@ -385,720 +583,834 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Blue Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Blue Colors</h2>
-      <p class="section-description">Professional theme - 10 shades</p>
+      <!-- Blue Colors -->
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Blue (10 shades)</h3>
       <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #eff6ff" onclick="copyColor('#eff6ff')"></div>
+        <div class="color-card" onclick="copyToken('#eff6ff')">
+          <div class="color-swatch" style="background: #eff6ff"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue50</div>
             <div class="color-value">#eff6ff</div>
-            <div class="color-css">--s-color-blue-50</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #dbeafe" onclick="copyColor('#dbeafe')"></div>
+        <div class="color-card" onclick="copyToken('#dbeafe')">
+          <div class="color-swatch" style="background: #dbeafe"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue100</div>
             <div class="color-value">#dbeafe</div>
-            <div class="color-css">--s-color-blue-100</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #cbd5e1" onclick="copyColor('#cbd5e1')"></div>
+        <div class="color-card" onclick="copyToken('#cbd5e1')">
+          <div class="color-swatch" style="background: #cbd5e1"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue200</div>
             <div class="color-value">#cbd5e1</div>
-            <div class="color-css">--s-color-blue-200</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #93c5fd" onclick="copyColor('#93c5fd')"></div>
+        <div class="color-card" onclick="copyToken('#93c5fd')">
+          <div class="color-swatch" style="background: #93c5fd"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue300</div>
             <div class="color-value">#93c5fd</div>
-            <div class="color-css">--s-color-blue-300</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #60a5fa" onclick="copyColor('#60a5fa')"></div>
+        <div class="color-card" onclick="copyToken('#60a5fa')">
+          <div class="color-swatch" style="background: #60a5fa"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue400</div>
             <div class="color-value">#60a5fa</div>
-            <div class="color-css">--s-color-blue-400</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #3b82f6" onclick="copyColor('#3b82f6')"></div>
+        <div class="color-card" onclick="copyToken('#3b82f6')">
+          <div class="color-swatch" style="background: #3b82f6"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue500</div>
             <div class="color-value">#3b82f6</div>
-            <div class="color-css">--s-color-blue-500</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #2563eb" onclick="copyColor('#2563eb')"></div>
+        <div class="color-card" onclick="copyToken('#2563eb')">
+          <div class="color-swatch" style="background: #2563eb"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue600</div>
             <div class="color-value">#2563eb</div>
-            <div class="color-css">--s-color-blue-600</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1d4ed8" onclick="copyColor('#1d4ed8')"></div>
+        <div class="color-card" onclick="copyToken('#1d4ed8')">
+          <div class="color-swatch" style="background: #1d4ed8"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue700</div>
             <div class="color-value">#1d4ed8</div>
-            <div class="color-css">--s-color-blue-700</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1e40af" onclick="copyColor('#1e40af')"></div>
+        <div class="color-card" onclick="copyToken('#1e40af')">
+          <div class="color-swatch" style="background: #1e40af"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue800</div>
             <div class="color-value">#1e40af</div>
-            <div class="color-css">--s-color-blue-800</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1e3a8a" onclick="copyColor('#1e3a8a')"></div>
+        <div class="color-card" onclick="copyToken('#1e3a8a')">
+          <div class="color-swatch" style="background: #1e3a8a"></div>
           <div class="color-info">
             <div class="color-name">sColorBlue900</div>
             <div class="color-value">#1e3a8a</div>
-            <div class="color-css">--s-color-blue-900</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Red Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Red Colors</h2>
-      <p class="section-description">Bold theme - 10 shades</p>
+      <!-- Purple Colors -->
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Purple (10 shades)</h3>
       <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f8eff0" onclick="copyColor('#f8eff0')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed50</div>
-            <div class="color-value">#f8eff0</div>
-            <div class="color-css">--s-color-red-50</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f0dce0" onclick="copyColor('#f0dce0')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed100</div>
-            <div class="color-value">#f0dce0</div>
-            <div class="color-css">--s-color-red-100</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e8c5cb" onclick="copyColor('#e8c5cb')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed200</div>
-            <div class="color-value">#e8c5cb</div>
-            <div class="color-css">--s-color-red-200</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #d9a0ab" onclick="copyColor('#d9a0ab')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed300</div>
-            <div class="color-value">#d9a0ab</div>
-            <div class="color-css">--s-color-red-300</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #c5707f" onclick="copyColor('#c5707f')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed400</div>
-            <div class="color-value">#c5707f</div>
-            <div class="color-css">--s-color-red-400</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #b04554" onclick="copyColor('#b04554')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed500</div>
-            <div class="color-value">#b04554</div>
-            <div class="color-css">--s-color-red-500</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #9d3b4a" onclick="copyColor('#9d3b4a')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed600</div>
-            <div class="color-value">#9d3b4a</div>
-            <div class="color-css">--s-color-red-600</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #8a3240" onclick="copyColor('#8a3240')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed700</div>
-            <div class="color-value">#8a3240</div>
-            <div class="color-css">--s-color-red-700</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #762837" onclick="copyColor('#762837')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed800</div>
-            <div class="color-value">#762837</div>
-            <div class="color-css">--s-color-red-800</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #5a1e28" onclick="copyColor('#5a1e28')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorRed900</div>
-            <div class="color-value">#5a1e28</div>
-            <div class="color-css">--s-color-red-900</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Purple Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Purple Colors</h2>
-      <p class="section-description">Premium & Innovation - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f3e5f5" onclick="copyColor('#f3e5f5')"></div>
+        <div class="color-card" onclick="copyToken('#f3e5f5')">
+          <div class="color-swatch" style="background: #f3e5f5"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple50</div>
             <div class="color-value">#f3e5f5</div>
-            <div class="color-css">--s-color-purple-50</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e1bee7" onclick="copyColor('#e1bee7')"></div>
+        <div class="color-card" onclick="copyToken('#e1bee7')">
+          <div class="color-swatch" style="background: #e1bee7"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple100</div>
             <div class="color-value">#e1bee7</div>
-            <div class="color-css">--s-color-purple-100</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ce93d8" onclick="copyColor('#ce93d8')"></div>
+        <div class="color-card" onclick="copyToken('#ce93d8')">
+          <div class="color-swatch" style="background: #ce93d8"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple200</div>
             <div class="color-value">#ce93d8</div>
-            <div class="color-css">--s-color-purple-200</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ba68c8" onclick="copyColor('#ba68c8')"></div>
+        <div class="color-card" onclick="copyToken('#ba68c8')">
+          <div class="color-swatch" style="background: #ba68c8"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple300</div>
             <div class="color-value">#ba68c8</div>
-            <div class="color-css">--s-color-purple-300</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ab47bc" onclick="copyColor('#ab47bc')"></div>
+        <div class="color-card" onclick="copyToken('#ab47bc')">
+          <div class="color-swatch" style="background: #ab47bc"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple400</div>
             <div class="color-value">#ab47bc</div>
-            <div class="color-css">--s-color-purple-400</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #9c27b0" onclick="copyColor('#9c27b0')"></div>
+        <div class="color-card" onclick="copyToken('#9c27b0')">
+          <div class="color-swatch" style="background: #9c27b0"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple500</div>
             <div class="color-value">#9c27b0</div>
-            <div class="color-css">--s-color-purple-500</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #8e24aa" onclick="copyColor('#8e24aa')"></div>
+        <div class="color-card" onclick="copyToken('#8e24aa')">
+          <div class="color-swatch" style="background: #8e24aa"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple600</div>
             <div class="color-value">#8e24aa</div>
-            <div class="color-css">--s-color-purple-600</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #7b1fa2" onclick="copyColor('#7b1fa2')"></div>
+        <div class="color-card" onclick="copyToken('#7b1fa2')">
+          <div class="color-swatch" style="background: #7b1fa2"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple700</div>
             <div class="color-value">#7b1fa2</div>
-            <div class="color-css">--s-color-purple-700</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #6a1b9a" onclick="copyColor('#6a1b9a')"></div>
+        <div class="color-card" onclick="copyToken('#6a1b9a')">
+          <div class="color-swatch" style="background: #6a1b9a"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple800</div>
             <div class="color-value">#6a1b9a</div>
-            <div class="color-css">--s-color-purple-800</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #4a148c" onclick="copyColor('#4a148c')"></div>
+        <div class="color-card" onclick="copyToken('#4a148c')">
+          <div class="color-swatch" style="background: #4a148c"></div>
           <div class="color-info">
             <div class="color-name">sColorPurple900</div>
             <div class="color-value">#4a148c</div>
-            <div class="color-css">--s-color-purple-900</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; color: #737373; margin-top: 32px;">
+        <em>+ Semantic colors (Success, Warning, Info, Error), Green, Red families</em><br>
+        <small>See full documentation for all 98 color tokens</small>
+      </p>
+    </section>
+
+    <!-- SPACING -->
+    <section id="spacing" class="section">
+      <h2 class="section-title">📏 Spacing</h2>
+      <p class="section-description">21 spacing tokens (0px - 128px)</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('0px')">
+          <div class="token-name">sSpacing0</div>
+          <div class="token-value">0px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 0px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('4px')">
+          <div class="token-name">sSpacing1</div>
+          <div class="token-value">4px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 4px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('8px')">
+          <div class="token-name">sSpacing2</div>
+          <div class="token-value">8px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 8px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('12px')">
+          <div class="token-name">sSpacing3</div>
+          <div class="token-value">12px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 12px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('16px')">
+          <div class="token-name">sSpacing4</div>
+          <div class="token-value">16px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 16px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('20px')">
+          <div class="token-name">sSpacing5</div>
+          <div class="token-value">20px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 20px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('24px')">
+          <div class="token-name">sSpacing6</div>
+          <div class="token-value">24px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 24px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('32px')">
+          <div class="token-name">sSpacing8</div>
+          <div class="token-value">32px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 32px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('48px')">
+          <div class="token-name">sSpacing12</div>
+          <div class="token-value">48px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 48px;"></div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('64px')">
+          <div class="token-name">sSpacing16</div>
+          <div class="token-value">64px</div>
+          <div class="token-demo">
+            <div class="spacing-visual" style="width: 64px;"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Green Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Green Colors</h2>
-      <p class="section-description">Contemporary Emerald - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ecfdf5" onclick="copyColor('#ecfdf5')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen50</div>
-            <div class="color-value">#ecfdf5</div>
-            <div class="color-css">--s-color-green-50</div>
+    <!-- TYPOGRAPHY -->
+    <section id="typography" class="section">
+      <h2 class="section-title">🔤 Typography</h2>
+      <p class="section-description">43 typography tokens</p>
+      
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Font Sizes</h3>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('10px')">
+          <div class="token-name">sFontSize3xs</div>
+          <div class="token-value">10px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 10px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #d1fae5" onclick="copyColor('#d1fae5')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen100</div>
-            <div class="color-value">#d1fae5</div>
-            <div class="color-css">--s-color-green-100</div>
+        <div class="token-card" onclick="copyToken('12px')">
+          <div class="token-name">sFontSizeXs</div>
+          <div class="token-value">12px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 12px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #a7f3d0" onclick="copyColor('#a7f3d0')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen200</div>
-            <div class="color-value">#a7f3d0</div>
-            <div class="color-css">--s-color-green-200</div>
+        <div class="token-card" onclick="copyToken('14px')">
+          <div class="token-name">sFontSizeSm</div>
+          <div class="token-value">14px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 14px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #6ee7b7" onclick="copyColor('#6ee7b7')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen300</div>
-            <div class="color-value">#6ee7b7</div>
-            <div class="color-css">--s-color-green-300</div>
+        <div class="token-card" onclick="copyToken('16px')">
+          <div class="token-name">sFontSizeBase</div>
+          <div class="token-value">16px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 16px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #34d399" onclick="copyColor('#34d399')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen400</div>
-            <div class="color-value">#34d399</div>
-            <div class="color-css">--s-color-green-400</div>
+        <div class="token-card" onclick="copyToken('18px')">
+          <div class="token-name">sFontSizeLg</div>
+          <div class="token-value">18px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 18px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #10b981" onclick="copyColor('#10b981')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen500</div>
-            <div class="color-value">#10b981</div>
-            <div class="color-css">--s-color-green-500</div>
+        <div class="token-card" onclick="copyToken('24px')">
+          <div class="token-name">sFontSize2xl</div>
+          <div class="token-value">24px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 24px;">The quick brown fox</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #059669" onclick="copyColor('#059669')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen600</div>
-            <div class="color-value">#059669</div>
-            <div class="color-css">--s-color-green-600</div>
+        <div class="token-card" onclick="copyToken('36px')">
+          <div class="token-name">sFontSize4xl</div>
+          <div class="token-value">36px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 36px;">Hello</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #047857" onclick="copyColor('#047857')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen700</div>
-            <div class="color-value">#047857</div>
-            <div class="color-css">--s-color-green-700</div>
+        <div class="token-card" onclick="copyToken('48px')">
+          <div class="token-name">sFontSize5xl</div>
+          <div class="token-value">48px</div>
+          <div class="token-demo">
+            <div class="typography-demo" style="font-size: 48px;">Hi</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #065f46" onclick="copyColor('#065f46')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen800</div>
-            <div class="color-value">#065f46</div>
-            <div class="color-css">--s-color-green-800</div>
+      </div>
+
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Font Weights</h3>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('400')">
+          <div class="token-name">sFontWeightNormal</div>
+          <div class="token-value">400</div>
+          <div class="token-demo">
+            <div style="font-weight: 400; font-size: 18px;">Normal Weight</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #064e3b" onclick="copyColor('#064e3b')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorGreen900</div>
-            <div class="color-value">#064e3b</div>
-            <div class="color-css">--s-color-green-900</div>
+        <div class="token-card" onclick="copyToken('500')">
+          <div class="token-name">sFontWeightMedium</div>
+          <div class="token-value">500</div>
+          <div class="token-demo">
+            <div style="font-weight: 500; font-size: 18px;">Medium Weight</div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('600')">
+          <div class="token-name">sFontWeightSemibold</div>
+          <div class="token-value">600</div>
+          <div class="token-demo">
+            <div style="font-weight: 600; font-size: 18px;">Semibold Weight</div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('700')">
+          <div class="token-name">sFontWeightBold</div>
+          <div class="token-value">700</div>
+          <div class="token-demo">
+            <div style="font-weight: 700; font-size: 18px;">Bold Weight</div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('800')">
+          <div class="token-name">sFontWeightExtrabold</div>
+          <div class="token-value">800</div>
+          <div class="token-demo">
+            <div style="font-weight: 800; font-size: 18px;">Extrabold</div>
+          </div>
+        </div>
+        <div class="token-card" onclick="copyToken('900')">
+          <div class="token-name">sFontWeightBlack</div>
+          <div class="token-value">900</div>
+          <div class="token-demo">
+            <div style="font-weight: 900; font-size: 18px;">Black Weight</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Success Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Success Colors</h2>
-      <p class="section-description">Positive feedback & confirmations - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e8f5e9" onclick="copyColor('#e8f5e9')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess50</div>
-            <div class="color-value">#e8f5e9</div>
-            <div class="color-css">--s-color-success-50</div>
+    <!-- SHADOWS -->
+    <section id="shadows" class="section">
+      <h2 class="section-title">✨ Shadows (Minimal Use)</h2>
+      <p class="section-description">2 shadow tokens - Following "Borders before shadows" principle</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('none')">
+          <div class="token-name">sShadowNone</div>
+          <div class="token-value">none</div>
+          <div class="token-demo">
+            <div class="shadow-demo" style="box-shadow: none;">No Shadow</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #c8e6c9" onclick="copyColor('#c8e6c9')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess100</div>
-            <div class="color-value">#c8e6c9</div>
-            <div class="color-css">--s-color-success-100</div>
+        <div class="token-card" onclick="copyToken('0 1px 2px rgba(0,0,0,0.05)')">
+          <div class="token-name">sShadowSubtle</div>
+          <div class="token-value">0 1px 2px rgba(0,0,0,0.05)</div>
+          <div class="token-demo">
+            <div class="shadow-demo" style="box-shadow: 0 1px 2px rgba(0,0,0,0.05);">Subtle (rare use)</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #a5d6a7" onclick="copyColor('#a5d6a7')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess200</div>
-            <div class="color-value">#a5d6a7</div>
-            <div class="color-css">--s-color-success-200</div>
+      </div>
+      <p style="text-align: center; color: #737373; margin-top: 16px; font-size: 14px;">
+        <strong>v0.3.0 Change:</strong> Heavy shadows removed. Use <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 4px;">border: 2px solid</code> instead.
+      </p>
+    </section>
+
+    <!-- BORDER RADIUS -->
+    <section id="radius" class="section">
+      <h2 class="section-title">🔘 Border Radius</h2>
+      <p class="section-description">8 border radius tokens</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('0px')">
+          <div class="token-name">sRadiusNone</div>
+          <div class="token-value">0px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 0px;">None</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #81c784" onclick="copyColor('#81c784')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess300</div>
-            <div class="color-value">#81c784</div>
-            <div class="color-css">--s-color-success-300</div>
+        <div class="token-card" onclick="copyToken('4px')">
+          <div class="token-name">sRadiusTight</div>
+          <div class="token-value">4px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 4px;">Tight</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #66bb6a" onclick="copyColor('#66bb6a')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess400</div>
-            <div class="color-value">#66bb6a</div>
-            <div class="color-css">--s-color-success-400</div>
+        <div class="token-card" onclick="copyToken('8px')">
+          <div class="token-name">sRadiusSubtle</div>
+          <div class="token-value">8px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 8px;">Subtle</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #4caf50" onclick="copyColor('#4caf50')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess500</div>
-            <div class="color-value">#4caf50</div>
-            <div class="color-css">--s-color-success-500</div>
+        <div class="token-card" onclick="copyToken('12px')">
+          <div class="token-name">sRadiusBase</div>
+          <div class="token-value">12px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 12px;">Base</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #43a047" onclick="copyColor('#43a047')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess600</div>
-            <div class="color-value">#43a047</div>
-            <div class="color-css">--s-color-success-600</div>
+        <div class="token-card" onclick="copyToken('16px')">
+          <div class="token-name">sRadiusRelaxed</div>
+          <div class="token-value">16px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 16px;">Relaxed</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #388e3c" onclick="copyColor('#388e3c')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess700</div>
-            <div class="color-value">#388e3c</div>
-            <div class="color-css">--s-color-success-700</div>
+        <div class="token-card" onclick="copyToken('20px')">
+          <div class="token-name">sRadiusLiquid</div>
+          <div class="token-value">20px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 20px;">Liquid</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #2e7d32" onclick="copyColor('#2e7d32')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess800</div>
-            <div class="color-value">#2e7d32</div>
-            <div class="color-css">--s-color-success-800</div>
+        <div class="token-card" onclick="copyToken('24px')">
+          <div class="token-name">sRadiusLarge</div>
+          <div class="token-value">24px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 24px;">Large</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1b5e20" onclick="copyColor('#1b5e20')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorSuccess900</div>
-            <div class="color-value">#1b5e20</div>
-            <div class="color-css">--s-color-success-900</div>
+        <div class="token-card" onclick="copyToken('9999px')">
+          <div class="token-name">sRadiusPill</div>
+          <div class="token-value">9999px</div>
+          <div class="token-demo">
+            <div class="radius-demo" style="border-radius: 9999px;">Pill</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Warning Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Warning Colors</h2>
-      <p class="section-description">Cautionary messages - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #fff3e0" onclick="copyColor('#fff3e0')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning50</div>
-            <div class="color-value">#fff3e0</div>
-            <div class="color-css">--s-color-warning-50</div>
+    <!-- OPACITY -->
+    <section id="opacity" class="section">
+      <h2 class="section-title">👁️ Opacity</h2>
+      <p class="section-description">6 opacity levels</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('0')">
+          <div class="token-name">sOpacityInvisible</div>
+          <div class="token-value">0</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 0;">Invisible</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffe0b2" onclick="copyColor('#ffe0b2')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning100</div>
-            <div class="color-value">#ffe0b2</div>
-            <div class="color-css">--s-color-warning-100</div>
+        <div class="token-card" onclick="copyToken('0.1')">
+          <div class="token-name">sOpacityFaint</div>
+          <div class="token-value">0.1</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 0.1;">Faint</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffcc80" onclick="copyColor('#ffcc80')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning200</div>
-            <div class="color-value">#ffcc80</div>
-            <div class="color-css">--s-color-warning-200</div>
+        <div class="token-card" onclick="copyToken('0.5')">
+          <div class="token-name">sOpacityHalf</div>
+          <div class="token-value">0.5</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 0.5;">Half</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffb74d" onclick="copyColor('#ffb74d')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning300</div>
-            <div class="color-value">#ffb74d</div>
-            <div class="color-css">--s-color-warning-300</div>
+        <div class="token-card" onclick="copyToken('0.7')">
+          <div class="token-name">sOpacityMedium</div>
+          <div class="token-value">0.7</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 0.7;">Medium</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffa726" onclick="copyColor('#ffa726')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning400</div>
-            <div class="color-value">#ffa726</div>
-            <div class="color-css">--s-color-warning-400</div>
+        <div class="token-card" onclick="copyToken('0.9')">
+          <div class="token-name">sOpacityStrong</div>
+          <div class="token-value">0.9</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 0.9;">Strong</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ff9800" onclick="copyColor('#ff9800')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning500</div>
-            <div class="color-value">#ff9800</div>
-            <div class="color-css">--s-color-warning-500</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #fb8c00" onclick="copyColor('#fb8c00')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning600</div>
-            <div class="color-value">#fb8c00</div>
-            <div class="color-css">--s-color-warning-600</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f57c00" onclick="copyColor('#f57c00')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning700</div>
-            <div class="color-value">#f57c00</div>
-            <div class="color-css">--s-color-warning-700</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ef6c00" onclick="copyColor('#ef6c00')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning800</div>
-            <div class="color-value">#ef6c00</div>
-            <div class="color-css">--s-color-warning-800</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e65100" onclick="copyColor('#e65100')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorWarning900</div>
-            <div class="color-value">#e65100</div>
-            <div class="color-css">--s-color-warning-900</div>
+        <div class="token-card" onclick="copyToken('1')">
+          <div class="token-name">sOpacityFull</div>
+          <div class="token-value">1</div>
+          <div class="token-demo">
+            <div class="opacity-demo" style="opacity: 1;">Full</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Info Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Info Colors</h2>
-      <p class="section-description">Informational content - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e3f2fd" onclick="copyColor('#e3f2fd')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo50</div>
-            <div class="color-value">#e3f2fd</div>
-            <div class="color-css">--s-color-info-50</div>
+    <!-- MOTION -->
+    <section id="motion" class="section">
+      <h2 class="section-title">⏱️ Motion & Transitions</h2>
+      <p class="section-description">15 motion tokens (durations, easing, transitions)</p>
+      
+      <h3 style="font-size: 24px; margin: 32px 0 16px;">Durations</h3>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('150ms')">
+          <div class="token-name">sDurationFast</div>
+          <div class="token-value">150ms</div>
+          <div class="token-demo">
+            <div class="motion-demo" style="transition-duration: 150ms;">Hover me - Fast</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #bbdefb" onclick="copyColor('#bbdefb')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo100</div>
-            <div class="color-value">#bbdefb</div>
-            <div class="color-css">--s-color-info-100</div>
+        <div class="token-card" onclick="copyToken('250ms')">
+          <div class="token-name">sDurationNormal</div>
+          <div class="token-value">250ms</div>
+          <div class="token-demo">
+            <div class="motion-demo" style="transition-duration: 250ms;">Hover me - Normal</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #90caf9" onclick="copyColor('#90caf9')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo200</div>
-            <div class="color-value">#90caf9</div>
-            <div class="color-css">--s-color-info-200</div>
+        <div class="token-card" onclick="copyToken('400ms')">
+          <div class="token-name">sDurationSlow</div>
+          <div class="token-value">400ms</div>
+          <div class="token-demo">
+            <div class="motion-demo" style="transition-duration: 400ms;">Hover me - Slow</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #64b5f6" onclick="copyColor('#64b5f6')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo300</div>
-            <div class="color-value">#64b5f6</div>
-            <div class="color-css">--s-color-info-300</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #42a5f5" onclick="copyColor('#42a5f5')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo400</div>
-            <div class="color-value">#42a5f5</div>
-            <div class="color-css">--s-color-info-400</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #2196f3" onclick="copyColor('#2196f3')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo500</div>
-            <div class="color-value">#2196f3</div>
-            <div class="color-css">--s-color-info-500</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1e88e5" onclick="copyColor('#1e88e5')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo600</div>
-            <div class="color-value">#1e88e5</div>
-            <div class="color-css">--s-color-info-600</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1976d2" onclick="copyColor('#1976d2')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo700</div>
-            <div class="color-value">#1976d2</div>
-            <div class="color-css">--s-color-info-700</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #1565c0" onclick="copyColor('#1565c0')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo800</div>
-            <div class="color-value">#1565c0</div>
-            <div class="color-css">--s-color-info-800</div>
-          </div>
-        </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #0d47a1" onclick="copyColor('#0d47a1')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorInfo900</div>
-            <div class="color-value">#0d47a1</div>
-            <div class="color-css">--s-color-info-900</div>
+        <div class="token-card" onclick="copyToken('600ms')">
+          <div class="token-name">sDurationRipple</div>
+          <div class="token-value">600ms</div>
+          <div class="token-demo">
+            <div class="motion-demo" style="transition-duration: 600ms;">Hover me - Ripple</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Error Colors -->
-    <section class="color-section">
-      <h2 class="section-title">Error Colors</h2>
-      <p class="section-description">Error states & critical alerts - 10 shades</p>
-      <div class="color-grid">
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffebee" onclick="copyColor('#ffebee')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError50</div>
-            <div class="color-value">#ffebee</div>
-            <div class="color-css">--s-color-error-50</div>
+    <!-- BREAKPOINTS -->
+    <section id="breakpoints" class="section">
+      <h2 class="section-title">📱 Breakpoints</h2>
+      <p class="section-description">6 responsive breakpoints</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('480px')">
+          <div class="token-name">sBreakpointXs</div>
+          <div class="token-value">480px</div>
+          <div class="token-demo">Mobile (Extra Small)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('640px')">
+          <div class="token-name">sBreakpointSm</div>
+          <div class="token-value">640px</div>
+          <div class="token-demo">Mobile Large (Small)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('768px')">
+          <div class="token-name">sBreakpointMd</div>
+          <div class="token-value">768px</div>
+          <div class="token-demo">Tablet (Medium)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1024px')">
+          <div class="token-name">sBreakpointLg</div>
+          <div class="token-value">1024px</div>
+          <div class="token-demo">Desktop (Large)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1280px')">
+          <div class="token-name">sBreakpointXl</div>
+          <div class="token-value">1280px</div>
+          <div class="token-demo">Large Desktop (XL)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1536px')">
+          <div class="token-name">sBreakpoint2xl</div>
+          <div class="token-value">1536px</div>
+          <div class="token-demo">Ultra-wide (2XL)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTAINERS -->
+    <section id="containers" class="section">
+      <h2 class="section-title">📦 Containers</h2>
+      <p class="section-description">1 container token (duplicates removed in v0.3.0)</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('100%')">
+          <div class="token-name">sContainerFull</div>
+          <div class="token-value">100%</div>
+          <div class="token-demo">
+            <div class="container-demo" style="max-width: 100%;"></div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ffcdd2" onclick="copyColor('#ffcdd2')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError100</div>
-            <div class="color-value">#ffcdd2</div>
-            <div class="color-css">--s-color-error-100</div>
+      </div>
+      <p style="text-align: center; color: #737373; margin-top: 16px; font-size: 14px;">
+        <strong>v0.3.0 Change:</strong> Container duplicates removed. Use <code style="background: #f5f5f5; padding: 2px 6px; border-radius: 4px;">sBreakpoint*</code> tokens for max-widths.
+      </p>
+    </section>
+
+    <!-- CURSORS -->
+    <section id="cursors" class="section">
+      <h2 class="section-title">🖱️ Cursors</h2>
+      <p class="section-description">8 cursor styles</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('auto')">
+          <div class="token-name">sCursorAuto</div>
+          <div class="token-value">auto</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: auto;">Hover - Auto</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ef9a9a" onclick="copyColor('#ef9a9a')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError200</div>
-            <div class="color-value">#ef9a9a</div>
-            <div class="color-css">--s-color-error-200</div>
+        <div class="token-card" onclick="copyToken('default')">
+          <div class="token-name">sCursorDefault</div>
+          <div class="token-value">default</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: default;">Hover - Default</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e57373" onclick="copyColor('#e57373')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError300</div>
-            <div class="color-value">#e57373</div>
-            <div class="color-css">--s-color-error-300</div>
+        <div class="token-card" onclick="copyToken('pointer')">
+          <div class="token-name">sCursorPointer</div>
+          <div class="token-value">pointer</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: pointer;">Hover - Pointer</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #ef5350" onclick="copyColor('#ef5350')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError400</div>
-            <div class="color-value">#ef5350</div>
-            <div class="color-css">--s-color-error-400</div>
+        <div class="token-card" onclick="copyToken('text')">
+          <div class="token-name">sCursorText</div>
+          <div class="token-value">text</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: text;">Hover - Text</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #f44336" onclick="copyColor('#f44336')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError500</div>
-            <div class="color-value">#f44336</div>
-            <div class="color-css">--s-color-error-500</div>
+        <div class="token-card" onclick="copyToken('move')">
+          <div class="token-name">sCursorMove</div>
+          <div class="token-value">move</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: move;">Hover - Move</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #e53935" onclick="copyColor('#e53935')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError600</div>
-            <div class="color-value">#e53935</div>
-            <div class="color-css">--s-color-error-600</div>
+        <div class="token-card" onclick="copyToken('grab')">
+          <div class="token-name">sCursorGrab</div>
+          <div class="token-value">grab</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: grab;">Hover - Grab</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #d32f2f" onclick="copyColor('#d32f2f')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError700</div>
-            <div class="color-value">#d32f2f</div>
-            <div class="color-css">--s-color-error-700</div>
+        <div class="token-card" onclick="copyToken('help')">
+          <div class="token-name">sCursorHelp</div>
+          <div class="token-value">help</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: help;">Hover - Help</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #c62828" onclick="copyColor('#c62828')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError800</div>
-            <div class="color-value">#c62828</div>
-            <div class="color-css">--s-color-error-800</div>
+        <div class="token-card" onclick="copyToken('not-allowed')">
+          <div class="token-name">sCursorNotAllowed</div>
+          <div class="token-value">not-allowed</div>
+          <div class="token-demo">
+            <div class="cursor-demo" style="cursor: not-allowed;">Hover - Not Allowed</div>
           </div>
         </div>
-        <div class="color-card">
-          <div class="color-swatch" style="background: #b71c1c" onclick="copyColor('#b71c1c')"></div>
-          <div class="color-info">
-            <div class="color-name">sColorError900</div>
-            <div class="color-value">#b71c1c</div>
-            <div class="color-css">--s-color-error-900</div>
-          </div>
+      </div>
+    </section>
+
+    <!-- Z-INDEX -->
+    <section id="zindex" class="section">
+      <h2 class="section-title">📐 Z-Index</h2>
+      <p class="section-description">13 layering levels</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('0')">
+          <div class="token-name">sZIndexBase</div>
+          <div class="token-value">0</div>
+          <div class="token-demo">Base layer</div>
+        </div>
+        <div class="token-card" onclick="copyToken('10')">
+          <div class="token-name">sZIndexContent</div>
+          <div class="token-value">10</div>
+          <div class="token-demo">Content layer</div>
+        </div>
+        <div class="token-card" onclick="copyToken('100')">
+          <div class="token-name">sZIndexSticky</div>
+          <div class="token-value">100</div>
+          <div class="token-demo">Sticky headers</div>
+        </div>
+        <div class="token-card" onclick="copyToken('500')">
+          <div class="token-name">sZIndexFloating</div>
+          <div class="token-value">500</div>
+          <div class="token-demo">Floating elements</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1000')">
+          <div class="token-name">sZIndexDropdown</div>
+          <div class="token-value">1000</div>
+          <div class="token-demo">Dropdowns</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1500')">
+          <div class="token-name">sZIndexPopover</div>
+          <div class="token-value">1500</div>
+          <div class="token-demo">Popovers</div>
+        </div>
+        <div class="token-card" onclick="copyToken('2000')">
+          <div class="token-name">sZIndexOverlay</div>
+          <div class="token-value">2000</div>
+          <div class="token-demo">Overlays & Modals</div>
+        </div>
+        <div class="token-card" onclick="copyToken('3000')">
+          <div class="token-name">sZIndexToast</div>
+          <div class="token-value">3000</div>
+          <div class="token-demo">Toast notifications</div>
+        </div>
+        <div class="token-card" onclick="copyToken('3500')">
+          <div class="token-name">sZIndexTooltip</div>
+          <div class="token-value">3500</div>
+          <div class="token-demo">Tooltips (highest)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section id="grid" class="section">
+      <h2 class="section-title">📊 Grid System</h2>
+      <p class="section-description">6 grid layout tokens</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('12')">
+          <div class="token-name">sGridColumns12</div>
+          <div class="token-value">12 columns</div>
+          <div class="token-demo">Standard 12-column grid</div>
+        </div>
+        <div class="token-card" onclick="copyToken('16')">
+          <div class="token-name">sGridColumns16</div>
+          <div class="token-value">16 columns</div>
+          <div class="token-demo">Dense 16-column grid</div>
+        </div>
+        <div class="token-card" onclick="copyToken('24')">
+          <div class="token-name">sGridColumns24</div>
+          <div class="token-value">24 columns</div>
+          <div class="token-demo">Flexible 24-column grid</div>
+        </div>
+        <div class="token-card" onclick="copyToken('16px')">
+          <div class="token-name">sGridGutterSm</div>
+          <div class="token-value">16px</div>
+          <div class="token-demo">Small gutter spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('24px')">
+          <div class="token-name">sGridGutterMd</div>
+          <div class="token-value">24px</div>
+          <div class="token-demo">Medium gutter spacing</div>
+        </div>
+        <div class="token-card" onclick="copyToken('32px')">
+          <div class="token-name">sGridGutterLg</div>
+          <div class="token-value">32px</div>
+          <div class="token-demo">Large gutter spacing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASPECT RATIOS -->
+    <section id="aspectRatio" class="section">
+      <h2 class="section-title">📐 Aspect Ratios</h2>
+      <p class="section-description">5 core aspect ratios (ultra-wide variants removed in v0.3.0)</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('1 / 1')">
+          <div class="token-name">sAspectRatioSquare</div>
+          <div class="token-value">1 / 1</div>
+          <div class="token-demo">Square (Instagram post)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('16 / 9')">
+          <div class="token-name">sAspectRatioVideo</div>
+          <div class="token-value">16 / 9</div>
+          <div class="token-demo">Video (YouTube, Vimeo)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('4 / 3')">
+          <div class="token-name">sAspectRatioClassic</div>
+          <div class="token-value">4 / 3</div>
+          <div class="token-demo">Classic (Old TV, iPad)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('3 / 4')">
+          <div class="token-name">sAspectRatioPortrait</div>
+          <div class="token-value">3 / 4</div>
+          <div class="token-demo">Portrait (Stories)</div>
+        </div>
+        <div class="token-card" onclick="copyToken('1.618 / 1')">
+          <div class="token-name">sAspectRatioGolden</div>
+          <div class="token-value">1.618 / 1 (φ)</div>
+          <div class="token-demo">Golden Ratio</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSTRAINTS -->
+    <section id="constraints" class="section">
+      <h2 class="section-title">🎯 Constraints</h2>
+      <p class="section-description">8 min/max width/height constraints</p>
+      <div class="token-grid">
+        <div class="token-card" onclick="copyToken('88px')">
+          <div class="token-name">sMinWidthButton</div>
+          <div class="token-value">88px</div>
+          <div class="token-demo">Minimum button width</div>
+        </div>
+        <div class="token-card" onclick="copyToken('44px')">
+          <div class="token-name">sMinHeightButton</div>
+          <div class="token-value">44px (WCAG)</div>
+          <div class="token-demo">Minimum touch target</div>
+        </div>
+        <div class="token-card" onclick="copyToken('200px')">
+          <div class="token-name">sMinWidthInput</div>
+          <div class="token-value">200px</div>
+          <div class="token-demo">Minimum input width</div>
+        </div>
+        <div class="token-card" onclick="copyToken('44px')">
+          <div class="token-name">sMinHeightInput</div>
+          <div class="token-value">44px (WCAG)</div>
+          <div class="token-demo">Minimum input height</div>
+        </div>
+        <div class="token-card" onclick="copyToken('280px')">
+          <div class="token-name">sMinWidthCard</div>
+          <div class="token-value">280px</div>
+          <div class="token-demo">Minimum card width</div>
+        </div>
+        <div class="token-card" onclick="copyToken('65ch')">
+          <div class="token-name">sMaxWidthText</div>
+          <div class="token-value">65ch</div>
+          <div class="token-demo">Optimal reading width</div>
+        </div>
+        <div class="token-card" onclick="copyToken('75ch')">
+          <div class="token-name">sMaxWidthProse</div>
+          <div class="token-value">75ch</div>
+          <div class="token-demo">Prose content width</div>
+        </div>
+        <div class="token-card" onclick="copyToken('90vh')">
+          <div class="token-name">sMaxHeightModal</div>
+          <div class="token-value">90vh</div>
+          <div class="token-demo">Modal max height</div>
         </div>
       </div>
     </section>
 
     <footer>
-      <p><strong>@spexop/tokens</strong> v0.2.3</p>
+      <p><strong>@spexop/tokens</strong> v0.3.0</p>
       <p style="margin-top: 8px;">
         <a href="https://github.com/spexop-ui/spexop-tokens" style="color: #3b82f6; text-decoration: none;">GitHub</a> · 
-        <a href="./TOKENS-REFERENCE.md" style="color: #3b82f6; text-decoration: none; margin-left: 16px;">Full Documentation</a>
+        <a href="./TOKENS-REFERENCE.md" style="color: #3b82f6; text-decoration: none; margin-left: 16px;">Full Documentation</a> ·
+        <a href="./CHANGELOG.md" style="color: #3b82f6; text-decoration: none; margin-left: 16px;">Changelog</a>
       </p>
       <p style="margin-top: 16px; font-size: 12px;">
-        452 tokens · 10 color families · TypeScript-first design system
+        369 tokens · 17 categories · TypeScript-first · Refined Minimalism
+      </p>
+      <p style="margin-top: 8px; font-size: 11px; color: #a3a3a3;">
+        v0.3.0: Removed 83 tokens for design system alignment
       </p>
     </footer>
   </div>
@@ -1108,8 +1420,8 @@
   </div>
 
   <script>
-    function copyColor(hex) {
-      navigator.clipboard.writeText(hex).then(function() {
+    function copyToken(value) {
+      navigator.clipboard.writeText(value).then(function() {
         const notification = document.getElementById('notification');
         notification.classList.add('show');
         setTimeout(function() {
@@ -1117,6 +1429,23 @@
         }, 2000);
       });
     }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+    });
   </script>
 </body>
 </html>
