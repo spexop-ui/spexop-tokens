@@ -1,0 +1,246 @@
+/**
+ * Drawer Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Drawer
+ * @packageName @spexop/react
+ * @description Slide-out panel with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--theme-overlay));
+  z-index: 1000;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.backdrop.open {
+  opacity: 1;
+}
+
+/* Drawer */
+.drawer {
+  position: fixed;
+  z-index: 1001;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--theme-spacing-6);
+  transition: 
+    transform 300ms ease-in-out,
+    opacity 300ms ease-in-out;
+  font-family: var(--theme-font-family);
+}
+
+[data-theme="light"] .drawer {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .drawer {
+  background: var(--theme-surface);
+  border-color: var(--theme-border-strong);
+}
+
+/* Content Animation */
+.drawer > * {
+  animation: slideInContent 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.drawer.right > * {
+  animation-delay: 0.09s;
+}
+
+@keyframes slideInContent {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   POSITION: RIGHT - Bold left border, NO shadows
+   ============================================ */
+
+.drawer.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-right: none;
+  /* Bold border for clear separation (Principle #2) */
+  border-left: 3px solid;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: 
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  /* NO box-shadow - borders only */
+}
+
+[data-theme="light"] .drawer.right {
+  border-left-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .drawer.right {
+  border-left-color: var(--theme-border-strong);
+}
+
+.drawer.right.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Left Drawer */
+.drawer.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-left: none;
+  border-right: 3px solid;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+[data-theme="light"] .drawer.left {
+  border-right-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .drawer.left {
+  border-right-color: var(--theme-border-strong);
+}
+
+.drawer.left.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Top Drawer */
+.drawer.top {
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: none;
+  border-bottom: 3px solid;
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+[data-theme="light"] .drawer.top {
+  border-bottom-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .drawer.top {
+  border-bottom-color: var(--theme-border-strong);
+}
+
+.drawer.top.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Bottom Drawer */
+.drawer.bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: none;
+  border-top: 3px solid;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+[data-theme="light"] .drawer.bottom {
+  border-top-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .drawer.bottom {
+  border-top-color: var(--theme-border-strong);
+}
+
+.drawer.bottom.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Scrollbar */
+.drawer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-theme="light"] .drawer::-webkit-scrollbar-thumb {
+  background: var(--theme-border-strong);
+  border-radius: var(--theme-radius-pill);
+}
+
+[data-theme="light"] .drawer::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .drawer::-webkit-scrollbar-thumb {
+  background: var(--theme-border-strong);
+  border-radius: var(--theme-radius-pill);
+}
+
+[data-theme="dark"] .drawer::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-strong);
+}
+
+[data-theme="light"] .drawer {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border-strong) transparent;
+}
+
+[data-theme="dark"] .drawer {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border-strong) transparent;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .drawer,
+  .drawer > * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .drawer.right,
+  .drawer.left {
+    border-width: 4px;
+  }
+  
+  .drawer.top,
+  .drawer.bottom {
+    border-width: 4px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .drawer.right,
+  .drawer.left {
+    width: 100% !important;
+  }
+
+  .drawer.top,
+  .drawer.bottom {
+    height: 100% !important;
+  }
+}

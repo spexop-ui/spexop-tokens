@@ -1,0 +1,169 @@
+/**
+ * TextArea Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component TextArea
+ * @packageName @spexop/react
+ * @description Multi-line text input with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.textArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin-bottom: var(--theme-spacing-1);
+}
+
+html[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  font-size: var(--theme-font-size-base);
+  line-height: var(--theme-line-height-normal);
+  color: var(--theme-text);
+  background: var(--theme-surface);
+  transition: border-color 150ms ease, 
+              box-shadow  ease;
+  font-family: var(--theme-font-family);
+  resize: vertical;
+  min-height: 120px;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+}
+
+.textarea::placeholder {
+  color: var(--theme-text-muted);
+}
+
+.textarea:disabled {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text-secondary);
+  cursor: not-allowed;
+  border-color: var(--theme-border-subtle);
+}
+
+.textarea:read-only {
+  background: var(--theme-surface-hover);
+  cursor: default;
+}
+
+/* Dark mode */
+html[data-theme="dark"] .textarea {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .textarea:focus {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+}
+
+html[data-theme="dark"] .textarea::placeholder {
+  color: var(--theme-text-muted);
+}
+
+html[data-theme="dark"] .textarea:disabled {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text-secondary);
+  border-color: var(--theme-border-subtle);
+}
+
+html[data-theme="dark"] .textarea:read-only {
+  background: var(--theme-surface-hover);
+}
+
+/* Size variants */
+.textareaSizeSm {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  font-size: var(--theme-font-size-sm);
+  min-height: 80px;
+}
+
+.textareaSizeLg {
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+  font-size: var(--theme-font-size-lg);
+  min-height: 160px;
+}
+
+/* Variant states */
+.textareaError {
+  border-color: var(--theme-danger);
+}
+
+.textareaError:focus {
+  border-color: var(--theme-danger);
+}
+
+.textareaSuccess {
+  border-color: var(--theme-success);
+}
+
+.textareaSuccess:focus {
+  border-color: var(--theme-success);
+}
+
+/* Auto-resize */
+.textareaAutoResize {
+  resize: none;
+  overflow: hidden;
+}
+
+/* Help text and error message */
+.helpText {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+}
+
+html[data-theme="dark"] .helpText {
+  color: var(--theme-text-secondary);
+}
+
+.errorMessage {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-danger);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 12px;
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  .textarea {
+    border-width: var(--theme-spacing-1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textarea {
+    transition: none;
+  }
+}

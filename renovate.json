@@ -1,0 +1,77 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":enableVulnerabilityAlertsWithLabel(security)"
+  ],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "timezone": "America/Los_Angeles",
+  "schedule": ["before 10am on monday"],
+  "packageRules": [
+    {
+      "description": "Group all non-major dependencies together",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Group React ecosystem updates",
+      "matchPackagePatterns": ["^react", "^@types/react"],
+      "groupName": "React ecosystem",
+      "schedule": ["before 10am on the first day of the month"]
+    },
+    {
+      "description": "Group Storybook updates",
+      "matchPackagePatterns": ["^@storybook", "^storybook"],
+      "groupName": "Storybook",
+      "schedule": ["before 10am on the first day of the month"]
+    },
+    {
+      "description": "Group testing library updates",
+      "matchPackagePatterns": [
+        "^@testing-library",
+        "^vitest",
+        "^@vitest",
+        "^playwright",
+        "^@playwright"
+      ],
+      "groupName": "Testing libraries"
+    },
+    {
+      "description": "Group TypeScript updates",
+      "matchPackageNames": ["typescript", "@types/node"],
+      "groupName": "TypeScript"
+    },
+    {
+      "description": "Separate major updates for manual review",
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update"],
+      "automerge": false
+    },
+    {
+      "description": "Pin development dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "pin"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "assignees": ["@spexop/maintainers"]
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 10am on monday"]
+  },
+  "ignoreDeps": [],
+  "ignorePresets": [":prHourlyLimit2"]
+}

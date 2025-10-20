@@ -1,0 +1,231 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Grid Component - Fluid-first grid system with container query support
+   Theme-driven spacing with Spexop architecture
+   @version 0.3.0
+   @updated 2025-10-17 - Migrated to theme system
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.grid {
+  display: grid;
+  width: 100%;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Container Query Support (Progressive Enhancement)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.containerQuery {
+  container-type: inline-size;
+  container-name: grid-container;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Subgrid Support
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.subgrid {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Spacing Scale (theme-driven)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.gap0 { gap: 0; }
+.gap1 { gap: var(--theme-spacing-1); }
+.gap2 { gap: var(--theme-spacing-2); }
+.gap3 { gap: var(--theme-spacing-3); }
+.gap4 { gap: var(--theme-spacing-4); }
+.gap5 { gap: var(--theme-spacing-5); }
+.gap6 { gap: var(--theme-spacing-6); }
+
+/* Responsive gap adjustments for tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .gap6 { gap: var(--theme-spacing-4); } /* Reduced from 24px to 16px on tablet */
+}
+.gap7 { gap: var(--theme-spacing-7); }
+.gap8 { gap: var(--theme-spacing-8); }
+.gap9 { gap: var(--theme-spacing-9); }
+.gap10 { gap: var(--theme-spacing-10); }
+
+.rowGap0 { row-gap: 0; }
+.rowGap1 { row-gap: var(--theme-spacing-1); }
+.rowGap2 { row-gap: var(--theme-spacing-2); }
+.rowGap3 { row-gap: var(--theme-spacing-3); }
+.rowGap4 { row-gap: var(--theme-spacing-4); }
+.rowGap5 { row-gap: var(--theme-spacing-5); }
+.rowGap6 { row-gap: var(--theme-spacing-6); }
+.rowGap7 { row-gap: var(--theme-spacing-7); }
+.rowGap8 { row-gap: var(--theme-spacing-8); }
+.rowGap9 { row-gap: var(--theme-spacing-9); }
+.rowGap10 { row-gap: var(--theme-spacing-10); }
+
+.columnGap0 { column-gap: 0; }
+.columnGap1 { column-gap: var(--theme-spacing-1); }
+.columnGap2 { column-gap: var(--theme-spacing-2); }
+.columnGap3 { column-gap: var(--theme-spacing-3); }
+.columnGap4 { column-gap: var(--theme-spacing-4); }
+.columnGap5 { column-gap: var(--theme-spacing-5); }
+.columnGap6 { column-gap: var(--theme-spacing-6); }
+.columnGap7 { column-gap: var(--theme-spacing-7); }
+.columnGap8 { column-gap: var(--theme-spacing-8); }
+.columnGap9 { column-gap: var(--theme-spacing-9); }
+.columnGap10 { column-gap: var(--theme-spacing-10); }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Alignment & Justification
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.alignStart { align-items: start; }
+.alignCenter { align-items: center; }
+.alignEnd { align-items: end; }
+.alignStretch { align-items: stretch; }
+
+.justifyStart { justify-content: start; }
+.justifyCenter { justify-content: center; }
+.justifyEnd { justify-content: end; }
+.justifySpaceBetween { justify-content: space-between; }
+.justifySpaceAround { justify-content: space-around; }
+.justifySpaceEvenly { justify-content: space-evenly; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Column Configurations (1-24 columns)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.cols1 { grid-template-columns: repeat(1, 1fr); }
+.cols2 { grid-template-columns: repeat(2, 1fr); }
+.cols3 { grid-template-columns: repeat(3, 1fr); }
+.cols4 { grid-template-columns: repeat(4, 1fr); }
+.cols5 { grid-template-columns: repeat(5, 1fr); }
+.cols6 { grid-template-columns: repeat(6, 1fr); }
+.cols7 { grid-template-columns: repeat(7, 1fr); }
+.cols8 { grid-template-columns: repeat(8, 1fr); }
+.cols9 { grid-template-columns: repeat(9, 1fr); }
+.cols10 { grid-template-columns: repeat(10, 1fr); }
+.cols11 { grid-template-columns: repeat(11, 1fr); }
+.cols12 { grid-template-columns: repeat(12, 1fr); }
+.cols13 { grid-template-columns: repeat(13, 1fr); }
+.cols14 { grid-template-columns: repeat(14, 1fr); }
+.cols15 { grid-template-columns: repeat(15, 1fr); }
+.cols16 { grid-template-columns: repeat(16, 1fr); }
+.cols17 { grid-template-columns: repeat(17, 1fr); }
+.cols18 { grid-template-columns: repeat(18, 1fr); }
+.cols19 { grid-template-columns: repeat(19, 1fr); }
+.cols20 { grid-template-columns: repeat(20, 1fr); }
+.cols21 { grid-template-columns: repeat(21, 1fr); }
+.cols22 { grid-template-columns: repeat(22, 1fr); }
+.cols23 { grid-template-columns: repeat(23, 1fr); }
+.cols24 { grid-template-columns: repeat(24, 1fr); }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Auto-fit & Auto-fill (Responsive Grid)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.autoFit {
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-col-width, 250px), 1fr));
+}
+
+.autoFill {
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-col-width, 250px), 1fr));
+}
+
+/* Fluid mode with clamp() for smooth scaling */
+.fluid.autoFit {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      clamp(
+        var(--grid-min-col-width, 250px),
+        30%,
+        var(--grid-max-col-width, 400px)
+      ),
+      1fr
+    )
+  );
+}
+
+.fluid.autoFill {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      clamp(
+        var(--grid-min-col-width, 250px),
+        30%,
+        var(--grid-max-col-width, 400px)
+      ),
+      1fr
+    )
+  );
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Responsive Behavior (Viewport-based fallback)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Mobile-first responsive columns */
+@media (max-width: 639px) {
+  .responsiveCols { grid-template-columns: repeat(1, 1fr); }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .responsiveCols { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsiveCols { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .responsiveCols { grid-template-columns: repeat(8, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  .responsiveCols { grid-template-columns: repeat(12, 1fr); }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Container Queries (Progressive Enhancement)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@container grid-container (max-width: 639px) {
+  .containerQuery.responsiveCols {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@container grid-container (min-width: 640px) and (max-width: 767px) {
+  .containerQuery.responsiveCols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container grid-container (min-width: 768px) and (max-width: 1023px) {
+  .containerQuery.responsiveCols {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@container grid-container (min-width: 1024px) and (max-width: 1279px) {
+  .containerQuery.responsiveCols {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@container grid-container (min-width: 1280px) {
+  .containerQuery.responsiveCols {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .grid {
+    transition: none;
+  }
+}
+

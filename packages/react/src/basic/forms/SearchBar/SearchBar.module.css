@@ -1,0 +1,125 @@
+/**
+ * SearchBar Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component SearchBar
+ * @packageName @spexop/react
+ * @description Reusable search input with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3);
+  background: var(--theme-surface-secondary);
+  border: var(--theme-border-thin) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+  min-height: 44px;
+  transition: 
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.searchBar:focus-within {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .searchBar {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .searchBar:focus-within {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface-hover);
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Variants */
+.compact {
+  flex: 1;
+  max-width: 400px;
+}
+
+.full {
+  flex: 1;
+  width: 100%;
+}
+
+/* Search Icon */
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  transition: color 150ms ease;
+}
+
+.searchIcon:hover {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .searchIcon {
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .searchIcon:hover {
+  color: var(--theme-text);
+}
+
+.searchIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Search Input */
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--theme-text);
+  font-size: var(--theme-font-size-base);
+  font-family: var(--theme-font-family);
+  font-weight: var(--theme-font-weight-regular);
+  outline: none;
+  cursor: text;
+  min-width: 0;
+}
+
+.searchInput[readonly] {
+  cursor: pointer;
+}
+
+.searchInput::placeholder {
+  color: var(--theme-text-muted);
+}
+
+[data-theme="dark"] .searchInput {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .searchInput::placeholder {
+  color: var(--theme-text-muted);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .searchBar,
+  .searchIcon {
+    transition: none;
+  }
+}

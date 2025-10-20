@@ -1,0 +1,24 @@
+/**
+ * SidebarFooter Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component SidebarFooter
+ * @packageName @spexop/react
+ * @description Footer section for sidebar
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.sidebarFooter {
+  padding: var(--theme-spacing-5);
+  border-top: var(--theme-border-width) solid var(--theme-border);
+  background: var(--theme-surface-secondary);
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .sidebarFooter {
+  border-top-color: var(--theme-border);
+  background: var(--theme-surface-hover);
+}

@@ -1,0 +1,104 @@
+/**
+ * Stack component styles
+ * Theme-driven spacing with Spexop architecture
+ * 
+ * @spexop | github.com/spexop-ui
+ * @version 0.3.0
+ * @updated 2025-10-17 - Migrated to theme system
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Stack Component - Simple flexbox utility for stacking elements
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.stack {
+  display: flex;
+  min-width: 0; /* Allow flex items to shrink below content size */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure child elements can shrink */
+.stack > * {
+  min-width: 0;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Direction
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.vertical {
+  flex-direction: column;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Spacing Scale (theme-driven)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.gap0 { gap: 0; }
+.gap1 { gap: var(--theme-spacing-1); }
+.gap2 { gap: var(--theme-spacing-2); }
+.gap3 { gap: var(--theme-spacing-3); }
+.gap4 { gap: var(--theme-spacing-4); }
+.gap5 { gap: var(--theme-spacing-5); }
+.gap6 { gap: var(--theme-spacing-6); }
+.gap7 { gap: var(--theme-spacing-7); }
+.gap8 { gap: var(--theme-spacing-8); }
+.gap9 { gap: var(--theme-spacing-9); }
+.gap10 { gap: var(--theme-spacing-10); }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Alignment (cross-axis)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.alignStart { align-items: flex-start; }
+.alignCenter { align-items: center; }
+.alignEnd { align-items: flex-end; }
+.alignStretch { align-items: stretch; }
+.alignBaseline { align-items: baseline; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Justification (main-axis)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.justifyStart { justify-content: flex-start; }
+.justifyCenter { 
+  justify-content: center; 
+  width: 100%; /* Auto-expand when centering */
+}
+.justifyEnd { justify-content: flex-end; }
+.justifySpaceBetween { 
+  justify-content: space-between; 
+  width: 100%; /* Auto-expand when using space distribution */
+}
+.justifySpaceAround { 
+  justify-content: space-around; 
+  width: 100%; /* Auto-expand when using space distribution */
+}
+.justifySpaceEvenly { 
+  justify-content: space-evenly; 
+  width: 100%; /* Auto-expand when using space distribution */
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Wrapping
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .stack {
+    transition: none;
+  }
+}
+

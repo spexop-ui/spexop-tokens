@@ -1,0 +1,254 @@
+/**
+ * Slider Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Slider
+ * @packageName @spexop/react
+ * @description Range input slider with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  font-family: var(--theme-font-family);
+}
+
+.container.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRACK CONTAINER - Border-Based Design
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.track {
+  position: relative;
+  height: var(--theme-spacing-5);
+  display: flex;
+  align-items: center;
+  background: var(--theme-surface-secondary);
+  border: var(--theme-border-thin) solid var(--theme-border);
+  border-radius: var(--theme-radius-pill);
+  cursor: pointer;
+  transition: 
+    background-color 150ms ease,
+    border-color 150ms ease;
+  overflow: visible;
+  padding: 0 var(--theme-spacing-3);
+}
+
+[data-theme="dark"] .track {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border-strong);
+}
+
+/* Track Hover */
+.container:not(.disabled):hover .track {
+  background: var(--theme-border);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .container:not(.disabled):hover .track {
+  background: var(--theme-border-strong);
+  border-color: var(--theme-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROGRESS BAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--theme-primary);
+  border-radius: var(--theme-radius-pill);
+  pointer-events: none;
+  transition: width 150ms ease;
+}
+
+[data-theme="dark"] .progress {
+  background: var(--theme-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TICK MARKS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.tickContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  width: 1px;
+  height: var(--theme-spacing-2);
+  background: var(--theme-border-strong);
+  transform: translate(-50%, -50%);
+}
+
+[data-theme="dark"] .tick {
+  background: var(--theme-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NATIVE RANGE INPUT (Hidden but Functional)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider:disabled {
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THUMB - Border-Based Design
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  width: var(--theme-spacing-6);
+  height: var(--theme-spacing-4);
+  background: var(--theme-text);
+  border: var(--theme-border-thin) solid var(--theme-text);
+  border-radius: var(--theme-radius-subtle);
+  transform: translate(-50%, -50%);
+  transition: 
+    background-color 150ms ease,
+    border-color 150ms ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+[data-theme="dark"] .thumb {
+  background: var(--theme-text-secondary);
+  border-color: var(--theme-text);
+}
+
+/* Hover */
+.container:not(.disabled):hover .thumb {
+  background: var(--theme-text);
+  border-color: var(--theme-text);
+}
+
+[data-theme="dark"] .container:not(.disabled):hover .thumb {
+  background: var(--theme-text);
+  border-color: var(--theme-surface);
+}
+
+/* Focus */
+.slider:focus-visible ~ .thumb {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .slider:focus-visible ~ .thumb {
+  outline-color: var(--theme-primary);
+}
+
+/* Active */
+.container:not(.disabled):active .thumb {
+  background: var(--theme-text);
+  border-color: var(--theme-text);
+}
+
+[data-theme="dark"] .container:not(.disabled):active .thumb {
+  background: var(--theme-surface);
+  border-color: var(--theme-surface);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DENSITY VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Compact */
+.densityCompact .track {
+  height: var(--theme-spacing-4);
+}
+
+.densityCompact .thumb {
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-3);
+}
+
+/* Spacious */
+.densitySpacious .track {
+  height: var(--theme-spacing-6);
+}
+
+.densitySpacious .thumb {
+  width: var(--theme-spacing-8);
+  height: var(--theme-spacing-5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VALUE DISPLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.value {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text-secondary);
+  text-align: center;
+  min-height: var(--theme-spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .value {
+  color: var(--theme-text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .progress,
+  .thumb,
+  .track {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .thumb {
+    border-width: var(--theme-border-width);
+  }
+  
+  .track {
+    border-width: var(--theme-border-width);
+  }
+  
+  .progress {
+    opacity: 1;
+  }
+}

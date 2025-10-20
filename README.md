@@ -1,237 +1,87 @@
-# Spexop Design Tokens
+# Spexop Design System
 
-A comprehensive TypeScript design token system with 379 tokens for building modern, consistent UIs.
+Professional React component library with a flexible theme system. Build modern web applications with primitives-first architecture.
 
-## ✨ Key Features
+## 📦 Packages
 
-- **🎨 379 Design Tokens** - Refined token system following Refined Minimalism principles
-- **💯 TypeScript-First** - Full type coverage with IntelliSense support
-- **📦 Multiple Formats** - ES Modules, CommonJS, CSS variables, and JSON
-- **🎭 Built-in Themes** - Pre-configured theme tokens with dark mode support
-- **🔧 Flexible** - Use with any framework (React, Vue, Angular, vanilla JS)
-- **📱 Responsive** - Modern breakpoints for all screen sizes
-- **⚡ Tree-Shakeable** - Import only the tokens you need
-- **🚀 Zero Dependencies** - Lightweight and fast
+- **[@spexop/theme](./packages/theme)** - Theme system with 13 presets and 29+ export formats
+- **[@spexop/react](./packages/react)** - 60+ React components with full theme support
+- **[@spexop/tokens](./packages/tokens)** - 379 design tokens for consistent styling
 
 ## 🚀 Quick Start
 
 ```bash
-# Install with npm
-npm install @spexop/tokens
-
-# Or with pnpm
-pnpm add @spexop/tokens
-
-# Or with yarn
-yarn add @spexop/tokens
+npm install @spexop/react @spexop/theme
 ```
 
-### TypeScript/JavaScript
+### With Pre-built Theme
 
 ```typescript
-import { 
-  sColorBlue500, 
-  sSpacing4, 
-  sFontSizeXl,
-  sFontWeightBold,
-  sRadiusMd 
-} from '@spexop/tokens';
+import { Button, Grid, Card } from '@spexop/react';
+import '@spexop/theme/dist/css/tech.css';
+import '@spexop/react/dist/index.css';
 
-const buttonStyles = {
-  backgroundColor: sColorBlue500,  // "#3b82f6"
-  padding: sSpacing4,               // "16px"
-  fontSize: sFontSizeXl,            // "20px"
-  fontWeight: sFontWeightBold,      // "700"
-  borderRadius: sRadiusMd,          // "8px"
-};
-```
-
-### CSS Variables
-
-```css
-/* Import CSS variables */
-@import '@spexop/tokens/dist/tokens.css';
-
-.button {
-  background-color: var(--s-color-blue-500);
-  padding: var(--s-spacing-4);
-  font-size: var(--s-font-size-xl);
-  font-weight: var(--s-font-weight-bold);
-  border-radius: var(--s-radius-md);
+function App() {
+  return (
+    <Grid columns={12} gap={24}>
+      <Card>
+        <Button variant="primary">Get Started</Button>
+      </Card>
+    </Grid>
+  );
 }
 ```
 
----
-
-## 🆕 What's New in v0.4.0
-
-**Current Version: v0.4.0** - Large Spacing Tokens 🎯
-
-✨ **NEW FEATURES** - Added 10 new large spacing tokens for hero sections and modern layouts
-
-**Added:**
-
-- ✅ **10 large spacing tokens** (sSpacing40 through sSpacing192)
-- ✅ **Extended spacing scale** - Now covers 0px to 768px (was 0px to 128px)
-- ✅ **Breakpoint-aligned** - sSpacing160 and sSpacing192 match responsive breakpoints
-- ✅ **Better large-screen support** - Perfect for 1920px+, 2560px+ displays
-
-**New Tokens:**
-
-| Token | Value | Use Case |
-|-------|-------|----------|
-| `sSpacing40` | 160px | Large component spacing |
-| `sSpacing48` | 192px | Section spacing |
-| `sSpacing56` | 224px | Large section spacing |
-| `sSpacing64` | 256px | Hero section vertical spacing |
-| `sSpacing80` | 320px | Extra large spacing |
-| `sSpacing96` | 384px | Massive spacing |
-| `sSpacing100` | 400px | Ultra spacing |
-| `sSpacing128` | 512px | Full-viewport-like spacing |
-| `sSpacing160` | 640px | Matches sBreakpointSm |
-| `sSpacing192` | 768px | Matches sBreakpointMd |
-
-**Result:**
-
-- ✅ **379 tokens** (up from 369) - Complete spacing scale
-- ✅ **Backward compatible** - No breaking changes
-- ✅ **Modern layout support** - Hero sections, full-height designs
-
-[See full changelog →](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)
-
----
-
-## 📦 Token Categories
-
-| Category | Token Count | Examples |
-|----------|-------------|----------|
-| **Colors** | 98 | `sColorBlue500`, `sColorRed600`, `sColorNeutral100` |
-| **Spacing** | 31 | `sSpacing0` - `sSpacing192` (0px to 768px) |
-| **Typography** | 43 | Font sizes, weights, line heights, letter spacing |
-| **Border Radius** | 8 | `sRadiusNone` to `sRadiusPill` |
-| **Shadows** | 2 | `sShadowNone`, `sShadowSubtle` (minimal use) |
-| **Breakpoints** | 6 | `sBreakpointXs` to `sBreakpoint2xl` |
-| **Layout** | 30+ | Grid, constraints, z-index |
-| **Motion** | 15+ | Durations, easings, transitions |
-| **Other** | 146+ | Aspect ratios, opacity, cursors, transforms |
-| **Total** | **379** | Refined design system |
-
-### Package Contents
-
-The `@spexop/tokens` package includes:
-
-- **TypeScript/JavaScript** - ES Modules (`index.js`) and CommonJS (`index.cjs`)
-- **Type Definitions** - Full TypeScript support (`index.d.ts`, `index.d.cts`)
-- **CSS Variables** - All tokens as CSS custom properties (`tokens.css`)
-- **JSON Export** - Token values in JSON format (`tokens.json`)
-- **Documentation** - Reference guide and demo HTML (`TOKENS-REFERENCE.md`, `tokens-demo.html`)
-
----
-
-## 📚 Token Usage Examples
-
-### Spacing System
+### With Custom Theme
 
 ```typescript
-import { 
-  sSpacing0, 
-  sSpacing4, 
-  sSpacing8, 
-  sSpacing16,
-  sSpacing64,
-  sSpacing160 
-} from '@spexop/tokens';
+import { ThemeProvider } from '@spexop/react';
+import { techPreset } from '@spexop/theme';
 
-// Component spacing
-const cardStyles = {
-  padding: sSpacing4,        // 16px
-  marginBottom: sSpacing8,   // 32px
-  gap: sSpacing2,            // 8px
-};
-
-// Large layout spacing (NEW in v0.4.0)
-const heroStyles = {
-  paddingTop: sSpacing64,    // 256px
-  paddingBottom: sSpacing64,
-  minHeight: sSpacing160,    // 640px
-};
+function App() {
+  return (
+    <ThemeProvider theme={techPreset}>
+      <YourApp />
+    </ThemeProvider>
+  );
+}
 ```
 
-### Color System
+## 📚 Examples
 
-```typescript
-import { sColorBlue500, sColorGray100, sColorRed600 } from '@spexop/tokens';
+See [examples/](./examples) directory for complete working examples:
+- [Basic Theme Usage](./examples/basic-theme) - Using pre-built CSS themes
+- [Custom Theme](./examples/custom-theme) - Creating your own theme
+- [Runtime Theme Switching](./examples/runtime-switching) - Dynamic theme changes
 
-// Semantic usage
-const buttonStyles = {
-  primary: sColorBlue500,    // "#3b82f6"
-  background: sColorGray100, // "#f3f4f6"
-  error: sColorRed600,       // "#dc2626"
-};
-```
+## 📖 Documentation
 
-### Typography System
+- [Getting Started](./docs/getting-started.md)
+- [Theme System Guide](./packages/theme/README.md)
+- [Component Documentation](./packages/react/README.md)
+- [Design Tokens Reference](./packages/tokens/README.md)
 
-```typescript
-import { 
-  sFontSizeBase, 
-  sFontSizeXl, 
-  sFontSize3xl,
-  sFontWeightBold,
-  sLineHeightRelaxed 
-} from '@spexop/tokens';
+## 🔗 Links
 
-const typographyStyles = {
-  body: {
-    fontSize: sFontSizeBase,      // "16px"
-    lineHeight: sLineHeightRelaxed, // "1.625"
-  },
-  heading: {
-    fontSize: sFontSize3xl,       // "30px"
-    fontWeight: sFontWeightBold,  // "700"
-  },
-};
-```
-
-### Responsive Breakpoints
-
-```typescript
-import { sBreakpointMd, sBreakpointLg } from '@spexop/tokens';
-
-// Media query usage
-const mediaQuery = `@media (min-width: ${sBreakpointMd})`; // "@media (min-width: 768px)"
-```
-
----
-
-## 📚 Documentation
-
-- **[GitHub Repository](https://github.com/spexop-ui/spexop-tokens)** - Source code and documentation
-- **[npm Package](https://www.npmjs.com/package/@spexop/tokens)** - Published package on npm
-- **[Token Reference](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/TOKENS-REFERENCE.md)** - Complete token list
-- **[Changelog](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/CHANGELOG.md)** - Version history
-- **[Demo HTML](https://github.com/spexop-ui/spexop-tokens/blob/main/packages/tokens/tokens-demo.html)** - Interactive token showcase
-
----
+- **Website**: https://spexop.com
+- **Theme Builder**: https://builder.spexop.com
+- **npm**: [@spexop/theme](https://www.npmjs.com/package/@spexop/theme), [@spexop/react](https://www.npmjs.com/package/@spexop/react), [@spexop/tokens](https://www.npmjs.com/package/@spexop/tokens)
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit issues or pull requests on [GitHub](https://github.com/spexop-ui/spexop-tokens).
-
----
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
 
 ## 📄 License
 
-MIT License - see [LICENSE](https://github.com/spexop-ui/spexop-tokens/blob/main/LICENSE) for details.
+MIT © Spexop Team
 
 ---
 
 <div align="center">
 
-**[@spexop/tokens](https://www.npmjs.com/package/@spexop/tokens)** • Built with TypeScript
+**Spexop Design System** • Built with TypeScript & React
 
-[GitHub](https://github.com/spexop-ui/spexop-tokens) • [npm](https://www.npmjs.com/package/@spexop/tokens) • [Issues](https://github.com/spexop-ui/spexop-tokens/issues)
-
-[github]: <https://github.com/olmstedian> | <ccakar@spexop.com> | <https://spexop.com>
+[GitHub](https://github.com/spexop-ui/design-system) • [npm](https://www.npmjs.com/org/spexop) • [Website](https://spexop.com)
 
 </div>
+

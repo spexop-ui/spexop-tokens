@@ -1,0 +1,130 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Container Component - Max-width content wrapper
+   Theme-driven spacing and breakpoints with Spexop architecture
+   @version 0.3.0
+   @updated 2025-10-17 - Migrated to theme system
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto; /* Allow horizontal scrolling instead of hiding content */
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Centering
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Max Width Options (theme-driven breakpoints)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.maxWidthXs {
+  max-width: var(--theme-breakpoint-sm);
+}
+
+.maxWidthSm {
+  max-width: var(--theme-breakpoint-md);
+}
+
+.maxWidthMd {
+  max-width: var(--theme-breakpoint-lg);
+}
+
+.maxWidthLg {
+  max-width: var(--theme-breakpoint-xl);
+}
+
+.maxWidthXl {
+  max-width: var(--theme-breakpoint-2xl);
+}
+
+.maxWidth2xl {
+  max-width: 1920px; /* Extra large, no standard breakpoint */
+}
+
+.maxWidthFull {
+  max-width: none;
+}
+
+/* Fluid mode - no max-width constraints */
+.fluid {
+  max-width: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Padding Scale (theme-driven spacing)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.padding0 { padding: 0; }
+.padding1 { padding: var(--theme-spacing-1); }
+.padding2 { padding: var(--theme-spacing-2); }
+.padding3 { padding: var(--theme-spacing-3); }
+.padding4 { padding: var(--theme-spacing-4); }
+.padding5 { padding: var(--theme-spacing-5); }
+.padding6 { padding: var(--theme-spacing-6); }
+.padding7 { padding: var(--theme-spacing-7); }
+.padding8 { padding: var(--theme-spacing-8); }
+.padding9 { padding: var(--theme-spacing-9); }
+.padding10 { padding: var(--theme-spacing-10); }
+
+/* Individual padding directions */
+.paddingLeft0 { padding-left: 0; }
+.paddingLeft1 { padding-left: var(--theme-spacing-1); }
+.paddingLeft2 { padding-left: var(--theme-spacing-2); }
+.paddingLeft3 { padding-left: var(--theme-spacing-3); }
+.paddingLeft4 { padding-left: var(--theme-spacing-4); }
+.paddingLeft5 { padding-left: var(--theme-spacing-5); }
+.paddingLeft6 { padding-left: var(--theme-spacing-6); }
+.paddingLeft7 { padding-left: var(--theme-spacing-7); }
+.paddingLeft8 { padding-left: var(--theme-spacing-8); }
+.paddingLeft9 { padding-left: var(--theme-spacing-9); }
+.paddingLeft10 { padding-left: var(--theme-spacing-10); }
+
+.paddingRight0 { padding-right: 0; }
+.paddingRight1 { padding-right: var(--theme-spacing-1); }
+.paddingRight2 { padding-right: var(--theme-spacing-2); }
+.paddingRight3 { padding-right: var(--theme-spacing-3); }
+.paddingRight4 { padding-right: var(--theme-spacing-4); }
+.paddingRight5 { padding-right: var(--theme-spacing-5); }
+.paddingRight6 { padding-right: var(--theme-spacing-6); }
+.paddingRight7 { padding-right: var(--theme-spacing-7); }
+.paddingRight8 { padding-right: var(--theme-spacing-8); }
+.paddingRight9 { padding-right: var(--theme-spacing-9); }
+.paddingRight10 { padding-right: var(--theme-spacing-10); }
+
+.paddingTop0 { padding-top: 0; }
+.paddingTop1 { padding-top: var(--theme-spacing-1); }
+.paddingTop2 { padding-top: var(--theme-spacing-2); }
+.paddingTop3 { padding-top: var(--theme-spacing-3); }
+.paddingTop4 { padding-top: var(--theme-spacing-4); }
+.paddingTop5 { padding-top: var(--theme-spacing-5); }
+.paddingTop6 { padding-top: var(--theme-spacing-6); }
+.paddingTop7 { padding-top: var(--theme-spacing-7); }
+.paddingTop8 { padding-top: var(--theme-spacing-8); }
+.paddingTop9 { padding-top: var(--theme-spacing-9); }
+.paddingTop10 { padding-top: var(--theme-spacing-10); }
+
+.paddingBottom0 { padding-bottom: 0; }
+.paddingBottom1 { padding-bottom: var(--theme-spacing-1); }
+.paddingBottom2 { padding-bottom: var(--theme-spacing-2); }
+.paddingBottom3 { padding-bottom: var(--theme-spacing-3); }
+.paddingBottom4 { padding-bottom: var(--theme-spacing-4); }
+.paddingBottom5 { padding-bottom: var(--theme-spacing-5); }
+.paddingBottom6 { padding-bottom: var(--theme-spacing-6); }
+.paddingBottom7 { padding-bottom: var(--theme-spacing-7); }
+.paddingBottom8 { padding-bottom: var(--theme-spacing-8); }
+.paddingBottom9 { padding-bottom: var(--theme-spacing-9); }
+.paddingBottom10 { padding-bottom: var(--theme-spacing-10); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Removed hardcoded mobile padding - use responsive padding prop instead */
+

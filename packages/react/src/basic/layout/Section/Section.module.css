@@ -1,0 +1,318 @@
+/**
+ * Section Component Styles
+ * Migrated to theme system
+ * Floating card-style sections with rounded corners
+ */
+
+/* Base Section */
+.section {
+  position: relative;
+  border-radius: var(--theme-radius-relaxed);
+  border: var(--theme-border-width) solid var(--border-color, var(--theme-border));
+  /* Note: No overflow property - needed for sticky positioning to work inside sections */
+  min-height: 400px; /* Ensure sections are tall enough for sticky to work */
+}
+
+html[data-theme="dark"] .section {
+  border-color: var(--border-color, var(--theme-surface-hover));
+}
+
+/* ==================== */
+/* Variants */
+/* ==================== */
+
+/* White Background (Default) */
+.variant-white {
+  background: var(--theme-surface);
+}
+
+html[data-theme="dark"] .variant-white {
+  background: var(--theme-surface);
+}
+
+/* Neutral Background */
+.variant-neutral {
+  background: var(--theme-surface-secondary);
+}
+
+html[data-theme="dark"] .variant-neutral {
+  background: #0f0f0f;
+}
+
+/* Gradient Background */
+.variant-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--theme-surface-secondary) 0%,
+    var(--theme-surface) 100%
+  );
+}
+
+html[data-theme="dark"] .variant-gradient {
+  background: linear-gradient(
+    135deg,
+    #0f0f0f 0%,
+    var(--theme-surface) 100%
+  );
+}
+
+/* ==================== */
+/* Padding Sizes */
+/* ==================== */
+
+.padding-compact {
+  padding: 48px 0;
+}
+
+.padding-normal {
+  padding: 80px 0;
+}
+
+.padding-spacious {
+  padding: 96px 0;
+}
+
+/* Responsive padding adjustments for tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .padding-spacious {
+    padding: 64px 0; /* Reduced from 96px to 64px on tablet */
+  }
+}
+
+/* ==================== */
+/* Margin Bottom */
+/* ==================== */
+
+.margin-none {
+  margin-bottom: 0;
+}
+
+.margin-normal {
+  margin-bottom: 80px;
+}
+
+/* Responsive margin adjustments for tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .margin-normal {
+    margin-bottom: 48px; /* Reduced from 80px to 48px on tablet */
+  }
+}
+
+.margin-large {
+  margin-bottom: 96px;
+}
+
+/* ==================== */
+/* Section Intro (Label + Title + Description) */
+/* ==================== */
+
+.intro {
+  text-align: center;
+  max-width: 65ch;
+}
+
+.intro[data-align="left"] {
+  text-align: left;
+  margin-right: auto;
+}
+
+.intro[data-align="center"] {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro[data-align="right"] {
+  text-align: right;
+  margin-left: auto;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--theme-spacing-3);
+}
+
+html[data-theme="dark"] .label {
+  color: var(--theme-text-secondary);
+}
+
+.title {
+  font-size: 36px;
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--theme-spacing-4) 0;
+}
+
+html[data-theme="dark"] .title {
+  color: var(--theme-text);
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--theme-text-secondary);
+  margin: 0;
+}
+
+html[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* ==================== */
+/* Accent Bars */
+/* ==================== */
+
+.accent-left::before {
+  content: "";
+  position: absolute;
+  top: var(--theme-spacing-8);
+  left: 0;
+  width: 4px;
+  height: calc(100% - 64px);
+  background: linear-gradient(
+    180deg,
+     0%,
+    var(--theme-primary-hover) 100%
+  );
+  z-index: 1;
+}
+
+.accent-right::before {
+  content: "";
+  position: absolute;
+  top: var(--theme-spacing-8);
+  right: 0;
+  width: 4px;
+  height: calc(100% - 64px);
+  background: linear-gradient(
+    180deg,
+     0%,
+    var(--theme-primary-hover) 100%
+  );
+  z-index: 1;
+}
+
+.accent-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--theme-spacing-8);
+  width: calc(100% - 64px);
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+     0%,
+    var(--theme-primary-hover) 100%
+  );
+  z-index: 1;
+}
+
+.accent-bottom::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: var(--theme-spacing-8);
+  width: calc(100% - 64px);
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+     0%,
+    var(--theme-primary-hover) 100%
+  );
+  z-index: 1;
+}
+
+/* ==================== */
+/* Border Controls */
+/* ==================== */
+
+.noBorder {
+  border: none;
+}
+
+.border-top {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.border-bottom {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.border-left {
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.border-right {
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+}
+
+.border-horizontal {
+  border-left: none;
+  border-right: none;
+}
+
+.border-vertical {
+  border-top: none;
+  border-bottom: none;
+}
+
+/* ==================== */
+/* Layout Controls */
+/* ==================== */
+
+.fullWidth {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* ==================== */
+/* Responsive */
+/* ==================== */
+
+@media (max-width: 767px) {
+  .section {
+    border-radius: var(--theme-radius-relaxed);
+  }
+  
+  .padding-compact {
+    padding: 32px 0;
+  }
+  
+  .padding-normal {
+    padding: 48px 0;
+  }
+  
+  .padding-spacious {
+    padding: 64px 0;
+  }
+  
+  .margin-normal {
+    margin-bottom: 48px;
+  }
+  
+  .margin-large {
+    margin-bottom: 64px;
+  }
+  
+  .title {
+    font-size: 30px;
+  }
+  
+  .description {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,162 @@
+/**
+ * Snackbar Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Snackbar
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Snackbar Container */
+.snackbar {
+  position: fixed;
+  left: var(--theme-spacing-4);
+  right: var(--theme-spacing-4);
+  z-index: 1100;
+  font-family: var(--theme-font-family);
+  background: var(--theme-surface-secondary); /* One tone darker than background */
+  border-radius: var(--theme-radius-relaxed); /* 12px - relaxed corners */
+  box-shadow: none; /* No elevated styles */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Dark theme - one tone lighter than background */
+[data-theme="dark"] .snackbar {
+  background: var(--theme-border-strong);
+}
+
+/* Position: Bottom (default) */
+.snackbar.bottom {
+  bottom: var(--theme-spacing-4);
+}
+
+/* Position: Top */
+.snackbar.top {
+  top: var(--theme-spacing-4);
+  transform: translateY(-20px);
+}
+
+/* Visible state */
+.snackbar[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Content Layout */
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--theme-spacing-4);
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+  min-height: 48px; /* Comfortable touch target */
+}
+
+/* Message Text */
+.message {
+  flex: 1;
+  font-size: 14px; /* Not too small */
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text);
+  line-height: 1.25;
+}
+
+[data-theme="dark"] .message {
+  color: var(--theme-text);
+}
+
+/* Action Button */
+.action {
+  flex-shrink: 0;
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  border: none;
+  background: transparent;
+  color: var(--theme-primary);
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-medium);
+  font-family: var(--theme-font-family);
+  cursor: pointer;
+  border-radius: var(--theme-radius-base); /* 8px */
+  transition: 
+    background-color 0.15s ease,
+    color 0.15s ease;
+  white-space: nowrap;
+}
+
+/* Hover effects - similar to Sidebar */
+.action:hover {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-primary-hover);
+}
+
+[data-theme="dark"] .action:hover {
+  background: var(--theme-surface-hover);
+  color: var(--theme-primary);
+}
+
+/* Active state */
+.action:active {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-primary-active);
+}
+
+[data-theme="dark"] .action:active {
+  background: var(--theme-surface);
+  color: var(--theme-primary);
+}
+
+/* Focus visible */
+.action:focus-visible {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: var(--theme-border-width);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .snackbar {
+    transition: none;
+  }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .snackbar {
+    left: var(--theme-spacing-3);
+    right: var(--theme-spacing-3);
+    bottom: var(--theme-spacing-3);
+  }
+
+  .snackbar.top {
+    top: var(--theme-spacing-3);
+  }
+
+  .content {
+    padding: var(--theme-spacing-3) var(--theme-spacing-4);
+    gap: var(--theme-spacing-3);
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .action {
+    padding: var(--theme-spacing-2);
+    font-size: 14px;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .snackbar {
+    border: var(--theme-border-width) solid var(--theme-border-strong);
+  }
+
+  [data-theme="dark"] .snackbar {
+    border-color: var(--theme-border-strong);
+  }
+}

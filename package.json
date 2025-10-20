@@ -1,9 +1,9 @@
 {
-  "name": "@spexop/design-system",
-  "version": "0.1.0",
+  "name": "@spexop/design-system-monorepo",
+  "version": "0.2.0",
   "private": true,
-  "description": "TypeScript design system with comprehensive design tokens and theming",
-  "author": "Spexop Team",
+  "description": "Spexop Design System - Professional React components with flexible theming",
+  "author": "Spexop Team <contact@spexop.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,19 +14,32 @@
     "url": "https://github.com/spexop-ui/design-system/issues"
   },
   "scripts": {
-    "build": "pnpm --filter @spexop/tokens build",
-    "test": "pnpm --filter @spexop/tokens test",
-    "clean": "pnpm --filter @spexop/tokens clean:build"
+    "build": "pnpm -r build",
+    "build:theme": "pnpm --filter @spexop/theme build",
+    "build:react": "pnpm --filter @spexop/react build",
+    "build:tokens": "pnpm --filter @spexop/tokens build",
+    "test": "pnpm -r test",
+    "type-check": "pnpm -r type-check",
+    "clean": "pnpm -r clean",
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
   },
   "keywords": [
     "design-system",
+    "react",
+    "components",
+    "theme",
     "design-tokens",
-    "typescript",
-    "theming",
-    "tokens"
+    "spexop"
   ],
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "typescript": "^5.3.0"
+  },
   "engines": {
     "node": ">=18.0.0",
-    "pnpm": ">=8.0.0"
-  }
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
 }

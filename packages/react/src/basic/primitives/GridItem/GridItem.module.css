@@ -1,0 +1,80 @@
+/**
+ * GridItem component styles
+ * 
+ * @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GridItem Component - Grid item positioning and alignment
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.gridItem {
+  /* Base grid item - let grid control placement by default */
+  min-width: 0; /* Allow grid items to shrink below content size */
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Column Span (1-24)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.span1 { grid-column: span 1; }
+.span2 { grid-column: span 2; }
+.span3 { grid-column: span 3; }
+.span4 { grid-column: span 4; }
+.span5 { grid-column: span 5; }
+.span6 { grid-column: span 6; }
+.span7 { grid-column: span 7; }
+.span8 { grid-column: span 8; }
+.span9 { grid-column: span 9; }
+.span10 { grid-column: span 10; }
+.span11 { grid-column: span 11; }
+.span12 { grid-column: span 12; }
+.span13 { grid-column: span 13; }
+.span14 { grid-column: span 14; }
+.span15 { grid-column: span 15; }
+.span16 { grid-column: span 16; }
+.span17 { grid-column: span 17; }
+.span18 { grid-column: span 18; }
+.span19 { grid-column: span 19; }
+.span20 { grid-column: span 20; }
+.span21 { grid-column: span 21; }
+.span22 { grid-column: span 22; }
+.span23 { grid-column: span 23; }
+.span24 { grid-column: span 24; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Row Span (1-12)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.rowSpan1 { grid-row: span 1; }
+.rowSpan2 { grid-row: span 2; }
+.rowSpan3 { grid-row: span 3; }
+.rowSpan4 { grid-row: span 4; }
+.rowSpan5 { grid-row: span 5; }
+.rowSpan6 { grid-row: span 6; }
+.rowSpan7 { grid-row: span 7; }
+.rowSpan8 { grid-row: span 8; }
+.rowSpan9 { grid-row: span 9; }
+.rowSpan10 { grid-row: span 10; }
+.rowSpan11 { grid-row: span 11; }
+.rowSpan12 { grid-row: span 12; }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Alignment
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.alignStart { align-self: start; }
+.alignCenter { align-self: center; }
+.alignEnd { align-self: end; }
+.alignStretch { align-self: stretch; }
+
+.justifyStart { justify-self: start; }
+.justifyCenter { justify-self: center; }
+.justifyEnd { justify-self: end; }
+.justifyStretch { justify-self: stretch; }
+

@@ -1,0 +1,149 @@
+/**
+ * ButtonGroup Component Styles
+ * Primitives-first with horizontal/vertical direction support
+ * Migrated to theme system
+ * 
+ * @component ButtonGroup
+ * @packageName @spexop/react
+ * @description Container for grouped buttons with shared borders
+ * @author @spexop-ui | github.com/spexop-ui | @olmstedian | github.com/olmstedian
+ * @version 0.2.0
+ * @since 2025-10-13
+ */
+
+/* Base ButtonGroup Container */
+.buttonGroup {
+	display: inline-flex;
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-radius: var(--theme-radius-relaxed);
+	overflow: hidden;
+}
+
+/* Horizontal Direction (default) */
+.horizontal {
+	flex-direction: row;
+}
+
+/* All buttons in horizontal group */
+.horizontal > button,
+.horizontal > :global(*) {
+	border: none;
+	border-radius: 0;
+	border-right: var(--theme-border-width) solid var(--theme-border-strong);
+	background: var(--theme-surface);
+	color: var(--theme-text-secondary);
+	padding: var(--theme-spacing-3) var(--theme-spacing-4);
+	font-size: 16px;
+	margin: 0;
+	transition: all 0.15s ease;
+}
+
+/* Last button in horizontal group - no border */
+.horizontal > button:last-child,
+.horizontal > :global(*:last-child) {
+	border-right: none;
+}
+
+/* Hover state for horizontal buttons */
+.horizontal > button:hover:not(:disabled):not([aria-pressed="true"]),
+.horizontal > :global(*:hover:not(:disabled):not([aria-pressed="true"])) {
+	background: var(--theme-surface-secondary);
+	color: var(--theme-text);
+	border-right-color: var(--theme-text);
+	z-index: 1;
+}
+
+/* Active state for horizontal buttons */
+.horizontal > button.active,
+.horizontal > :global(*.active),
+.horizontal > button[aria-pressed="true"],
+.horizontal > :global(*[aria-pressed="true"]) {
+	background: var(--theme-primary);
+	color: var(--theme-surface);
+	border-color: var(--theme-primary);
+	z-index: 2;
+}
+
+/* Vertical Direction */
+.vertical {
+	flex-direction: column;
+}
+
+/* All buttons in vertical group */
+.vertical > button,
+.vertical > :global(*) {
+	border: none;
+	border-radius: 0;
+	border-bottom: var(--theme-border-width) solid var(--theme-border-strong);
+	background: var(--theme-surface);
+	color: var(--theme-text-secondary);
+	padding: var(--theme-spacing-3) var(--theme-spacing-4);
+	font-size: 16px;
+	margin: 0;
+	transition: all 0.15s ease;
+}
+
+/* Last button in vertical group - no border */
+.vertical > button:last-child,
+.vertical > :global(*:last-child) {
+	border-bottom: none;
+}
+
+/* Hover state for vertical buttons */
+.vertical > button:hover:not(:disabled):not([aria-pressed="true"]),
+.vertical > :global(*:hover:not(:disabled):not([aria-pressed="true"])) {
+	background: var(--theme-surface-secondary);
+	color: var(--theme-text);
+	border-bottom-color: var(--theme-text);
+	z-index: 1;
+}
+
+/* Active state for vertical buttons */
+.vertical > button.active,
+.vertical > :global(*.active),
+.vertical > button[aria-pressed="true"],
+.vertical > :global(*[aria-pressed="true"]) {
+	background: var(--theme-primary);
+	color: var(--theme-surface);
+	border-color: var(--theme-primary);
+	z-index: 2;
+}
+
+/* Compact Mode */
+.compact > button,
+.compact > :global(*) {
+	padding: var(--theme-spacing-2) var(--theme-spacing-3);
+	font-size: 14px;
+}
+
+/* Focus indicators */
+.buttonGroup > button:focus-visible,
+.buttonGroup > :global(*:focus-visible) {
+	outline: 2px solid var(--theme-primary);
+	outline-offset: -2px;
+	z-index: 10;
+	position: relative;
+}
+
+/* Disabled state */
+.buttonGroup > button:disabled,
+.buttonGroup > :global(*:disabled) {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	.buttonGroup > button,
+	.buttonGroup > :global(*) {
+		transition-duration: 0.01ms;
+	}
+}
+
+/* Mobile: Allow horizontal scroll if overflow */
+@media (max-width: 768px) {
+	.horizontal {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+}

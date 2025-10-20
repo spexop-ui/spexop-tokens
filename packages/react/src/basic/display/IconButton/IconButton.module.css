@@ -1,0 +1,160 @@
+/* IconButton - Reusable icon-only button 
+   Migrated to theme system */
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--theme-radius-subtle);
+  transition: 
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+  flex-shrink: 0;
+}
+
+.iconButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.sm {
+  width: 32px;
+  height: 32px;
+  padding: var(--theme-spacing-1);
+}
+
+.sm svg {
+  width: 18px;
+  height: 18px;
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+  padding: var(--theme-spacing-2);
+}
+
+.md svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lg {
+  width: 48px;
+  height: 48px;
+  padding: var(--theme-spacing-3);
+}
+
+.lg svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* ============================================
+   STYLE VARIANTS
+   ============================================ */
+
+/* Ghost variant (default) - transparent background */
+.ghost {
+  background: transparent;
+  color: var(--theme-text-secondary);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--theme-surface-secondary);
+}
+
+.ghost:active:not(:disabled) {
+  background: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .ghost {
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .ghost:hover:not(:disabled) {
+  background: var(--theme-surface-hover);
+}
+
+[data-theme="dark"] .ghost:active:not(:disabled) {
+  background: var(--theme-border);
+}
+
+/* Solid variant - filled background */
+.solid {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text);
+}
+
+.solid:hover:not(:disabled) {
+  background: var(--theme-border);
+}
+
+.solid:active:not(:disabled) {
+  background: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .solid {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .solid:hover:not(:disabled) {
+  background: var(--theme-surface-hover);
+}
+
+[data-theme="dark"] .solid:active:not(:disabled) {
+  background: var(--theme-border);
+}
+
+/* Primary variant - accent color */
+.primary {
+  background: var(--theme-primary);
+  color: var(--theme-surface);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--theme-primary-hover);
+}
+
+.primary:active:not(:disabled) {
+  background: var(--theme-primary-active);
+}
+
+[data-theme="dark"] .primary {
+  background: var(--theme-primary);
+}
+
+[data-theme="dark"] .primary:hover:not(:disabled) {
+  background: var(--theme-primary-hover);
+}
+
+[data-theme="dark"] .primary:active:not(:disabled) {
+  background: var(--theme-primary-active);
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .iconButton {
+    transition: none;
+  }
+}

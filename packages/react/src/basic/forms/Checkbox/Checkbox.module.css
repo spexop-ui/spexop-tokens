@@ -1,0 +1,242 @@
+/**
+ * Checkbox Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Checkbox
+ * @packageName @spexop/react
+ * @description Border-based checkbox design with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.checkboxContainer {
+  display: inline-flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LABEL - Clickable Area
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--theme-spacing-3);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  width: 100%;
+}
+
+.disabled .label {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INPUT - Hidden Native Checkbox
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CHECKBOX - Border-Based Design
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-5);
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--theme-surface);
+  border: var(--theme-border-thin) solid var(--theme-border);
+  border-radius: var(--theme-radius-subtle);
+  transition: 
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.label:hover:not(.disabled) .checkbox {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+}
+
+.input:focus-visible + .checkbox {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.checkbox.checked {
+  background: var(--theme-primary);
+  border-color: var(--theme-primary);
+}
+
+.label:hover:not(.disabled) .checkbox.checked {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-hover);
+}
+
+/* Dark mode */
+[data-theme="dark"] .checkbox {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+[data-theme="dark"] .label:hover:not(.disabled) .checkbox {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .input:focus-visible + .checkbox {
+  outline-color: var(--theme-primary);
+}
+
+[data-theme="dark"] .checkbox.checked {
+  background: var(--theme-primary);
+  border-color: var(--theme-primary);
+}
+
+[data-theme="dark"] .label:hover:not(.disabled) .checkbox.checked {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CHECKMARK ICON
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.checkmark {
+  color: var(--theme-text-inverted);
+  width: 12px;
+  height: 12px;
+  animation: checkmarkAppear 150ms ease;
+}
+
+@keyframes checkmarkAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENT - Label and Description
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-1);
+  flex: 1;
+}
+
+.labelText {
+  font-family: var(--theme-font-family);
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-snug);
+}
+
+[data-theme="dark"] .labelText {
+  color: var(--theme-text);
+}
+
+.description {
+  font-family: var(--theme-font-family);
+  font-size: var(--theme-font-size-xs);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-normal);
+}
+
+[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DENSITY VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Compact (Dashboard context) */
+.densityCompact .checkbox {
+  width: var(--theme-spacing-4);
+  height: var(--theme-spacing-4);
+}
+
+.densityCompact .checkmark {
+  width: 10px;
+  height: 10px;
+}
+
+.densityCompact .labelText {
+  font-size: var(--theme-font-size-xs);
+}
+
+.densityCompact .description {
+  font-size: 11px;
+}
+
+.densityCompact .label {
+  gap: var(--theme-spacing-2);
+}
+
+/* Spacious (Blog/Content context) */
+.densitySpacious .checkbox {
+  width: var(--theme-spacing-6);
+  height: var(--theme-spacing-6);
+}
+
+.densitySpacious .checkmark {
+  width: 14px;
+  height: 14px;
+}
+
+.densitySpacious .labelText {
+  font-size: var(--theme-font-size-base);
+}
+
+.densitySpacious .description {
+  font-size: var(--theme-font-size-sm);
+}
+
+.densitySpacious .label {
+  gap: var(--theme-spacing-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .checkbox {
+    border-width: var(--theme-border-width);
+  }
+
+  .input:focus-visible + .checkbox {
+    outline-width: var(--theme-spacing-1);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .checkbox,
+  .checkmark {
+    transition: none;
+    animation: none;
+  }
+}

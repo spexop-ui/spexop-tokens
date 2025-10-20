@@ -1,0 +1,113 @@
+/**
+ * SettingItem Styles
+ * Migrated to theme system
+ * 
+ * Following Spexop Design Principles:
+ * - Typography Before Decoration (Principle #3)
+ * - Accessibility Before Aesthetics (Principle #7)
+ */
+
+.settingItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-3);
+  padding: var(--theme-spacing-4) 0;
+  transition: opacity 0.15s ease-in-out;
+}
+
+.settingItem[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Label Container */
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+}
+
+/* Label - Bold weight for hierarchy (Principle #3) */
+.label {
+  font-family: var(--theme-font-family);
+  font-size: 16px;
+  font-weight: var(--theme-font-weight-semibold);
+  line-height: 1.25;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out;
+}
+
+/* High contrast label (WCAG AAA - 15:1 for light, 16:1 for dark) */
+[data-theme="light"] .label {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+.settingItem[data-disabled] .label {
+  cursor: not-allowed;
+}
+
+/* Description - High contrast (WCAG AAA - 7:1) */
+.description {
+  font-family: var(--theme-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* High contrast description (WCAG AAA) */
+[data-theme="light"] .description {
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* Control Container */
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High Contrast Mode - Enhance readability */
+@media (prefers-contrast: high) {
+  .label {
+    font-weight: var(--theme-font-weight-bold);
+  }
+  
+  .description {
+    font-weight: var(--theme-font-weight-medium);
+  }
+}
+
+/* Reduced Motion - Disable transitions */
+@media (prefers-reduced-motion: reduce) {
+  .settingItem,
+  .label {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile Adjustments (< 480px) */
+@media (max-width: 479px) {
+  .settingItem {
+    gap: var(--theme-spacing-2);
+  }
+
+  .control {
+    width: 100%;
+  }
+}

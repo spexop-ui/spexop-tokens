@@ -1,0 +1,301 @@
+/**
+ * CommandPalette Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component CommandPalette
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* ============================================
+   BACKDROP
+   ============================================ */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--theme-spacing-6) var(--theme-spacing-4);
+  padding-top: 10vh;
+  padding-bottom: var(--theme-spacing-6);
+  animation: fadeIn 0.15s ease;
+}
+
+/* ============================================
+   PALETTE CONTAINER
+   ============================================ */
+
+.palette {
+  width: 100%;
+  max-width: 768px;
+  background: var(--theme-surface);
+  border-radius: var(--theme-radius-relaxed);
+  border: var(--theme-border-width) solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  z-index: 1000;
+  animation: commandPaletteSlideIn 0.3s ease;
+}
+
+/* ============================================
+   SEARCH INPUT CONTAINER
+   ============================================ */
+
+.searchContainer {
+  padding: var(--theme-spacing-6) var(--theme-spacing-6);
+  border-bottom: var(--theme-border-width) solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-4);
+}
+
+.searchIcon {
+  width: 28px;
+  height: 28px;
+  color: var(--theme-text-secondary);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text);
+  line-height: 1.5;
+  padding: 0;
+}
+
+.searchInput::placeholder {
+  color: var(--theme-text-secondary);
+}
+
+.keyboardHintContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   KEYBOARD SHORTCUTS (KBD)
+   ============================================ */
+
+.kbd {
+  background: rgba(255, 255, 255, 0.12);
+  border: var(--theme-border-width) solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--theme-radius-relaxed);
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  font-size: 18px;
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text-secondary);
+  line-height: 1;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* ============================================
+   COMMAND LIST
+   ============================================ */
+
+.commandList {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--theme-spacing-4) var(--theme-spacing-3);
+  max-height: 60vh;
+}
+
+/* Custom scrollbar styling */
+.commandList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.commandList::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.commandList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.commandList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.emptyState {
+  padding: var(--theme-spacing-6) var(--theme-spacing-6);
+  text-align: center;
+  color: var(--theme-text-secondary);
+  font-size: 20px;
+}
+
+/* ============================================
+   CATEGORY
+   ============================================ */
+
+.categoryContainer {
+  margin-bottom: var(--theme-spacing-4);
+}
+
+.categoryHeader {
+  font-size: 16px;
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  margin-bottom: var(--theme-spacing-3);
+}
+
+/* ============================================
+   COMMAND BUTTON
+   ============================================ */
+
+.commandButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-4);
+  padding: var(--theme-spacing-5) var(--theme-spacing-5);
+  background: transparent;
+  border: none;
+  border-radius: var(--theme-radius-relaxed);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  opacity: 1;
+  min-height: 64px;
+}
+
+.commandButton[aria-selected="true"] {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.commandButton:hover:not([aria-disabled="true"]) {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.commandButton[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.commandIcon {
+  width: 28px;
+  height: 28px;
+  color: var(--theme-text-secondary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commandContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.commandLabel {
+  font-size: 20px;
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: 1.375;
+}
+
+.commandLabel.hasDescription {
+  margin-bottom: var(--theme-spacing-2);
+}
+
+.commandDescription {
+  font-size: 16px;
+  color: var(--theme-text-secondary);
+  line-height: 1.375;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commandShortcut {
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  padding: var(--theme-spacing-5) var(--theme-spacing-6);
+  border-top: var(--theme-border-width) solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-5);
+  font-size: 16px;
+  color: var(--theme-text-secondary);
+  flex-wrap: wrap;
+}
+
+.footerHint {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3);
+}
+
+.footerLabel {
+  font-size: 16px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes commandPaletteSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .palette {
+    animation: none;
+  }
+  
+  .commandButton {
+    transition: none;
+  }
+}

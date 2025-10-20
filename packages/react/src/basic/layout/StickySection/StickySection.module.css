@@ -1,0 +1,27 @@
+/**
+ * StickySection Component Styles
+ * Migrated to theme system
+ * Ensures proper layout for ContextNav sticky positioning
+ */
+
+/* Base StickySection wrapper */
+.stickySection {
+  /* Ensure no overflow properties that break sticky positioning */
+  width: 100%;
+  max-width: 100vw; /* Use max-width for horizontal constraints */
+  
+  /* No overflow-x: hidden - this breaks position: sticky */
+  /* No overflow-y: hidden - this breaks position: sticky */
+  /* No overflow: hidden - this breaks position: sticky */
+}
+
+/* Sticky-safe mode (default) */
+.stickySafe {
+  /* Additional safety measures for sticky positioning */
+  /* Removed contain: layout and position: relative as they can interfere with sticky */
+}
+
+/* Dark theme support */
+html[data-theme="dark"] .stickySection {
+  /* Inherits dark theme from Section component */
+}

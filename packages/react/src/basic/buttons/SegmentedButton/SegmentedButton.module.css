@@ -1,0 +1,132 @@
+/**
+ * SegmentedButton Component Styles
+ * Radio-style button selection with elevated active state
+ * Migrated to theme system
+ * 
+ * @component SegmentedButton
+ * @packageName @spexop/react
+ * @description Segmented button styling
+ * @author @spexop-ui | github.com/spexop-ui | @olmstedian | github.com/olmstedian
+ * @version 0.2.0
+ * @since 2025-10-13
+ */
+
+/* Container - Pill Background */
+.segmentedButton {
+	display: inline-flex;
+	background: var(--theme-surface-secondary);
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-radius: var(--theme-radius-relaxed);
+	padding: var(--theme-spacing-1);
+	gap: var(--theme-spacing-1);
+}
+
+/* Individual Option Button */
+.option {
+	border: none;
+	background: transparent;
+	color: var(--theme-text-secondary);
+	padding: var(--theme-spacing-2) var(--theme-spacing-4);
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-semibold);
+	font-family: var(--theme-font-family);
+	border-radius: var(--theme-radius-subtle);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--theme-spacing-2);
+	white-space: nowrap;
+	will-change: transform, background-color;
+}
+
+/* Hover State (not active, not disabled) */
+.option:hover:not(.optionActive):not(:disabled) {
+	color: var(--theme-text);
+	background: var(--theme-surface-secondary);
+}
+
+/* Active/Selected State */
+.optionActive {
+	background: var(--theme-surface);
+	color: var(--theme-text);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transform: translateZ(0);
+	border-bottom: var(--theme-border-width) solid var(--theme-primary);
+	padding-bottom: calc(var(--theme-spacing-2) - 2px);
+}
+
+/* Disabled State */
+.optionDisabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Focus Indicators */
+.option:focus-visible {
+	outline: 3px solid var(--theme-primary);
+	outline-offset: 2px;
+	z-index: 10;
+}
+
+/* Icon within option */
+.optionIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.optionIcon svg {
+	width: var(--theme-spacing-5);
+	height: var(--theme-spacing-5);
+}
+
+/* Label text */
+.optionLabel {
+	display: inline-block;
+}
+
+/* Dark Theme Adjustments */
+html[data-theme="dark"] .segmentedButton {
+	background: var(--theme-surface-secondary);
+	border-color: var(--theme-border-strong);
+}
+
+html[data-theme="dark"] .optionActive {
+	background: var(--theme-surface-hover);
+	color: var(--theme-text);
+	border-bottom-color: var(--theme-primary);
+}
+
+html[data-theme="dark"] .option {
+	color: var(--theme-text-secondary);
+}
+
+html[data-theme="dark"] .option:hover:not(.optionActive):not(:disabled) {
+	background: var(--theme-surface-hover);
+	color: var(--theme-text);
+}
+
+/* Compact Mode */
+.compact .option {
+	padding: var(--theme-spacing-1) var(--theme-spacing-3);
+	font-size: 14px;
+}
+
+/* Full Width */
+.fullWidth {
+	width: 100%;
+}
+
+.fullWidth .option {
+	flex: 1;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	.option {
+		transition: none;
+	}
+}

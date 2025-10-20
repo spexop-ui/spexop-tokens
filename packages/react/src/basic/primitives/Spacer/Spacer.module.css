@@ -1,0 +1,42 @@
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Spacer Component - Utility for spacing between elements
+   @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.spacer {
+  flex-shrink: 0;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Vertical Spacing (height)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.vertical0 { height: 0; }
+.vertical1 { height: var(--theme-spacing-1); }
+.vertical2 { height: var(--theme-spacing-2); }
+.vertical3 { height: var(--theme-spacing-3); }
+.vertical4 { height: var(--theme-spacing-4); }
+.vertical5 { height: var(--theme-spacing-5); }
+.vertical6 { height: var(--theme-spacing-6); }
+.vertical7 { height: var(--theme-spacing-7); }
+.vertical8 { height: var(--theme-spacing-8); }
+.vertical9 { height: var(--theme-spacing-9); }
+.vertical10 { height: var(--theme-spacing-10); }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Horizontal Spacing (width)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.horizontal0 { width: 0; }
+.horizontal1 { width: var(--theme-spacing-1); }
+.horizontal2 { width: var(--theme-spacing-2); }
+.horizontal3 { width: var(--theme-spacing-3); }
+.horizontal4 { width: var(--theme-spacing-4); }
+.horizontal5 { width: var(--theme-spacing-5); }
+.horizontal6 { width: var(--theme-spacing-6); }
+.horizontal7 { width: var(--theme-spacing-7); }
+.horizontal8 { width: var(--theme-spacing-8); }
+.horizontal9 { width: var(--theme-spacing-9); }
+.horizontal10 { width: var(--theme-spacing-10); }
+

@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   DebugProvider Styles - Border-Based Visualization (Refined Minimalism)
+   - border-based visualization of component boundaries
+   - overlay to show breakpoints
+   - overlay to show component boundaries
+   - overlay to show component boundaries
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Breakpoint Indicator (Fixed Overlay)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.breakpointIndicator {
+  position: fixed;
+  top: ;
+  right: ;
+  z-index: 10000;
+  background: ;
+  border: 2px solid ; /* Debug mode indicator */
+  border-radius: ;
+  padding:  ;
+  box-sizing: border-box;
+  font-family: ;
+  pointer-events: none; /* Don't interfere with UI interactions */
+}
+
+html[data-theme="dark"] .breakpointIndicator {
+  background: ;
+  border-color: ;
+}
+
+.indicatorContent {
+  display: flex;
+  align-items: center;
+  gap: ;
+  font-size: ;
+}
+
+.indicatorLabel {
+  font-weight: ;
+  color: ;
+}
+
+html[data-theme="dark"] .indicatorLabel {
+  color: ;
+}
+
+.indicatorValue {
+  font-family: ;
+  font-weight: ;
+  color: ;
+  font-size: ;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+html[data-theme="dark"] .indicatorValue {
+  color: ;
+}
+
+.indicatorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: ;
+  background: ;
+  border: 2px solid ;
+}
+
+/* Breakpoint-specific dot colors */
+.indicatorDot[data-breakpoint="xs"] {
+  background: ;
+  border-color: ;
+}
+
+.indicatorDot[data-breakpoint="sm"] {
+  background: ;
+  border-color: ;
+}
+
+.indicatorDot[data-breakpoint="md"] {
+  background: ;
+  border-color: ;
+}
+
+.indicatorDot[data-breakpoint="lg"] {
+  background: ;
+  border-color: ;
+}
+
+.indicatorDot[data-breakpoint="xl"] {
+  background: ;
+  border-color: ;
+}
+
+.indicatorDot[data-breakpoint="2xl"] {
+  background: ;
+  border-color: ;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Debug Mode - Component Boundaries (Border-Based)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Container - Blue borders */
+:global([data-debug="container"]) {
+  outline: 2px solid  !important;
+  outline-offset: -2px;
+  position: relative;
+}
+
+html[data-theme="dark"] :global([data-debug="container"]) {
+  outline-color:  !important;
+}
+
+/* Grid - Green borders */
+:global([data-debug="grid"]) {
+  outline: 2px solid  !important;
+  outline-offset: -2px;
+  position: relative;
+}
+
+html[data-theme="dark"] :global([data-debug="grid"]) {
+  outline-color:  !important;
+}
+
+/* GridItem - Purple borders */
+:global([data-debug="griditem"]) {
+  outline: 1px solid  !important;
+  outline-offset: -1px;
+  position: relative;
+}
+
+html[data-theme="dark"] :global([data-debug="griditem"]) {
+  outline-color:  !important;
+}
+
+/* Stack - Orange borders */
+:global([data-debug="stack"]) {
+  outline: 2px solid  !important;
+  outline-offset: -2px;
+  position: relative;
+}
+
+html[data-theme="dark"] :global([data-debug="stack"]) {
+  outline-color:  !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Debug Labels (Token Values)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:global([data-debug-label])::before {
+  content: attr(data-debug-label);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: ;
+  color: ;
+  padding:  ;
+  font-family: ;
+  font-size: ;
+  font-weight: ;
+  border: 1px solid ;
+  border-radius: ;
+  z-index: 10001;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+html[data-theme="dark"] :global([data-debug-label])::before {
+  background: ;
+  color: ;
+  border-color: ;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Responsive Adjustments
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 479px) {
+  .breakpointIndicator {
+    top: ;
+    right: ;
+    padding:  ;
+  }
+
+  .indicatorContent {
+    font-size: ;
+    gap: ;
+  }
+
+  .indicatorValue {
+    font-size: ;
+  }
+
+  .indicatorDot {
+    width: ;
+    height: ;
+  }
+}
+

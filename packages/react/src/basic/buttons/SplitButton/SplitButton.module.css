@@ -1,0 +1,297 @@
+/**
+ * SplitButton Component Styles
+ * Migrated to theme system
+ * Button with primary action + dropdown menu
+ * 
+ * @component SplitButton
+ * @packageName @spexop/react
+ * @version 0.2.0
+ */
+
+/* Container */
+.splitButton {
+	position: relative;
+	display: inline-flex;
+}
+
+/* Main Action Button */
+.mainButton {
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-right: 1px solid var(--theme-border-strong);
+	background: var(--theme-surface);
+	color: var(--theme-text);
+	padding: var(--theme-spacing-3) var(--theme-spacing-5);
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-semibold);
+	font-family: var(--theme-font-family);
+	border-radius: var(--theme-radius-relaxed) 0 0 var(--theme-radius-relaxed);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--theme-spacing-2);
+	white-space: nowrap;
+	/* Performance */
+	will-change: transform, background-color;
+}
+
+/* Toggle Button */
+.toggleButton {
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-left: 1px solid var(--theme-border-strong);
+	background: var(--theme-surface);
+	color: var(--theme-text);
+	padding: var(--theme-spacing-3);
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-semibold);
+	font-family: var(--theme-font-family);
+	border-radius: 0 var(--theme-radius-relaxed) var(--theme-radius-relaxed) 0;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* Performance */
+	will-change: transform, background-color;
+}
+
+/* Button Hover States */
+.mainButton:hover:not(:disabled),
+.toggleButton:hover:not(:disabled) {
+	background: var(--theme-surface-secondary);
+	border-color: var(--theme-text);
+}
+
+/* Button Active States */
+.mainButton:active:not(:disabled),
+.toggleButton:active:not(:disabled) {
+	transform: scale(0.98);
+}
+
+/* Button Disabled State */
+.buttonDisabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Focus Indicators */
+.mainButton:focus-visible,
+.toggleButton:focus-visible {
+	outline: 4px solid var(--theme-primary);
+	outline-offset: 4px;
+	z-index: 10;
+}
+
+/* Button Icon & Label */
+.buttonIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.buttonIcon svg {
+	width: var(--theme-spacing-5);
+	height: var(--theme-spacing-5);
+}
+
+.buttonLabel {
+	display: inline-block;
+}
+
+/* Toggle Icon */
+.toggleIcon {
+	display: block;
+	transition: transform 0.15s ease;
+}
+
+.toggleButton[aria-expanded="true"] .toggleIcon {
+	transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.menu {
+	position: absolute;
+	top: calc(100% + var(--theme-spacing-2));
+	left: 0;
+	min-width: 100%;
+	background: var(--theme-surface);
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-radius: var(--theme-radius-relaxed);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: var(--theme-spacing-2);
+	z-index: 1000;
+	/* Animation */
+	opacity: 0;
+	transform: translateY(-8px);
+	animation: menuSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes menuSlideIn {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.menuOpen {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Menu Item */
+.menuItem {
+	width: 100%;
+	border: none;
+	background: transparent;
+	color: var(--theme-text);
+	padding: var(--theme-spacing-3);
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-medium);
+	font-family: var(--theme-font-family);
+	border-radius: var(--theme-radius-subtle);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: flex;
+	align-items: center;
+	gap: var(--theme-spacing-2);
+	white-space: nowrap;
+	text-align: left;
+}
+
+.menuItem:hover:not(:disabled) {
+	background: var(--theme-surface-secondary);
+	color: var(--theme-text);
+}
+
+.menuItem:focus-visible {
+	outline: 2px solid var(--theme-primary);
+	outline-offset: -2px;
+	background: var(--theme-surface-secondary);
+}
+
+.menuItemDisabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Menu Item Icon & Label */
+.menuItemIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.menuItemIcon svg {
+	width: var(--theme-spacing-5);
+	height: var(--theme-spacing-5);
+}
+
+.menuItemLabel {
+	display: inline-block;
+}
+
+/* Primary Variant */
+.variant-primary .mainButton,
+.variant-primary .toggleButton {
+	background: var(--theme-primary);
+	color: var(--theme-surface);
+	border-color: var(--theme-primary);
+}
+
+.variant-primary .mainButton:hover:not(:disabled),
+.variant-primary .toggleButton:hover:not(:disabled) {
+	background: var(--theme-primary-active);
+	border-color: var(--theme-primary-active);
+}
+
+.variant-primary .mainButton {
+	border-right-color: var(--theme-primary-active);
+}
+
+.variant-primary .toggleButton {
+	border-left-color: var(--theme-primary-active);
+}
+
+/* Secondary Variant */
+.variant-secondary .mainButton,
+.variant-secondary .toggleButton {
+	background: var(--theme-surface);
+	color: var(--theme-text);
+	border-color: var(--theme-border-strong);
+}
+
+/* Dark Theme Adjustments */
+html[data-theme="dark"] .menu {
+	background: var(--theme-surface);
+	border-color: var(--theme-border-strong);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+	.mainButton,
+	.toggleButton {
+		border-width: 4px;
+	}
+
+	.mainButton:focus-visible,
+	.toggleButton:focus-visible {
+		outline-width: 4px;
+		outline-offset: 4px;
+	}
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	.mainButton,
+	.toggleButton,
+	.menuItem,
+	.toggleIcon {
+		transition-duration: 0.01ms;
+	}
+
+	.menu {
+		animation: none;
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Mobile Responsive - Stack Vertically */
+@media (max-width: 768px) {
+	.splitButton {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.mainButton {
+		width: 100%;
+		border-radius: var(--theme-radius-relaxed) var(--theme-radius-relaxed) 0 0;
+		border-right: var(--theme-border-width) solid var(--theme-border-strong);
+		border-bottom: 1px solid var(--theme-border-strong);
+	}
+
+	.toggleButton {
+		width: 100%;
+		border-radius: 0 0 var(--theme-radius-relaxed) var(--theme-radius-relaxed);
+		border-left: var(--theme-border-width) solid var(--theme-border-strong);
+		border-top: none;
+	}
+
+	.variant-primary .mainButton {
+		border-right: var(--theme-border-width) solid var(--theme-primary);
+		border-bottom-color: var(--theme-primary-active);
+	}
+
+	.variant-primary .toggleButton {
+		border-left: var(--theme-border-width) solid var(--theme-primary);
+		border-top: none;
+	}
+
+	.menu {
+		width: 100%;
+	}
+}

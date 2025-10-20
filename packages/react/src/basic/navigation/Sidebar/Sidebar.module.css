@@ -1,0 +1,196 @@
+/**
+ * Sidebar Component Styles
+ * Theme-driven with Spexop architecture
+ *
+ * @component Sidebar
+ * @packageName @spexop/react
+ * @description Main sidebar with desktop side-by-side and mobile overlay
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Desktop Sidebar (Default) */
+.sidebar {
+  position: fixed;
+  top: 64px; /* Below TopBar */
+  left: 0;
+  width: 320px;
+  height: calc(100vh - 64px);
+  background: var(--theme-surface-secondary);
+  border-right: var(--theme-border-width) solid var(--theme-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Sidebar Header (Mobile only) */
+.sidebarHeader {
+  padding: var(--theme-spacing-5);
+  border-bottom: var(--theme-border-width) solid var(--theme-border);
+  background: var(--theme-surface-secondary);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebarTitle {
+  margin: 0;
+  font-size: var(--theme-font-size-base);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-subtle);
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border-strong);
+  color: var(--theme-text);
+}
+
+.closeButton:focus {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: -2px;
+}
+
+/* Sidebar Navigation Content */
+.sidebarNav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+.sidebarNav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebarNav::-webkit-scrollbar-track {
+  background: var(--theme-surface-secondary);
+}
+
+.sidebarNav::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border-radius: var(--theme-radius-subtle);
+}
+
+.sidebarNav::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-strong);
+}
+
+/* Mobile Styles (< 768px) */
+@media (max-width: 767px) {
+  .sidebar {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    border-right: none;
+    transform: translateX(-100%);
+    transition: transform 150ms ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* Backdrop (Mobile only) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--theme-overlay));
+  z-index: 999;
+  animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Very Large Screens */
+@media (min-width: 1440px) {
+  .sidebar {
+    width: 340px;
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .sidebar {
+  background: var(--theme-surface);
+  border-right-color: var(--theme-border);
+}
+
+[data-theme="dark"] .sidebarHeader {
+  background: var(--theme-surface);
+  border-bottom-color: var(--theme-border);
+}
+
+[data-theme="dark"] .sidebarTitle {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .closeButton {
+  border-color: var(--theme-border-strong);
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .closeButton:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .sidebarNav::-webkit-scrollbar-track {
+  background: var(--theme-surface-secondary);
+}
+
+[data-theme="dark"] .sidebarNav::-webkit-scrollbar-thumb {
+  background: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .sidebarNav::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-strong);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+
+  .backdrop {
+    animation: none;
+  }
+
+  .closeButton,
+  .logo {
+    transition: none;
+  }
+}

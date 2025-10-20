@@ -1,0 +1,259 @@
+/* ============================================
+   Carousel Component Styles
+   Migrated to theme system
+   - Borders Before Shadows (Principle #2) - 3px bold borders, zero shadows
+   - Typography Before Decoration (Principle #3) - Typography-driven counter
+   - Accessibility Before Aesthetics (Principle #7) - WCAG AAA compliance
+   - Theme tokens throughout
+   @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+   ============================================ */
+
+.carousel {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+}
+
+/* ============================================
+   Viewport - Contains slides
+   ============================================ */
+
+.viewport {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	border-radius: var(--theme-radius-medium);
+	/* BOLD BORDER - Refined Minimalism (Principle #2) */
+	border: 3px solid var(--theme-text);
+	background: var(--theme-surface);
+	/* NO box-shadow - we use borders only */
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	.viewport {
+		border-color: var(--theme-text);
+		background: var(--theme-surface);
+	}
+}
+
+/* ============================================
+   Slides Container - Transforms to show slides
+   ============================================ */
+
+.slidesContainer {
+	display: flex;
+	transition-property: transform;
+	transition-timing-function: ease-in-out;
+	will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	.slidesContainer {
+		transition-duration: 0ms !important;
+	}
+}
+
+/* ============================================
+   Individual Slide
+   ============================================ */
+
+.slide {
+	min-width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--theme-spacing-8);
+}
+
+/* ============================================
+   Arrow Buttons - HIGH-CONTRAST DESIGN
+   Bold 3px borders, 56px size for better touch targets
+   ============================================ */
+
+.arrowButton {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 10;
+	width: 56px;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* BOLD BORDER - Refined Minimalism */
+	background: var(--theme-surface);
+	border: 3px solid var(--theme-text);
+	border-radius: var(--theme-radius-medium);
+	color: var(--theme-text);
+	cursor: pointer;
+	transition-property: background-color, border-color, color;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+	/* NO box-shadow - borders only */
+}
+
+.arrowButton:hover:not(:disabled) {
+	background: var(--theme-text);
+	color: var(--theme-surface);
+}
+
+.arrowButton:focus-visible {
+	outline: 3px solid var(--theme-primary);
+	outline-offset: 2px;
+}
+
+.arrowButton:disabled {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.arrowPrevious {
+	left: var(--theme-spacing-4);
+}
+
+.arrowNext {
+	right: var(--theme-spacing-4);
+}
+
+/* Dark theme arrows */
+@media (prefers-color-scheme: dark) {
+	.arrowButton {
+		background: var(--theme-surface);
+		border-color: var(--theme-text);
+		color: var(--theme-text);
+	}
+
+	.arrowButton:hover:not(:disabled) {
+		background: var(--theme-text);
+		color: var(--theme-surface);
+	}
+}
+
+/* ============================================
+   Controls - Dots and Counter
+   ============================================ */
+
+.controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--theme-spacing-6);
+	margin-top: var(--theme-spacing-4);
+}
+
+/* ============================================
+   Dot Indicators - HIGH-CONTRAST
+   Bold 3px borders, 14px size
+   ============================================ */
+
+.dots {
+	display: flex;
+	gap: var(--theme-spacing-3);
+	align-items: center;
+}
+
+.dot {
+	width: 14px;
+	height: 14px;
+	border-radius: 999px;
+	/* BOLD BORDER - Never subtle gray */
+	border: 3px solid var(--theme-text);
+	background: transparent;
+	cursor: pointer;
+	transition-property: background-color, border-color, transform;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+	padding: 0;
+}
+
+.dot:hover {
+	background: var(--theme-border-strong);
+	transform: scale(1.2);
+}
+
+.dot:focus-visible {
+	outline: 3px solid var(--theme-primary);
+	outline-offset: 2px;
+}
+
+.dotActive {
+	background: var(--theme-text);
+}
+
+/* Dark theme dots */
+@media (prefers-color-scheme: dark) {
+	.dot {
+		border-color: var(--theme-text);
+	}
+
+	.dot:hover {
+		background: var(--theme-border-strong);
+	}
+
+	.dotActive {
+		background: var(--theme-text);
+	}
+}
+
+/* ============================================
+   Counter - TYPOGRAPHY-DRIVEN (Principle #3)
+   Hierarchy through font-weight and letter-spacing
+   ============================================ */
+
+.counter {
+	font-size: 14px;
+	font-weight: var(--theme-font-weight-semibold);
+	color: var(--theme-text);
+	letter-spacing: 0.5px;
+}
+
+/* Dark theme counter */
+@media (prefers-color-scheme: dark) {
+	.counter {
+		color: var(--theme-text);
+	}
+}
+
+/* ============================================
+   Responsive - Mobile adjustments
+   ============================================ */
+
+@media (max-width: 768px) {
+	.slide {
+		padding: var(--theme-spacing-4);
+	}
+
+	.arrowButton {
+		width: 44px;
+		height: 44px;
+	}
+
+	.arrowPrevious {
+		left: var(--theme-spacing-2);
+	}
+
+	.arrowNext {
+		right: var(--theme-spacing-2);
+	}
+}
+
+/* ============================================
+   High Contrast Mode Support
+   Increases border widths for better visibility
+   ============================================ */
+
+@media (prefers-contrast: high) {
+	.viewport {
+		border-width: 4px;
+	}
+
+	.arrowButton {
+		border-width: 4px;
+	}
+
+	.dot {
+		border-width: 4px;
+	}
+}

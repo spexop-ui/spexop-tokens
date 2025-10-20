@@ -1,0 +1,26 @@
+/**
+ * AnimatedBackground Component Styles
+ */
+
+.animatedBackground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.animatedBackgroundStatic {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(239, 68, 68, 0.08) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 70% 70%,
+    rgba(148, 163, 184, 0.05) 0%,
+    transparent 50%
+  );
+}
+

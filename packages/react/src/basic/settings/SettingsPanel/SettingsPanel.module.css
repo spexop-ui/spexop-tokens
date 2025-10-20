@@ -1,0 +1,223 @@
+/* ============================================
+   SettingsPanel - Migrated to theme system
+   - Borders Before Shadows (Principle #2)
+   - Typography Before Decoration (Principle #3)
+   - Accessibility Before Aesthetics (Principle #7)
+   ============================================ */
+
+/* ============================================
+   HEADER - Typography-driven hierarchy
+   ============================================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--theme-spacing-6);
+  padding-bottom: var(--theme-spacing-4);
+  /* Bold border for clear separation (Principle #2) */
+  border-bottom: var(--theme-border-width) solid var(--theme-border-strong);
+}
+
+[data-theme="dark"] .header {
+  border-bottom-color: var(--theme-border-strong);
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: var(--theme-font-weight-bold);
+  letter-spacing: -0.02em;
+  font-family: var(--theme-font-family);
+  line-height: 1.2;
+}
+
+/* High contrast text (WCAG AAA - 15:1) */
+[data-theme="light"] .title {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .title {
+  color: var(--theme-text);
+}
+
+/* ============================================
+   CLOSE BUTTON - Icon button with high contrast
+   ============================================ */
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  /* Bold border for clear affordance (Principle #2) */
+  border: var(--theme-border-width) solid var(--theme-border-strong);
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--theme-radius-subtle);
+  transition: 
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+}
+
+/* High contrast icon color (WCAG AAA - 7:1) */
+[data-theme="light"] .closeButton {
+  color: var(--theme-text);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .closeButton {
+  color: var(--theme-text);
+  border-color: var(--theme-border-strong);
+}
+
+/* Hover - Border emphasis, no shadows */
+[data-theme="light"] .closeButton:hover {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-text);
+}
+
+[data-theme="dark"] .closeButton:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+}
+
+/* Active state */
+[data-theme="light"] .closeButton:active {
+  background: var(--theme-surface-secondary);
+}
+
+[data-theme="dark"] .closeButton:active {
+  background: var(--theme-border);
+}
+
+/* Focus outline with high contrast */
+.closeButton:focus-visible {
+  outline: 3px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 479px) {
+  .title {
+    font-size: 20px;
+  }
+  
+  .closeButton {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ============================================
+   RESET TO DEFAULTS SECTION - Bold borders
+   ============================================ */
+
+.resetSection {
+  margin-top: var(--theme-spacing-6);
+  padding-top: var(--theme-spacing-6);
+  /* Bold separator border (Principle #2) */
+  border-top: var(--theme-border-width) solid var(--theme-border-strong);
+}
+
+[data-theme="dark"] .resetSection {
+  border-top-color: var(--theme-border-strong);
+}
+
+.resetButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-spacing-3);
+  width: 100%;
+  min-height: 48px;
+  padding: var(--theme-spacing-3) var(--theme-spacing-6);
+  /* Bold border for emphasis (Principle #2) */
+  border: var(--theme-border-width) solid var(--theme-border-strong);
+  border-radius: var(--theme-radius-subtle);
+  font-size: 16px;
+  font-weight: var(--theme-font-weight-semibold);
+  font-family: var(--theme-font-family);
+  cursor: pointer;
+  transition: 
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+}
+
+/* Light theme - High contrast (WCAG AAA) */
+[data-theme="light"] .resetButton {
+  background: var(--theme-surface);
+  border-color: var(--theme-border-strong);
+  color: var(--theme-text);
+}
+
+[data-theme="light"] .resetButton:hover {
+  background: #fee2e2;
+  border-color: var(--theme-primary);
+  color: #991b1b;
+}
+
+[data-theme="light"] .resetButton:active {
+  background: #fecaca;
+  border-color: var(--theme-primary-active);
+  color: #7f1d1d;
+}
+
+/* Dark theme - High contrast (WCAG AAA) */
+[data-theme="dark"] .resetButton {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .resetButton:hover {
+  background: #1f1f1f;
+  border-color: var(--theme-primary);
+  color: #fca5a5;
+}
+
+[data-theme="dark"] .resetButton:active {
+  background: var(--theme-surface);
+  border-color: var(--theme-primary-active);
+  color: var(--theme-primary);
+}
+
+/* Focus outline with high visibility */
+.resetButton:focus-visible {
+  outline: 3px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   ACCESSIBILITY - Reduced motion support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .closeButton,
+  .resetButton {
+    transition: none !important;
+  }
+}
+
+/* High contrast mode - Increase border widths */
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom-width: 3px;
+  }
+  
+  .closeButton,
+  .resetButton {
+    border-width: 3px;
+  }
+  
+  .resetSection {
+    border-top-width: 3px;
+  }
+}

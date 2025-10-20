@@ -1,0 +1,338 @@
+/* ScrollHeader - Scroll-activated page navigation header
+   Migrated to theme system */
+
+.scrollHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  
+  /* Smooth animation */
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    left 0.3s ease,
+    padding-right 0.3s ease;
+}
+
+/* Light theme - clean solid background */
+[data-theme="light"] .scrollHeader {
+  background-color: var(--theme-surface-secondary);
+}
+
+/* Dark theme - clean solid background */
+[data-theme="dark"] .scrollHeader {
+  background-color: var(--theme-surface);
+}
+
+/* Visible state - slide down smoothly */
+.scrollHeader.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-spacing-6);
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--theme-spacing-6);
+}
+
+/* ============================================
+   LOGO SECTION
+   ============================================ */
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.navigation {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0; /* Allow flex shrinking */
+}
+
+.sectionList {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sectionItem {
+  flex-shrink: 0;
+}
+
+.sectionLink {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  border-radius: var(--theme-radius-base);
+  border: none;
+  background: transparent;
+  font-family: var(--theme-font-family);
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-medium);
+  line-height: 1.25;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  
+  /* Smooth transitions */
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+/* Light theme */
+[data-theme="light"] .sectionLink {
+  color: var(--theme-text-secondary);
+}
+
+/* Dark theme */
+[data-theme="dark"] .sectionLink {
+  color: var(--theme-text-secondary);
+}
+
+/* Hover state - minimal */
+.sectionLink:hover {
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .sectionLink:hover {
+  opacity: 0.7;
+}
+
+/* Touch feedback for mobile */
+.sectionLink:active {
+  opacity: 0.5;
+}
+
+/* Active state - clean underline indicator only */
+.sectionLink.active {
+  font-weight: var(--theme-font-weight-semibold);
+}
+
+[data-theme="light"] .sectionLink.active {
+  color: var(--theme-primary);
+}
+
+[data-theme="dark"] .sectionLink.active {
+  color: var(--theme-primary);
+}
+
+/* Focus state */
+.sectionLink:focus-visible {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Active state indicator - positioned below content */
+.sectionLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: var(--theme-spacing-2);
+  right: var(--theme-spacing-2);
+  height: var(--theme-border-width);
+  background: var(--theme-primary);
+  border-radius: 999px;
+}
+
+[data-theme="dark"] .sectionLink.active::after {
+  background: var(--theme-primary);
+}
+
+/* ============================================
+   SECTION ICON & LABEL
+   ============================================ */
+
+.sectionIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.sectionLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================
+   ACTIONS SECTION
+   ============================================ */
+
+.actionsSection {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.loadingState {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  padding: var(--theme-spacing-2) 0;
+}
+
+.skeletonItem {
+  width: 64px;
+  height: var(--theme-spacing-6);
+  background: var(--theme-surface-secondary);
+  border-radius: var(--theme-radius-base);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+[data-theme="dark"] .skeletonItem {
+  background: var(--theme-border);
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile (< 768px) - Position below AppBar */
+@media (max-width: 767px) {
+  .scrollHeader {
+    top: 64px; /* AppBar height */
+    height: 56px;
+    /* Slide from above AppBar when hidden */
+    transform: translateY(-120%);
+  }
+
+  /* Visible state - slide down below AppBar */
+  .scrollHeader.visible {
+    transform: translateY(0);
+  }
+
+  .container {
+    gap: var(--theme-spacing-3);
+    padding: 0 var(--theme-spacing-4);
+  }
+
+  .sectionList {
+    gap: var(--theme-spacing-1);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    position: relative;
+  }
+
+  .sectionList::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .sectionLink {
+    padding: var(--theme-spacing-2);
+    font-size: 12px;
+    min-width: 56px; /* Fixed width prevents layout shift */
+    justify-content: center;
+  }
+
+  .sectionLabel {
+    display: none; /* Hide all labels on mobile for consistency */
+  }
+
+  .sectionIcon {
+    width: 16px; /* Smaller icons for mobile */
+    height: 16px;
+  }
+
+  /* Active state shows visual indicator only, no label */
+  .sectionLink.active {
+    background-color: var(--theme-surface-secondary);
+  }
+
+  [data-theme="dark"] .sectionLink.active {
+    background-color: var(--theme-border);
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 0 var(--theme-spacing-5);
+  }
+
+  .sectionList {
+    gap: var(--theme-spacing-1);
+  }
+
+  .sectionLink {
+    font-size: 14px;
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--theme-spacing-8);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrollHeader,
+  .sectionLink {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .sectionLink.active::after {
+    height: 3px;
+  }
+}

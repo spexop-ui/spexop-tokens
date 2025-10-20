@@ -1,0 +1,72 @@
+{
+  "name": "@spexop/theme",
+  "version": "0.3.0",
+  "description": "Theme system for Spexop Design System - Configure your brand, use our architecture",
+  "keywords": [
+    "design-system",
+    "theme",
+    "design-tokens",
+    "css-variables",
+    "spexop",
+    "theming",
+    "brand-configuration"
+  ],
+  "author": "Spexop Team <contact@spexop.com> (https://spexop.com)",
+  "license": "MIT",
+  "homepage": "https://spexop.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spexop-ui/design-system.git",
+    "directory": "packages/theme"
+  },
+  "bugs": {
+    "url": "https://github.com/spexop-ui/design-system/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./dist/css/*.css": "./dist/css/*.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup && npm run build:css",
+    "build:css": "tsx scripts/build-css-presets.ts",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist",
+    "test": "vitest",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@spexop/tsconfig": "workspace:*",
+    "@types/node": "^20.0.0",
+    "rimraf": "^5.0.0",
+    "tsup": "^8.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0-rc || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0-rc || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  }
+}

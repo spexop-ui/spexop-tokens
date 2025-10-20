@@ -1,0 +1,591 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Card Component - Refined Minimalism
+   Border-based content container with density variants and sub-components
+   Theme-driven aesthetics with Spexop architecture
+   @version 0.3.0
+   @updated 2025-10-17 - Migrated to theme system
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ============================================
+   BASE CARD (Border-based, Refined Minimalism)
+   ============================================ */
+
+.card {
+  /* Structure */
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Allow flex items to shrink below content size */
+
+  /* Appearance - Using dedicated card tokens */
+  background-color: var(--theme-card-basic-bg);
+  border: var(--theme-border-width) solid var(--theme-card-basic-border);
+  border-radius: var(--theme-radius-relaxed);
+
+  /* Spacing (default: normal density) */
+  padding: var(--theme-spacing-6);
+
+  /* Transitions */
+  transition: border-color 150ms ease-out;
+}
+
+.card:hover {
+  border-color: var(--theme-card-basic-border-hover);
+}
+
+/* Dark theme */
+[data-theme="dark"] .card {
+  background-color: var(--theme-card-basic-bg);
+  border-color: var(--theme-card-basic-border);
+}
+
+[data-theme="dark"] .card:hover {
+  border-color: var(--theme-card-basic-border-hover);
+}
+
+/* ============================================
+   DENSITY VARIANTS (Keep existing system)
+   ============================================ */
+
+.density--compact {
+  padding: var(--theme-spacing-4);
+}
+
+.density--normal {
+  padding: var(--theme-spacing-6); /* default */
+}
+
+.density--spacious {
+  padding: var(--theme-spacing-8);
+}
+
+/* ============================================
+   VISUAL VARIANTS (Border-based emphasis)
+   ============================================ */
+
+/* Highlighted - Primary border for emphasis */
+.variant--highlighted {
+  background-color: var(--theme-card-highlighted-bg);
+  border-color: var(--theme-card-highlighted-border);
+}
+
+.variant--highlighted:hover {
+  border-color: var(--theme-card-highlighted-border-hover);
+}
+
+[data-theme="dark"] .variant--highlighted {
+  background-color: var(--theme-card-highlighted-bg);
+}
+
+[data-theme="dark"] .variant--highlighted:hover {
+  border-color: var(--theme-card-highlighted-border-hover);
+}
+
+/* Outlined - Bold border */
+.variant--outlined {
+  background-color: var(--theme-card-outlined-bg);
+  border-width: var(--theme-card-outlined-border-width);
+  border-color: var(--theme-card-outlined-border);
+}
+
+.variant--outlined:hover {
+  border-color: var(--theme-card-outlined-border-hover);
+}
+
+[data-theme="dark"] .variant--outlined {
+  background-color: var(--theme-card-outlined-bg);
+  border-color: var(--theme-card-outlined-border);
+}
+
+/* Interactive - Hover changes to primary color */
+.variant--interactive {
+  cursor: pointer;
+  background-color: var(--theme-card-interactive-bg);
+  border-color: var(--theme-card-interactive-border);
+}
+
+.variant--interactive:hover {
+  background-color: var(--theme-card-interactive-bg-hover);
+  border-color: var(--theme-card-interactive-border-hover);
+}
+
+/* Ghost - Dashed border for placeholders */
+.variant--ghost {
+  background-color: var(--theme-card-ghost-bg);
+  border: var(--theme-border-width) var(--theme-card-ghost-border-style) var(--theme-card-ghost-border);
+}
+
+.variant--ghost:hover {
+  border-style: solid;
+  border-color: var(--theme-card-ghost-border-hover);
+}
+
+[data-theme="dark"] .variant--ghost {
+  border-color: var(--theme-card-ghost-border);
+}
+
+[data-theme="dark"] .variant--ghost:hover {
+  border-color: var(--theme-card-ghost-border-hover);
+}
+
+/* Elevated - Keep for backward compatibility (simplified) */
+.variant--elevated {
+  background-color: var(--theme-card-elevated-bg);
+  border-color: var(--theme-card-elevated-border);
+}
+
+.variant--elevated:hover {
+  background-color: var(--theme-card-elevated-bg-hover);
+  border-color: var(--theme-card-elevated-border-hover);
+}
+
+[data-theme="dark"] .variant--elevated {
+  background-color: var(--theme-card-elevated-bg);
+  border-color: var(--theme-card-elevated-border);
+}
+
+/* ============================================
+   BACKWARD COMPATIBILITY ALIASES
+   ============================================ */
+
+/* Old 'default' variant - same as base card */
+.default {
+  background: var(--theme-card-basic-bg);
+  border-color: var(--theme-card-basic-border);
+}
+
+[data-theme="dark"] .default {
+  background: var(--theme-card-basic-bg);
+  border-color: var(--theme-card-basic-border);
+}
+
+.default:hover {
+  border-color: var(--theme-card-basic-border-hover);
+}
+
+[data-theme="dark"] .default:hover {
+  border-color: var(--theme-card-basic-border-hover);
+}
+
+/* Old 'outline' variant - maps to 'outlined' */
+.outline {
+  background: var(--theme-card-outlined-bg);
+  border: var(--theme-card-outlined-border-width) solid var(--theme-card-outlined-border);
+}
+
+.outline:hover {
+  border-color: var(--theme-card-outlined-border-hover);
+  background: var(--theme-card-outlined-bg-hover);
+}
+
+[data-theme="dark"] .outline {
+  background: var(--theme-card-outlined-bg);
+}
+
+[data-theme="dark"] .outline:hover {
+  border-color: var(--theme-card-outlined-border-hover);
+  background: var(--theme-card-outlined-bg-hover);
+}
+
+/* Old 'elevated' variant */
+.elevated {
+  background: var(--theme-card-elevated-bg);
+  color: var(--theme-text);
+  border-color: var(--theme-card-elevated-border);
+}
+
+.elevated:hover {
+  background: var(--theme-card-elevated-bg-hover);
+  border-color: var(--theme-card-elevated-border-hover);
+}
+
+[data-theme="dark"] .elevated {
+  background: var(--theme-card-elevated-bg);
+}
+
+[data-theme="dark"] .elevated:hover {
+  background: var(--theme-card-elevated-bg-hover);
+}
+
+/* ============================================
+   STATE MODIFIERS
+   ============================================ */
+
+/* Clickable - Button behavior */
+.clickable {
+  cursor: pointer;
+  border: var(--theme-border-width) solid var(--theme-card-interactive-border);
+  background-color: var(--theme-card-interactive-bg);
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+}
+
+.clickable:hover {
+  border-color: var(--theme-card-interactive-border-hover);
+}
+
+.clickable:focus-visible {
+  outline: var(--theme-border-width) solid var(--theme-card-interactive-border-hover);
+  outline-offset: 2px;
+}
+
+.clickable:active {
+  border-color: var(--theme-card-interactive-border-hover);
+}
+
+[data-theme="dark"] .clickable {
+  background-color: var(--theme-card-interactive-bg);
+  border-color: var(--theme-card-interactive-border);
+}
+
+[data-theme="dark"] .clickable:hover {
+  border-color: var(--theme-card-interactive-border-hover);
+}
+
+[data-theme="dark"] .clickable:focus-visible {
+  outline-color: var(--theme-card-interactive-border-hover);
+}
+
+/* Full height */
+.fullHeight {
+  height: 100%;
+}
+
+/* ============================================
+   SUB-COMPONENTS
+   ============================================ */
+
+/* CardHeader */
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--theme-spacing-4);
+  padding-bottom: var(--theme-spacing-4);
+  margin-bottom: var(--theme-spacing-4);
+  border-bottom: var(--theme-border-width) solid var(--theme-border);
+}
+
+.card__header--no-border {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: var(--theme-spacing-3);
+}
+
+[data-theme="dark"] .card__header {
+  border-bottom-color: var(--theme-border-strong);
+}
+
+.card__header__content {
+  flex: 1;
+}
+
+.card__header__badge {
+  flex-shrink: 0;
+}
+
+.card__title {
+  font-size: var(--theme-font-size-xl);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin: 0 0 var(--theme-spacing-2) 0;
+}
+
+[data-theme="dark"] .card__title {
+  color: var(--theme-text) !important;
+}
+
+/* Ensure dark theme title color is applied */
+html[data-theme="dark"] .card__title {
+  color: var(--theme-text) !important;
+}
+
+.card__subtitle {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-regular);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-normal);
+  margin: 0;
+}
+
+[data-theme="dark"] .card__subtitle {
+  color: var(--theme-text-secondary);
+}
+
+/* Density-based title sizing */
+.density--compact .card__title {
+  font-size: var(--theme-font-size-base);
+}
+
+.density--normal .card__title {
+  font-size: var(--theme-font-size-xl);
+}
+
+.density--spacious .card__title {
+  font-size: var(--theme-font-size-2xl);
+}
+
+/* CardBody */
+.card__body {
+  flex: 1;
+  font-size: var(--theme-font-size-base);
+  font-weight: var(--theme-font-weight-regular);
+  line-height: var(--theme-line-height-relaxed);
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .card__body {
+  color: var(--theme-text-secondary) !important;
+}
+
+/* Ensure dark theme body text color is applied */
+html[data-theme="dark"] .card__body {
+  color: var(--theme-text-secondary) !important;
+}
+
+/* Fix any nested text elements in CardBody - exclude syntax highlighting tokens */
+html[data-theme="dark"] .card__body p,
+html[data-theme="dark"] .card__body div,
+html[data-theme="dark"] .card__body span:not([class*="token"]) {
+  color: var(--theme-text-secondary) !important;
+}
+
+/* CardFooter */
+.card__footer {
+  display: flex;
+  gap: var(--theme-spacing-3);
+  align-items: center;
+  padding-top: var(--theme-spacing-4);
+  margin-top: var(--theme-spacing-4);
+  border-top: var(--theme-border-width) solid var(--theme-border);
+}
+
+.card__footer--no-border {
+  border-top: none;
+  padding-top: 0;
+  margin-top: var(--theme-spacing-3);
+}
+
+[data-theme="dark"] .card__footer {
+  border-top-color: var(--theme-border-strong) !important;
+}
+
+/* Ensure dark theme footer border color is applied */
+html[data-theme="dark"] .card__footer {
+  border-top-color: var(--theme-border-strong) !important;
+}
+
+/* Footer alignment options */
+.card__footer--left {
+  justify-content: flex-start;
+}
+
+.card__footer--center {
+  justify-content: center;
+}
+
+.card__footer--right {
+  justify-content: flex-end;
+}
+
+.card__footer--between {
+  justify-content: space-between;
+}
+
+/* ============================================
+   DEPRECATED STYLES (Backward Compatibility)
+   ============================================ */
+
+/* Old density class names */
+.densityCompact {
+  padding: var(--theme-spacing-4);
+}
+
+.densityNormal {
+  padding: var(--theme-spacing-6);
+}
+
+.densitySpacious {
+  padding: var(--theme-spacing-8);
+}
+
+/* Old icon container with colored background (deprecated) */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--theme-radius-subtle);
+}
+
+/* Icon sizing by density */
+.densityCompact .icon,
+.density--compact .icon {
+  width: var(--theme-spacing-8);
+  height: var(--theme-spacing-8);
+  margin-bottom: var(--theme-spacing-2);
+}
+
+.densityNormal .icon,
+.density--normal .icon {
+  width: var(--theme-spacing-10);
+  height: var(--theme-spacing-10);
+  margin-bottom: var(--theme-spacing-3);
+}
+
+.densitySpacious .icon,
+.density--spacious .icon {
+  width: 80px; /* No standard spacing token, uses custom value */
+  height: 80px;
+  margin-bottom: var(--theme-spacing-4);
+}
+
+/* Icon colors - OLD STYLE (will be removed in v2.0) */
+.icon {
+  background: var(--theme-primary);
+  color: var(--theme-surface);
+}
+
+[data-theme="dark"] .icon {
+  background: var(--theme-primary);
+  color: var(--theme-surface);
+}
+
+/* Elevated variant icon */
+.elevated .icon,
+.variant--elevated .icon {
+  background: var(--theme-primary-active);
+}
+
+[data-theme="dark"] .elevated .icon,
+[data-theme="dark"] .variant--elevated .icon {
+  background: var(--theme-primary-hover);
+}
+
+/* Icon SVG sizing */
+.densityCompact .icon svg,
+.density--compact .icon svg {
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-5);
+}
+
+.densityNormal .icon svg,
+.density--normal .icon svg {
+  width: var(--theme-spacing-6);
+  height: var(--theme-spacing-6);
+}
+
+.densitySpacious .icon svg,
+.density--spacious .icon svg {
+  width: var(--theme-spacing-8);
+  height: var(--theme-spacing-8);
+}
+
+/* Old title styling */
+.title {
+  font-family: var(--theme-font-family);
+  font-weight: var(--theme-font-weight-bold);
+  line-height: var(--theme-line-height-tight);
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .title {
+  color: var(--theme-surface);
+}
+
+/* Elevated variant - inverse text colors */
+.elevated .title {
+  color: var(--theme-surface);
+}
+
+/* Title sizing by old density classes */
+.densityCompact .title,
+.density--compact .title {
+  font-size: var(--theme-font-size-base);
+  margin-bottom: var(--theme-spacing-2);
+}
+
+.densityNormal .title,
+.density--normal .title {
+  font-size: var(--theme-font-size-lg);
+  margin-bottom: var(--theme-spacing-3);
+}
+
+.densitySpacious .title,
+.density--spacious .title {
+  font-size: var(--theme-font-size-xl);
+  margin-bottom: var(--theme-spacing-4);
+}
+
+/* Old description styling */
+.description {
+  font-family: var(--theme-font-family);
+  font-weight: var(--theme-font-weight-regular);
+  line-height: var(--theme-line-height-relaxed);
+  letter-spacing: normal;
+  margin: 0;
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* Elevated variant description color */
+.elevated .description {
+  color: var(--theme-surface-hover);
+}
+
+/* Description sizing by old density classes */
+.densityCompact .description,
+.density--compact .description {
+  font-size: var(--theme-font-size-sm);
+}
+
+.densityNormal .description,
+.density--normal .description {
+  font-size: var(--theme-font-size-base);
+}
+
+.densitySpacious .description,
+.density--spacious .description {
+  font-size: var(--theme-font-size-lg);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: var(--theme-border-width);
+  }
+
+  .card__title,
+  .title {
+    font-weight: var(--theme-font-weight-bold);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Adjust padding on mobile for compact density */
+  .density--compact,
+  .densityCompact {
+    padding: var(--theme-spacing-3);
+  }
+}

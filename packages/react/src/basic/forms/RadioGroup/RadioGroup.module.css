@@ -1,0 +1,226 @@
+/**
+ * RadioGroup Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component RadioGroup
+ * @packageName @spexop/react
+ * @description Radio button group with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Group Container */
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-3);
+  font-family: var(--theme-font-family);
+}
+
+.group.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Option Label (clickable area) */
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--theme-spacing-3);
+  padding: var(--theme-spacing-4);
+  cursor: pointer;
+  border-radius: var(--theme-radius-relaxed);
+  transition: background-color 150ms ease;
+  border: var(--theme-border-thin) solid transparent;
+}
+
+.option:hover:not(.optionDisabled) {
+  background: var(--theme-surface-secondary);
+}
+
+[data-theme="dark"] .option:hover:not(.optionDisabled) {
+  background: var(--theme-surface-hover);
+}
+
+/* Selected State */
+.option.selected {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border);
+}
+
+[data-theme="dark"] .option.selected {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border);
+}
+
+/* Disabled State */
+.option.optionDisabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Hidden Native Radio Input */
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Radio Button */
+.radio {
+  position: relative;
+  flex-shrink: 0;
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-5);
+  margin-top: 2px;
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-pill);
+  background: var(--theme-surface);
+  transition: 
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+[data-theme="dark"] .radio {
+  background: var(--theme-surface);
+  border-color: var(--theme-border-strong);
+}
+
+/* Radio Inner (selected indicator) */
+.radioInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--theme-radius-pill);
+  background: var(--theme-primary);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 150ms ease;
+}
+
+/* Selected Radio */
+.input:checked + .radio {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+}
+
+[data-theme="dark"] .input:checked + .radio {
+  background: var(--theme-surface);
+  border-color: var(--theme-primary);
+}
+
+.input:checked + .radio .radioInner {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Focus Visible */
+.input:focus-visible + .radio {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Hover State for Radio */
+.option:hover:not(.optionDisabled) .radio {
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .option:hover:not(.optionDisabled) .radio {
+  border-color: var(--theme-border-strong);
+}
+
+/* Content Area */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-1);
+  flex: 1;
+}
+
+/* Label */
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+}
+
+[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+/* Description */
+.description {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-relaxed);
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DENSITY VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Compact (Dashboard context) */
+.densityCompact .option {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  gap: var(--theme-spacing-2);
+}
+
+.densityCompact .radio {
+  width: var(--theme-spacing-4);
+  height: var(--theme-spacing-4);
+}
+
+.densityCompact .radioInner {
+  width: var(--theme-spacing-2);
+  height: var(--theme-spacing-2);
+}
+
+/* Spacious (Blog/Content context) */
+.densitySpacious .option {
+  padding: var(--theme-spacing-5) var(--theme-spacing-6);
+  gap: var(--theme-spacing-4);
+}
+
+.densitySpacious .radio {
+  width: var(--theme-spacing-6);
+  height: var(--theme-spacing-6);
+}
+
+.densitySpacious .radioInner {
+  width: var(--theme-spacing-3);
+  height: var(--theme-spacing-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .radio {
+    border-width: var(--theme-spacing-1);
+  }
+
+  .input:focus-visible + .radio {
+    outline-width: var(--theme-spacing-1);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .option,
+  .radio,
+  .radioInner {
+    transition: none;
+  }
+}

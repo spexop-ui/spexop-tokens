@@ -1,0 +1,79 @@
+/**
+ * PanelSection Component Styles
+ * Migrated to theme system
+ * 
+ * Section component for organizing panel content with titles.
+ * Aligned with Sidebar/AppBar design system.
+ */
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-4);
+  padding: var(--theme-spacing-6) 0;
+  border-bottom: var(--theme-border-width) solid var(--theme-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+[data-theme="dark"] .section {
+  border-bottom-color: var(--theme-surface-hover);
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-1);
+}
+
+/* Title - matches Sidebar submenu header */
+.title {
+  margin: 0;
+  font-family: var(--theme-font-family);
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text-secondary);
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+[data-theme="dark"] .title {
+  color: var(--theme-text-secondary);
+}
+
+/* Description */
+.description {
+  margin: 0;
+  font-family: var(--theme-font-family);
+  font-size: 14px;
+  color: var(--theme-text-secondary);
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .description {
+  color: var(--theme-text-secondary);
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-4);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .section {
+    border-bottom-width: 2px;
+  }
+
+  .title {
+    font-weight: var(--theme-font-weight-bold);
+  }
+}

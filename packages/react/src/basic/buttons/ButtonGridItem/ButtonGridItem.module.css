@@ -1,0 +1,327 @@
+/**
+ * ButtonGridItem Component Styles
+ * Migrated to theme system
+ * Interactive component that displays media with overlay content and performs actions
+ * 
+ * @component ButtonGridItem
+ * @packageName @spexop/react
+ * @version 0.2.0
+ */
+
+/* Card Container */
+.buttonGridItem {
+	position: relative;
+	display: block;
+	background: var(--theme-surface);
+	border: var(--theme-border-width) solid var(--theme-border-strong);
+	border-radius: var(--theme-radius-liquid);
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.15s ease;
+	/* Performance */
+	will-change: transform;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+}
+
+.buttonGridItem:hover {
+	transform: translateY(-4px) translateZ(0);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+	border-color: var(--theme-text);
+}
+
+.buttonGridItem:focus-visible {
+	outline: 4px solid var(--theme-primary);
+	outline-offset: 4px;
+}
+
+.buttonGridItem:active {
+	transform: translateY(-2px) translateZ(0);
+	transition-duration: 100ms;
+}
+
+/* Media Container */
+.mediaContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.mediaContainer img,
+.mediaContainer picture,
+.mediaContainer video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.15s ease;
+	/* Performance */
+	will-change: transform;
+	transform: translateZ(0);
+}
+
+.buttonGridItem:hover .mediaContainer img,
+.buttonGridItem:hover .mediaContainer picture,
+.buttonGridItem:hover .mediaContainer video {
+	transform: scale(1.05) translateZ(0);
+}
+
+/* Content Overlay */
+.contentOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0.3) 40%,
+		rgba(0, 0, 0, 0.8) 100%
+	);
+	z-index: 2;
+	display: flex;
+	align-items: flex-end;
+	padding: var(--theme-spacing-6);
+	transition: background 0.15s ease;
+}
+
+.buttonGridItem:hover .contentOverlay {
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.05) 0%,
+		rgba(0, 0, 0, 0.2) 40%,
+		rgba(0, 0, 0, 0.75) 100%
+	);
+}
+
+/* Content */
+.content {
+	width: 100%;
+	color: white;
+}
+
+/* Label */
+.label {
+	font-size: 20px;
+	font-weight: var(--theme-font-weight-bold);
+	font-family: var(--theme-font-family);
+	margin: 0 0 var(--theme-spacing-2) 0;
+	line-height: 1.2;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	transition: transform 0.15s ease;
+}
+
+.buttonGridItem:hover .label {
+	transform: translateX(2px);
+}
+
+/* Description */
+.description {
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-normal);
+	font-family: var(--theme-font-family);
+	margin: 0 0 var(--theme-spacing-4) 0;
+	line-height: 1.5;
+	opacity: 0.95;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	transition: transform 0.15s ease;
+}
+
+.buttonGridItem:hover .description {
+	transform: translateX(2px);
+}
+
+/* Action Button */
+.actionButton {
+	background: var(--theme-primary);
+	color: white;
+	border: none;
+	padding: var(--theme-spacing-3) var(--theme-spacing-5);
+	font-size: 16px;
+	font-weight: var(--theme-font-weight-semibold);
+	font-family: var(--theme-font-family);
+	border-radius: var(--theme-radius-relaxed);
+	cursor: pointer;
+	transition: all 0.15s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--theme-spacing-2);
+	text-shadow: none;
+	/* Performance */
+	will-change: transform, background-color;
+	transform: translateZ(0);
+}
+
+.actionButton:hover {
+	background: var(--theme-primary-active);
+	transform: translateX(4px) translateZ(0);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.actionButton:active {
+	transform: translateX(2px) translateZ(0);
+	transition-duration: 100ms;
+}
+
+.actionButton:focus-visible {
+	outline: 2px solid white;
+	outline-offset: 2px;
+}
+
+/* Button Icon */
+.buttonIcon {
+	display: block;
+	transition: transform 0.15s ease;
+}
+
+.actionButton:hover .buttonIcon {
+	transform: translateX(2px);
+}
+
+/* Dark Theme Adjustments */
+html[data-theme="dark"] .buttonGridItem {
+	background: var(--theme-surface);
+	border-color: var(--theme-border-strong);
+}
+
+html[data-theme="dark"] .contentOverlay {
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.2) 0%,
+		rgba(0, 0, 0, 0.4) 40%,
+		rgba(0, 0, 0, 0.9) 100%
+	);
+}
+
+html[data-theme="dark"] .buttonGridItem:hover .contentOverlay {
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.1) 0%,
+		rgba(0, 0, 0, 0.3) 40%,
+		rgba(0, 0, 0, 0.85) 100%
+	);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+	.buttonGridItem {
+		border-width: 4px;
+	}
+
+	.buttonGridItem:focus-visible {
+		outline-width: 4px;
+		outline-offset: 4px;
+	}
+
+	.label,
+	.description {
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+	}
+
+	.actionButton:focus-visible {
+		outline-width: 4px;
+		outline-offset: 4px;
+	}
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	.buttonGridItem,
+	.mediaContainer img,
+	.mediaContainer picture,
+	.mediaContainer video,
+	.label,
+	.description,
+	.actionButton,
+	.buttonIcon {
+		transition-duration: 0.01ms;
+	}
+
+	.buttonGridItem:hover {
+		transform: none;
+	}
+
+	.buttonGridItem:hover .mediaContainer img,
+	.buttonGridItem:hover .mediaContainer picture,
+	.buttonGridItem:hover .mediaContainer video {
+		transform: none;
+	}
+
+	.buttonGridItem:hover .label,
+	.buttonGridItem:hover .description {
+		transform: none;
+	}
+
+	.actionButton:hover {
+		transform: none;
+	}
+
+	.actionButton:hover .buttonIcon {
+		transform: none;
+	}
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+	.contentOverlay {
+		padding: var(--theme-spacing-4);
+	}
+
+	.label {
+		font-size: 18px;
+	}
+
+	.description {
+		font-size: 14px;
+		margin-bottom: var(--theme-spacing-3);
+	}
+
+	.actionButton {
+		padding: var(--theme-spacing-2) var(--theme-spacing-4);
+		font-size: 14px;
+	}
+}
+
+/* Accessibility - Screen Reader Only Text */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Focus Management */
+.buttonGridItem:focus-visible {
+	z-index: 10;
+}
+
+/* Loading State (for future enhancement) */
+.buttonGridItem.loading {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
+.buttonGridItem.loading .actionButton {
+	background: var(--theme-border-strong);
+	cursor: not-allowed;
+}
+
+/* Disabled State (for future enhancement) */
+.buttonGridItem.disabled {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.buttonGridItem.disabled .actionButton {
+	background: var(--theme-border-strong);
+	cursor: not-allowed;
+}

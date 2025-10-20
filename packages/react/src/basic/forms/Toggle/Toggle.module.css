@@ -1,0 +1,212 @@
+/**
+ * Toggle Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Toggle
+ * @packageName @spexop/react
+ * @description Modern toggle/switch with theme support
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.toggleContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+}
+
+.toggleContainer.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOGGLE BUTTON
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle:disabled {
+  cursor: not-allowed;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.toggle:focus-visible .track {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .toggle:focus-visible .track {
+  outline-color: var(--theme-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRACK - Border-Based Design
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.track {
+  position: relative;
+  width: 44px;
+  height: var(--theme-spacing-6);
+  background: var(--theme-border);
+  border: var(--theme-border-thin) solid var(--theme-border-strong);
+  border-radius: var(--theme-radius-pill);
+  transition: 
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+.checked .track {
+  background: var(--theme-primary);
+  border-color: var(--theme-primary-active);
+}
+
+.toggle:hover:not(:disabled) .track {
+  background: var(--theme-border-strong);
+  border-color: var(--theme-border-strong);
+}
+
+.toggle:hover:not(:disabled).checked .track {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-active);
+}
+
+/* Dark mode */
+[data-theme="dark"] .track {
+  background: var(--theme-border);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .checked .track {
+  background: var(--theme-primary);
+  border-color: var(--theme-primary-active);
+}
+
+[data-theme="dark"] .toggle:hover:not(:disabled) .track {
+  background: var(--theme-border-strong);
+  border-color: var(--theme-border-strong);
+}
+
+[data-theme="dark"] .toggle:hover:not(:disabled).checked .track {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-active);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THUMB - Slides on Toggle
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-5);
+  background: var(--theme-surface);
+  border: var(--theme-border-thin) solid var(--theme-border-subtle);
+  border-radius: var(--theme-radius-pill);
+  transition: transform 150ms ease;
+}
+
+.checked .thumb {
+  transform: translateX(var(--theme-spacing-5));
+}
+
+[data-theme="dark"] .thumb {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DENSITY VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Compact (Dashboard context) */
+.densityCompact .track {
+  width: 36px;
+  height: var(--theme-spacing-5);
+}
+
+.densityCompact .thumb {
+  width: var(--theme-spacing-4);
+  height: var(--theme-spacing-4);
+}
+
+.densityCompact .checked .thumb {
+  transform: translateX(var(--theme-spacing-4));
+}
+
+/* Spacious (Blog/Content context) */
+.densitySpacious .track {
+  width: 52px;
+  height: var(--theme-spacing-7);
+}
+
+.densitySpacious .thumb {
+  width: var(--theme-spacing-6);
+  height: var(--theme-spacing-6);
+}
+
+.densitySpacious .checked .thumb {
+  transform: translateX(var(--theme-spacing-6));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LABEL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.label {
+  font-family: var(--theme-font-family);
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-medium);
+  color: var(--theme-text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.disabled .label {
+  cursor: not-allowed;
+}
+
+[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .track {
+    border-width: var(--theme-border-width);
+  }
+
+  .thumb {
+    border-width: var(--theme-border-width);
+  }
+
+  .toggle:focus-visible .track {
+    outline-width: var(--theme-spacing-1);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .track,
+  .thumb {
+    transition: none;
+  }
+}

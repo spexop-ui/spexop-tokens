@@ -1,108 +1,93 @@
 # Contributing to Spexop Design System
 
-Thank you for your interest in contributing to Spexop Design System! We welcome contributions from the community.
+Thank you for your interest in contributing!
 
-## Getting Started
+## Development Setup
 
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally:
+```bash
+# Clone repository
+git clone https://github.com/spexop-ui/design-system.git
+cd design-system
 
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/design-system.git
-   cd design-system
-   ```
+# Install dependencies
+pnpm install
 
-3. **Install dependencies:**
+# Build packages
+pnpm build
 
-   ```bash
-   pnpm install
-   ```
-
-## Development Workflow
-
-1. **Create a new branch** for your feature or fix:
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make your changes** and ensure they follow the project conventions
-
-3. **Test your changes:**
-
-   ```bash
-   pnpm test
-   ```
-
-4. **Build the packages:**
-
-   ```bash
-   pnpm build
-   ```
-
-5. **Commit your changes** with a clear commit message:
-
-   ```bash
-   git commit -m "Add: brief description of your changes"
-   ```
-
-6. **Push to your fork:**
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-7. **Open a Pull Request** on GitHub
-
-## Project Structure
-
-``` bash
-spexop-design-system/
-├── packages/
-│   └── tokens/          # Design tokens package
-└── README.md
+# Run tests
+pnpm test
 ```
 
-## Coding Standards
+## Package Development
 
-- Use **TypeScript** for all code
-- Follow the existing code style
-- Write clear, descriptive variable and function names
-- Add comments for complex logic
-- Keep commits atomic and well-described
+### Theme Package
 
-## Token Naming Convention
+```bash
+cd packages/theme
+pnpm dev  # Watch mode
+pnpm test # Run tests
+pnpm build # Build for production
+```
 
-All tokens use the `s` prefix (Spexop prefix):
+### React Package
 
-- Colors: `sColor*`
-- Spacing: `sSpacing*`
-- Typography: `sFont*`
-- Effects: `sShadow*`, `sBlur*`
+```bash
+cd packages/react
+pnpm dev  # Watch mode
+pnpm test # Run tests
+pnpm build # Build for production
+```
 
-## Pull Request Guidelines
+### Tokens Package
 
-- **Keep PRs focused** - one feature or fix per PR
-- **Write clear descriptions** - explain what and why
-- **Update documentation** - if you add or change features
-- **Add tests** - for new functionality
-- **Ensure all tests pass** - before submitting
+```bash
+cd packages/tokens
+pnpm dev  # Watch mode
+pnpm test # Run tests
+pnpm build # Build for production
+```
 
-## Reporting Issues
+## Running Examples
 
-- **Check existing issues** before creating a new one
-- **Use issue templates** when available
-- **Provide clear reproduction steps** for bugs
-- **Include version information** and environment details
+```bash
+cd examples/basic-theme
+pnpm install
+pnpm dev
+```
+
+## Submitting Changes
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Make your changes
+4. Run tests: `pnpm test`
+5. Run linting: `pnpm lint`
+6. Commit: `git commit -m "feat: add new feature"`
+7. Push: `git push origin feature/my-feature`
+8. Open a Pull Request
+
+## Code Standards
+
+- TypeScript strict mode
+- Biome for linting and formatting
+- Test coverage for new features
+- Update documentation for changes
+- Follow conventional commits
+
+## Commit Message Format
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+- `feat:` New features
+- `fix:` Bug fixes
+- `docs:` Documentation changes
+- `style:` Code style changes (formatting, etc)
+- `refactor:` Code refactoring
+- `test:` Test additions or updates
+- `chore:` Maintenance tasks
 
 ## Questions?
 
-Feel free to open a [GitHub Discussion](https://github.com/spexop-ui/design-system/discussions) if you have questions!
+Open an issue or contact us at contact@spexop.com
 
-## License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
-
-## Author
-
-Spexop Team

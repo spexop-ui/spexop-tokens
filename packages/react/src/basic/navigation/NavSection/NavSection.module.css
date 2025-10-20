@@ -1,0 +1,113 @@
+/**
+ * NavSection Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component NavSection
+ * @packageName @spexop/react
+ * @description Collapsible navigation section
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+/* Section Container */
+.navSection {
+  border-bottom: var(--theme-border-thin) solid var(--theme-border);
+}
+
+/* Section Button (Header) */
+.navSectionButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--theme-font-family);
+  text-align: left;
+  transition: background 150ms ease;
+}
+
+/* Hover */
+.navSectionButton:hover {
+  background: var(--theme-surface-secondary);
+}
+
+/* Focus */
+.navSectionButton:focus {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.navSectionButton:focus-visible {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: -2px;
+}
+
+/* Section Label */
+.navSectionLabel {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Expand Icon */
+.navSectionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  font-weight: var(--theme-font-weight-regular);
+  color: var(--theme-text-secondary);
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1;
+}
+
+/* Icon Rotation: + to × */
+.navSectionIcon.open {
+  transform: rotate(45deg);
+}
+
+/* Content Container */
+.navSectionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Content Open */
+.navSectionContent.open {
+  max-height: 800px;
+}
+
+/* Dark Theme */
+[data-theme="dark"] .navSection {
+  border-bottom-color: var(--theme-border);
+}
+
+[data-theme="dark"] .navSectionButton:hover {
+  background: var(--theme-surface-hover);
+}
+
+[data-theme="dark"] .navSectionLabel {
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .navSectionIcon {
+  color: var(--theme-text-secondary);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .navSectionButton,
+  .navSectionIcon,
+  .navSectionContent {
+    transition: none;
+  }
+}

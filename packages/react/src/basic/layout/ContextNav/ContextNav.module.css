@@ -1,0 +1,490 @@
+/**
+ * ContextNav Component Styles
+ * Migrated to theme system
+ * Context-aware expandable navigation with horizontal slide-out
+ */
+
+/* Base Context Nav Component */
+.contextNav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px; /* Fixed top position when sticky */
+  z-index: 50;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  background: var(--theme-surface);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  margin-bottom: var(--theme-spacing-8);
+  margin-left: var(--theme-spacing-4);
+  margin-right: var(--theme-spacing-6);
+  transition: border-color 0.2s ease, opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  width: fit-content;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* Hidden before hero section is scrolled past */
+.hiddenBeforeHero {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .contextNav {
+    margin-left: var(--theme-spacing-10);
+    margin-right: var(--theme-spacing-10);
+  }
+}
+
+html[data-theme="dark"] .contextNav {
+  background: var(--theme-surface);
+  border-color: var(--theme-surface-hover);
+}
+
+/* Number Badge */
+.number {
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-text-secondary);
+  min-width: var(--theme-spacing-6);
+  transition: color 0.15s ease;
+}
+
+html[data-theme="dark"] .number {
+  color: var(--theme-text-secondary);
+}
+
+/* Title Text */
+.title {
+  font-size: 14px;
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.15s ease;
+}
+
+html[data-theme="dark"] .title {
+  color: var(--theme-text);
+}
+
+/* Divider (appears when stuck) */
+.divider {
+  width: 2px;
+  height: var(--theme-spacing-5);
+  background: var(--theme-border);
+  margin: 0 var(--theme-spacing-3);
+  opacity: 0;
+  transform: scaleY(0);
+  transition: all 0.3s ease 0.1s;
+  border-radius: var(--theme-radius-relaxed);
+}
+
+html[data-theme="dark"] .divider {
+  background: var(--theme-border);
+}
+
+/* Navigation Items Container */
+.navItems {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+    opacity 0.4s ease 0.2s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Individual Navigation Links */
+.navLink {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  font-size: 14px;
+  color: var(--theme-text-secondary);
+  text-decoration: none;
+  border-radius: var(--theme-radius-relaxed);
+  background: transparent;
+  font-weight: var(--theme-font-weight-medium);
+  border: 1px solid var(--theme-border);
+  opacity: 0;
+  transform: scale(0.9) translateX(-5px);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap; /* Prevent text wrapping */
+  flex-shrink: 0; /* Prevent links from shrinking */
+}
+
+html[data-theme="dark"] .navLink {
+  background: transparent;
+  color: var(--theme-text-secondary);
+  border-color: var(--theme-border);
+}
+
+.navLink:hover {
+  background: transparent;
+  color: var(--theme-text);
+  border-color: var(--theme-primary);
+  border-width: 2px;
+}
+
+html[data-theme="dark"] .navLink:hover {
+  background: transparent;
+  color: var(--theme-text);
+  border-color: var(--theme-primary);
+  border-width: 2px;
+}
+
+/* Active state for navigation links */
+.navLink.active {
+  background: transparent;
+  color: var(--theme-primary);
+  border-color: var(--theme-primary);
+  border-width: 2px;
+  font-weight: var(--theme-font-weight-bold);
+}
+
+html[data-theme="dark"] .navLink.active {
+  background: transparent;
+  color: var(--theme-primary);
+  border-color: var(--theme-primary);
+  border-width: 2px;
+}
+
+.navLink.active:hover {
+  background: transparent;
+  border-color: var(--theme-primary-active);
+  color: var(--theme-primary-active);
+  border-width: 2px;
+}
+
+html[data-theme="dark"] .navLink.active:hover {
+  background: transparent;
+  border-color: var(--theme-primary-active);
+  color: var(--theme-primary-active);
+  border-width: 2px;
+}
+
+/* ==================== */
+/* Stuck State (When Sticky is Active) */
+/* ==================== */
+
+/* Border and number turn primary color when navigation opens */
+.contextNav.hasNav.stuck {
+  border-color: var(--theme-primary);
+}
+
+html[data-theme="dark"] .contextNav.hasNav.stuck {
+  border-color: var(--theme-primary);
+}
+
+.contextNav.hasNav.stuck .number {
+  color: var(--theme-primary);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+.contextNav.hasNav.stuck .title {
+  color: var(--theme-primary);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+/* Divider scales in */
+.contextNav.stuck .divider {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Nav items slide in */
+.contextNav.stuck .navItems {
+  max-width: 75rem; /* Increased to accommodate longer marketing messages */
+  opacity: 1;
+  pointer-events: auto;
+  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+    opacity 0.4s ease 0.2s;
+}
+
+
+/* Cascade animation for individual links */
+.contextNav.stuck .navLink {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+}
+
+/* ==================== */
+/* Dark Variant */
+/* ==================== */
+
+.dark {
+  background: var(--theme-surface);
+  border-color: var(--theme-surface-hover);
+}
+
+.dark .number {
+  color: var(--theme-text-secondary);
+}
+
+.dark .title {
+  color: var(--theme-text);
+}
+
+/* ==================== */
+/* Mobile Toggle Button */
+/* ==================== */
+
+.toggleButton {
+  display: none; /* Hidden on desktop */
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: var(--theme-spacing-2);
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--theme-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.toggleButton:hover {
+  color: var(--theme-primary);
+}
+
+.toggleButton:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+  border-radius: var(--theme-radius-relaxed);  
+}
+
+html[data-theme="dark"] .toggleButton {
+  color: var(--theme-text-secondary);
+}
+
+html[data-theme="dark"] .toggleButton:hover {
+  color: var(--theme-primary);
+}
+
+/* ==================== */
+/* Responsive - Desktop */
+/* ==================== */
+
+@media (min-width: 1024px) {
+  /* Desktop: Horizontal expansion (current behavior) */
+  .contextNav.stuck .navItems {
+    max-width: 50rem;
+  }
+  
+  .navItems {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* ==================== */
+/* Responsive - Mobile/Tablet */
+/* ==================== */
+
+@media (max-width: 1023px) {
+  /* Mobile: Full-width bar with vertical expansion */
+  .contextNav {
+    width: calc(100% - var(--theme-spacing-8));
+    max-width: none;
+    margin-left: var(--theme-spacing-4);
+    margin-right: var(--theme-spacing-4);
+  }
+  
+  /* Show toggle button on mobile */
+  .toggleButton {
+    display: flex;
+  }
+  
+  /* Hide desktop divider on mobile */
+  .divider {
+    display: none !important;
+  }
+  
+  /* Mobile: Vertical expansion */
+  .navItems {
+    position: absolute;
+    top: calc(100% - 2px); /* Overlap border slightly */
+    left: -2px; /* Align with parent border */
+    right: -2px; /* Align with parent border */
+    background: var(--theme-surface);
+    border: 3px solid var(--theme-primary);
+    border-top: none;
+    border-radius: 0 0 var(--theme-radius-relaxed) var(--theme-radius-relaxed);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    padding: 0;
+    margin-top: 0;
+    z-index: 1;
+  }
+  
+  html[data-theme="dark"] .navItems {
+    background: var(--theme-surface);
+    border-color: var(--theme-primary);
+  }
+  
+  /* Expanded state on mobile */
+  .contextNav.expanded .navItems {
+    max-height: 25rem;
+    opacity: 1;
+    overflow-y: auto;
+    pointer-events: auto;
+  }
+  
+  /* Mobile: Stack links vertically */
+  .navLink {
+    width: 100%;
+    text-align: left;
+    padding: var(--theme-spacing-3) var(--theme-spacing-4);
+    border-radius: var(--theme-radius-relaxed);
+    border: none;
+    border-bottom: 1px solid var(--theme-border);
+    background: transparent;
+    font-size: 14px;
+    min-height: 44px; /* Touch-friendly WCAG minimum */
+    display: flex;
+    align-items: center;
+    opacity: 1;
+    transform: none;
+    transition: background 0.2s ease;
+  }
+  
+  html[data-theme="dark"] .navLink {
+    background: transparent;
+    border-bottom-color: var(--theme-surface-hover);
+  }
+  
+  .navLink:last-child {
+    border-bottom: none;
+  }
+  
+  .navLink:hover {
+    background: transparent;
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
+  
+  html[data-theme="dark"] .navLink:hover {
+    background: transparent;
+    border-color: var(--theme-primary);
+    color: var(--theme-primary);
+  }
+}
+
+/* ==================== */
+/* Stacking Support */
+/* ==================== */
+
+/* Page nav - first level */
+.contextNav[data-scope="page"] {
+  z-index: 100;
+}
+
+/* Section nav - second level */
+.contextNav[data-scope="section"] {
+  z-index: 90;
+}
+
+/* Auto-stacking offset calculated via inline style */
+
+/* ==================== */
+/* Overflow Behavior */
+/* ==================== */
+
+/* Extend behavior (default) - allows unlimited horizontal expansion */
+.contextNav[data-overflow-behavior="extend"] .navItems {
+  max-width: none;
+  flex-wrap: nowrap;
+}
+
+/* Wrap behavior - wraps to multiple rows when maxWidth is reached */
+.contextNav.wrap .navItems {
+  flex-wrap: wrap;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: var(--theme-spacing-1);
+}
+
+.contextNav.wrap .navLink {
+  flex-shrink: 0;
+  min-width: fit-content;
+  font-size: 12px;
+  padding: var(--theme-spacing-1) var(--theme-spacing-2);
+  white-space: nowrap;
+}
+
+/* Scroll behavior - horizontal scroll when content overflows */
+.contextNav.scroll .navItems {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-border) transparent;
+}
+
+.contextNav.scroll .navItems::-webkit-scrollbar {
+  height: 4px;
+}
+
+.contextNav.scroll .navItems::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contextNav.scroll .navItems::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+}
+
+.contextNav.scroll .navItems::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-strong);
+}
+
+html[data-theme="dark"] .contextNav.scroll .navItems {
+  scrollbar-color: var(--theme-border-strong) transparent;
+}
+
+html[data-theme="dark"] .contextNav.scroll .navItems::-webkit-scrollbar-thumb {
+  background: var(--theme-border-strong);
+}
+
+html[data-theme="dark"] .contextNav.scroll .navItems::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-tertiary);
+}
+
+/* ==================== */
+/* Accessibility */
+/* ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .contextNav,
+  .divider,
+  .navItems,
+  .navLink {
+    transition: none;
+  }
+
+  .contextNav.stuck .navLink {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+    transition-delay: 0s;
+  }
+
+  /* No fade/slide for reduced motion - instant appear/disappear */
+  .hiddenBeforeHero {
+    display: none;
+    opacity: 1;
+    transform: none;
+  }
+}

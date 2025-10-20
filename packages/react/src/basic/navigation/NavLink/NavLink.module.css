@@ -1,0 +1,82 @@
+/**
+ * NavLink Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component NavLink
+ * @packageName @spexop/react
+ * @description Sidebar navigation link with active state
+ * @version 0.3.0
+ * @updated 2025-10-18 - Migrated to theme system
+ */
+
+.navLink {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: var(--theme-spacing-3) var(--theme-spacing-5) var(--theme-spacing-3) var(--theme-spacing-8);
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-regular);
+  color: var(--theme-text-secondary);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: all 150ms ease;
+  position: relative;
+}
+
+/* Hover */
+.navLink:hover {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text);
+}
+
+/* Active */
+.navLink.active {
+  color: var(--theme-primary);
+  font-weight: var(--theme-font-weight-semibold);
+  border-left-color: var(--theme-primary);
+  background: var(--theme-surface-secondary);
+}
+
+/* Focus */
+.navLink:focus {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.navLink:focus-visible {
+  outline: var(--theme-border-width) solid var(--theme-primary);
+  outline-offset: -2px;
+}
+
+/* Active + Hover */
+.navLink.active:hover {
+  background: var(--theme-surface-secondary);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .navLink {
+  color: var(--theme-text-secondary);
+}
+
+[data-theme="dark"] .navLink:hover {
+  background: var(--theme-surface-hover);
+  color: var(--theme-text);
+}
+
+[data-theme="dark"] .navLink.active {
+  color: var(--theme-primary);
+  background: var(--theme-surface);
+  border-left-color: var(--theme-primary);
+}
+
+[data-theme="dark"] .navLink.active:hover {
+  background: var(--theme-surface-hover);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .navLink {
+    transition: none;
+  }
+}
