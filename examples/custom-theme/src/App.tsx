@@ -1,5 +1,12 @@
-import { Grid, GridItem, Stack, Button, Card, ThemeProvider } from '@spexop/react';
-import type { SpexopThemeConfig } from '@spexop/theme';
+import {
+  Button,
+  Card,
+  Grid,
+  GridItem,
+  Stack,
+  ThemeProvider,
+} from "@spexop/react";
+import type { SpexopThemeConfig } from "@spexop/theme";
 
 const myTheme: SpexopThemeConfig = {
   meta: {
@@ -29,12 +36,12 @@ const myTheme: SpexopThemeConfig = {
 export function App() {
   return (
     <ThemeProvider theme={myTheme}>
-      <Grid columns={12} gap={24} style={{ padding: '48px' }}>
+      <Grid columns={12} gap={24} style={{ padding: "48px" }}>
         <GridItem span={12}>
           <h1>Custom Theme Example</h1>
           <p>Purple primary, cyan secondary, amber accent</p>
         </GridItem>
-        
+
         <GridItem span={4}>
           <Card>
             <h3>Custom Colors</h3>
@@ -48,7 +55,9 @@ export function App() {
         <GridItem span={4}>
           <Card>
             <h3>Grid Layout</h3>
-            <p>Using Spexop's primitives-first architecture with custom theming</p>
+            <p>
+              Using Spexop's primitives-first architecture with custom theming
+            </p>
           </Card>
         </GridItem>
 
@@ -62,5 +71,3 @@ export function App() {
     </ThemeProvider>
   );
 }
-
-

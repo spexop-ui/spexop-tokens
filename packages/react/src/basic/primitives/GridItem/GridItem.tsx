@@ -24,7 +24,8 @@
  * ```
  */
 
-import React, { type CSSProperties, createElement, useMemo } from "react";
+import type React from "react";
+import { type CSSProperties, createElement, useMemo } from "react";
 import { useDebug, useResponsiveValue } from "../../../hooks/index.js";
 import {
   validateGridSpan,

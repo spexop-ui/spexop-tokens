@@ -21,10 +21,10 @@ export type ThemeName = "minimal" | "professional" | "bold";
 export type ColorMode = "light" | "dark";
 
 import {
+  type ThemeColors,
   boldTheme,
   minimalTheme,
   professionalTheme,
-  type ThemeColors,
 } from "./colors.js";
 import {
   boldDarkTheme,

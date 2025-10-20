@@ -55,3 +55,6 @@ storybook-static
 # Publish docs
 publish-docs/
 
+#tar.gz backups
+spexop-design-system-0.1.0.tgz
+

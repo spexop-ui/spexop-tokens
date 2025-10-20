@@ -1,5 +1,5 @@
-import { defineConfig } from "tsup";
 import cssModulesPlugin from "esbuild-css-modules-plugin";
+import { defineConfig } from "tsup";
 
 export default defineConfig({
   entry: [
@@ -18,7 +18,7 @@ export default defineConfig({
     cssModulesPlugin({
       generateScopedName: "[name]__[local]___[hash:base64:5]",
       localsConvention: "camelCase",
-    })
+    }),
   ],
   esbuildOptions(options) {
     options.banner = {

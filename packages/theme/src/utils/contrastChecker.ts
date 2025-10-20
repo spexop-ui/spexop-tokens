@@ -3,7 +3,7 @@
  * Calculate contrast ratios and validate WCAG 2.1 compliance
  */
 
-import { hexToRgb, type RGB } from "./colorManipulation.js";
+import { type RGB, hexToRgb } from "./colorManipulation.js";
 
 /**
  * WCAG contrast levels

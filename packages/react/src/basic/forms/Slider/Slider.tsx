@@ -139,7 +139,7 @@ export function Slider({
   // Handle value change
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = parseFloat(event.target.value);
+      const newValue = Number.parseFloat(event.target.value);
       onChange(newValue);
     },
     [onChange],
@@ -150,7 +150,7 @@ export function Slider({
     (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (disabled) return;
 
-      const currentValue = parseFloat(event.currentTarget.value);
+      const currentValue = Number.parseFloat(event.currentTarget.value);
       let newValue = currentValue;
 
       switch (event.key) {

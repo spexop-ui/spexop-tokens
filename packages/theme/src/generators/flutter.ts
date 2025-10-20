@@ -89,10 +89,10 @@ ${Object.entries(spacingValues)
       useMaterial3: true,
       colorScheme: ColorScheme.light(
         primary: primary,
-        ${colors.secondary ? `secondary: secondary,` : ""}
+        ${colors.secondary ? "secondary: secondary," : ""}
         surface: surface,
         onSurface: text,
-        ${colors.error ? `error: error,` : ""}
+        ${colors.error ? "error: error," : ""}
       ),
       textTheme: TextTheme(
         bodyLarge: TextStyle(

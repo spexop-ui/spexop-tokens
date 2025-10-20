@@ -32,10 +32,7 @@
 
 import { useEffect } from "react";
 
-export function useEscapeKey(
-  onEscape: () => void,
-  isActive: boolean = true,
-): void {
+export function useEscapeKey(onEscape: () => void, isActive = true): void {
   useEffect(() => {
     // Only run when active
     if (!isActive) return;

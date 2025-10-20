@@ -42,7 +42,10 @@ export function TextArea({
     const adjustHeight = () => {
       textarea.style.height = "auto";
       const scrollHeight = textarea.scrollHeight;
-      const lineHeight = parseInt(getComputedStyle(textarea).lineHeight, 10);
+      const lineHeight = Number.parseInt(
+        getComputedStyle(textarea).lineHeight,
+        10,
+      );
       const minHeight = minRows * lineHeight;
       const maxHeight = maxRows * lineHeight;
 

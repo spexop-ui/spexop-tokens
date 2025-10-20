@@ -125,9 +125,11 @@ function highlightLine(line: string, language: string): HighlightedToken[] {
     if (token.type === "text") {
       if (isKeyword(token.content, language)) {
         return { ...token, type: "keyword" };
-      } else if (isNumber(token.content)) {
+      }
+      if (isNumber(token.content)) {
         return { ...token, type: "number" };
-      } else if (isVariable(token.content)) {
+      }
+      if (isVariable(token.content)) {
         return { ...token, type: "variable" };
       }
     }

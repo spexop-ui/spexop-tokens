@@ -8,7 +8,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": [
+    "include": [
       "**/*.js",
       "**/*.jsx",
       "**/*.ts",
@@ -16,19 +16,21 @@
       "**/*.json",
       "**/*.jsonc",
       "**/*.vue",
-      "**/*.svelte",
-      "!**/node_modules",
-      "!**/dist",
-      "!**/build",
-      "!**/coverage",
-      "!**/.next",
-      "!**/.turbo",
-      "!**/*.min.js",
-      "!**/generated",
-      "!**/*.md",
-      "!**/.git",
-      "!**/test-results",
-      "!**/playwright-report"
+      "**/*.svelte"
+    ],
+    "ignore": [
+      "**/node_modules",
+      "**/dist",
+      "**/build",
+      "**/coverage",
+      "**/.next",
+      "**/.turbo",
+      "**/*.min.js",
+      "**/generated",
+      "**/*.md",
+      "**/.git",
+      "**/test-results",
+      "**/playwright-report"
     ]
   },
   "formatter": {
@@ -50,17 +52,7 @@
         "recommended": true
       },
       "correctness": {
-        "recommended": true,
-        "useUniqueElementIds": {
-          "options": {
-            "excludedComponents": [
-              "Section",
-              "ContextNav",
-              "ServiceCard",
-              "Card"
-            ]
-          }
-        }
+        "recommended": true
       },
       "performance": {
         "recommended": true
@@ -82,7 +74,7 @@
   },
   "overrides": [
     {
-      "includes": ["packages/react/src/components/Sidebar/Sidebar.tsx"],
+      "include": ["packages/react/src/components/Sidebar/Sidebar.tsx"],
       "linter": {
         "rules": {
           "security": {

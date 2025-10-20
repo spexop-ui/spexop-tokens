@@ -36,10 +36,7 @@
     },
     "./dist/css/*.css": "./dist/css/*.css"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "scripts": {
     "build": "tsup && npm run build:css",
     "build:css": "tsx scripts/build-css-presets.ts",

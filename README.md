@@ -85,4 +85,3 @@ MIT © Spexop Team
 [GitHub](https://github.com/spexop-ui/design-system) • [npm](https://www.npmjs.com/org/spexop) • [Website](https://spexop.com)
 
 </div>
-

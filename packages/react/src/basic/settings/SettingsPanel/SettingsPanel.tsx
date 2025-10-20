@@ -488,7 +488,7 @@ export const SettingsPanel = React.forwardRef<
           >
             <Slider
               id={zoomSelectId}
-              value={parseInt(textZoom, 10)}
+              value={Number.parseInt(textZoom, 10)}
               min={100}
               max={200}
               step={10}

@@ -91,9 +91,9 @@ export const sColorSurfaceRaised = sColorWhite;
  * Overlay Colors
  * For modals, drawers, and backdrop
  */
-export const sColorOverlay = `rgba(0, 0, 0, 0.5)`;
-export const sColorOverlayLight = `rgba(0, 0, 0, 0.3)`;
-export const sColorOverlayHeavy = `rgba(0, 0, 0, 0.7)`;
+export const sColorOverlay = "rgba(0, 0, 0, 0.5)";
+export const sColorOverlayLight = "rgba(0, 0, 0, 0.3)";
+export const sColorOverlayHeavy = "rgba(0, 0, 0, 0.7)";
 
 /**
  * Example: How to use semantic tokens

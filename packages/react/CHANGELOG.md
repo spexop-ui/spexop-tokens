@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Installed and configured `vite-plugin-dts` to generate type definitions
 - Added `vite-plugin-dts` as dev dependency for proper type generation
 
-### Changed
+### Changed in 0.2.4
 
 - Build now generates complete TypeScript definitions in dist directory
 - Updated vite.config.ts to include DTS plugin configuration
@@ -24,28 +24,28 @@ Version 0.2.3 was published without TypeScript definitions due to missing Vite p
 
 ## [0.2.3] - 2025-10-20
 
-### Changed
+### Changed in 0.2.3
 
 - Switched build system from tsup to Vite for better CSS Modules handling and bundling
 - Updated build output structure: entry points now in `dist/src/` directory
 - Updated package.json exports to reflect new build structure (`dist/src/index.js` instead of `dist/index.js`)
 - Improved source maps generation for better debugging experience
 
-### Fixed
+### Fixed in 0.2.3
 
 - Build system now properly handles CSS Modules with consistent naming
 - Better support for Next.js App Router with "use client" directive
 
 ## [0.2.2] - 2025-10-20
 
-### Fixed
+### Fixed in 0.2.2
 
 - Package build configuration improvements
 - TypeScript definitions properly generated for all entry points
 
 ## [0.2.1] - 2025-10-20
 
-### Fixed
+### Fixed in 0.2.1
 
 - Build output paths and module resolution
 - Package exports configuration
@@ -95,7 +95,7 @@ import { techPreset } from '@spexop/theme';
 
 ## [0.1.0] - 2025-10-15
 
-### Added
+### Added to 0.1.0
 
 Initial release of @spexop/react with 60+ production-ready components.
 

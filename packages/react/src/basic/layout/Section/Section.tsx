@@ -11,7 +11,7 @@
  */
 
 import type React from "react";
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode, forwardRef } from "react";
 import { Container } from "../../primitives/Container/Container.js";
 import type {
   ContainerMaxWidth,

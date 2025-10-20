@@ -10,7 +10,7 @@
  *
  */
 
-import { forwardRef, type ReactNode } from "react";
+import { type ReactNode, forwardRef } from "react";
 import type { SectionProps } from "../Section/Section.js";
 import { Section } from "../Section/Section.js";
 import styles from "./StickySection.module.css";

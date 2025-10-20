@@ -1,13 +1,13 @@
-import { Grid, GridItem, Stack, Button, Card } from '@spexop/react';
+import { Button, Card, Grid, GridItem, Stack } from "@spexop/react";
 
 export function App() {
   return (
-    <Grid columns={12} gap={24} style={{ padding: '48px' }}>
+    <Grid columns={12} gap={24} style={{ padding: "48px" }}>
       <GridItem span={12}>
         <h1>Basic Theme Example</h1>
         <p>Using pre-built tech.css theme</p>
       </GridItem>
-      
+
       <GridItem span={6}>
         <Card>
           <h2>Themed Components</h2>
@@ -18,7 +18,7 @@ export function App() {
           </Stack>
         </Card>
       </GridItem>
-      
+
       <GridItem span={6}>
         <Card>
           <h2>Grid Primitives</h2>
@@ -28,5 +28,3 @@ export function App() {
     </Grid>
   );
 }
-
-

@@ -405,11 +405,7 @@ ${
             ...config,
             colors: { ...config.colors, ...darkMode.colors },
           };
-          return (
-            generateButtonStyles(darkMode.buttons, darkConfig) +
-            "\n" +
-            generateCardTokens(darkMode.cards, darkConfig)
-          );
+          return `${generateButtonStyles(darkMode.buttons, darkConfig)}\n${generateCardTokens(darkMode.cards, darkConfig)}`;
         }
       )()
     : ""
