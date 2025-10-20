@@ -31,12 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 No breaking changes - fully backward compatible. Theme system is opt-in:
 
 **Without theme** (still works):
+
 ```typescript
 import { Grid, Button } from '@spexop/react';
 // Works exactly as before
 ```
 
 **With theme** (new capability):
+
 ```typescript
 import { Grid, Button, ThemeProvider } from '@spexop/react';
 import { techPreset } from '@spexop/theme';

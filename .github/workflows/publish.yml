@@ -1,55 +1,54 @@
 name: Publish Packages
 
 on:
-  push:
-    tags:
-      - '@spexop/theme@*'
-      - '@spexop/react@*'
-      - '@spexop/tokens@*'
+    push:
+        tags:
+            - "@spexop/theme@*"
+            - "@spexop/react@*"
+            - "@spexop/tokens@*"
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
-      
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      
-      - name: Build
-        run: pnpm build
-      
-      - name: Determine package to publish
-        id: package
-        run: |
-          if [[ "${{ github.ref }}" == *"theme"* ]]; then
-            echo "package=theme" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref }}" == *"react"* ]]; then
-            echo "package=react" >> $GITHUB_OUTPUT
-          else
-            echo "package=tokens" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Publish to npm
-        run: |
-          cd packages/${{ steps.package.outputs.package }}
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    publish:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
 
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 9
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
+                  registry-url: "https://registry.npmjs.org"
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Build
+              run: pnpm build
+
+            - name: Determine package to publish
+              id: package
+              run: |
+                  if [[ "${{ github.ref }}" == *"theme"* ]]; then
+                    echo "package=theme" >> $GITHUB_OUTPUT
+                  elif [[ "${{ github.ref }}" == *"react"* ]]; then
+                    echo "package=react" >> $GITHUB_OUTPUT
+                  else
+                    echo "package=tokens" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Publish to npm
+              run: |
+                  cd packages/${{ steps.package.outputs.package }}
+                  npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
