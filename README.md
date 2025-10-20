@@ -50,6 +50,7 @@ function App() {
 ## 📚 Examples
 
 See [examples/](./examples) directory for complete working examples:
+
 - [Basic Theme Usage](./examples/basic-theme) - Using pre-built CSS themes
 - [Custom Theme](./examples/custom-theme) - Creating your own theme
 - [Runtime Theme Switching](./examples/runtime-switching) - Dynamic theme changes
@@ -63,8 +64,8 @@ See [examples/](./examples) directory for complete working examples:
 
 ## 🔗 Links
 
-- **Website**: https://spexop.com
-- **Theme Builder**: https://builder.spexop.com
+- **Website**: <https://spexop.com>
+- **Theme Builder**: <https://builder.spexop.com>
 - **npm**: [@spexop/theme](https://www.npmjs.com/package/@spexop/theme), [@spexop/react](https://www.npmjs.com/package/@spexop/react), [@spexop/tokens](https://www.npmjs.com/package/@spexop/tokens)
 
 ## 🤝 Contributing

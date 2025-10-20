@@ -89,5 +89,5 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ## Questions?
 
-Open an issue or contact us at contact@spexop.com
+Open an issue or contact us at <contact@spexop.com>
 

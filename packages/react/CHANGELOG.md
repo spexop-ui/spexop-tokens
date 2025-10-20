@@ -5,6 +5,51 @@ All notable changes to @spexop/react will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2025-10-20
+
+### Fixed
+
+- **CRITICAL**: Added missing TypeScript definition files (.d.ts) to build output
+- Installed and configured `vite-plugin-dts` to generate type definitions
+- Added `vite-plugin-dts` as dev dependency for proper type generation
+
+### Changed
+
+- Build now generates complete TypeScript definitions in dist directory
+- Updated vite.config.ts to include DTS plugin configuration
+
+### Note
+
+Version 0.2.3 was published without TypeScript definitions due to missing Vite plugin configuration. This version resolves that issue. Users on 0.2.3 should upgrade to 0.2.4 immediately.
+
+## [0.2.3] - 2025-10-20
+
+### Changed
+
+- Switched build system from tsup to Vite for better CSS Modules handling and bundling
+- Updated build output structure: entry points now in `dist/src/` directory
+- Updated package.json exports to reflect new build structure (`dist/src/index.js` instead of `dist/index.js`)
+- Improved source maps generation for better debugging experience
+
+### Fixed
+
+- Build system now properly handles CSS Modules with consistent naming
+- Better support for Next.js App Router with "use client" directive
+
+## [0.2.2] - 2025-10-20
+
+### Fixed
+
+- Package build configuration improvements
+- TypeScript definitions properly generated for all entry points
+
+## [0.2.1] - 2025-10-20
+
+### Fixed
+
+- Build output paths and module resolution
+- Package exports configuration
+
 ## [0.2.0] - 2025-10-20
 
 ### Added
