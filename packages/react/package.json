@@ -82,8 +82,8 @@
   },
   "dependencies": {
     "@spexop/icons": "^0.1.1",
-    "@spexop/theme": "workspace:*",
-    "@spexop/tokens": "workspace:*",
+    "@spexop/theme": "^0.3.0",
+    "@spexop/tokens": "^0.4.0",
     "@tiptap/extension-link": "^3.6.3",
     "@tiptap/extension-placeholder": "^3.6.3",
     "@tiptap/extension-underline": "^3.6.3",
