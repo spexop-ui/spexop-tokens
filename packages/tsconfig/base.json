@@ -22,7 +22,6 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@spexop/tokens": ["../../packages/tokens/src"],
       "@spexop/components": ["../../packages/components/src"],
       "@spexop/utils": ["../../packages/utils/src"],
       "@spexop/icons": ["../../packages/icons/src"],

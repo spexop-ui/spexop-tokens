@@ -6,7 +6,6 @@ Professional React component library with a flexible theme system. Build modern 
 
 - **[@spexop/theme](./packages/theme)** - Theme system with 13 presets and 29+ export formats
 - **[@spexop/react](./packages/react)** - 60+ React components with full theme support
-- **[@spexop/tokens](./packages/tokens)** - 379 design tokens for consistent styling
 
 ## 🚀 Quick Start
 
@@ -60,13 +59,13 @@ See [examples/](./examples) directory for complete working examples:
 - [Getting Started](./docs/getting-started.md)
 - [Theme System Guide](./packages/theme/README.md)
 - [Component Documentation](./packages/react/README.md)
-- [Design Tokens Reference](./packages/tokens/README.md)
+- [Theme System Improvements](./docs/theme-system-improvements.md)
 
 ## 🔗 Links
 
 - **Website**: <https://spexop.com>
 - **Theme Builder**: <https://builder.spexop.com>
-- **npm**: [@spexop/theme](https://www.npmjs.com/package/@spexop/theme), [@spexop/react](https://www.npmjs.com/package/@spexop/react), [@spexop/tokens](https://www.npmjs.com/package/@spexop/tokens)
+- **npm**: [@spexop/theme](https://www.npmjs.com/package/@spexop/theme), [@spexop/react](https://www.npmjs.com/package/@spexop/react)
 
 ## 🤝 Contributing
 

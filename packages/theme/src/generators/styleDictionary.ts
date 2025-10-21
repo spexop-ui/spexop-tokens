@@ -61,7 +61,7 @@ export function generateStyleDictionary(config: SpexopThemeConfig): string {
         acc[key] = { value };
         return acc;
       },
-      {} as Record<string, any>,
+      {} as Record<string, unknown>,
     ),
     font: {
       family: {

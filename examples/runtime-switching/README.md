@@ -15,4 +15,3 @@ pnpm dev
 - Use ThemeProvider with state management
 - Switch themes dynamically without page reload
 - All components update automatically
-

@@ -115,7 +115,7 @@ export function generateW3C(config: SpexopThemeConfig): string {
         };
         return acc;
       },
-      {} as Record<string, any>,
+      {} as Record<string, unknown>,
     ),
 
     // Typography

@@ -9,6 +9,60 @@ import type { SpexopThemeConfig } from "../types/SpexopThemeConfig.js";
 import { resolveToken } from "../utils/tokenResolver.js";
 
 /**
+ * Resolve a value that might be a token reference
+ */
+function resolveValue(
+  value: string | number | undefined,
+  theme: SpexopThemeConfig,
+): string {
+  if (value === undefined) return "";
+  if (typeof value === "number") return value.toString();
+
+  // Check if it's a token reference (e.g., "colors.primary")
+  if (typeof value === "string" && value.includes(".")) {
+    try {
+      const resolved = resolveToken(value, theme);
+      return typeof resolved === "number" ? resolved.toString() : resolved;
+    } catch {
+      // If resolution fails, return the original value
+      return value;
+    }
+  }
+
+  return value;
+}
+
+/**
+ * Helper to generate CSS variable with optional token resolution
+ */
+function cssVar(
+  name: string,
+  value: string | number | undefined,
+  theme: SpexopThemeConfig,
+  optional = false,
+): string {
+  if (value === undefined || value === "") {
+    return optional ? "" : "";
+  }
+
+  const resolved = resolveValue(value, theme);
+  return optional && !resolved ? "" : `  --theme-${name}: ${resolved};`;
+}
+
+/**
+ * Helper to generate optional CSS variable
+ */
+function cssVarOptional(
+  name: string,
+  value: string | number | undefined,
+  theme: SpexopThemeConfig,
+): string {
+  if (value === undefined || value === "") return "";
+  const resolved = resolveValue(value, theme);
+  return resolved ? `  --theme-${name}: ${resolved};` : "";
+}
+
+/**
  * Generate spacing tokens from theme config
  */
 function generateSpacingTokens(spacing: SpexopThemeConfig["spacing"]): string {
@@ -79,6 +133,9 @@ function generateFontWeights(
 function generateLineHeights(
   lineHeights: SpexopThemeConfig["typography"]["lineHeights"],
 ): string {
+  if (!lineHeights) {
+    return "";
+  }
   return Object.entries(lineHeights)
     .map(([key, value]) => `  --theme-line-height-${key}: ${value};`)
     .join("\n");
@@ -129,8 +186,8 @@ function generateButtonStyles(
 
   const variants: string[] = [];
 
-  Object.entries(buttons).forEach(([variant, styles]) => {
-    if (!styles) return;
+  for (const [variant, styles] of Object.entries(buttons)) {
+    if (!styles) continue;
 
     const variantStyles: string[] = [];
 
@@ -182,9 +239,159 @@ function generateButtonStyles(
     if (variantStyles.length > 0) {
       variants.push(variantStyles.join("\n"));
     }
-  });
+  }
 
   return variants.join("\n");
+}
+
+/**
+ * Generate extended radius system tokens
+ */
+function generateRadiiTokens(radii?: SpexopThemeConfig["radii"]): string {
+  if (!radii) return "";
+
+  const tokens: string[] = [];
+
+  if (radii.none !== undefined) {
+    tokens.push(`  --theme-radius-none: ${radii.none}px;`);
+  }
+  if (radii.sm !== undefined) {
+    tokens.push(`  --theme-radius-sm: ${radii.sm}px;`);
+  }
+  if (radii.md !== undefined) {
+    tokens.push(`  --theme-radius-md: ${radii.md}px;`);
+  }
+  if (radii.lg !== undefined) {
+    tokens.push(`  --theme-radius-lg: ${radii.lg}px;`);
+  }
+  if (radii.xl !== undefined) {
+    tokens.push(`  --theme-radius-xl: ${radii.xl}px;`);
+  }
+  if (radii["2xl"] !== undefined) {
+    tokens.push(`  --theme-radius-2xl: ${radii["2xl"]}px;`);
+  }
+  if (radii.full !== undefined) {
+    tokens.push(`  --theme-radius-full: ${radii.full}px;`);
+  }
+
+  return tokens.length > 0 ? tokens.join("\n") : "";
+}
+
+/**
+ * Generate shadow system tokens
+ */
+function generateShadowTokens(shadows?: SpexopThemeConfig["shadows"]): string {
+  if (!shadows) return "";
+
+  const tokens: string[] = [];
+
+  if (shadows.none !== undefined) {
+    tokens.push(`  --theme-shadow-none: ${shadows.none};`);
+  }
+  if (shadows.sm !== undefined) {
+    tokens.push(`  --theme-shadow-sm: ${shadows.sm};`);
+  }
+  if (shadows.md !== undefined) {
+    tokens.push(`  --theme-shadow-md: ${shadows.md};`);
+  }
+  if (shadows.lg !== undefined) {
+    tokens.push(`  --theme-shadow-lg: ${shadows.lg};`);
+  }
+  if (shadows.xl !== undefined) {
+    tokens.push(`  --theme-shadow-xl: ${shadows.xl};`);
+  }
+
+  return tokens.length > 0 ? tokens.join("\n") : "";
+}
+
+/**
+ * Generate z-index layering tokens
+ */
+function generateZIndexTokens(zIndex?: SpexopThemeConfig["zIndex"]): string {
+  if (!zIndex) return "";
+
+  const tokens: string[] = [];
+
+  if (zIndex.base !== undefined) {
+    tokens.push(`  --theme-z-base: ${zIndex.base};`);
+  }
+  if (zIndex.dropdown !== undefined) {
+    tokens.push(`  --theme-z-dropdown: ${zIndex.dropdown};`);
+  }
+  if (zIndex.sticky !== undefined) {
+    tokens.push(`  --theme-z-sticky: ${zIndex.sticky};`);
+  }
+  if (zIndex.fixed !== undefined) {
+    tokens.push(`  --theme-z-fixed: ${zIndex.fixed};`);
+  }
+  if (zIndex.modal !== undefined) {
+    tokens.push(`  --theme-z-modal: ${zIndex.modal};`);
+  }
+  if (zIndex.popover !== undefined) {
+    tokens.push(`  --theme-z-popover: ${zIndex.popover};`);
+  }
+  if (zIndex.tooltip !== undefined) {
+    tokens.push(`  --theme-z-tooltip: ${zIndex.tooltip};`);
+  }
+  if (zIndex.toast !== undefined) {
+    tokens.push(`  --theme-z-toast: ${zIndex.toast};`);
+  }
+
+  return tokens.length > 0 ? tokens.join("\n") : "";
+}
+
+/**
+ * Generate semantic color shade tokens
+ */
+function generateColorShadeTokens(colors: SpexopThemeConfig["colors"]): string {
+  const tokens: string[] = [];
+
+  // Primary shades
+  if (colors.primaryDark) {
+    tokens.push(`  --theme-primary-dark: ${colors.primaryDark};`);
+  }
+
+  // Secondary shades
+  if (colors.secondaryLight) {
+    tokens.push(`  --theme-secondary-light: ${colors.secondaryLight};`);
+  }
+  if (colors.secondaryDark) {
+    tokens.push(`  --theme-secondary-dark: ${colors.secondaryDark};`);
+  }
+
+  // Success shades
+  if (colors.successLight) {
+    tokens.push(`  --theme-success-light: ${colors.successLight};`);
+  }
+  if (colors.successDark) {
+    tokens.push(`  --theme-success-dark: ${colors.successDark};`);
+  }
+
+  // Warning shades
+  if (colors.warningLight) {
+    tokens.push(`  --theme-warning-light: ${colors.warningLight};`);
+  }
+  if (colors.warningDark) {
+    tokens.push(`  --theme-warning-dark: ${colors.warningDark};`);
+  }
+
+  // Error shades
+  if (colors.errorLight) {
+    tokens.push(`  --theme-error-light: ${colors.errorLight};`);
+  }
+  if (colors.errorDark) {
+    tokens.push(`  --theme-error-dark: ${colors.errorDark};`);
+  }
+
+  // Info shades
+  if (colors.infoLight) {
+    tokens.push(`  --theme-info-light: ${colors.infoLight};`);
+  }
+  if (colors.infoDark) {
+    tokens.push(`  --theme-info-dark: ${colors.infoDark};`);
+  }
+
+  return tokens.length > 0 ? tokens.join("\n") : "";
 }
 
 /**
@@ -271,6 +478,9 @@ export function generateCSS(
     spacing,
     typography,
     borders,
+    radii,
+    shadows,
+    zIndex,
     buttons,
     cards,
     breakpoints,
@@ -287,62 +497,116 @@ export function generateCSS(
 ${scope} {
   /* === Colors === */
   /* Primary */
-  --theme-primary: ${colors.primary};
-  --theme-primary-hover: ${colors.primaryHover || colors.primary};
-  --theme-primary-active: ${colors.primaryActive || colors.primary};
-  ${colors.primaryLight ? `--theme-primary-light: ${colors.primaryLight};` : ""}
+${cssVar("primary", colors.primary, config)}
+${cssVar("primary-hover", colors.primaryHover || colors.primary, config)}
+${cssVar("primary-active", colors.primaryActive || colors.primary, config)}
+${cssVarOptional("primary-light", colors.primaryLight, config)}
   
   /* Secondary */
-  ${colors.secondary ? `--theme-secondary: ${colors.secondary};` : ""}
-  ${colors.secondaryHover ? `--theme-secondary-hover: ${colors.secondaryHover};` : ""}
-  ${colors.secondaryActive ? `--theme-secondary-active: ${colors.secondaryActive};` : ""}
+${cssVarOptional("secondary", colors.secondary, config)}
+${cssVarOptional("secondary-hover", colors.secondaryHover, config)}
+${cssVarOptional("secondary-active", colors.secondaryActive, config)}
   
   /* Surface */
-  --theme-surface: ${colors.surface};
-  --theme-surface-secondary: ${colors.surfaceSecondary};
-  --theme-surface-hover: ${colors.surfaceHover};
+${cssVar("surface", colors.surface, config)}
+${cssVar("surface-secondary", colors.surfaceSecondary, config)}
+${cssVar("surface-hover", colors.surfaceHover, config)}
   
   /* Text */
-  --theme-text: ${colors.text};
-  --theme-text-secondary: ${colors.textSecondary};
-  --theme-text-muted: ${colors.textMuted};
-  ${colors.textTertiary ? `--theme-text-tertiary: ${colors.textTertiary};` : ""}
-  ${colors.textInverted ? `--theme-text-inverted: ${colors.textInverted};` : ""}
+${cssVar("text", colors.text, config)}
+${cssVar("text-secondary", colors.textSecondary, config)}
+${cssVar("text-muted", colors.textMuted, config)}
+${cssVarOptional("text-tertiary", colors.textTertiary, config)}
+${cssVarOptional("text-inverted", colors.textInverted, config)}
   
   /* Border */
-  --theme-border: ${colors.border};
-  --theme-border-strong: ${colors.borderStrong};
-  --theme-border-subtle: ${colors.borderSubtle};
+${cssVar("border", colors.border, config)}
+${cssVar("border-strong", colors.borderStrong, config)}
+${cssVar("border-subtle", colors.borderSubtle, config)}
   
   /* Semantic */
-  ${colors.success ? `--theme-success: ${colors.success};` : ""}
-  ${colors.warning ? `--theme-warning: ${colors.warning};` : ""}
-  ${colors.error ? `--theme-error: ${colors.error};` : ""}
-  ${colors.error ? `--theme-danger: ${colors.error};` : ""} /* Alias for error */
-  ${colors.info ? `--theme-info: ${colors.info};` : ""}
+${cssVarOptional("success", colors.success, config)}
+${cssVarOptional("warning", colors.warning, config)}
+${cssVarOptional("error", colors.error, config)}
+${cssVarOptional("danger", colors.error, config)} /* Alias for error */
+${cssVarOptional("info", colors.info, config)}
+  
+  /* Semantic Color Shades */
+${generateColorShadeTokens(colors)}
   
   /* Accent */
-  ${colors.accent ? `--theme-accent: ${colors.accent};` : ""}
-  ${colors.accentHover ? `--theme-accent-hover: ${colors.accentHover};` : ""}
-  ${colors.accentActive ? `--theme-accent-active: ${colors.accentActive};` : ""}
+${cssVarOptional("accent", colors.accent, config)}
+${cssVarOptional("accent-hover", colors.accentHover, config)}
+${cssVarOptional("accent-active", colors.accentActive, config)}
+${cssVarOptional("highlight", (colors as unknown as Record<string, unknown>).highlight as string | undefined, config)}
   
   /* Link */
-  ${colors.link ? `--theme-link: ${colors.link};` : ""}
-  ${colors.linkHover ? `--theme-link-hover: ${colors.linkHover};` : ""}
-  ${colors.linkActive ? `--theme-link-active: ${colors.linkActive};` : ""}
+${cssVarOptional("link", colors.link, config)}
+${cssVarOptional("link-hover", colors.linkHover, config)}
+${cssVarOptional("link-active", colors.linkActive, config)}
   
   /* Interactive States */
-  ${colors.focus ? `--theme-focus: ${colors.focus};` : ""}
-  ${colors.hover ? `--theme-hover: ${colors.hover};` : ""}
+${cssVarOptional("focus", colors.focus, config)}
+${cssVarOptional("hover", colors.hover, config)}
   
   /* Overlay/Backdrop */
-  ${colors.overlay ? `--theme-overlay: ${colors.overlay};` : ""}
-  ${colors.backdrop ? `--theme-backdrop: ${colors.backdrop};` : ""}
+${cssVarOptional("overlay", colors.overlay, config)}
+${cssVarOptional("backdrop", colors.backdrop, config)}
   
   /* Neutral */
-  ${colors.neutral ? `--theme-neutral: ${colors.neutral};` : ""}
-  ${colors.neutralHover ? `--theme-neutral-hover: ${colors.neutralHover};` : ""}
-  ${colors.neutralActive ? `--theme-neutral-active: ${colors.neutralActive};` : ""}
+${cssVarOptional("neutral", colors.neutral, config)}
+${cssVarOptional("neutral-hover", colors.neutralHover, config)}
+${cssVarOptional("neutral-active", colors.neutralActive, config)}
+  
+  /* Custom Color Properties */
+${Object.entries(colors)
+  .filter(
+    ([key]) =>
+      ![
+        "primary",
+        "primaryHover",
+        "primaryActive",
+        "primaryLight",
+        "secondary",
+        "secondaryHover",
+        "secondaryActive",
+        "surface",
+        "surfaceSecondary",
+        "surfaceHover",
+        "text",
+        "textSecondary",
+        "textMuted",
+        "textTertiary",
+        "textInverted",
+        "border",
+        "borderStrong",
+        "borderSubtle",
+        "success",
+        "warning",
+        "error",
+        "info",
+        "accent",
+        "accentHover",
+        "accentActive",
+        "highlight",
+        "link",
+        "linkHover",
+        "linkActive",
+        "focus",
+        "hover",
+        "overlay",
+        "backdrop",
+        "neutral",
+        "neutralHover",
+        "neutralActive",
+      ].includes(key) &&
+      !key.includes("Light") &&
+      !key.includes("Dark") &&
+      !key.includes("Hover") &&
+      !key.includes("Active"),
+  )
+  .map(([key, value]) => cssVarOptional(key, value, config))
+  .join("\n")}
 
   /* === Spacing === */
 ${generateSpacingTokens(spacing)}
@@ -365,20 +629,42 @@ ${generateLineHeights(typography.lineHeights)}
 
   /* === Borders === */
   /* Widths */
-  --theme-border-thin: ${borders.thin}px;
+  ${borders.thin ? `--theme-border-thin: ${borders.thin}px;` : ""}
   --theme-border-width: ${borders.default}px;
-  --theme-border-thick: ${borders.thick}px;
+  ${borders.thick ? `--theme-border-thick: ${borders.thick}px;` : ""}
+  ${(borders as unknown as Record<string, unknown>).strong ? `--theme-border-strong: ${(borders as unknown as Record<string, unknown>).strong}px;` : ""}
   
   /* Radius */
-  --theme-radius-subtle: ${borders.radiusSubtle}px;
-  --theme-radius-base: ${borders.radiusSubtle}px; /* Alias for subtle */
-  --theme-radius-relaxed: ${borders.radiusRelaxed}px;
-  --theme-radius-medium: ${borders.radiusRelaxed}px; /* Alias for relaxed */
-  --theme-radius-pill: ${borders.radiusPill}px;
+${
+  (borders as unknown as Record<string, unknown>).radius
+    ? Object.entries(
+        (borders as unknown as Record<string, unknown>).radius as Record<
+          string,
+          number
+        >,
+      )
+        .map(([key, value]) => `  --theme-radius-${key}: ${value}px;`)
+        .join("\n")
+    : ""
+}
+  ${borders.radiusSubtle ? `--theme-radius-subtle: ${borders.radiusSubtle}px;` : ""}
+  ${borders.radiusSubtle ? `--theme-radius-base: ${borders.radiusSubtle}px; /* Alias for subtle */` : ""}
+  ${borders.radiusRelaxed ? `--theme-radius-relaxed: ${borders.radiusRelaxed}px;` : ""}
+  ${borders.radiusRelaxed ? `--theme-radius-medium: ${borders.radiusRelaxed}px; /* Alias for relaxed */` : ""}
+  ${borders.radiusPill ? `--theme-radius-pill: ${borders.radiusPill}px;` : ""}
   ${borders.radiusLiquid ? `--theme-radius-liquid: ${borders.radiusLiquid}px;` : ""}
   
   /* Style */
-  --theme-border-style: ${borders.defaultStyle};
+  ${borders.defaultStyle ? `--theme-border-style: ${borders.defaultStyle};` : ""}
+
+  /* === Extended Radius === */
+${generateRadiiTokens(radii)}
+
+  /* === Shadows === */
+${generateShadowTokens(shadows)}
+
+  /* === Z-Index === */
+${generateZIndexTokens(zIndex)}
 
   /* === Breakpoints === */
 ${generateBreakpoints(breakpoints)}

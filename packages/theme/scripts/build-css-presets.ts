@@ -53,10 +53,10 @@ function buildPresets() {
   writeCSSFile("default", defaultCSS);
 
   // Generate all presets
-  Object.entries(presets).forEach(([name, config]) => {
+  for (const [name, config] of Object.entries(presets)) {
     const css = generateCSS(config);
     writeCSSFile(name, css);
-  });
+  }
 
   console.log(
     `\n✅ Successfully generated ${Object.keys(presets).length + 1} CSS files\n`,

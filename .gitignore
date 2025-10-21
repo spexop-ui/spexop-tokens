@@ -58,3 +58,11 @@ publish-docs/
 #tar.gz backups
 spexop-design-system-0.1.0.tgz
 
+#AI Instructions
+copilot-instructions.md 
+spexop-react-rules.mdc
+
+#Development Documents
+docs-dev/
+
+

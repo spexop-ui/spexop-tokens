@@ -12,6 +12,7 @@ export enum ContrastLevel {
   AAA = "AAA", // 7:1 for normal text, 4.5:1 for large text
   AA = "AA", // 4.5:1 for normal text, 3:1 for large text
   AA_LARGE = "AA_LARGE", // 3:1 for large text only
+  ENHANCED = "ENHANCED", // 10:1 or higher for enhanced accessibility
   FAIL = "FAIL", // Below minimum standards
 }
 
@@ -20,12 +21,10 @@ export enum ContrastLevel {
  */
 export interface ContrastResult {
   ratio: number;
-  level: ContrastLevel;
-  passAA: boolean;
-  passAAA: boolean;
-  passAALarge: boolean;
-  passAAALarge: boolean;
-  score: number; // 0-100 accessibility score
+  AA: boolean;
+  AAA: boolean;
+  AALarge: boolean;
+  AAALarge: boolean;
 }
 
 /**
@@ -74,7 +73,6 @@ export function calculateContrastRatio(color1: string, color2: string): number {
 export function checkContrast(
   foreground: string,
   background: string,
-  isLargeText = false,
 ): ContrastResult {
   const ratio = calculateContrastRatio(foreground, background);
 
@@ -87,52 +85,37 @@ export function checkContrast(
   const minLargeAAA = 4.5;
 
   // Determine pass/fail for each level
-  const passAA = ratio >= (isLargeText ? minLargeAA : minNormalAA);
-  const passAAA = ratio >= (isLargeText ? minLargeAAA : minNormalAAA);
-  const passAALarge = ratio >= minLargeAA;
-  const passAAALarge = ratio >= minLargeAAA;
-
-  // Determine overall level
-  let level: ContrastLevel;
-  if (passAAA) {
-    level = ContrastLevel.AAA;
-  } else if (passAA) {
-    level = ContrastLevel.AA;
-  } else if (passAALarge) {
-    level = ContrastLevel.AA_LARGE;
-  } else {
-    level = ContrastLevel.FAIL;
-  }
-
-  // Calculate accessibility score (0-100)
-  const maxRatio = 21; // Theoretical maximum
-  const score = Math.min(100, Math.round((ratio / maxRatio) * 100));
+  const AA = ratio >= minNormalAA;
+  const AAA = ratio >= minNormalAAA;
+  const AALarge = ratio >= minLargeAA;
+  const AAALarge = ratio >= minLargeAAA;
 
   return {
     ratio: Math.round(ratio * 100) / 100, // Round to 2 decimals
-    level,
-    passAA,
-    passAAA,
-    passAALarge,
-    passAAALarge,
-    score,
+    AA,
+    AAA,
+    AALarge,
+    AAALarge,
   };
 }
 
 /**
- * Get a description of the contrast result
+ * Get a description of the contrast ratio
  */
-export function getContrastDescription(result: ContrastResult): string {
-  if (result.passAAA) {
-    return "Excellent contrast - WCAG AAA compliant";
+export function getContrastDescription(ratio: number): string {
+  if (ratio >= 15) {
+    return "Excellent contrast - exceptional accessibility";
   }
-  if (result.passAA) {
-    return "Good contrast - WCAG AA compliant";
+  if (ratio >= 7) {
+    return "Good contrast - WCAG AAA compliant";
   }
-  if (result.passAALarge) {
-    return "Acceptable for large text only - WCAG AA Large";
+  if (ratio >= 4.5) {
+    return "Acceptable contrast - WCAG AA compliant";
   }
-  return "Poor contrast - Does not meet WCAG standards";
+  if (ratio >= 3) {
+    return "Poor contrast - only suitable for large text";
+  }
+  return "Fails WCAG standards - insufficient contrast";
 }
 
 /**
@@ -146,8 +129,12 @@ export function getContrastLevelColor(level: ContrastLevel): string {
       return "#3b82f6"; // Blue
     case ContrastLevel.AA_LARGE:
       return "#f59e0b"; // Amber
+    case ContrastLevel.ENHANCED:
+      return "#059669"; // Emerald
     case ContrastLevel.FAIL:
       return "#ef4444"; // Red
+    default:
+      return "#6b7280"; // Gray
   }
 }
 
@@ -158,112 +145,55 @@ export function suggestContrastFix(
   foreground: string,
   background: string,
   targetRatio = 4.5,
-): {
-  suggestedForeground?: string;
-  suggestedBackground?: string;
-  method: "lighten" | "darken" | "none";
-} {
+): string | null {
   const currentRatio = calculateContrastRatio(foreground, background);
 
   if (currentRatio >= targetRatio) {
-    return { method: "none" };
+    return null;
   }
 
-  // Try adjusting foreground
-  const fgRgb = hexToRgb(foreground);
+  // Calculate luminance
   const bgRgb = hexToRgb(background);
-
-  const fgLum = calculateLuminance(fgRgb);
   const bgLum = calculateLuminance(bgRgb);
 
-  // Determine if we should lighten or darken
-  const shouldLightenFg = fgLum < bgLum;
-  const method = shouldLightenFg ? "lighten" : "darken";
+  // For dark backgrounds, suggest white text
+  if (bgLum < 0.5) {
+    return "Lighten the foreground color or use white for better contrast";
+  }
 
-  // Binary search for the right adjustment
-  // This is a placeholder - actual implementation would adjust color
-  // and check if it meets target ratio
-  // TODO: Implement actual color adjustment algorithm
-
-  // For now, return a simple suggestion
-  // A full implementation would calculate the exact color needed
-  return {
-    method,
-    suggestedForeground: foreground, // Placeholder
-    suggestedBackground: background, // Placeholder
-  };
+  // For light backgrounds, suggest black text
+  return "Darken the foreground color or use black for better contrast";
 }
 
 /**
  * Check multiple color combinations
  */
 export interface ColorCombination {
-  name: string;
   foreground: string;
   background: string;
-  isLargeText?: boolean;
-}
-
-export interface ContrastReport {
-  combinations: Array<ColorCombination & { result: ContrastResult }>;
-  passRate: number;
-  overallPass: boolean;
 }
 
 export function checkMultipleContrasts(
   combinations: ColorCombination[],
-): ContrastReport {
-  const results = combinations.map((combo) => ({
-    ...combo,
-    result: checkContrast(
-      combo.foreground,
-      combo.background,
-      combo.isLargeText,
-    ),
+): Array<{ combination: ColorCombination; result: ContrastResult }> {
+  return combinations.map((combo) => ({
+    combination: combo,
+    result: checkContrast(combo.foreground, combo.background),
   }));
-
-  const passCount = results.filter((r) => r.result.passAA).length;
-  const passRate = (passCount / results.length) * 100;
-  const overallPass = passCount === results.length;
-
-  return {
-    combinations: results,
-    passRate: Math.round(passRate),
-    overallPass,
-  };
 }
 
 /**
  * Generate a contrast matrix for a color palette
  */
-export function generateContrastMatrix(colors: {
-  [key: string]: string;
-}): Array<{
-  foreground: string;
-  background: string;
-  ratio: number;
-  passAA: boolean;
-}> {
-  const matrix: Array<{
-    foreground: string;
-    background: string;
-    ratio: number;
-    passAA: boolean;
-  }> = [];
+export function generateContrastMatrix(
+  colors: string[],
+): Record<string, Record<string, ContrastResult>> {
+  const matrix: Record<string, Record<string, ContrastResult>> = {};
 
-  const colorKeys = Object.keys(colors);
-
-  for (const fgKey of colorKeys) {
-    for (const bgKey of colorKeys) {
-      if (fgKey !== bgKey) {
-        const result = checkContrast(colors[fgKey], colors[bgKey]);
-        matrix.push({
-          foreground: fgKey,
-          background: bgKey,
-          ratio: result.ratio,
-          passAA: result.passAA,
-        });
-      }
+  for (const fgColor of colors) {
+    matrix[fgColor] = {};
+    for (const bgColor of colors) {
+      matrix[fgColor][bgColor] = checkContrast(fgColor, bgColor);
     }
   }
 
@@ -271,15 +201,23 @@ export function generateContrastMatrix(colors: {
 }
 
 /**
- * Find the best text color (black or white) for a background
+ * Find the best text color for a background
  */
 export function getAccessibleTextColor(
   backgroundColor: string,
-): "#000000" | "#ffffff" {
-  const blackContrast = calculateContrastRatio("#000000", backgroundColor);
-  const whiteContrast = calculateContrastRatio("#ffffff", backgroundColor);
+  darkText = "#000000",
+  lightText = "#ffffff",
+  minRatio = 4.5,
+): string {
+  const darkContrast = calculateContrastRatio(darkText, backgroundColor);
+  const lightContrast = calculateContrastRatio(lightText, backgroundColor);
 
-  return blackContrast > whiteContrast ? "#000000" : "#ffffff";
+  // Return the one that meets minimum ratio, preferring higher contrast
+  if (darkContrast >= minRatio) return darkText;
+  if (lightContrast >= minRatio) return lightText;
+
+  // If neither meets minimum, return the one with better contrast
+  return lightContrast > darkContrast ? lightText : darkText;
 }
 
 /**
@@ -288,14 +226,19 @@ export function getAccessibleTextColor(
 export function meetsMinimumContrast(
   foreground: string,
   background: string,
-  level: "AA" | "AAA" = "AA",
+  level: ContrastLevel,
   isLargeText = false,
 ): boolean {
-  const result = checkContrast(foreground, background, isLargeText);
+  const ratio = calculateContrastRatio(foreground, background);
 
-  if (level === "AAA") {
-    return result.passAAA;
+  switch (level) {
+    case ContrastLevel.AAA:
+      return ratio >= (isLargeText ? 4.5 : 7.0);
+    case ContrastLevel.AA:
+      return ratio >= (isLargeText ? 3.0 : 4.5);
+    case ContrastLevel.ENHANCED:
+      return ratio >= 10.0;
+    default:
+      return false;
   }
-
-  return result.passAA;
 }

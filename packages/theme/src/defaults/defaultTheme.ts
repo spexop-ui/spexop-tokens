@@ -26,11 +26,15 @@ export const defaultTheme: SpexopThemeConfig = {
     primary: "#ef4444",
     primaryHover: "#dc2626",
     primaryActive: "#b91c1c",
+    primaryLight: "#fef2f2",
+    primaryDark: "#7f1d1d",
 
     // Secondary color (optional, not heavily used in v0.1.0)
     secondary: "#3b82f6",
     secondaryHover: "#2563eb",
     secondaryActive: "#1d4ed8",
+    secondaryLight: "#eff6ff",
+    secondaryDark: "#1e3a8a",
 
     // Surface colors (neutral backgrounds)
     surface: "#ffffff",
@@ -49,9 +53,17 @@ export const defaultTheme: SpexopThemeConfig = {
 
     // Semantic colors
     success: "#22c55e",
+    successLight: "#dcfce7",
+    successDark: "#14532d",
     warning: "#f59e0b",
+    warningLight: "#fef3c7",
+    warningDark: "#713f12",
     error: "#ef4444",
+    errorLight: "#fee2e2",
+    errorDark: "#7f1d1d",
     info: "#3b82f6",
+    infoLight: "#dbeafe",
+    infoDark: "#1e3a8a",
 
     // Accent colors (purple/violet for special highlights)
     accent: "#8b5cf6",
@@ -140,6 +152,38 @@ export const defaultTheme: SpexopThemeConfig = {
 
     // Default style
     defaultStyle: "solid",
+  },
+
+  // Extended radius system
+  radii: {
+    none: 0,
+    sm: 4,
+    md: 8,
+    lg: 12,
+    xl: 16,
+    "2xl": 20,
+    full: 9999,
+  },
+
+  // Shadow system
+  shadows: {
+    none: "none",
+    sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
+    md: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    lg: "0 10px 15px rgba(0, 0, 0, 0.1)",
+    xl: "0 20px 25px rgba(0, 0, 0, 0.15)",
+  },
+
+  // Z-index layering system
+  zIndex: {
+    base: 0,
+    dropdown: 1000,
+    sticky: 1100,
+    fixed: 1200,
+    modal: 1300,
+    popover: 1400,
+    tooltip: 1500,
+    toast: 1600,
   },
 
   // Button styling (using token references for maintainability)
@@ -348,10 +392,20 @@ export const defaultTheme: SpexopThemeConfig = {
       primary: "#ff6b6b",
       primaryHover: "#ff5252",
       primaryActive: "#ff3838",
+      primaryLight: "#2d1515",
+      primaryDark: "#ff8787",
       success: "#51cf66",
+      successLight: "#1a2e1a",
+      successDark: "#69db7c",
       warning: "#ffd43b",
+      warningLight: "#332c1a",
+      warningDark: "#ffe066",
       error: "#ff6b6b",
+      errorLight: "#2d1515",
+      errorDark: "#ff8787",
       info: "#74c0fc",
+      infoLight: "#1a2733",
+      infoDark: "#91d0ff",
 
       // Accent colors (lighter in dark mode)
       accent: "#a78bfa",

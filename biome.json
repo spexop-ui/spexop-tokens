@@ -46,7 +46,8 @@
     "rules": {
       "recommended": true,
       "a11y": {
-        "recommended": true
+        "recommended": true,
+        "useSemanticElements": "off"
       },
       "complexity": {
         "recommended": true

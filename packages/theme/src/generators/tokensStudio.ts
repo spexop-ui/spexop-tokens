@@ -70,7 +70,7 @@ export function generateTokensStudio(config: SpexopThemeConfig): string {
           acc[key] = { value: value, type: "spacing" };
           return acc;
         },
-        {} as Record<string, any>,
+        {} as Record<string, unknown>,
       ),
       typography: {
         "font-family": { value: typography.fontFamily, type: "fontFamilies" },

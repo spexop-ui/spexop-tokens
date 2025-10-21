@@ -32,7 +32,9 @@ export function isTokenReference(value: string | number): boolean {
  *
  * @param reference - Token reference (e.g., "colors.primary", "typography.baseSize")
  * @param config - Theme configuration
+ * @param visited - Internal set tracking visited references to detect circular dependencies
  * @returns Resolved value or the original reference if not found
+ * @throws Error if a circular reference is detected
  *
  * @example
  * ```typescript
@@ -49,11 +51,23 @@ export function isTokenReference(value: string | number): boolean {
 export function resolveToken(
   reference: string | number,
   config: SpexopThemeConfig,
+  visited: Set<string> = new Set(),
 ): string | number {
   // If not a string or not a reference, return as-is
   if (typeof reference !== "string" || !isTokenReference(reference)) {
     return reference;
   }
+
+  // Circular reference detection
+  if (visited.has(reference)) {
+    const chain = Array.from(visited).join(" → ");
+    throw new Error(
+      `Circular reference detected in theme configuration: ${chain} → ${reference}\n\nThis means your theme has tokens that reference each other in a loop.\nTo fix this, check your theme configuration and ensure tokens don't create circular dependencies.\n\nExample of circular reference (INVALID):\n{\n  colors: {\n    primary: "colors.secondary",\n    secondary: "colors.primary"  // Circular!\n  }\n}\n\nFix by using direct values:\n{\n  colors: {\n    primary: "#3b82f6",\n    secondary: "#10b981"\n  }\n}`,
+    );
+  }
+
+  // Add current reference to visited set
+  visited.add(reference);
 
   // Split the reference path (e.g., "colors.primary" → ["colors", "primary"])
   const parts = reference.split(".");
@@ -72,7 +86,7 @@ export function resolveToken(
 
   // If the resolved value is also a token reference, resolve recursively
   if (typeof value === "string" && isTokenReference(value)) {
-    return resolveToken(value, config);
+    return resolveToken(value, config, visited);
   }
 
   return (value as string | number) ?? reference;

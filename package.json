@@ -17,7 +17,6 @@
     "build": "pnpm -r build",
     "build:theme": "pnpm --filter @spexop/theme build",
     "build:react": "pnpm --filter @spexop/react build",
-    "build:tokens": "pnpm --filter @spexop/tokens build",
     "test": "pnpm -r test",
     "type-check": "pnpm -r type-check",
     "clean": "pnpm -r clean",
@@ -25,16 +24,10 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write ."
   },
-  "keywords": [
-    "design-system",
-    "react",
-    "components",
-    "theme",
-    "design-tokens",
-    "spexop"
-  ],
+  "keywords": ["design-system", "react", "components", "theme", "spexop"],
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@testing-library/jest-dom": "^6.1.0",
     "typescript": "^5.3.0"
   },
   "engines": {

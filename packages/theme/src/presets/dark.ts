@@ -20,11 +20,15 @@ export const darkPreset: SpexopThemeConfig = {
     primary: "#06b6d4",
     primaryHover: "#0891b2",
     primaryActive: "#0e7490",
+    primaryLight: "#eff6ff",
+    primaryDark: "#1e3a8a",
 
     // Secondary color (purple)
     secondary: "#a78bfa",
     secondaryHover: "#8b5cf6",
     secondaryActive: "#7c3aed",
+    secondaryLight: "#f5f3ff",
+    secondaryDark: "#4c1d95",
 
     // Surface colors (dark)
     surface: "#0a0a0a",
@@ -43,9 +47,17 @@ export const darkPreset: SpexopThemeConfig = {
 
     // Semantic colors
     success: "#10b981",
+    successLight: "#d1fae5",
+    successDark: "#065f46",
     warning: "#fbbf24",
+    warningLight: "#fef3c7",
+    warningDark: "#92400e",
     error: "#f87171",
+    errorLight: "#fee2e2",
+    errorDark: "#991b1b",
     info: "#60a5fa",
+    infoLight: "#dbeafe",
+    infoDark: "#1e40af",
 
     // Accent colors (vibrant purple for dark mode)
     accent: "#c084fc",
@@ -104,6 +116,35 @@ export const darkPreset: SpexopThemeConfig = {
     radiusRelaxed: 10,
     radiusPill: 9999,
     defaultStyle: "solid",
+  },
+
+  radii: {
+    none: 0,
+    sm: 4,
+    md: 8,
+    lg: 12,
+    xl: 16,
+    "2xl": 20,
+    full: 9999,
+  },
+
+  shadows: {
+    none: "none",
+    sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
+    md: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    lg: "0 10px 15px rgba(0, 0, 0, 0.1)",
+    xl: "0 20px 25px rgba(0, 0, 0, 0.15)",
+  },
+
+  zIndex: {
+    base: 0,
+    dropdown: 1000,
+    sticky: 1100,
+    fixed: 1200,
+    modal: 1300,
+    popover: 1400,
+    tooltip: 1500,
+    toast: 1600,
   },
   cards: {
     basic: {

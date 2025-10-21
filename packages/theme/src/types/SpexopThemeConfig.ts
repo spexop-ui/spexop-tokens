@@ -35,6 +35,8 @@ export interface ThemeColors {
   primaryActive?: string;
   /** Primary light variant (optional, for subtle backgrounds) */
   primaryLight?: string;
+  /** Primary dark variant (optional, for text on light backgrounds) */
+  primaryDark?: string;
 
   // Secondary colors
   /** Secondary brand color */
@@ -43,6 +45,10 @@ export interface ThemeColors {
   secondaryHover?: string;
   /** Secondary active state */
   secondaryActive?: string;
+  /** Secondary light variant (optional, for subtle backgrounds) */
+  secondaryLight?: string;
+  /** Secondary dark variant (optional, for text on light backgrounds) */
+  secondaryDark?: string;
 
   // Surface colors (backgrounds)
   /** Main background color */
@@ -75,12 +81,28 @@ export interface ThemeColors {
   // Semantic colors (optional)
   /** Success state color */
   success?: string;
+  /** Success light variant (for backgrounds) */
+  successLight?: string;
+  /** Success dark variant (for text on light backgrounds) */
+  successDark?: string;
   /** Warning state color */
   warning?: string;
+  /** Warning light variant (for backgrounds) */
+  warningLight?: string;
+  /** Warning dark variant (for text on light backgrounds) */
+  warningDark?: string;
   /** Error state color */
   error?: string;
+  /** Error light variant (for backgrounds) */
+  errorLight?: string;
+  /** Error dark variant (for text on light backgrounds) */
+  errorDark?: string;
   /** Info state color */
   info?: string;
+  /** Info light variant (for backgrounds) */
+  infoLight?: string;
+  /** Info dark variant (for text on light backgrounds) */
+  infoDark?: string;
 
   // Accent colors (for special highlights)
   /** Accent color for special emphasis */
@@ -251,6 +273,64 @@ export interface ThemeBorders {
 }
 
 /**
+ * Extended radius system for additional sizing options
+ */
+export interface ThemeRadii {
+  /** No radius (0) */
+  none?: number;
+  /** Small radius (typically 4px) */
+  sm?: number;
+  /** Medium radius (typically 8px) */
+  md?: number;
+  /** Large radius (typically 12px) */
+  lg?: number;
+  /** Extra large radius (typically 16px) */
+  xl?: number;
+  /** 2XL radius (typically 20px) */
+  "2xl"?: number;
+  /** Full/pill radius (9999px) */
+  full?: number;
+}
+
+/**
+ * Shadow system configuration
+ */
+export interface ThemeShadows {
+  /** No shadow */
+  none?: string;
+  /** Small subtle shadow */
+  sm?: string;
+  /** Medium shadow (default for most elevated elements) */
+  md?: string;
+  /** Large shadow (for prominent overlays) */
+  lg?: string;
+  /** Extra large shadow (for modals and prominent panels) */
+  xl?: string;
+}
+
+/**
+ * Z-index layering system
+ */
+export interface ThemeZIndex {
+  /** Base level (default page content) */
+  base?: number;
+  /** Dropdown menus */
+  dropdown?: number;
+  /** Sticky elements */
+  sticky?: number;
+  /** Fixed position elements */
+  fixed?: number;
+  /** Modal overlays */
+  modal?: number;
+  /** Popover menus */
+  popover?: number;
+  /** Tooltips */
+  tooltip?: number;
+  /** Toast notifications */
+  toast?: number;
+}
+
+/**
  * Responsive breakpoints
  */
 export interface Breakpoints {
@@ -260,6 +340,91 @@ export interface Breakpoints {
   lg: number;
   xl: number;
   "2xl": number;
+}
+
+/**
+ * Animation duration tokens
+ */
+export interface ThemeAnimations {
+  /** Animation durations in milliseconds */
+  durations?: {
+    /** Very fast animations (100-150ms) */
+    fast?: number;
+    /** Normal animations (200-300ms) */
+    normal?: number;
+    /** Slow animations (400-500ms) */
+    slow?: number;
+    /** Very slow animations (600-800ms) */
+    slower?: number;
+  };
+
+  /** Easing functions */
+  easings?: {
+    /** Ease-in timing function */
+    easeIn?: string;
+    /** Ease-out timing function */
+    easeOut?: string;
+    /** Ease-in-out timing function */
+    easeInOut?: string;
+    /** Linear timing function */
+    linear?: string;
+    /** Custom cubic-bezier values */
+    [key: string]: string | undefined;
+  };
+
+  /** Pre-configured transitions */
+  transitions?: {
+    /** Default transition */
+    default?: string;
+    /** Fast transition */
+    fast?: string;
+    /** Slow transition */
+    slow?: string;
+    /** Custom transitions */
+    [key: string]: string | undefined;
+  };
+}
+
+/**
+ * Opacity tokens
+ */
+export interface ThemeOpacity {
+  /** Disabled state opacity (0.4-0.5) */
+  disabled?: number;
+  /** Hover state opacity (0.8-0.9) */
+  hover?: number;
+  /** Overlay/modal backdrop opacity (0.4-0.6) */
+  overlay?: number;
+  /** Subtle emphasis opacity (0.6-0.7) */
+  subtle?: number;
+  /** Muted/secondary opacity (0.7-0.8) */
+  muted?: number;
+  /** Custom opacity values */
+  [key: string]: number | undefined;
+}
+
+/**
+ * Grid system tokens
+ */
+export interface ThemeGrid {
+  /** Number of grid columns (typically 12) */
+  columns?: number;
+  /** Gutter width between columns in pixels */
+  gutterWidth?: number;
+  /** Maximum container width in pixels */
+  containerMaxWidth?: number;
+  /** Column gap (spacing between columns) */
+  columnGap?: number;
+  /** Row gap (spacing between rows) */
+  rowGap?: number;
+  /** Responsive breakpoint-specific grids */
+  responsive?: {
+    [breakpoint: string]: {
+      columns?: number;
+      gutterWidth?: number;
+      containerMaxWidth?: number;
+    };
+  };
 }
 
 /**
@@ -430,6 +595,15 @@ export interface SpexopThemeConfig {
   /** Border system */
   borders: ThemeBorders;
 
+  /** Extended radius system (optional, provides sm/md/lg/xl sizing) */
+  radii?: ThemeRadii;
+
+  /** Shadow system (optional, provides consistent elevation) */
+  shadows?: ThemeShadows;
+
+  /** Z-index layering system (optional, provides consistent stacking) */
+  zIndex?: ThemeZIndex;
+
   /** Button styling (optional customization) */
   buttons?: ThemeButtons;
 
@@ -438,6 +612,15 @@ export interface SpexopThemeConfig {
 
   /** Responsive breakpoints (optional override) */
   breakpoints?: Partial<Breakpoints>;
+
+  /** Animation and transition system (optional) */
+  animations?: ThemeAnimations;
+
+  /** Opacity system (optional) */
+  opacity?: ThemeOpacity;
+
+  /** Grid system (optional) */
+  grid?: ThemeGrid;
 
   /** Dark mode configuration */
   darkMode?: DarkModeConfig;

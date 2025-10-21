@@ -125,7 +125,6 @@ export {
 } from "./utils/colorManipulation.js";
 export type {
   ColorCombination,
-  ContrastReport,
   ContrastResult,
 } from "./utils/contrastChecker.js";
 export {
@@ -148,12 +147,101 @@ export {
   previewDarkMode,
   validateDarkMode,
 } from "./utils/darkModeGenerator.js";
+// Theme composition utilities
+export type { MergeOptions, ThemeVariant } from "./utils/themeComposition.js";
+export {
+  areThemesCompatible,
+  composeThemes,
+  createThemeVariant,
+  createThemeVariants,
+  extendTheme,
+  extractTheme,
+  mergeThemes,
+  omitColors,
+  overrideTheme,
+  pickColors,
+} from "./utils/themeComposition.js";
+// Accessibility audit utilities
+export type {
+  AccessibilityAuditResult,
+  AccessibilityIssue,
+  IssueSeverity,
+  WCAGLevel,
+} from "./utils/accessibilityAudit.js";
+export {
+  auditThemeAccessibility,
+  batchAudit,
+  compareAccessibility,
+  generateAccessibilityReport,
+  getAccessibilityRecommendations,
+  getAccessibilityScore,
+  isAccessible,
+} from "./utils/accessibilityAudit.js";
+// Contrast fixer utilities
+export type {
+  ContrastFixOptions,
+  FixResult,
+} from "./utils/contrastFixer.js";
+export {
+  fixContrast,
+  fixThemeContrast,
+  previewContrastFixes,
+} from "./utils/contrastFixer.js";
+// Color blindness utilities
+export type { ColorBlindnessType } from "./utils/colorBlindness.js";
+export {
+  getAllSimulations,
+  getColorBlindRecommendations,
+  isColorBlindFriendly,
+  simulateColorBlindness,
+  simulateThemeColorBlindness,
+  validateColorBlindnessSafety,
+} from "./utils/colorBlindness.js";
 export {
   findTokenForValue,
   isTokenReference,
   resolveButtonTokens,
   resolveToken,
 } from "./utils/tokenResolver.js";
-export type { ValidationError, ValidationResult } from "./validators/index.js";
+export type {
+  ValidationError,
+  ValidationOptions,
+  ValidationResult,
+} from "./validators/index.js";
 // Validators
 export { validateTheme } from "./validators/index.js";
+// Sanitization utilities
+export type { SanitizationOptions } from "./validators/index.js";
+export {
+  deepCloneSanitize,
+  escapeForDisplay,
+  isThemeLike,
+  removeDangerousChars,
+  sanitizeAndValidate,
+  sanitizeTheme,
+  sanitizeThemeFromJSON,
+} from "./validators/index.js";
+// Schema validation
+export type {
+  SchemaValidationError,
+  SchemaValidationResult,
+} from "./validators/index.js";
+export {
+  getThemeSchema,
+  validateAgainstSchema,
+  validateThemeSchema,
+} from "./validators/index.js";
+// Color validation utilities
+export type {
+  ColorValidationOptions,
+  ColorValidationResult,
+} from "./utils/colorValidation.js";
+export {
+  isCssKeyword,
+  isNamedColor,
+  isValidHexColor,
+  isValidHslColor,
+  isValidRgbColor,
+  normalizeColorToHex,
+  validateColor,
+} from "./utils/colorValidation.js";

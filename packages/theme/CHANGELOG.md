@@ -28,4 +28,3 @@
 ### Migration
 
 No migration needed - this is the initial public release
-

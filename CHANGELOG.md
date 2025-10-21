@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [@spexop/tokens@0.4.0] - 2025-10-17
+## [@spexop/theme@0.4.0] - 2025-10-17
 
 ### Added
 
@@ -22,11 +22,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [@spexop/tokens@0.3.0] - 2025-10-17
+## [@spexop/theme@0.3.0] - 2025-10-17
 
 ### ⚠️ BREAKING CHANGES - Refined Minimalism Alignment
 
-This release removes **83 tokens (18.3%)** from `@spexop/tokens` that don't align with the Spexop design system's core principles of **Refined Minimalism**. The package now contains **369 tokens** (down from 452).
+This release removes **83 tokens (18.3%)** from `@spexop/theme` that don't align with the Spexop design system's core principles of **Refined Minimalism**. The package now contains **369 tokens** (down from 452).
 
 #### Design Principles Enforced
 
@@ -56,7 +56,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 ---
 
-## [@spexop/tokens@0.2.3] - 2025-10-11
+## [@spexop/theme@0.2.3] - 2025-10-11
 
 ### Added Tokens
 
@@ -73,7 +73,7 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 ---
 
-## [@spexop/tokens@0.2.2] - 2025-10-08
+## [@spexop/theme@0.2.2] - 2025-10-08
 
 ### Fixed
 
@@ -90,13 +90,13 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 ---
 
-## [@spexop/tokens@0.2.1] - 2025-10-08
+## [@spexop/theme@0.2.1] - 2025-10-08
 
 ⚠️ **This version has a CSS variable naming bug. Please use v0.2.2 instead.**
 
 ---
 
-## [@spexop/tokens@0.2.0] - 2025-10-06
+## [@spexop/theme@0.2.0] - 2025-10-06
 
 ### Added on 2025-10-06
 
@@ -113,5 +113,5 @@ See [packages/tokens/CHANGELOG.md](./packages/tokens/CHANGELOG.md) for detailed 
 
 - [Package README](./packages/tokens/README.md)
 - [Detailed Package Changelog](./packages/tokens/CHANGELOG.md)
-- [NPM Package](https://www.npmjs.com/package/@spexop/tokens)
+- [NPM Package](https://www.npmjs.com/package/@spexop/theme)
 - [GitHub Repository](https://github.com/spexop-ui/spexop-tokens)

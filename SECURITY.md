@@ -12,7 +12,7 @@ We release patches for security vulnerabilities. Currently supported versions:
 
 ## Reporting a Vulnerability
 
-We take the security of @spexop/tokens seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+We take the security of @spexop/theme seriously. If you believe you have found a security vulnerability, please report it to us as described below.
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
@@ -42,4 +42,4 @@ We prefer all communications to be in English.
 
 We follow the principle of [Coordinated Vulnerability Disclosure](https://vuls.cert.org/confluence/display/CVD).
 
-Thank you for helping keep @spexop/tokens and our users safe!
+Thank you for helping keep @spexop/theme and our users safe!

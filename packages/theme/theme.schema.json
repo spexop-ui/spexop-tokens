@@ -1,0 +1,392 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://spexop.com/schemas/theme.schema.json",
+  "title": "Spexop Theme Configuration",
+  "description": "Schema for Spexop design system theme configuration",
+  "type": "object",
+  "required": ["meta", "colors", "typography", "spacing", "borders"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Theme metadata",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Theme name",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "version": {
+          "type": "string",
+          "description": "Theme version (semantic versioning)",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Theme description",
+          "maxLength": 500
+        },
+        "author": {
+          "type": "string",
+          "description": "Theme author",
+          "maxLength": 100
+        }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "description": "Theme color palette",
+      "required": [
+        "primary",
+        "surface",
+        "surfaceSecondary",
+        "surfaceHover",
+        "text",
+        "textSecondary",
+        "textMuted",
+        "border",
+        "borderStrong",
+        "borderSubtle"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Primary brand color",
+          "pattern": "^(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3}|rgb\\(|hsl\\(|[a-z]+).*"
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Secondary brand color"
+        },
+        "primaryHover": {
+          "type": "string",
+          "description": "Primary color hover state"
+        },
+        "primaryActive": {
+          "type": "string",
+          "description": "Primary color active state"
+        },
+        "surface": {
+          "type": "string",
+          "description": "Main background surface color"
+        },
+        "surfaceSecondary": {
+          "type": "string",
+          "description": "Secondary surface color"
+        },
+        "surfaceHover": {
+          "type": "string",
+          "description": "Surface hover state"
+        },
+        "text": {
+          "type": "string",
+          "description": "Primary text color"
+        },
+        "textSecondary": {
+          "type": "string",
+          "description": "Secondary text color"
+        },
+        "textMuted": {
+          "type": "string",
+          "description": "Muted text color"
+        },
+        "border": {
+          "type": "string",
+          "description": "Default border color"
+        },
+        "borderStrong": {
+          "type": "string",
+          "description": "Strong border color"
+        },
+        "borderSubtle": {
+          "type": "string",
+          "description": "Subtle border color"
+        },
+        "success": {
+          "type": "string",
+          "description": "Success semantic color"
+        },
+        "warning": {
+          "type": "string",
+          "description": "Warning semantic color"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error semantic color"
+        },
+        "info": {
+          "type": "string",
+          "description": "Info semantic color"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Accent color"
+        },
+        "link": {
+          "type": "string",
+          "description": "Link color"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "typography": {
+      "type": "object",
+      "description": "Typography configuration",
+      "required": ["fontFamily", "baseSize", "scale", "weights"],
+      "properties": {
+        "fontFamily": {
+          "type": "string",
+          "description": "Primary font family",
+          "minLength": 1
+        },
+        "fontFamilyHeading": {
+          "type": "string",
+          "description": "Heading font family"
+        },
+        "fontFamilyMono": {
+          "type": "string",
+          "description": "Monospace font family"
+        },
+        "baseSize": {
+          "type": "number",
+          "description": "Base font size in pixels",
+          "minimum": 12,
+          "maximum": 24
+        },
+        "scale": {
+          "type": "number",
+          "description": "Type scale ratio",
+          "minimum": 1.1,
+          "maximum": 1.5
+        },
+        "weights": {
+          "type": "object",
+          "description": "Font weights",
+          "required": ["regular", "medium", "semibold", "bold"],
+          "properties": {
+            "regular": {
+              "type": "number",
+              "enum": [400]
+            },
+            "medium": {
+              "type": "number",
+              "enum": [500]
+            },
+            "semibold": {
+              "type": "number",
+              "enum": [600]
+            },
+            "bold": {
+              "type": "number",
+              "enum": [700]
+            }
+          }
+        },
+        "sizes": {
+          "type": "object",
+          "description": "Custom font sizes",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "lineHeights": {
+          "type": "object",
+          "description": "Custom line heights",
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "description": "Spacing configuration",
+      "required": ["baseUnit", "values"],
+      "properties": {
+        "baseUnit": {
+          "type": "number",
+          "description": "Base spacing unit in pixels",
+          "minimum": 2,
+          "maximum": 8
+        },
+        "values": {
+          "type": "object",
+          "description": "Custom spacing values",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "scale": {
+          "type": "object",
+          "description": "Spacing scale",
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "borders": {
+      "type": "object",
+      "description": "Border configuration",
+      "required": ["default", "strong"],
+      "properties": {
+        "default": {
+          "type": "number",
+          "description": "Default border width in pixels",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "strong": {
+          "type": "number",
+          "description": "Strong border width in pixels",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "thin": {
+          "type": "number",
+          "description": "Thin border width in pixels",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "thick": {
+          "type": "number",
+          "description": "Thick border width in pixels",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "radius": {
+          "type": "object",
+          "description": "Border radius values",
+          "properties": {
+            "sm": {
+              "type": "number",
+              "minimum": 0
+            },
+            "md": {
+              "type": "number",
+              "minimum": 0
+            },
+            "lg": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "radiusSubtle": {
+          "type": "number",
+          "description": "Subtle border radius",
+          "minimum": 0
+        },
+        "radiusRelaxed": {
+          "type": "number",
+          "description": "Relaxed border radius",
+          "minimum": 0
+        },
+        "radiusPill": {
+          "type": "number",
+          "description": "Pill-shaped border radius",
+          "minimum": 0
+        },
+        "radiusLiquid": {
+          "type": "number",
+          "description": "Liquid border radius",
+          "minimum": 0
+        },
+        "defaultStyle": {
+          "type": "string",
+          "description": "Default border style",
+          "enum": [
+            "solid",
+            "dashed",
+            "dotted",
+            "double",
+            "groove",
+            "ridge",
+            "inset",
+            "outset",
+            "none",
+            "hidden"
+          ]
+        }
+      }
+    },
+    "radii": {
+      "type": "object",
+      "description": "Extended radius configuration",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "shadows": {
+      "type": "object",
+      "description": "Shadow configuration",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "zIndex": {
+      "type": "object",
+      "description": "Z-index layering",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "buttons": {
+      "type": "object",
+      "description": "Button variant styles",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "background": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "border": {
+            "type": "string"
+          },
+          "hover": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "cards": {
+      "type": "object",
+      "description": "Card variant styles",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "background": {
+            "type": "string"
+          },
+          "border": {
+            "type": "string"
+          },
+          "shadow": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "darkMode": {
+      "type": "object",
+      "description": "Dark mode configuration",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable dark mode"
+        },
+        "colors": {
+          "$ref": "#/properties/colors"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

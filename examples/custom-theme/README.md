@@ -14,4 +14,3 @@ pnpm dev
 - Define theme configuration with SpexopThemeConfig
 - Use ThemeProvider for runtime theme application
 - Custom colors automatically apply to all components
-

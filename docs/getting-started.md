@@ -105,10 +105,102 @@ import '@spexop/react/dist/index.css';
 import App from './App';
 ```
 
+## What's New in v0.3.0
+
+### New Component Categories
+
+- **Data Components**
+
+```typescript
+import { DataTable, DataGrid, Chart } from '@spexop/react';
+
+<DataTable columns={columns} data={data} sortable filterable />
+```
+
+- **Feedback Components**
+
+```typescript
+import { Alert, Spinner, Progress, Skeleton, Toast, EmptyState } from '@spexop/react';
+
+<Alert variant="success">Operation successful!</Alert>
+<Spinner size="lg" />
+<Progress value={75} />
+```
+
+- **Typography Components**
+
+```typescript
+import { Heading, Text, Link, Code } from '@spexop/react';
+
+<Heading level={1}>Page Title</Heading>
+<Text size="lg">Body text</Text>
+<Link href="/docs">Documentation</Link>
+```
+
+### New Hooks (33+ total)
+
+```typescript
+// Storage
+const [value, setValue] = useLocalStorage('key', defaultValue);
+
+// Browser APIs
+const isOnline = useOnline();
+const size = useWindowSize();
+
+// Interaction
+const ref = useClickOutside(() => setIsOpen(false));
+const isHovering = useHover(ref);
+
+// Utilities
+const debouncedValue = useDebounce(value, 500);
+const [copied, copy] = useCopyToClipboard();
+```
+
+### New Providers
+
+```typescript
+import { 
+  ThemeProvider, 
+  AccessibilityProvider, 
+  ModalProvider, 
+  ToastProvider 
+} from '@spexop/react';
+
+<ThemeProvider theme={techPreset}>
+  <AccessibilityProvider>
+    <ModalProvider>
+      <ToastProvider>
+        <App />
+      </ToastProvider>
+    </ModalProvider>
+  </AccessibilityProvider>
+</ThemeProvider>
+```
+
+### Enhanced Components
+
+- **Carousel** - New slideshow component with touch/swipe support
+- **CodeBlock v3** - Redesigned with custom syntax highlighting
+- **Card** - New sub-component API (CardHeader, CardBody, CardFooter)
+- **Button** - New semantic variants (danger, success, warning, info, neutral)
+
+### Documentation
+
+All 59 components now include:
+
+- Comprehensive README.md
+- USAGE-GUIDE.md with practical examples
+- Component tests with Vitest
+- TypeScript .types.ts files
+
+## Development Status
+
+Version 0.3.0 is an active development release. While components follow "The Spexop Way" design principles, the library is still evolving. APIs may change in future releases.
+
 ## Next Steps
 
 - Explore [Examples](../examples/)
 - Read [Theme System Guide](../packages/theme/README.md)
 - Browse [Component Docs](../packages/react/README.md)
+- Check [Migration Guide](../packages/react/MIGRATION-GUIDE.md)
 - Try [Theme Builder](https://builder.spexop.com)
-
