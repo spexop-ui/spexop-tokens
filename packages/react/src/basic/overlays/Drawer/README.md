@@ -1,459 +1,355 @@
-# Drawer
+# Drawer Component
 
-Side panel/drawer component that slides in from any edge. Perfect for settings panels, navigation menus, shopping carts, and detail views. Features backdrop, focus trap, and smooth animations.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A slide-out panel component that appears from the edge of the screen. Perfect for side navigation, settings panels, filters, and contextual content. Features smooth animations, backdrop, and focus management.
+
+## Features
+
+- ✅ 4 positions (left, right, top, bottom)
+- ✅ Configurable sizes
+- ✅ Backdrop overlay with click-to-close
+- ✅ Focus trap when open
+- ✅ Body scroll lock
+- ✅ Escape key to close
+- ✅ Smooth slide animations
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { Drawer } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
+import { Drawer } from '@spexop/react';
 import { useState } from 'react';
-import { Drawer, Button } from '@spexop/react';
 
-function MyComponent() {
+function App() {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>
+      <button onClick={() => setIsOpen(true)}>
         Open Drawer
-      </Button>
+      </button>
       
       <Drawer
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
+        position="right"
       >
         <h2>Drawer Content</h2>
-        <p>Your content here...</p>
+        <p>This is a slide-out panel.</p>
       </Drawer>
     </>
   );
 }
 ```
 
-## Props
+## Positions
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isOpen` | `boolean` | **Required** | Whether drawer is open |
-| `onClose` | `() => void` | **Required** | Close callback |
-| `children` | `ReactNode` | **Required** | Drawer content |
-| `position` | `"left"` \| `"right"` \| `"top"` \| `"bottom"` | `"right"` | Slide direction |
-| `size` | `string` | `"400px"` | Width (left/right) or height (top/bottom) |
-| `showBackdrop` | `boolean` | `true` | Show semi-transparent backdrop |
-| `closeOnBackdropClick` | `boolean` | `true` | Close when clicking backdrop |
-| `closeOnEscape` | `boolean` | `true` | Close on Escape key |
-| `lockScroll` | `boolean` | `true` | Lock body scroll when open |
-| `trapFocus` | `boolean` | `true` | Trap focus within drawer |
-| `className` | `string` | `""` | Additional CSS class |
-| `title` | `string` | `undefined` | Optional drawer title |
+### Right (Default)
 
-## Examples
-
-### Right Drawer (Default)
+Slides from the right edge.
 
 ```tsx
 <Drawer
   isOpen={isOpen}
-  onClose={() => setIsOpen(false)}
-  title="Settings"
+  onClose={handleClose}
+  position="right"
 >
-  <p>Settings content...</p>
+  {/* Content */}
 </Drawer>
 ```
 
-### Left Drawer
+### Left
+
+Slides from the left edge.
 
 ```tsx
 <Drawer
-  isOpen={menuOpen}
-  onClose={() => setMenuOpen(false)}
+  isOpen={isOpen}
+  onClose={handleClose}
   position="left"
-  title="Navigation"
 >
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-  </nav>
+  {/* Navigation menu */}
 </Drawer>
 ```
 
-### Top Drawer
+### Top
+
+Slides from the top edge.
 
 ```tsx
 <Drawer
-  isOpen={notificationsOpen}
-  onClose={() => setNotificationsOpen(false)}
+  isOpen={isOpen}
+  onClose={handleClose}
   position="top"
-  size="200px"
-  title="Notifications"
 >
-  <p>No new notifications</p>
+  {/* Notifications */}
 </Drawer>
 ```
 
-### Bottom Drawer
+### Bottom
+
+Slides from the bottom edge.
 
 ```tsx
 <Drawer
-  isOpen={sheetOpen}
-  onClose={() => setSheetOpen(false)}
+  isOpen={isOpen}
+  onClose={handleClose}
   position="bottom"
-  size="300px"
-  title="Options"
 >
-  <Button fullWidth>Option 1</Button>
-  <Button fullWidth>Option 2</Button>
+  {/* Mobile filters */}
 </Drawer>
 ```
 
-### Custom Size
+## Sizes
+
+### Custom Width/Height
 
 ```tsx
-// Wide drawer
+{/* Fixed width */}
 <Drawer
   isOpen={isOpen}
-  onClose={onClose}
-  size="600px"
+  onClose={handleClose}
+  position="right"
+  size="400px"
 >
-  {content}
+  {/* Content */}
 </Drawer>
 
-// Narrow drawer
+{/* Percentage width */}
 <Drawer
   isOpen={isOpen}
-  onClose={onClose}
-  size="300px"
+  onClose={handleClose}
+  position="left"
+  size="80%"
 >
-  {content}
+  {/* Content */}
+</Drawer>
+
+{/* Full width */}
+<Drawer
+  isOpen={isOpen}
+  onClose={handleClose}
+  position="top"
+  size="100%"
+>
+  {/* Content */}
 </Drawer>
 ```
 
-### Without Backdrop
+## Common Use Cases
+
+### Navigation Menu
 
 ```tsx
-<Drawer
-  isOpen={isOpen}
-  onClose={onClose}
-  showBackdrop={false}
->
-  {content}
-</Drawer>
-```
+function MobileNav() {
+  const [isOpen, setIsOpen] = useState(false);
 
-### Prevent Close on Backdrop Click
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>
+        <MenuIcon />
+      </button>
 
-```tsx
-<Drawer
-  isOpen={isOpen}
-  onClose={onClose}
-  closeOnBackdropClick={false}
-  title="Unsaved Changes"
->
-  <p>Please save or discard your changes before closing.</p>
-  <Button onClick={handleSave}>Save</Button>
-  <Button onClick={onClose}>Discard</Button>
-</Drawer>
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        position="left"
+        size="320px"
+      >
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </Drawer>
+    </>
+  );
+}
 ```
 
 ### Settings Panel
 
 ```tsx
-import { Drawer, Stack, Toggle, Select, Button } from '@spexop/react';
+function SettingsDrawer() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
 
-function SettingsDrawer({ isOpen, onClose }) {
-  const [darkMode, setDarkMode] = useState(false);
-  const [language, setLanguage] = useState('en');
-  
   return (
     <Drawer
       isOpen={isOpen}
-      onClose={onClose}
-      title="Settings"
+      onClose={() => setIsOpen(false)}
       position="right"
-      size="500px"
+      size="420px"
     >
-      <Stack direction="vertical" gap={6}>
-        <div>
-          <Toggle
-            checked={darkMode}
-            onChange={setDarkMode}
-            label="Dark mode"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="language">Language</label>
-          <Select
-            id="language"
-            value={language}
-            onChange={setLanguage}
-            options={[
-              { value: 'en', label: 'English' },
-              { value: 'es', label: 'Español' }
-            ]}
-          />
-        </div>
-        
-        <Stack direction="horizontal" gap={3} justify="end">
-          <Button variant="ghost" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleSave}>
-            Save Changes
-          </Button>
-        </Stack>
-      </Stack>
+      <h2>Settings</h2>
+      
+      <SettingsCard title="Theme">
+        <Select value={theme} onChange={setTheme}>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="auto">Auto</option>
+        </Select>
+      </SettingsCard>
+      
+      <Button onClick={() => setIsOpen(false)}>
+        Close
+      </Button>
     </Drawer>
   );
 }
 ```
 
-### Shopping Cart
+### Filter Panel
 
 ```tsx
-function CartDrawer({ isOpen, onClose, items }) {
-  const total = items.reduce((sum, item) => sum + item.price, 0);
-  
+function FilterDrawer() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    category: '',
+    priceRange: [0, 100],
+    inStock: true,
+  });
+
   return (
     <Drawer
       isOpen={isOpen}
-      onClose={onClose}
-      title="Shopping Cart"
-      position="right"
-      size="450px"
+      onClose={() => setIsOpen(false)}
+      position="left"
+      size="360px"
     >
-      <Stack direction="vertical" gap={4}>
-        {items.map(item => (
-          <Card key={item.id}>
-            <CardBody>
-              <h4>{item.name}</h4>
-              <p>${item.price}</p>
-            </CardBody>
-          </Card>
-        ))}
-        
-        <div style={{ marginTop: 'auto', paddingTop: '24px' }}>
-          <p><strong>Total: ${total}</strong></p>
-          <Button variant="primary" fullWidth>
-            Checkout
-          </Button>
-        </div>
-      </Stack>
+      <h2>Filters</h2>
+      
+      <Select
+        label="Category"
+        value={filters.category}
+        onChange={(e) => 
+          setFilters({ ...filters, category: e.target.value })
+        }
+      >
+        <option value="">All</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+      </Select>
+      
+      <Toggle
+        label="In Stock Only"
+        checked={filters.inStock}
+        onChange={(checked) =>
+          setFilters({ ...filters, inStock: checked })
+        }
+      />
+      
+      <Button onClick={() => setIsOpen(false)}>
+        Apply Filters
+      </Button>
     </Drawer>
   );
 }
 ```
 
-### Detail View
+### Sheet (Bottom Drawer)
 
 ```tsx
-function UserDetailDrawer({ user, isOpen, onClose }) {
+function MobileSheet() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Drawer
       isOpen={isOpen}
-      onClose={onClose}
-      title={user.name}
-      size="500px"
+      onClose={() => setIsOpen(false)}
+      position="bottom"
+      size="auto"
     >
-      <Stack direction="vertical" gap={6}>
-        <div>
-          <img 
-            src={user.avatar} 
-            alt={user.name}
-            style={{ width: '80px', height: '80px', borderRadius: '50%' }}
-          />
-        </div>
-        
-        <div>
-          <h3>Contact</h3>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
-        </div>
-        
-        <div>
-          <h3>Bio</h3>
-          <p>{user.bio}</p>
-        </div>
-        
-        <Stack direction="horizontal" gap={3}>
-          <Button variant="primary">Edit</Button>
-          <Button variant="outline">Message</Button>
-        </Stack>
-      </Stack>
+      <div style={{ padding: '24px' }}>
+        <h3>Share</h3>
+        <button>Copy Link</button>
+        <button>Email</button>
+        <button>Social Media</button>
+      </div>
     </Drawer>
   );
 }
 ```
 
-## Keyboard Navigation
+## Props
 
-| Key | Action |
-|-----|--------|
-| **Escape** | Close drawer (if closeOnEscape=true) |
-| **Tab** | Move to next focusable element (trapped within drawer) |
-| **Shift + Tab** | Move to previous focusable element (trapped) |
+```typescript
+interface DrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  position?: "left" | "right" | "top" | "bottom";
+  size?: string;
+  children: React.ReactNode;
+  className?: string;
+  showBackdrop?: boolean;
+  closeOnBackdropClick?: boolean;
+  closeOnEscape?: boolean;
+  lockScroll?: boolean;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Borders before shadows** - Clean edge separation
+2. **Typography before decoration** - Clear content hierarchy
+3. **Tokens before magic numbers** - Uses spacing and transition tokens
+4. **Accessibility before aesthetics** - Focus trap and keyboard support
 
 ## Accessibility
 
-### ARIA Attributes
+- ✅ Focus trap when open
+- ✅ Focus returns to trigger on close
+- ✅ Escape key closes drawer
+- ✅ Body scroll lock when open
+- ✅ ARIA role="dialog"
+- ✅ ARIA labels for screen readers
+- ✅ Backdrop click closes drawer
+- ✅ WCAG AA+ compliant
 
-- `role="dialog"` - Identifies drawer as dialog
-- `aria-modal="true"` - Modal dialog behavior
-- `aria-labelledby` - References title
-- `aria-describedby` - References description (if provided)
+### Keyboard Shortcuts
 
-### Focus Management
+- `Escape` - Close drawer
+- `Tab` - Cycle through focusable elements (trapped in drawer)
+- `Shift + Tab` - Reverse cycle
 
-- ✅ Traps focus within drawer when open (if trapFocus=true)
-- ✅ Returns focus to trigger on close
-- ✅ Focuses first interactive element on open
-- ✅ Keyboard navigation within drawer
+## Animation
 
-### Body Scroll Lock
+Smooth slide animations with easing:
 
-- ✅ Locks body scroll when drawer open (prevents background scrolling)
-- ✅ Automatically unlocks on close
-- ✅ Handles nested drawers correctly
-
-### Screen Readers
-
-- Announces when drawer opens
-- Announces drawer title
-- Announces role as "dialog"
-- Announces modal state
-
-## Styling
-
-### Custom Styling
-
-```tsx
-<Drawer
-  className="my-drawer"
-  isOpen={isOpen}
-  onClose={onClose}
->
-  {content}
-</Drawer>
-```
-
-```css
-.my-drawer {
-  /* Custom styles for drawer content */
-  padding: var(--s-spacing-8);
-}
-```
-
-### Design Tokens
-
-Uses tokens for consistent styling:
-
-- Colors: `--s-color-neutral-*`, `--s-color-red-500`
-- Spacing: `--s-spacing-*`
-- Shadows: `--s-shadow-xl`
-- Transitions: `--s-transition-base`
-- Z-index: `--s-z-drawer` (300)
-
-## When to Use
-
-### Use Drawer When ✅
-
-- Settings panels
-- Shopping carts
-- Navigation menus (mobile)
-- Detail views
-- Filters and options
-- User profiles
-
-### Use Modal/Dialog Instead When
-
-- Require user decision/action
-- Block main content interaction
-- Centered content preferred
-- Critical confirmations
-
-### Use Sidebar Instead When
-
-- Permanent navigation
-- Always visible (desktop)
-- Tree-based navigation
-- App-level navigation
-
-## Best Practices
-
-### Do ✅
-
-```tsx
-// Provide close callback
-<Drawer isOpen={isOpen} onClose={handleClose} />
-
-// Use appropriate position
-<Drawer position="right" /> // Settings, details
-<Drawer position="left" /> // Navigation
-<Drawer position="bottom" /> // Mobile sheets
-
-// Lock scroll for better UX
-<Drawer lockScroll={true} />
-
-// Trap focus for accessibility
-<Drawer trapFocus={true} />
-
-// Provide title for screen readers
-<Drawer title="Settings" />
-```
-
-### Don't ❌
-
-```tsx
-// Don't skip onClose handler
-<Drawer isOpen={true} /> // User can't close it
-
-// Don't use for critical confirmations
-<Drawer>Delete account?</Drawer> // Use Modal instead
-
-// Don't make too wide
-<Drawer size="90vw" /> // Use Modal for full-width
-
-// Don't disable closeOnEscape without good reason
-<Drawer closeOnEscape={false} /> // Frustrates users
-
-// Don't nest multiple drawers
-<Drawer>
-  <Drawer> // Confusing UX
-</Drawer>
-```
-
-## Related Components
-
-- **Sidebar** - Permanent navigation drawer
-- **SearchModal** - Full-screen search
-- **CommandPalette** - Command interface
-- **SettingsPanel** - Pre-built settings drawer
+- **Duration**: 250ms
+- **Easing**: ease-in-out
+- **Transform**: translateX/translateY based on position
 
 ## Browser Support
 
-- Chrome 90+ ✅
-- Firefox 88+ ✅
-- Safari 14+ ✅
-- Edge 90+ ✅
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-## Performance
+## Related Components
 
-- Portal-based rendering (renders at document root)
-- CSS-only animations (GPU-accelerated)
-- Efficient event listeners
-- Lazy rendering (only when open)
+- `Modal` - Centered dialog overlay
+- `Sidebar` - Persistent side navigation
+- `Popover` - Floating content container
+- `CommandPalette` - Quick actions overlay
 
----
+## License
 
-**Part of Overlay Components** - Modal dialogs and overlay interfaces for enhanced UX.
+MIT

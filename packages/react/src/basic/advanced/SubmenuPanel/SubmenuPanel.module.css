@@ -117,7 +117,7 @@
 }
 
 .submenuTitle {
-  font-size: 14px;
+  font-size: var(--theme-font-size-sm);
   font-weight: var(--theme-font-weight-semibold);
   color: var(--theme-text);
 }
@@ -156,8 +156,8 @@
   padding: var(--theme-spacing-2) var(--theme-spacing-3);
   color: var(--theme-text-secondary);
   text-decoration: none;
-  border-radius: var(--theme-radius-relaxed); /* 12px - relaxed rounded corners */
-  font-size: 14px;
+  border-radius: var(--theme-radius-relaxed);
+  font-size: var(--theme-font-size-sm);
   transition: background-color 0.15s ease;
 }
 
@@ -190,8 +190,8 @@
 }
 
 .submenuIcon svg {
-  width: 20px;
-  height: 20px;
+  width: var(--theme-spacing-5);
+  height: var(--theme-spacing-5);
 }
 
 .submenuLabel {
@@ -205,12 +205,31 @@
    FOCUS STYLES
    ============================================ */
 
+.submenuLink:focus {
+  outline: none; /* Remove default outline */
+}
+
 .submenuLink:focus-visible {
-  outline: var(--theme-border-width) solid var(--theme-primary);
-  outline-offset: 4px;
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+  border-radius: var(--theme-radius-relaxed);
 }
 
 [data-theme="dark"] .submenuLink:focus-visible {
+  outline-color: var(--theme-primary);
+}
+
+/* Focus styles for mobile close button */
+.mobileClose:focus {
+  outline: none; /* Remove default outline */
+}
+
+.mobileClose:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .mobileClose:focus-visible {
   outline-color: var(--theme-primary);
 }
 

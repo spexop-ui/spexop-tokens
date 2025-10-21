@@ -45,7 +45,6 @@ export function ButtonGroup({
     .join(" ");
 
   return (
-    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: aria-label is valid for role="group"
     <div
       className={groupClassName}
       role={role}

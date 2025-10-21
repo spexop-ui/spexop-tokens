@@ -62,6 +62,16 @@ function renderNode(node: TemplateNode, context: RenderContext): string {
     context.imports.add(type);
   }
 
+  // Handle ARIA attributes
+  const ariaProps: Record<string, unknown> = {};
+  if (node.ariaLabel) ariaProps["aria-label"] = node.ariaLabel;
+  if (node.ariaDescribedBy)
+    ariaProps["aria-describedby"] = node.ariaDescribedBy;
+  if (node.ariaCurrent) ariaProps["aria-current"] = node.ariaCurrent;
+  if (node.role) ariaProps.role = node.role;
+
+  const combinedProps = { ...props, ...ariaProps };
+
   // Handle different node types
   switch (type) {
     case "Container":
@@ -71,28 +81,66 @@ function renderNode(node: TemplateNode, context: RenderContext): string {
     case "Spacer":
     case "Button":
     case "Card":
+    case "Icon":
       return renderSpexopComponent(
         type,
-        props,
+        combinedProps,
         children,
         content,
         context,
         indent,
       );
 
+    case "Link":
+      return renderLink(combinedProps, children, content, context, indent);
+
+    case "Input":
+      return renderInput(id, combinedProps, indent);
+
+    case "Label":
+      return renderLabel(combinedProps, content, indent);
+
+    case "Checkbox":
+      return renderCheckbox(id, combinedProps, indent);
+
+    case "Badge":
+      return renderBadge(combinedProps, content, indent);
+
+    case "Form":
+      return renderForm(combinedProps, children, context, indent);
+
     case "Heading":
-      return renderHeading(props, content, context, indent);
+      return renderHeading(combinedProps, content, context, indent);
 
     case "Text":
-      return renderText(props, content, indent);
+      return renderText(combinedProps, content, indent);
 
+    case "Nav":
+    case "Footer":
+    case "Header":
+    case "Main":
+    case "Aside":
+    case "Article":
     case "Section":
+      return renderSemanticElement(
+        type.toLowerCase(),
+        combinedProps,
+        children,
+        content,
+        context,
+        indent,
+        id,
+      );
+
     case "div":
-      return renderDiv(props, children, content, context, indent, id);
+      return renderDiv(combinedProps, children, content, context, indent, id);
 
     default:
       // Unknown type - render as div with comment
-      return `${indent}<div /* Unknown type: ${type} */>\n${renderChildren(children, context)}${indent}</div>`;
+      return `${indent}<div /* Unknown type: ${type} */>\n${renderChildren(
+        children,
+        context,
+      )}${indent}</div>`;
   }
 }
 
@@ -101,7 +149,7 @@ function renderNode(node: TemplateNode, context: RenderContext): string {
  */
 function renderSpexopComponent(
   type: string,
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   content: string | undefined,
   context: RenderContext,
@@ -141,7 +189,7 @@ function renderSpexopComponent(
  * Render heading element
  */
 function renderHeading(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   content: string | undefined,
   context: RenderContext,
   indent: string,
@@ -158,14 +206,14 @@ function renderHeading(
  * Render text paragraph
  */
 function renderText(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   content: string | undefined,
   indent: string,
 ): string {
   const propsString =
     Object.keys(props).length > 0
       ? formatProps(props, {
-          theme: {} as any,
+          theme: {} as SpexopThemeConfig,
           indentLevel: 0,
           imports: new Set(),
         })
@@ -177,7 +225,7 @@ function renderText(
  * Render div element
  */
 function renderDiv(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   content: string | undefined,
   context: RenderContext,
@@ -218,7 +266,7 @@ function renderChildren(
  * Format props object to JSX attributes
  */
 function formatProps(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   _context: RenderContext,
 ): string {
   if (!props || Object.keys(props).length === 0) return "";
@@ -299,6 +347,157 @@ function toComponentName(name: string): string {
 }
 
 /**
+ * Render a link element
+ */
+function renderLink(
+  props: Record<string, unknown>,
+  children: TemplateNode[] | undefined,
+  content: string | undefined,
+  context: RenderContext,
+  indent: string,
+): string {
+  const propsString = formatProps(props, context);
+  const opening = `${indent}<a${propsString}>`;
+  const closing = `${indent}</a>`;
+
+  if (content && !children) {
+    return `${opening}\n${indent}  {${JSON.stringify(content)}}\n${closing}`;
+  }
+
+  if (children) {
+    context.indentLevel++;
+    const childrenCode = renderChildren(children, context);
+    context.indentLevel--;
+    return `${opening}\n${childrenCode}${closing}`;
+  }
+
+  return `${opening}${closing}`;
+}
+
+/**
+ * Render an input element
+ */
+function renderInput(
+  id: string | undefined,
+  props: Record<string, unknown>,
+  indent: string,
+): string {
+  const propsString = formatProps(props, {
+    theme: {} as SpexopThemeConfig,
+    indentLevel: 0,
+    imports: new Set(),
+  });
+  const idAttr = id ? ` id="${id}"` : "";
+  return `${indent}<input${idAttr}${propsString} />`;
+}
+
+/**
+ * Render a label element
+ */
+function renderLabel(
+  props: Record<string, unknown>,
+  content: string | undefined,
+  indent: string,
+): string {
+  const propsString = formatProps(props, {
+    theme: {} as SpexopThemeConfig,
+    indentLevel: 0,
+    imports: new Set(),
+  });
+  return `${indent}<label${propsString}>${content || ""}</label>`;
+}
+
+/**
+ * Render a checkbox input
+ */
+function renderCheckbox(
+  id: string | undefined,
+  props: Record<string, unknown>,
+  indent: string,
+): string {
+  const propsString = formatProps(
+    { ...props, type: "checkbox" },
+    {
+      theme: {} as SpexopThemeConfig,
+      indentLevel: 0,
+      imports: new Set(),
+    },
+  );
+  const idAttr = id ? ` id="${id}"` : "";
+  return `${indent}<input${idAttr}${propsString} />`;
+}
+
+/**
+ * Render a badge component
+ */
+function renderBadge(
+  props: Record<string, unknown>,
+  content: string | undefined,
+  indent: string,
+): string {
+  const propsString = formatProps(props, {
+    theme: {} as SpexopThemeConfig,
+    indentLevel: 0,
+    imports: new Set(),
+  });
+  return `${indent}<span className="badge"${propsString}>${content || ""}</span>`;
+}
+
+/**
+ * Render a form element
+ */
+function renderForm(
+  props: Record<string, unknown>,
+  children: TemplateNode[] | undefined,
+  context: RenderContext,
+  indent: string,
+): string {
+  const propsString = formatProps(props, context);
+  const opening = `${indent}<form${propsString}>`;
+  const closing = `${indent}</form>`;
+
+  if (children) {
+    context.indentLevel++;
+    const childrenCode = renderChildren(children, context);
+    context.indentLevel--;
+    return `${opening}\n${childrenCode}${closing}`;
+  }
+
+  return `${opening}${closing}`;
+}
+
+/**
+ * Render a semantic HTML5 element
+ */
+function renderSemanticElement(
+  tag: string,
+  props: Record<string, unknown>,
+  children: TemplateNode[] | undefined,
+  content: string | undefined,
+  context: RenderContext,
+  indent: string,
+  id?: string,
+): string {
+  const propsString = formatProps(props, context);
+  const idAttr = id ? ` id="${id}"` : "";
+  const opening = `${indent}<${tag}${idAttr}${propsString}>`;
+  const closing = `${indent}</${tag}>`;
+
+  if (content && !children) {
+    return `${opening}\n${indent}  {${JSON.stringify(content)}}\n${closing}`;
+  }
+
+  if (children) {
+    context.indentLevel++;
+    const childrenCode = renderChildren(children, context);
+    context.indentLevel--;
+    return `${opening}\n${childrenCode}${closing}`;
+  }
+
+  return `${opening}${closing}`;
+}
+
+/**
  * Check if component type is a Spexop component
  */
 function isSpexopComponent(type: string): boolean {
@@ -310,6 +509,7 @@ function isSpexopComponent(type: string): boolean {
     "Spacer",
     "Button",
     "Card",
+    "Icon",
   ];
   return spexopComponents.includes(type);
 }

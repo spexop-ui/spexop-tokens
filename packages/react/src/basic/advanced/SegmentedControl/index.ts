@@ -1,5 +1,5 @@
 export type {
   SegmentedControlOption,
   SegmentedControlProps,
-} from "./SegmentedControl.js";
+} from "./SegmentedControl.types.js";
 export { SegmentedControl } from "./SegmentedControl.js";

@@ -13,149 +13,196 @@ export const landingFeatureGrid: Template = {
     category: "landing",
     tier: "free",
     thumbnail: "/template-thumbnails/landing-feature-grid.webp",
-    tags: ["landing", "features", "grid", "showcase"],
+    tags: [
+      "landing",
+      "features",
+      "grid",
+      "showcase",
+      "icon-enhanced",
+      "accessibility-first",
+    ],
     author: "Spexop Team",
     version: "1.0.0",
   },
   structure: {
-    type: "Container",
-    props: {
-      maxWidth: "2xl",
-      padding: 8,
-    },
+    type: "Section",
+    role: "region",
+    ariaLabel: "Features section",
+    props: {},
     children: [
       {
-        type: "Stack",
+        type: "Container",
         props: {
-          direction: "vertical",
-          gap: 8,
+          maxWidth: "2xl",
+          padding: "lg",
         },
         children: [
           {
             type: "Stack",
             props: {
               direction: "vertical",
-              gap: 3,
-              align: "center",
+              gap: 8,
             },
             children: [
               {
-                type: "Heading",
-                id: "section-title",
+                type: "Stack",
                 props: {
-                  level: 2,
+                  direction: "vertical",
+                  gap: 3,
                   align: "center",
-                },
-                content: "Powerful Features",
-              },
-              {
-                type: "Text",
-                id: "section-description",
-                props: {
-                  size: "lg",
-                  align: "center",
-                },
-                content:
-                  "Everything you need to build modern, responsive interfaces",
-              },
-            ],
-          },
-          {
-            type: "Grid",
-            props: {
-              columns: "auto-fit",
-              minColumnWidth: "280px",
-              gap: 6,
-            },
-            children: [
-              {
-                type: "Card",
-                id: "feature-1",
-                props: {
-                  padding: 6,
                 },
                 children: [
                   {
-                    type: "Stack",
+                    type: "Heading",
+                    id: "section-title",
                     props: {
-                      direction: "vertical",
-                      gap: 3,
+                      level: 2,
+                      align: "center",
+                      weight: "bold",
                     },
-                    children: [
-                      {
-                        type: "Heading",
-                        props: {
-                          level: 3,
-                        },
-                        content: "Responsive Design",
-                      },
-                      {
-                        type: "Text",
-                        props: {},
-                        content:
-                          "Built-in responsive breakpoints that adapt to any screen size",
-                      },
-                    ],
+                    content: "Powerful Features",
+                  },
+                  {
+                    type: "Text",
+                    id: "section-description",
+                    props: {
+                      size: "lg",
+                      align: "center",
+                      weight: "regular",
+                    },
+                    content:
+                      "Everything you need to build modern, responsive interfaces",
                   },
                 ],
               },
               {
-                type: "Card",
-                id: "feature-2",
+                type: "Grid",
                 props: {
-                  padding: 6,
+                  columns: "auto-fit",
+                  minColumnWidth: "280px",
+                  gap: 6,
                 },
                 children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "feature-1",
                     props: {
-                      direction: "vertical",
-                      gap: 3,
+                      padding: "md",
                     },
                     children: [
                       {
-                        type: "Heading",
+                        type: "Stack",
                         props: {
-                          level: 3,
+                          direction: "vertical",
+                          gap: 3,
                         },
-                        content: "Theme Customization",
-                      },
-                      {
-                        type: "Text",
-                        props: {},
-                        content:
-                          "Fully customizable themes with your brand colors and typography",
+                        children: [
+                          {
+                            type: "Icon",
+                            props: {
+                              name: "Layout",
+                              size: "lg",
+                            },
+                          },
+                          {
+                            type: "Heading",
+                            props: {
+                              level: 3,
+                              weight: "semibold",
+                            },
+                            content: "Responsive Design",
+                          },
+                          {
+                            type: "Text",
+                            props: {
+                              weight: "regular",
+                            },
+                            content:
+                              "Built-in responsive breakpoints that adapt to any screen size",
+                          },
+                        ],
                       },
                     ],
                   },
-                ],
-              },
-              {
-                type: "Card",
-                id: "feature-3",
-                props: {
-                  padding: 6,
-                },
-                children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "feature-2",
                     props: {
-                      direction: "vertical",
-                      gap: 3,
+                      padding: "md",
                     },
                     children: [
                       {
-                        type: "Heading",
+                        type: "Stack",
                         props: {
-                          level: 3,
+                          direction: "vertical",
+                          gap: 3,
                         },
-                        content: "Export Anywhere",
+                        children: [
+                          {
+                            type: "Icon",
+                            props: {
+                              name: "Palette",
+                              size: "lg",
+                            },
+                          },
+                          {
+                            type: "Heading",
+                            props: {
+                              level: 3,
+                              weight: "semibold",
+                            },
+                            content: "Theme Customization",
+                          },
+                          {
+                            type: "Text",
+                            props: {
+                              weight: "regular",
+                            },
+                            content:
+                              "Fully customizable themes with your brand colors and typography",
+                          },
+                        ],
                       },
+                    ],
+                  },
+                  {
+                    type: "Card",
+                    id: "feature-3",
+                    props: {
+                      padding: "md",
+                    },
+                    children: [
                       {
-                        type: "Text",
-                        props: {},
-                        content:
-                          "Export to React, Vue, Svelte, HTML, Tailwind, and more",
+                        type: "Stack",
+                        props: {
+                          direction: "vertical",
+                          gap: 3,
+                        },
+                        children: [
+                          {
+                            type: "Icon",
+                            props: {
+                              name: "Download",
+                              size: "lg",
+                            },
+                          },
+                          {
+                            type: "Heading",
+                            props: {
+                              level: 3,
+                              weight: "semibold",
+                            },
+                            content: "Export Anywhere",
+                          },
+                          {
+                            type: "Text",
+                            props: {
+                              weight: "regular",
+                            },
+                            content:
+                              "Export to React, Vue, Svelte, HTML, Tailwind, and more",
+                          },
+                        ],
                       },
                     ],
                   },

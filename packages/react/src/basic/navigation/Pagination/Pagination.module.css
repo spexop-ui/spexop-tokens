@@ -1,0 +1,148 @@
+/**
+ * Pagination Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - strong borders for buttons
+ * - Principle 3: Typography before decoration - bold for active page
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - high contrast, clear focus
+ */
+
+.pagination {
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-spacing-2, 8px);
+  flex-wrap: wrap;
+}
+
+/* Button */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-spacing-1, 4px);
+  min-width: 36px;
+  height: 36px;
+  padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  color: var(--theme-text-secondary, #404040);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-regular, 400);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--theme-surface-hover, #fafafa);
+  border-color: var(--theme-border-strong, #a3a3a3);
+  color: var(--theme-text, #171717);
+}
+
+.button:focus {
+  outline: 2px solid var(--theme-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.button:active:not(:disabled) {
+  background: var(--theme-surface-secondary, #f5f5f5);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Active page */
+.button.active {
+  background: var(--theme-primary, #3b82f6);
+  border-color: var(--theme-primary, #3b82f6);
+  color: var(--theme-surface, #ffffff);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  cursor: default;
+}
+
+/* Button label (for text) */
+.button-label {
+  line-height: 1;
+}
+
+/* Ellipsis */
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  color: var(--theme-text-muted, #737373);
+  font-size: var(--theme-font-size-sm, 14px);
+  user-select: none;
+}
+
+/* Size variants */
+.pagination.size-sm .button {
+  min-width: 28px;
+  height: 28px;
+  padding: var(--theme-spacing-1, 4px) var(--theme-spacing-2, 8px);
+  font-size: var(--theme-font-size-xs, 12px);
+}
+
+.pagination.size-sm .ellipsis {
+  min-width: 28px;
+  height: 28px;
+  font-size: var(--theme-font-size-xs, 12px);
+}
+
+.pagination.size-lg .button {
+  min-width: 44px;
+  height: 44px;
+  padding: var(--theme-spacing-3, 12px) var(--theme-spacing-4, 16px);
+  font-size: var(--theme-font-size-base, 16px);
+}
+
+.pagination.size-lg .ellipsis {
+  min-width: 44px;
+  height: 44px;
+  font-size: var(--theme-font-size-base, 16px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .buttons {
+    gap: var(--theme-spacing-1, 4px);
+  }
+
+  .button {
+    min-width: 32px;
+    height: 32px;
+    padding: var(--theme-spacing-1, 4px) var(--theme-spacing-2, 8px);
+  }
+
+  .button-label {
+    display: none;
+  }
+
+  .ellipsis {
+    min-width: 32px;
+    height: 32px;
+  }
+
+  .pagination.size-lg .button {
+    min-width: 36px;
+    height: 36px;
+    padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  }
+
+  .pagination.size-lg .ellipsis {
+    min-width: 36px;
+    height: 36px;
+  }
+}
+

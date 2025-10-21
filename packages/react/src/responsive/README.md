@@ -1,6 +1,6 @@
 # Responsive Utilities for React
 
-This guide shows the best ways to integrate media query tokens from `@spexop/tokens` into your React components.
+This guide shows the best ways to integrate media query tokens from `@spexop/theme` into your React components.
 
 ## 📖 Table of Contents
 
@@ -11,7 +11,7 @@ This guide shows the best ways to integrate media query tokens from `@spexop/tok
 5. [Examples](#examples)
 6. [Best Practices](#best-practices)
 
-## 🚀 Quick Start
+## Quick Start
 
 ```tsx
 import { 
@@ -45,7 +45,7 @@ function MyComponent() {
 }
 ```
 
-## 🪝 Hooks
+## Hooks
 
 ### `useMediaQuery(query: string)`
 
@@ -53,7 +53,7 @@ Match any media query using design tokens:
 
 ```tsx
 import { useMediaQuery } from '@spexop/react';
-import { sMediaMinMd, sMediaDarkScheme } from '@spexop/tokens';
+import { sMediaMinMd, sMediaDarkScheme } from '@spexop/theme';
 
 function Component() {
   const isTabletUp = useMediaQuery(sMediaMinMd);
@@ -128,7 +128,7 @@ function Grid({ size, columns }: Props) {
 />
 ```
 
-## 🧩 Components
+## Components
 
 ### `<Responsive>`
 
@@ -164,12 +164,12 @@ function App() {
 }
 ```
 
-## 🛠 Integration Patterns
+## Integration Patterns
 
 ### 1. **Direct Token Usage in CSS-in-JS**
 
 ```tsx
-import { sMediaMinMd, sMediaMaxLg } from '@spexop/tokens';
+import { sMediaMinMd, sMediaMaxLg } from '@spexop/theme';
 
 const styles = {
   container: {
@@ -272,7 +272,7 @@ function Button({ children, variant = 'primary', responsiveSize = true }: Button
 }
 ```
 
-## 📝 Examples
+## Examples
 
 ### Complete Responsive Card Component
 
@@ -335,7 +335,7 @@ function ResponsiveCard({
 ### Media Query Container
 
 ```tsx
-import { sMediaMinMd, sMediaMinLg } from '@spexop/tokens';
+import { sMediaMinMd, sMediaMinLg } from '@spexop/theme';
 
 function MediaQueryContainer() {
   return (
@@ -369,7 +369,7 @@ function MediaQueryContainer() {
 }
 ```
 
-## ✅ Best Practices
+## Best Practices
 
 ### 1. **Mobile-First Approach**
 
@@ -455,7 +455,7 @@ interface ComponentProps {
 
 ---
 
-## 🎯 Summary
+## Summary
 
 The responsive utilities provide four main integration methods:
 

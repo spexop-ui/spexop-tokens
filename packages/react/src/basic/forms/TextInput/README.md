@@ -1,70 +1,178 @@
 # TextInput Component
 
-A flexible text input component following Spexop's design system principles.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A versatile text input component with label, helper text, error states, and various input types. Features clean border-based design with full accessibility support.
 
 ## Features
 
-- **Accessible**: Proper labels, ARIA attributes, and keyboard navigation
-- **Themed**: Automatic light/dark theme support
-- **Variants**: Default, error, and success states
-- **Sizes**: Small, medium, and large variants
-- **Icons**: Support for left and right icons
-- **Validation**: Built-in error message display
-- **Help Text**: Optional help text below the input
+- ✅ Multiple input types (text, email, password, number, tel, url)
+- ✅ 3 sizes (sm, md, lg)
+- ✅ Label and helper text
+- ✅ Error state with validation
+- ✅ Disabled and read-only states
+- ✅ Prefix and suffix support
+- ✅ Character count
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
-## Props
+## Installation
+
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
+```
+
+## Quick Start
 
 ```tsx
-interface TextInputProps {
-  label: string;                    // Required label
-  id?: string;                      // Optional custom ID
-  name?: string;                    // Form field name
-  type?: "text" | "email" | "password" | "tel" | "url" | "search";
-  value?: string;                   // Controlled value
-  defaultValue?: string;            // Uncontrolled default value
-  placeholder?: string;             // Placeholder text
-  required?: boolean;               // Required field indicator
-  disabled?: boolean;               // Disabled state
-  readOnly?: boolean;               // Read-only state
-  size?: "sm" | "md" | "lg";       // Size variant
-  variant?: "default" | "error" | "success"; // Visual variant
-  error?: string;                   // Error message
-  helpText?: string;                // Help text
-  leftIcon?: ReactNode;             // Left side icon
-  rightIcon?: ReactNode;            // Right side icon
-  className?: string;               // Additional CSS class
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+import { TextInput } from '@spexop/react';
+import { useState } from 'react';
+
+function App() {
+  const [value, setValue] = useState('');
+  
+  return (
+    <TextInput
+      label="Full Name"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="Enter your name"
+    />
+  );
 }
 ```
 
-## Usage
+## Sizes
 
-### Basic Input
+### Small (sm)
+
+Compact input for dense layouts.
 
 ```tsx
-import { TextInput } from '@spexop/react';
-
 <TextInput
-  label="Email Address"
-  type="email"
-  placeholder="your@email.com"
-  required
+  size="sm"
+  label="Username"
+  value={username}
+  onChange={handleChange}
 />
 ```
 
-### With Icons
+### Medium (md) - Default
+
+Standard input size.
 
 ```tsx
-import { TextInput } from '@spexop/react';
-import { Mail, Search } from '@spexop/icons';
-
 <TextInput
+  size="md"
+  label="Email"
+  type="email"
+  value={email}
+  onChange={handleChange}
+/>
+```
+
+### Large (lg)
+
+Larger input for emphasis.
+
+```tsx
+<TextInput
+  size="lg"
   label="Search"
-  placeholder="Search products..."
-  leftIcon={<Search size={20} />}
-  rightIcon={<Mail size={20} />}
+  value={query}
+  onChange={handleChange}
+/>
+```
+
+## Input Types
+
+### Text (Default)
+
+```tsx
+<TextInput
+  type="text"
+  label="Name"
+  value={name}
+  onChange={handleChange}
+/>
+```
+
+### Email
+
+```tsx
+<TextInput
+  type="email"
+  label="Email Address"
+  value={email}
+  onChange={handleChange}
+  placeholder="you@example.com"
+/>
+```
+
+### Password
+
+```tsx
+<TextInput
+  type="password"
+  label="Password"
+  value={password}
+  onChange={handleChange}
+/>
+```
+
+### Number
+
+```tsx
+<TextInput
+  type="number"
+  label="Age"
+  value={age}
+  onChange={handleChange}
+  min={18}
+  max={120}
+/>
+```
+
+### Telephone
+
+```tsx
+<TextInput
+  type="tel"
+  label="Phone Number"
+  value={phone}
+  onChange={handleChange}
+  placeholder="+1 (555) 123-4567"
+/>
+```
+
+### URL
+
+```tsx
+<TextInput
+  type="url"
+  label="Website"
+  value={website}
+  onChange={handleChange}
+  placeholder="https://example.com"
+/>
+```
+
+## States
+
+### With Label and Helper Text
+
+```tsx
+<TextInput
+  label="Username"
+  helperText="Choose a unique username (3-20 characters)"
+  value={username}
+  onChange={setUsername}
 />
 ```
 
@@ -72,126 +180,306 @@ import { Mail, Search } from '@spexop/icons';
 
 ```tsx
 <TextInput
-  label="Password"
-  type="password"
-  error="Password must be at least 8 characters"
-  required
+  label="Email"
+  value={email}
+  onChange={setEmail}
+  error="Please enter a valid email address"
 />
 ```
 
-### Different Sizes
-
-```tsx
-<TextInput label="Small" size="sm" />
-<TextInput label="Medium" size="md" />
-<TextInput label="Large" size="lg" />
-```
-
-### With Help Text
+### Disabled
 
 ```tsx
 <TextInput
-  label="Username"
-  helpText="Choose a unique username for your account"
-  placeholder="johndoe"
+  label="Account ID"
+  value={accountId}
+  onChange={handleChange}
+  disabled={true}
 />
 ```
 
-## Styling
+### Read-Only
 
-The component uses CSS Modules with design tokens:
+```tsx
+<TextInput
+  label="Generated Code"
+  value={code}
+  readOnly={true}
+/>
+```
 
-- **Borders**: 2px solid borders (following "borders before shadows" principle)
-- **Focus States**: Primary color border with subtle shadow
-- **Typography**: Uses design system font sizes and weights
-- **Spacing**: Consistent padding and margins using spacing tokens
-- **Colors**: Automatic theme adaptation
+### Required
+
+```tsx
+<TextInput
+  label="Company Name"
+  value={company}
+  onChange={setCompany}
+  required={true}
+/>
+```
+
+## Prefix and Suffix
+
+### With Prefix
+
+```tsx
+<TextInput
+  label="Website"
+  value={domain}
+  onChange={setDomain}
+  prefix="https://"
+  placeholder="example.com"
+/>
+```
+
+### With Suffix
+
+```tsx
+<TextInput
+  label="Price"
+  value={price}
+  onChange={setPrice}
+  type="number"
+  suffix="USD"
+/>
+```
+
+### Both Prefix and Suffix
+
+```tsx
+<TextInput
+  label="Discount"
+  value={discount}
+  onChange={setDiscount}
+  type="number"
+  prefix="Save"
+  suffix="%"
+/>
+```
+
+## Character Count
+
+```tsx
+<TextInput
+  label="Bio"
+  value={bio}
+  onChange={setBio}
+  maxLength={160}
+  showCount={true}
+  helperText="Brief description about yourself"
+/>
+```
+
+## Common Patterns
+
+### Login Form
+
+```tsx
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const newErrors = {};
+    if (!email) newErrors.email = 'Email is required';
+    if (!password) newErrors.password = 'Password is required';
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    // Submit form
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <TextInput
+        type="email"
+        label="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        error={errors.email}
+        required
+      />
+      
+      <TextInput
+        type="password"
+        label="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        error={errors.password}
+        required
+      />
+      
+      <button type="submit">Sign In</button>
+    </form>
+  );
+}
+```
+
+### Profile Form
+
+```tsx
+function ProfileForm() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    website: '',
+  });
+
+  const handleChange = (field) => (e) => {
+    setFormData({ ...formData, [field]: e.target.value });
+  };
+
+  return (
+    <Stack direction="vertical" gap={4}>
+      <TextInput
+        label="First Name"
+        value={formData.firstName}
+        onChange={handleChange('firstName')}
+        required
+      />
+      
+      <TextInput
+        label="Last Name"
+        value={formData.lastName}
+        onChange={handleChange('lastName')}
+        required
+      />
+      
+      <TextInput
+        type="email"
+        label="Email"
+        value={formData.email}
+        onChange={handleChange('email')}
+        required
+      />
+      
+      <TextInput
+        type="tel"
+        label="Phone"
+        value={formData.phone}
+        onChange={handleChange('phone')}
+        helperText="Optional"
+      />
+      
+      <TextInput
+        type="url"
+        label="Website"
+        value={formData.website}
+        onChange={handleChange('website')}
+        prefix="https://"
+        helperText="Optional"
+      />
+    </Stack>
+  );
+}
+```
+
+### Search with Debounce
+
+```tsx
+function SearchInput() {
+  const [value, setValue] = useState('');
+  const [debouncedValue, setDebouncedValue] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedValue(value);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [value]);
+
+  useEffect(() => {
+    if (debouncedValue) {
+      // Perform search
+      console.log('Searching for:', debouncedValue);
+    }
+  }, [debouncedValue]);
+
+  return (
+    <TextInput
+      label="Search"
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      placeholder="Type to search..."
+      prefix="🔍"
+    />
+  );
+}
+```
+
+## Props
+
+```typescript
+interface TextInputProps {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  helperText?: string;
+  error?: string;
+  type?: "text" | "email" | "password" | "number" | "tel" | "url";
+  size?: "sm" | "md" | "lg";
+  placeholder?: string;
+  disabled?: boolean;
+  readOnly?: boolean;
+  required?: boolean;
+  prefix?: string | React.ReactNode;
+  suffix?: string | React.ReactNode;
+  maxLength?: number;
+  showCount?: boolean;
+  className?: string;
+  id?: string;
+  name?: string;
+  autoComplete?: string;
+  autoFocus?: boolean;
+  min?: number;
+  max?: number;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Borders before shadows** - Clean 2px border design
+2. **Typography before decoration** - Clear, readable text
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full keyboard and screen reader support
 
 ## Accessibility
 
-- **Labels**: Proper `htmlFor` association with input ID
-- **Required Fields**: Visual asterisk indicator
-- **Error Messages**: `role="alert"` for screen readers
-- **Keyboard Navigation**: Full keyboard support
-- **Focus Management**: Clear focus indicators
+- ✅ Semantic HTML with proper labels
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ Focus indicators
+- ✅ Error announcements
+- ✅ Required field indication
+- ✅ Autocomplete support
+- ✅ WCAG AA+ compliant
 
-## Theme Support
+## Browser Support
 
-Automatically adapts to light/dark themes:
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-```css
-/* Light theme */
-.input {
-  background: var(--s-color-white);
-  border-color: var(--s-color-neutral-200);
-  color: var(--s-color-neutral-900);
-}
+## Related Components
 
-/* Dark theme */
-html[data-theme="dark"] .input {
-  background: var(--s-color-neutral-900);
-  border-color: var(--s-color-neutral-700);
-  color: var(--s-color-white);
-}
-```
+- `TextArea` - Multi-line text input
+- `Select` - Dropdown selection
+- `SearchBar` - Search-specific input
+- `Checkbox` - Boolean input
 
-## Best Practices
+## License
 
-**Do** ✅:
-
-- Always provide a descriptive label
-- Use appropriate input types (email, password, etc.)
-- Provide helpful error messages
-- Use icons sparingly and meaningfully
-- Test with keyboard navigation
-
-**Don't** ❌:
-
-- Don't use placeholder text as the only label
-- Don't skip error handling
-- Don't use too many icons
-- Don't forget to test in both themes
-
-## Examples
-
-### Contact Form
-
-```tsx
-<Grid columns={{ xs: 1, md: 2 }} gap={4}>
-  <TextInput
-    label="First Name"
-    name="firstName"
-    required
-    placeholder="John"
-  />
-  <TextInput
-    label="Last Name"
-    name="lastName"
-    required
-    placeholder="Doe"
-  />
-</Grid>
-```
-
-### Search with Icon
-
-```tsx
-<TextInput
-  label="Search"
-  placeholder="Search products..."
-  leftIcon={<Search size={20} />}
-  type="search"
-/>
-```
-
-### Password with Validation
-
-```tsx
-<TextInput
-  label="Password"
-  type="password"
-  required
-  error={passwordError}
-  helpText="Must be at least 8 characters with numbers and symbols"
-/>
-```
+MIT

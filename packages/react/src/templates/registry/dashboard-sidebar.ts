@@ -13,9 +13,20 @@ export const dashboardSidebar: Template = {
     category: "dashboard",
     tier: "free",
     thumbnail: "/template-thumbnails/dashboard-sidebar.webp",
-    tags: ["dashboard", "sidebar", "navigation", "app"],
+    tags: ["dashboard", "sidebar", "navigation", "app", "accessibility-first"],
     author: "Spexop Team",
     version: "1.0.0",
+    accessibility: {
+      landmarks: [
+        { type: "navigation", label: "Dashboard navigation" },
+        { type: "main", label: "Dashboard content" },
+      ],
+      skipLinks: [{ target: "main-content", label: "Skip to main content" }],
+      focusManagement: {
+        initialFocus: "main-content",
+        returnFocus: false,
+      },
+    },
   },
   structure: {
     type: "Container",
@@ -34,54 +45,67 @@ export const dashboardSidebar: Template = {
           {
             type: "GridItem",
             props: {
-              span: { xs: 12, lg: 3 },
+              span: { xs: 12, md: 4, lg: 3 },
             },
             children: [
               {
-                type: "Stack",
-                props: {
-                  direction: "vertical",
-                  gap: 6,
-                },
+                type: "Nav",
+                role: "navigation",
+                ariaLabel: "Dashboard navigation",
+                props: {},
                 children: [
-                  {
-                    type: "Heading",
-                    id: "sidebar-title",
-                    props: {
-                      level: 3,
-                    },
-                    content: "Dashboard",
-                  },
                   {
                     type: "Stack",
                     props: {
                       direction: "vertical",
-                      gap: 2,
+                      gap: "md",
                     },
                     children: [
                       {
-                        type: "Button",
+                        type: "Heading",
+                        id: "sidebar-title",
                         props: {
-                          variant: "ghost",
-                          fullWidth: true,
+                          level: 3,
+                          weight: "bold",
                         },
-                        content: "Overview",
+                        content: "Dashboard",
                       },
                       {
-                        type: "Button",
+                        type: "Stack",
                         props: {
-                          variant: "ghost",
-                          fullWidth: true,
+                          direction: "vertical",
+                          gap: "sm",
                         },
-                        content: "Analytics",
-                      },
-                      {
-                        type: "Button",
-                        props: {
-                          variant: "ghost",
-                          fullWidth: true,
-                        },
-                        content: "Settings",
+                        children: [
+                          {
+                            type: "Link",
+                            ariaCurrent: "page",
+                            props: {
+                              href: "#overview",
+                              variant: "ghost",
+                              fullWidth: true,
+                            },
+                            content: "Overview",
+                          },
+                          {
+                            type: "Link",
+                            props: {
+                              href: "#analytics",
+                              variant: "ghost",
+                              fullWidth: true,
+                            },
+                            content: "Analytics",
+                          },
+                          {
+                            type: "Link",
+                            props: {
+                              href: "#settings",
+                              variant: "ghost",
+                              fullWidth: true,
+                            },
+                            content: "Settings",
+                          },
+                        ],
                       },
                     ],
                   },
@@ -92,98 +116,110 @@ export const dashboardSidebar: Template = {
           {
             type: "GridItem",
             props: {
-              span: { xs: 12, lg: 9 },
+              span: { xs: 12, md: 8, lg: 9 },
             },
             children: [
               {
-                type: "Container",
-                props: {
-                  maxWidth: "2xl",
-                  padding: 8,
-                },
+                type: "Main",
+                id: "main-content",
+                role: "main",
+                ariaLabel: "Dashboard content",
+                props: {},
                 children: [
                   {
-                    type: "Stack",
+                    type: "Container",
                     props: {
-                      direction: "vertical",
-                      gap: 6,
+                      maxWidth: "2xl",
+                      padding: "lg",
                     },
                     children: [
                       {
-                        type: "Heading",
-                        id: "content-title",
+                        type: "Stack",
                         props: {
-                          level: 2,
-                        },
-                        content: "Welcome Back",
-                      },
-                      {
-                        type: "Grid",
-                        props: {
-                          columns: "auto-fit",
-                          minColumnWidth: "250px",
-                          gap: 6,
+                          direction: "vertical",
+                          gap: "md",
                         },
                         children: [
                           {
-                            type: "Card",
+                            type: "Heading",
+                            id: "content-title",
                             props: {
-                              padding: 6,
+                              level: 2,
+                              weight: "bold",
+                            },
+                            content: "Welcome Back",
+                          },
+                          {
+                            type: "Grid",
+                            props: {
+                              columns: "auto-fit",
+                              minColumnWidth: "250px",
+                              gap: 6,
                             },
                             children: [
                               {
-                                type: "Stack",
+                                type: "Card",
                                 props: {
-                                  direction: "vertical",
-                                  gap: 3,
+                                  padding: "md",
                                 },
                                 children: [
                                   {
-                                    type: "Heading",
+                                    type: "Stack",
                                     props: {
-                                      level: 3,
+                                      direction: "vertical",
+                                      gap: 3,
                                     },
-                                    content: "Total Users",
-                                  },
-                                  {
-                                    type: "Text",
-                                    props: {
-                                      size: "2xl",
-                                      weight: "bold",
-                                    },
-                                    content: "12,345",
+                                    children: [
+                                      {
+                                        type: "Heading",
+                                        props: {
+                                          level: 3,
+                                          weight: "semibold",
+                                        },
+                                        content: "Total Users",
+                                      },
+                                      {
+                                        type: "Text",
+                                        props: {
+                                          size: "2xl",
+                                          weight: "bold",
+                                        },
+                                        content: "12,345",
+                                      },
+                                    ],
                                   },
                                 ],
                               },
-                            ],
-                          },
-                          {
-                            type: "Card",
-                            props: {
-                              padding: 6,
-                            },
-                            children: [
                               {
-                                type: "Stack",
+                                type: "Card",
                                 props: {
-                                  direction: "vertical",
-                                  gap: 3,
+                                  padding: "md",
                                 },
                                 children: [
                                   {
-                                    type: "Heading",
+                                    type: "Stack",
                                     props: {
-                                      level: 3,
+                                      direction: "vertical",
+                                      gap: 3,
                                     },
-                                    content: "Revenue",
-                                  },
-                                  {
-                                    type: "Text",
-                                    props: {
-                                      size: "2xl",
-                                      weight: "bold",
-                                    },
-                                    content: "$45,678",
+                                    children: [
+                                      {
+                                        type: "Heading",
+                                        props: {
+                                          level: 3,
+                                          weight: "semibold",
+                                        },
+                                        content: "Revenue",
+                                      },
+                                      {
+                                        type: "Text",
+                                        props: {
+                                          size: "2xl",
+                                          weight: "bold",
+                                        },
+                                        content: "$45,678",
+                                      },
+                                    ],
                                   },
                                 ],
                               },

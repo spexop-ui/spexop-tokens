@@ -1,422 +1,328 @@
 # NavLink Component
 
-A styled navigation link component with active state support and accessibility features.
+**Status**: ✅ Production Ready | **Version**: 0.2.0
+
+A navigation link component with active state indication for sidebar navigation.
+
+> For comprehensive documentation, examples, and advanced patterns, see the [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md#sidebar-navigation-system)
 
 ## Overview
 
-The `NavLink` component is designed for use within sidebar navigation. It provides:
-
-- Active state highlighting
-- Hover effects
-- Focus management
-- Touch-optimized sizing
-- Left border indicator for active state
+A simple navigation link component with active state indication, used as building block for Sidebar navigation menus.
 
 ## Features
 
-✅ **Active State**: Red highlight with left border  
-✅ **Hover Effects**: Smooth background transitions  
-✅ **Accessibility**: ARIA attributes and keyboard support  
-✅ **Touch Targets**: 48px minimum height (WCAG AA)  
-✅ **Dark Mode**: Automatic theme support
-
----
+- ✅ Active state styling
+- ✅ Icon support (@spexop/icons)
+- ✅ Badge/count indicators
+- ✅ External link support
+- ✅ Disabled state
+- ✅ Keyboard navigation
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
-```tsx
-import { NavLink } from '@spexop/react';
+```bash
+npm install @spexop/react @spexop/icons @spexop/theme
+# or
+pnpm add @spexop/react @spexop/icons @spexop/theme
 ```
 
----
+## Quick Start
+
+```tsx
+import { NavLink } from '@spexop/react';
+import { Home } from '@spexop/icons';
+
+function App() {
+  return (
+    <NavLink
+      href="/"
+      label="Home"
+      icon={Home}
+      isActive={currentPath === '/'}
+      onClick={() => navigate('/')}
+    />
+  );
+}
+```
 
 ## Basic Usage
 
-```tsx
-import { NavLink } from '@spexop/react';
+### Simple Link
 
-function Sidebar() {
+```tsx
+<NavLink
+  href="/about"
+  label="About"
+  isActive={currentPath === '/about'}
+  onClick={handleNavigate}
+/>
+```
+
+### With Icon
+
+```tsx
+import { Settings } from '@spexop/icons';
+
+<NavLink
+  href="/settings"
+  label="Settings"
+  icon={Settings}
+  isActive={currentPath === '/settings'}
+  onClick={handleNavigate}
+/>
+```
+
+### With Badge
+
+```tsx
+import { Mail } from '@spexop/icons';
+
+<NavLink
+  href="/messages"
+  label="Messages"
+  icon={Mail}
+  badge="12"
+  isActive={currentPath === '/messages'}
+  onClick={handleNavigate}
+/>
+```
+
+### External Link
+
+```tsx
+import { ExternalLink } from '@spexop/icons';
+
+<NavLink
+  href="https://docs.example.com"
+  label="Documentation"
+  icon={ExternalLink}
+  external={true}
+/>
+```
+
+## States
+
+### Active State
+
+```tsx
+<NavLink
+  href="/dashboard"
+  label="Dashboard"
+  isActive={true}
+  onClick={handleNavigate}
+/>
+```
+
+### Disabled State
+
+```tsx
+<NavLink
+  href="/premium"
+  label="Premium Features"
+  disabled={true}
+  onClick={handleNavigate}
+/>
+```
+
+## Common Patterns
+
+### Navigation Menu
+
+```tsx
+function NavigationMenu() {
+  const [currentPath, setCurrentPath] = useState('/');
+  
+  const navItems = [
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/projects', label: 'Projects', icon: Folder },
+    { href: '/team', label: 'Team', icon: Users },
+    { href: '/settings', label: 'Settings', icon: Settings },
+  ];
+
   return (
     <nav>
-      <NavLink href="/home">Home</NavLink>
-      <NavLink href="/about">About</NavLink>
-      <NavLink href="/contact" active>Contact</NavLink>
+      {navItems.map(item => (
+        <NavLink
+          key={item.href}
+          {...item}
+          isActive={currentPath === item.href}
+          onClick={() => setCurrentPath(item.href)}
+        />
+      ))}
     </nav>
   );
 }
 ```
 
----
-
-## Props
-
-### `NavLinkProps`
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `href` | `string` | **required** | The URL the link points to |
-| `children` | `ReactNode` | **required** | The link content (usually text) |
-| `active` | `boolean` | `false` | Whether this link is currently active |
-| `onClick` | `(e: MouseEvent) => void` | `undefined` | Optional click handler |
-| `className` | `string` | `""` | Additional CSS classes |
-
----
-
-## Examples
-
-### With React Router
+### With Notification Badges
 
 ```tsx
-import { NavLink } from '@spexop/react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-function Sidebar() {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleClick = (href: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate(href);
+function NavWithBadges() {
+  const notifications = {
+    messages: 5,
+    alerts: 2,
   };
 
   return (
     <nav>
-      <NavLink 
-        href="/" 
-        active={location.pathname === '/'}
-        onClick={handleClick('/')}
-      >
-        Home
-      </NavLink>
-      <NavLink 
-        href="/about" 
-        active={location.pathname === '/about'}
-        onClick={handleClick('/about')}
-      >
-        About
-      </NavLink>
+      <NavLink
+        href="/messages"
+        label="Messages"
+        icon={Mail}
+        badge={notifications.messages.toString()}
+        isActive={currentPath === '/messages'}
+        onClick={handleNavigate}
+      />
+      
+      <NavLink
+        href="/alerts"
+        label="Alerts"
+        icon={Bell}
+        badge={notifications.alerts.toString()}
+        isActive={currentPath === '/alerts'}
+        onClick={handleNavigate}
+      />
     </nav>
   );
 }
 ```
 
-### Grouped Links
+### Grouped Navigation
 
 ```tsx
-import { NavLink, NavSection } from '@spexop/react';
-
-function Sidebar() {
-  const currentPage = '/components/button';
-
-  const componentLinks = [
-    { href: '/components/button', label: 'Button' },
-    { href: '/components/card', label: 'Card' },
-    { href: '/components/badge', label: 'Badge' },
-  ];
-
+function GroupedNav() {
   return (
-    <NavSection label="Components" defaultOpen>
-      {componentLinks.map((link) => (
-        <NavLink 
-          key={link.href}
-          href={link.href} 
-          active={currentPage === link.href}
-        >
-          {link.label}
-        </NavLink>
-      ))}
-    </NavSection>
+    <Stack direction="vertical" gap={6}>
+      <NavSection title="Main">
+        <NavLink href="/" label="Dashboard" icon={LayoutDashboard} />
+        <NavLink href="/analytics" label="Analytics" icon={BarChart} />
+      </NavSection>
+      
+      <NavSection title="Settings">
+        <NavLink href="/profile" label="Profile" icon={User} />
+        <NavLink href="/preferences" label="Preferences" icon={Settings} />
+      </NavSection>
+    </Stack>
   );
 }
 ```
 
-### With Icons
+### Responsive Navigation
 
 ```tsx
-import { NavLink } from '@spexop/react';
-import { Home, Settings, User } from '@spexop/icons';
+function ResponsiveNav() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
-function Sidebar() {
   return (
     <nav>
-      <NavLink href="/home">
-        <Home size={16} style={{ marginRight: '8px' }} />
-        Home
-      </NavLink>
-      <NavLink href="/settings">
-        <Settings size={16} style={{ marginRight: '8px' }} />
-        Settings
-      </NavLink>
-      <NavLink href="/profile" active>
-        <User size={16} style={{ marginRight: '8px' }} />
-        Profile
-      </NavLink>
+      {navItems.map(item => (
+        <NavLink
+          key={item.href}
+          href={item.href}
+          label={isMobile ? '' : item.label} // Icon only on mobile
+          icon={item.icon}
+          isActive={currentPath === item.href}
+          onClick={handleNavigate}
+        />
+      ))}
     </nav>
   );
 }
 ```
 
-### With Custom Styling
+## Props
 
-```tsx
-import { NavLink } from '@spexop/react';
-import styles from './MySidebar.module.css';
-
-function Sidebar() {
-  return (
-    <NavLink 
-      href="/special" 
-      className={styles.customLink}
-    >
-      Special Page
-    </NavLink>
-  );
+```typescript
+interface NavLinkProps {
+  /** Link destination */
+  href: string;
+  /** Link label text */
+  label: string;
+  /** Icon component from @spexop/icons */
+  icon?: IconComponent;
+  /** Whether this link is currently active */
+  isActive?: boolean;
+  /** Badge text or count */
+  badge?: string;
+  /** External link (opens in new tab) */
+  external?: boolean;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Click handler (for client-side routing) */
+  onClick?: (event: React.MouseEvent) => void;
+  /** Additional CSS class */
+  className?: string;
+  /** ARIA label */
+  "aria-label"?: string;
 }
 ```
 
----
+## Design Principles
 
-## Styling
+Following "The Spexop Way":
 
-### CSS Variables
-
-The NavLink uses design tokens:
-
-```css
-/* Spacing */
---s-spacing-3 (12px) - vertical padding
---s-spacing-5 (20px) - horizontal padding right
---s-spacing-8 (40px) - horizontal padding left
-
-/* Typography */
---s-font-size-sm (14px)
---s-font-weight-normal (400)
---s-font-weight-semibold (600 - active)
-
-/* Colors - Light Theme */
---s-color-neutral-700 (text)
---s-color-neutral-100 (hover background)
---s-color-neutral-900 (hover text)
---s-color-red-500 (active highlight)
---s-color-red-50 (active background)
-
-/* Transitions */
---s-duration-fast (150ms)
-```
-
-### Active State
-
-Active links have:
-
-- Background: `var(--s-color-red-50)`
-- Text color: `var(--s-color-red-500)`
-- Left border: `3px solid var(--s-color-red-500)`
-- Font weight: `var(--s-font-weight-semibold)`
-
-### Dark Theme
-
-```css
-[data-theme="dark"] .navLink {
-  color: var(--s-color-neutral-300);
-}
-
-[data-theme="dark"] .navLink:hover {
-  background-color: var(--s-color-neutral-800);
-  color: var(--s-color-neutral-50);
-}
-
-[data-theme="dark"] .navLink.active {
-  background-color: var(--s-color-red-900);
-  color: var(--s-color-red-300);
-}
-```
-
----
+1. **Borders before shadows** - Clean active state indication
+2. **Typography before decoration** - Font weight for emphasis
+3. **Tokens before magic numbers** - Uses spacing and color tokens
+4. **Accessibility before aesthetics** - Full keyboard and screen reader support
 
 ## Accessibility
 
-### ARIA Attributes
+- ✅ Semantic HTML (`<a>` element)
+- ✅ Active state indication
+- ✅ Focus indicators
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ External link indication
+- ✅ WCAG AA+ compliant
 
-Active links automatically get `aria-current="page"`:
-
-```tsx
-<a 
-  href="/current-page" 
-  aria-current="page"
-  className="navLink active"
->
-  Current Page
-</a>
-```
-
-### Keyboard Navigation
-
-- ✅ **Tab**: Navigate between links
-- ✅ **Enter**: Activate link
-- ✅ **Focus indicator**: 2px red outline
-
-### Touch Targets
-
-- ✅ Minimum height: 48px (WCAG 2.1 AA)
-- ✅ Adequate spacing between links
-- ✅ Large tap area on mobile
-
----
-
-## Best Practices
-
-### 1. **Active State Management**
-
-Use React Router's `useLocation` to determine active state:
+## TypeScript Support
 
 ```tsx
-import { useLocation } from 'react-router-dom';
+import { NavLink, type NavLinkProps } from "@spexop/react";
 
-function Sidebar() {
-  const location = useLocation();
-
-  return (
-    <NavLink 
-      href="/about" 
-      active={location.pathname === '/about'}
-    >
-      About
-    </NavLink>
-  );
-}
-```
-
-### 2. **Handle Navigation**
-
-Prevent default and use your router's navigation:
-
-```tsx
-const navigate = useNavigate();
-
-<NavLink 
-  href="/page" 
-  onClick={(e) => {
+const props: NavLinkProps = {
+  href: "/dashboard",
+  children: "Dashboard",
+  active: true,
+  onClick: (e) => {
     e.preventDefault();
-    navigate('/page');
-  }}
->
-  Page
-</NavLink>
+    navigate('/dashboard');
+  }
+};
+
+<NavLink {...props} />
 ```
 
-### 3. **Mobile Considerations**
+## Performance
 
-Close sidebar on mobile after navigation:
+- Lightweight: < 1KB gzipped
+- Minimal re-renders
+- Simple link semantics
 
-```tsx
-const isMobile = window.innerWidth < 768;
+## Browser Support
 
-<NavLink 
-  href="/page" 
-  onClick={(e) => {
-    e.preventDefault();
-    navigate('/page');
-    if (isMobile) {
-      closeSidebar();
-    }
-  }}
->
-  Page
-</NavLink>
-```
-
-### 4. **Organize with NavSection**
-
-Group related links in sections:
-
-```tsx
-<NavSection label="Foundation">
-  <NavLink href="/grid">Grid</NavLink>
-  <NavLink href="/stack">Stack</NavLink>
-  <NavLink href="/container">Container</NavLink>
-</NavSection>
-```
-
----
-
-## Common Patterns
-
-### Dynamic Navigation
-
-```tsx
-const navigationItems = [
-  { id: 'home', label: 'Home', href: '/' },
-  { id: 'about', label: 'About', href: '/about' },
-  { id: 'contact', label: 'Contact', href: '/contact' },
-];
-
-function Sidebar() {
-  const location = useLocation();
-
-  return (
-    <nav>
-      {navigationItems.map((item) => (
-        <NavLink 
-          key={item.id}
-          href={item.href}
-          active={location.pathname === item.href}
-        >
-          {item.label}
-        </NavLink>
-      ))}
-    </nav>
-  );
-}
-```
-
-### Nested Routes
-
-```tsx
-function Sidebar() {
-  const location = useLocation();
-  const isComponentsActive = location.pathname.startsWith('/components');
-
-  return (
-    <NavSection label="Components">
-      <NavLink 
-        href="/components/button"
-        active={location.pathname === '/components/button'}
-      >
-        Button
-      </NavLink>
-      <NavLink 
-        href="/components/card"
-        active={location.pathname === '/components/card'}
-      >
-        Card
-      </NavLink>
-    </NavSection>
-  );
-}
-```
-
----
+- Chrome/Edge (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- React 18+
 
 ## Related Components
 
-- **NavSection**: Collapsible sections for grouped links
-- **Sidebar**: Main navigation container
-- **SidebarFooter**: Footer section for sidebar
-- **TopBar**: Top navigation bar
+- [NavSection](../NavSection/README.md) - Collapsible navigation section grouping
+- [Sidebar](../Sidebar/README.md) - Side navigation container
+- [TopBar](../TopBar/README.md) - Top navigation bar
+- [Complete Navigation System](../USAGE-GUIDE.md#complete-navigation-system) - Full navigation setup
 
----
+## Further Reading
 
-## API Reference
-
-See [`NavLink.types.ts`](./NavLink.types.ts) for complete TypeScript definitions.
-
----
-
-## Version
-
-**v0.1.0** - Initial release with Sidebar refactoring (2025-10-13)
-
----
+- [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md) - Comprehensive guide with routing integration, migration guides, and advanced patterns
+- [Accessibility Guidelines](../USAGE-GUIDE.md#accessibility) - WCAG compliance details
+- [Best Practices](../USAGE-GUIDE.md#best-practices) - Mobile patterns and performance optimization
 
 ## License
 

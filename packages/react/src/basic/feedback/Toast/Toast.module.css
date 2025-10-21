@@ -1,0 +1,244 @@
+/**
+ * Toast Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - strong borders with subtle shadow
+ * - Principle 3: Typography before decoration - clear messaging
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - high contrast
+ */
+
+.toast {
+  position: fixed;
+  z-index: var(--theme-z-toast, 1600);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--theme-spacing-3, 12px);
+  min-width: 300px;
+  max-width: 500px;
+  padding: var(--theme-spacing-4, 16px);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid;
+  border-radius: var(--theme-radius-lg, 12px);
+  box-shadow: var(--theme-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.1));
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  will-change: transform, opacity;
+  backdrop-filter: blur(8px);
+}
+
+.toast.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  will-change: auto;
+}
+
+/* Position variants */
+.toast.position-top-left {
+  top: var(--theme-spacing-4, 16px);
+  left: var(--theme-spacing-4, 16px);
+  transform: translateY(-100px);
+}
+
+.toast.position-top-center {
+  top: var(--theme-spacing-4, 16px);
+  left: 50%;
+  transform: translate(-50%, -100px);
+}
+
+.toast.position-top-right {
+  top: var(--theme-spacing-4, 16px);
+  right: var(--theme-spacing-4, 16px);
+  transform: translateY(-100px);
+}
+
+.toast.position-bottom-left {
+  bottom: var(--theme-spacing-4, 16px);
+  left: var(--theme-spacing-4, 16px);
+}
+
+.toast.position-bottom-center {
+  bottom: var(--theme-spacing-4, 16px);
+  left: 50%;
+  transform: translate(-50%, 100px);
+}
+
+.toast.position-bottom-right {
+  bottom: var(--theme-spacing-4, 16px);
+  right: var(--theme-spacing-4, 16px);
+}
+
+.toast.position-top-left.open,
+.toast.position-top-center.open,
+.toast.position-top-right.open {
+  transform: translate(0, 0);
+}
+
+.toast.position-top-center.open {
+  transform: translate(-50%, 0);
+}
+
+.toast.position-bottom-center.open {
+  transform: translate(-50%, 0);
+}
+
+/* Content */
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-4, 16px);
+}
+
+.message {
+  flex: 1;
+  color: var(--theme-text, #171717);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-regular, 400);
+  line-height: 1.5;
+}
+
+/* Action button */
+.action-button {
+  padding: var(--theme-spacing-1, 4px) var(--theme-spacing-3, 12px);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: var(--theme-radius-sm, 4px);
+  color: inherit;
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.action-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.action-button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.action-button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Close button */
+.close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--theme-radius-sm, 4px);
+  color: currentColor;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: currentColor;
+}
+
+.close-button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.close-button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Variant styles */
+.toast.variant-info {
+  border-color: var(--theme-info, #3b82f6);
+}
+
+.toast.variant-success {
+  border-color: var(--theme-success, #22c55e);
+}
+
+.toast.variant-warning {
+  border-color: var(--theme-warning, #eab308);
+}
+
+.toast.variant-error {
+  border-color: var(--theme-error, #ef4444);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: opacity 0.1s ease;
+    will-change: auto;
+  }
+
+  .toast.open {
+    transform: translateY(0);
+  }
+
+  .toast.position-top-left,
+  .toast.position-top-center,
+  .toast.position-top-right,
+  .toast.position-bottom-left,
+  .toast.position-bottom-center,
+  .toast.position-bottom-right {
+    transform: translateY(0);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .toast {
+    border-width: 3px;
+    box-shadow: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .toast {
+    min-width: auto;
+    max-width: calc(100vw - var(--theme-spacing-8, 32px));
+    padding: var(--theme-spacing-3, 12px);
+    gap: var(--theme-spacing-2, 8px);
+  }
+
+  .toast.position-top-center,
+  .toast.position-bottom-center {
+    left: var(--theme-spacing-4, 16px);
+    right: var(--theme-spacing-4, 16px);
+    transform: translateY(100px);
+  }
+
+  .toast.position-top-center.open,
+  .toast.position-bottom-center.open {
+    transform: translateY(0);
+  }
+
+  .message {
+    font-size: var(--theme-font-size-xs, 12px);
+  }
+  
+  .action-button,
+  .close-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+

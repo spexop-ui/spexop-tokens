@@ -1,27 +1,40 @@
-import {
-  sMediaMaxLg,
-  sMediaMaxMd,
-  sMediaMaxSm,
-  sMediaMaxXl,
-  sMediaMaxXs,
-  sMediaMin2xl,
-  sMediaMinLg,
-  sMediaMinMd,
-  sMediaMinSm,
-  sMediaMinXl,
-  sMediaMinXs,
-  sMediaMobile,
-  sMediaOnlyLg,
-  sMediaOnlyMd,
-  sMediaOnlySm,
-  sMediaOnlyXl,
-  sMediaOnlyXs,
-  sMediaTabletDesktop,
-} from "@spexop/tokens";
 import { createContext, useContext } from "react";
 import { useMediaQuery } from "./useMediaQuery.js";
 
 export type BreakpointName = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+
+// Breakpoint values matching theme system
+const breakpoints = {
+  xs: 375,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  "2xl": 1536,
+};
+
+// Media query strings
+const sMediaMinXs = `(min-width: ${breakpoints.xs}px)`;
+const sMediaMinSm = `(min-width: ${breakpoints.sm}px)`;
+const sMediaMinMd = `(min-width: ${breakpoints.md}px)`;
+const sMediaMinLg = `(min-width: ${breakpoints.lg}px)`;
+const sMediaMinXl = `(min-width: ${breakpoints.xl}px)`;
+const sMediaMin2xl = `(min-width: ${breakpoints["2xl"]}px)`;
+
+const sMediaMaxXs = `(max-width: ${breakpoints.sm - 1}px)`;
+const sMediaMaxSm = `(max-width: ${breakpoints.md - 1}px)`;
+const sMediaMaxMd = `(max-width: ${breakpoints.lg - 1}px)`;
+const sMediaMaxLg = `(max-width: ${breakpoints.xl - 1}px)`;
+const sMediaMaxXl = `(max-width: ${breakpoints["2xl"] - 1}px)`;
+
+const sMediaOnlyXs = `(min-width: ${breakpoints.xs}px) and (max-width: ${breakpoints.sm - 1}px)`;
+const sMediaOnlySm = `(min-width: ${breakpoints.sm}px) and (max-width: ${breakpoints.md - 1}px)`;
+const sMediaOnlyMd = `(min-width: ${breakpoints.md}px) and (max-width: ${breakpoints.lg - 1}px)`;
+const sMediaOnlyLg = `(min-width: ${breakpoints.lg}px) and (max-width: ${breakpoints.xl - 1}px)`;
+const sMediaOnlyXl = `(min-width: ${breakpoints.xl}px) and (max-width: ${breakpoints["2xl"] - 1}px)`;
+
+const sMediaMobile = `(max-width: ${breakpoints.md - 1}px)`;
+const sMediaTabletDesktop = `(min-width: ${breakpoints.md}px)`;
 
 // Breakpoint Context for preview frames
 interface BreakpointContextType {

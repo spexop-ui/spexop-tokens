@@ -1,293 +1,194 @@
 # Badge Component
 
-Small status indicator component for displaying labels, counts, or status information.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A versatile badge component for displaying small pieces of information like status indicators, counts, labels, and tags. Features multiple variants, sizes, and density options with full theme support.
 
 ## Features
 
-- **6 Variants**: Default, Success, Warning, Error, Info, Subtle
-- **3 Sizes**: XS, SM, MD
-- **2 Shapes**: Pill (rounded) and Square
-- **Theme-Aware**: Light and dark mode support
-- **Accessible**: ARIA label support and focus states
-- **Responsive**: Adapts to mobile devices
-- **Icon Support**: Can contain icons alongside text
+- ✅ 6 visual variants (default, success, warning, error, info, subtle)
+- ✅ 3 sizes (xs, sm, md)
+- ✅ 3 density modes (compact, normal, spacious)
+- ✅ Pill and square shapes
+- ✅ Design token integration
+- ✅ Theme-aware styling
+- ✅ TypeScript support
 
-## Usage
+## Installation
 
-### Basic Badge
-
-```tsx
-import { Badge } from '@spexop/react';
-
-function MyComponent() {
-  return (
-    <Badge variant="default">New</Badge>
-  );
-}
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-### Badge Variants
+## Quick Start
 
 ```tsx
 import { Badge } from '@spexop/react';
 
-function MyComponent() {
+function App() {
   return (
     <>
-      {/* Default - blue accent */}
-      <Badge variant="default">Default</Badge>
-
-      {/* Success - green accent */}
-      <Badge variant="success">Approved</Badge>
-
-      {/* Warning - yellow accent */}
-      <Badge variant="warning">In Review</Badge>
-
-      {/* Error - red accent */}
-      <Badge variant="error">Failed</Badge>
-
-      {/* Info - blue accent */}
-      <Badge variant="info">Information</Badge>
-
-      {/* Subtle - neutral gray */}
-      <Badge variant="subtle">Priority 1</Badge>
+      <Badge variant="success">Active</Badge>
+      <Badge variant="error">Error</Badge>
+      <Badge variant="info" size="xs">New</Badge>
     </>
   );
 }
 ```
 
-### Badge Sizes
+## Variants
+
+### Status Variants
+
+#### Success
+
+Green badge for positive states and confirmations.
 
 ```tsx
-import { Badge } from '@spexop/react';
-
-function MyComponent() {
-  return (
-    <>
-      <Badge size="xs">Extra Small</Badge>
-      <Badge size="sm">Small (default)</Badge>
-      <Badge size="md">Medium</Badge>
-    </>
-  );
-}
+<Badge variant="success">Active</Badge>
+<Badge variant="success">Completed</Badge>
 ```
 
-### Badge Shapes
+#### Warning
+
+Yellow badge for warnings and cautionary states.
 
 ```tsx
-import { Badge } from '@spexop/react';
-
-function MyComponent() {
-  return (
-    <>
-      {/* Pill shape (default) */}
-      <Badge pill>Pill Badge</Badge>
-
-      {/* Square corners */}
-      <Badge pill={false}>Square Badge</Badge>
-    </>
-  );
-}
+<Badge variant="warning">Pending</Badge>
+<Badge variant="warning">Limited</Badge>
 ```
 
-### Badge with Icons
+#### Error
+
+Red badge for errors and destructive states.
 
 ```tsx
-import { Badge } from '@spexop/react';
-import { Check, Clock, Package } from '@spexop/icons';
-
-function MyComponent() {
-  return (
-    <>
-      {/* Icon with text */}
-      <Badge variant="success">
-        <Check size={12} strokeWidth={2} />
-        Approved
-      </Badge>
-
-      {/* Icon with text */}
-      <Badge variant="warning">
-        <Clock size={12} strokeWidth={2} />
-        In Review
-      </Badge>
-
-      {/* Icon with text */}
-      <Badge variant="default">
-        <Package size={12} strokeWidth={2} />
-        Coming Soon
-      </Badge>
-    </>
-  );
-}
+<Badge variant="error">Failed</Badge>
+<Badge variant="error">Expired</Badge>
 ```
 
-### Status Indicators
+#### Info
+
+Blue badge for informational states.
 
 ```tsx
-import { Badge } from '@spexop/react';
-
-function ComponentStatus() {
-  const components = [
-    { name: 'Button', status: 'approved' },
-    { name: 'Card', status: 'in-review' },
-    { name: 'Modal', status: 'coming-soon' }
-  ];
-
-  return (
-    <div>
-      {components.map(comp => (
-        <div key={comp.name}>
-          <span>{comp.name}</span>
-          <Badge 
-            variant={
-              comp.status === 'approved' ? 'success' :
-              comp.status === 'in-review' ? 'warning' : 'default'
-            }
-            size="xs"
-          >
-            {comp.status}
-          </Badge>
-        </div>
-      ))}
-    </div>
-  );
-}
+<Badge variant="info">New</Badge>
+<Badge variant="info">Beta</Badge>
 ```
 
-### Version Badge
+### Visual Variants
+
+#### Default
+
+Neutral gray badge for general purpose use.
 
 ```tsx
-import { Badge } from '@spexop/react';
-
-function Header() {
-  return (
-    <div>
-      <h1>Spexop Design System</h1>
-      <Badge variant="default" size="sm" pill>
-        v0.2.1
-      </Badge>
-    </div>
-  );
-}
+<Badge variant="default">Default</Badge>
 ```
 
-### Count Badge
+#### Subtle
+
+Low-contrast badge for subtle emphasis.
 
 ```tsx
-import { Badge } from '@spexop/react';
+<Badge variant="subtle">Draft</Badge>
+```
 
-function NotificationButton() {
-  const unreadCount = 5;
+## Sizes
 
-  return (
-    <button>
-      Notifications
-      {unreadCount > 0 && (
-        <Badge variant="error" size="xs">
-          {unreadCount}
-        </Badge>
-      )}
-    </button>
-  );
-}
+### Extra Small (xs)
+
+Compact badge for tight spaces.
+
+```tsx
+<Badge size="xs">12</Badge>
+```
+
+### Small (sm) - Default
+
+Standard badge size for most use cases.
+
+```tsx
+<Badge size="sm">Badge</Badge>
+```
+
+### Medium (md)
+
+Larger badge for emphasis.
+
+```tsx
+<Badge size="md">Featured</Badge>
+```
+
+## Density
+
+Control padding and spacing for different contexts.
+
+```tsx
+<Badge density="compact">Compact</Badge>
+<Badge density="normal">Normal</Badge>
+<Badge density="spacious">Spacious</Badge>
+```
+
+## Shape
+
+```tsx
+{/* Pill shape (default) */}
+<Badge pill={true}>Pill</Badge>
+
+{/* Square corners */}
+<Badge pill={false}>Square</Badge>
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | required | Badge content (text, icons, or both) |
-| `variant` | `'default' \| 'success' \| 'warning' \| 'error' \| 'info' \| 'subtle'` | `'default'` | Visual style variant |
-| `size` | `'xs' \| 'sm' \| 'md'` | `'sm'` | Badge size |
-| `pill` | `boolean` | `true` | Pill shape (rounded) vs square corners |
-| `className` | `string` | - | Additional CSS class |
-| `style` | `CSSProperties` | - | Inline styles (use sparingly) |
-| `aria-label` | `string` | - | Accessibility label |
+```typescript
+interface BadgeProps {
+  children: React.ReactNode;
+  variant?: "default" | "success" | "warning" | "error" | "info" | "subtle";
+  size?: "xs" | "sm" | "md";
+  density?: "compact" | "normal" | "spacious";
+  pill?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+```
 
-## Variants
+## Design Principles
 
-### Default
+Following "The Spexop Way":
 
-Blue accent color. Perfect for general information, versions, or neutral status.
-
-### Success
-
-Green accent color. Use for positive states like "Approved", "Active", "Completed".
-
-### Warning
-
-Yellow accent color. Use for cautionary states like "Pending", "In Review", "Draft".
-
-### Error
-
-Red accent color. Use for negative states like "Failed", "Rejected", "Deprecated".
-
-### Info
-
-Blue accent color (same as default). Use for informational states.
-
-### Subtle
-
-Gray/neutral accent color. Use for low-emphasis labels like priorities, categories.
-
-## Size Guidelines
-
-- **XS (12px text)**: Use for compact layouts, tags, or when space is limited
-- **SM (12px text)**: Default size, works in most contexts
-- **MD (14px text)**: Use for prominent badges or when more emphasis is needed
+1. **Borders before shadows** - Clean 1-2px borders for definition
+2. **Typography before decoration** - Clear, readable text
+3. **Tokens before magic numbers** - Uses design tokens for all values
+4. **High-contrast colors** - WCAG AA+ compliant color combinations
 
 ## Accessibility
 
-- **Semantic HTML**: Uses `<span>` element
-- **ARIA Labels**: Support for `aria-label` for screen readers
-- **Focus States**: Clear focus ring on `:focus-visible`
-- **High Contrast**: Borders ensure visibility in all color modes
-- **Text Transform**: Uppercase for distinction and readability
+- Uses semantic HTML
+- Sufficient color contrast ratios
+- Works with screen readers
+- Respects reduced motion preferences
 
-## Design Tokens Used
+## Browser Support
 
-All styling uses design tokens from `@spexop/tokens`:
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-- **Spacing**: `--s-spacing-{1-5}`
-- **Colors**: `--s-color-{neutral|red|blue|green|yellow}-{100-900}`
-- **Border Radius**: `--s-radius-{base|pill}`
-- **Typography**: `--s-font-size-{xs|sm}`
-- **Transitions**: `--s-duration-fast`, `--s-ease-smooth`
+## Related Components
 
-## Responsive Behavior
+- `Icon` - For icon-only indicators
+- `KeyboardShortcut` - For keyboard shortcuts
+- `Button` - For interactive elements
 
-**Desktop (> 768px)**:
+## License
 
-- Full padding and sizes as specified
-
-**Mobile (≤ 768px)**:
-
-- Slightly reduced padding for compact display
-- Maintained readability with adjusted min-heights
-
-## Best Practices
-
-✅ **DO:**
-
-- Use semantic colors (success for positive, error for negative)
-- Keep text concise (1-3 words ideal)
-- Use XS size for dense layouts
-- Combine with icons for quick recognition
-- Use pill shape for most cases (rounder, friendlier)
-
-❌ **DON'T:**
-
-- Use long text strings in badges
-- Mix too many variants on the same page
-- Use badges as buttons (use Button component instead)
-- Overuse bright variants (warning, error) - they lose impact
-- Forget aria-label for icon-only badges
-
-## Common Use Cases
-
-- **Status Indicators**: Component approval, build status, deployment state
-- **Version Numbers**: Package versions, release tags
-- **Counts**: Notification counts, unread messages, cart items
-- **Categories**: Project types, content tags
-- **Priorities**: Task urgency, importance levels
-- **Availability**: In stock, out of stock, limited
+MIT

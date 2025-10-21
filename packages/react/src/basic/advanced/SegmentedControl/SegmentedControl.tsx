@@ -1,84 +1,74 @@
-import type React from "react";
-import { useId } from "react";
-import styles from "./SegmentedControl.module.css";
-
-export interface SegmentedControlOption {
-  value: string;
-  label: string;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-}
-
-export interface SegmentedControlProps {
-  /**
-   * Current selected value
-   */
-  value: string;
-
-  /**
-   * Change handler
-   */
-  onChange: (value: string) => void;
-
-  /**
-   * Available options
-   */
-  options: SegmentedControlOption[];
-
-  /**
-   * Whether the control is disabled
-   */
-  disabled?: boolean;
-
-  /**
-   * Custom className
-   */
-  className?: string;
-
-  /**
-   * ID for the control group
-   */
-  id?: string;
-
-  /**
-   * ARIA label for accessibility
-   */
-  "aria-label"?: string;
-
-  /**
-   * ARIA labelledby for accessibility
-   */
-  "aria-labelledby"?: string;
-}
-
 /**
  * SegmentedControl - Visual button group for selecting options
  *
- * A modern segmented control for selecting between multiple options.
- * Great for visual choices like theme selection.
+ * A modern segmented control for selecting between multiple mutually exclusive options.
+ * Following "The Spexop Way" with refined minimalism, borders before shadows,
+ * and typography-driven hierarchy.
+ *
+ * Design Principles:
+ * - Primitives before patterns: Simple button group composition
+ * - Borders before shadows: Clean borders, no heavy shadows
+ * - Typography before decoration: Font weight (600) for selected state
+ * - Tokens before magic numbers: All values from theme system
+ * - Accessibility before aesthetics: Full ARIA support and keyboard navigation
  *
  * Features:
- * - Visual button group design
- * - Optional icons
- * - Keyboard navigation (Arrow keys, Home, End)
- * - Full accessibility (ARIA, focus management)
- * - Theme-aware styling
- * - Matches Sidebar/AppBar design system
+ * - Visual button group design with clear selection state
+ * - Optional icons from @spexop/icons
+ * - Full keyboard navigation (Arrow keys, Home, End)
+ * - WCAG AA+ accessible (ARIA, focus management)
+ * - Roving tabindex pattern for efficient navigation
+ * - Individual option disable support
+ * - Mobile-responsive with touch-friendly targets
+ * - Theme-aware styling using design tokens
+ * - TypeScript support with full type safety
+ *
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
  *
  * @example
  * ```tsx
+ * import { SegmentedControl } from '@spexop/react';
+ * import { Sun, Moon, Monitor } from '@spexop/icons';
+ *
+ * function ThemeSelector() {
+ *   const [theme, setTheme] = useState('light');
+ *
+ *   return (
+ *     <SegmentedControl
+ *       value={theme}
+ *       onChange={setTheme}
+ *       options={[
+ *         { value: 'light', label: 'Light', icon: <Sun size={16} /> },
+ *         { value: 'dark', label: 'Dark', icon: <Moon size={16} /> },
+ *         { value: 'auto', label: 'Auto', icon: <Monitor size={16} /> },
+ *       ]}
+ *       aria-label="Theme selection"
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * ```tsx
+ * // View mode toggle
+ * import { List, Grid, Table } from '@spexop/icons';
+ *
  * <SegmentedControl
- *   value={theme}
- *   onChange={setTheme}
+ *   value={viewMode}
+ *   onChange={setViewMode}
  *   options={[
- *     { value: 'light', label: 'Light', icon: <SunIcon /> },
- *     { value: 'dark', label: 'Dark', icon: <MoonIcon /> },
- *     { value: 'auto', label: 'Auto', icon: <AutoIcon /> },
+ *     { value: 'list', label: 'List', icon: <List size={16} /> },
+ *     { value: 'grid', label: 'Grid', icon: <Grid size={16} /> },
+ *     { value: 'table', label: 'Table', icon: <Table size={16} /> },
  *   ]}
- *   aria-label="Theme selection"
+ *   aria-label="View mode"
  * />
  * ```
  */
+
+import { useId } from "react";
+import styles from "./SegmentedControl.module.css";
+import type { SegmentedControlProps } from "./SegmentedControl.types.js";
 export function SegmentedControl({
   value,
   onChange,
@@ -144,7 +134,6 @@ export function SegmentedControl({
         const isDisabled = disabled || option.disabled;
 
         return (
-          // biome-ignore lint/a11y/useSemanticElements: button with role="radio" is the standard accessible pattern for segmented controls
           <button
             key={option.value}
             type="button"

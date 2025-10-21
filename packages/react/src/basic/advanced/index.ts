@@ -7,6 +7,7 @@
 
 export * from "./Carousel/index.js";
 export * from "./CodeBlock/index.js";
+export * from "./ErrorBoundary/index.js";
 export * from "./Navigation/index.js";
 export * from "./ScrollHeader/index.js";
 export * from "./SegmentedControl/index.js";

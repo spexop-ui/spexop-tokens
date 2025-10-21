@@ -1,0 +1,90 @@
+/**
+ * Spinner Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - circular border animation
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - accessible, semantic
+ */
+
+.spinner {
+  --spinner-thickness: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.circle {
+  display: block;
+  border-radius: 50%;
+  border: var(--spinner-thickness) solid transparent;
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Size variants */
+.spinner.size-sm .circle {
+  width: 16px;
+  height: 16px;
+}
+
+.spinner.size-md .circle {
+  width: 24px;
+  height: 24px;
+}
+
+.spinner.size-lg .circle {
+  width: 32px;
+  height: 32px;
+}
+
+.spinner.size-xl .circle {
+  width: 48px;
+  height: 48px;
+}
+
+/* Color variants */
+.spinner.color-primary {
+  color: var(--theme-primary, #3b82f6);
+}
+
+.spinner.color-secondary {
+  color: var(--theme-secondary, #6366f1);
+}
+
+.spinner.color-neutral {
+  color: var(--theme-text-secondary, #404040);
+}
+
+.spinner.color-white {
+  color: var(--theme-surface, #ffffff);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .circle {
+    animation-duration: 2s;
+  }
+}
+

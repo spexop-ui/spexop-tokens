@@ -7,8 +7,6 @@
  */
 
 import { render } from "@testing-library/react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// biome-ignore lint/correctness/noUnusedImports: We need React for testing
 import React from "react";
 import { describe, expect, it } from "vitest";
 import { Spacer } from "./Spacer.js";

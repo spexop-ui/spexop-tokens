@@ -1,0 +1,198 @@
+/**
+ * Avatar Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - clear borders
+ * - Principle 3: Typography before decoration - clear initials
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - proper contrast
+ */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--theme-border-subtle, #e5e5e5);
+  border: 2px solid var(--theme-surface, #ffffff);
+  color: var(--theme-text-secondary, #404040);
+  overflow: hidden;
+  user-select: none;
+}
+
+.avatar.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.avatar.clickable:hover {
+  transform: scale(1.05);
+  box-shadow: var(--theme-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.avatar.clickable:focus {
+  outline: 2px solid var(--theme-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.avatar.clickable:active {
+  transform: scale(0.98);
+}
+
+/* Image */
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Initials */
+.initials {
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+  line-height: 1;
+}
+
+/* Fallback icon */
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-text-muted, #525252);
+}
+
+/* Status indicator */
+.status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  border: 2px solid var(--theme-surface, #ffffff);
+  border-radius: 50%;
+}
+
+.status.status-online {
+  background: var(--theme-success, #22c55e);
+}
+
+.status.status-offline {
+  background: var(--theme-border-strong, #a3a3a3);
+}
+
+.status.status-away {
+  background: var(--theme-warning, #eab308);
+}
+
+.status.status-busy {
+  background: var(--theme-error, #ef4444);
+}
+
+/* Shape variants */
+.avatar.shape-circle {
+  border-radius: 50%;
+}
+
+.avatar.shape-square {
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+/* Size variants */
+.avatar.size-xs {
+  width: 24px;
+  height: 24px;
+}
+
+.avatar.size-xs .initials {
+  font-size: var(--theme-font-size-xs, 12px);
+}
+
+.avatar.size-xs .fallback svg {
+  width: 12px;
+  height: 12px;
+}
+
+.avatar.size-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar.size-sm .initials {
+  font-size: var(--theme-font-size-sm, 14px);
+}
+
+.avatar.size-sm .fallback svg {
+  width: 16px;
+  height: 16px;
+}
+
+.avatar.size-md {
+  width: 40px;
+  height: 40px;
+}
+
+.avatar.size-md .initials {
+  font-size: var(--theme-font-size-base, 16px);
+}
+
+.avatar.size-md .fallback svg {
+  width: 20px;
+  height: 20px;
+}
+
+.avatar.size-lg {
+  width: 48px;
+  height: 48px;
+}
+
+.avatar.size-lg .initials {
+  font-size: var(--theme-font-size-lg, 18px);
+}
+
+.avatar.size-lg .fallback svg {
+  width: 24px;
+  height: 24px;
+}
+
+.avatar.size-xl {
+  width: 64px;
+  height: 64px;
+}
+
+.avatar.size-xl .initials {
+  font-size: var(--theme-font-size-xl, 20px);
+}
+
+.avatar.size-xl .fallback svg {
+  width: 32px;
+  height: 32px;
+}
+
+.avatar.size-2xl {
+  width: 96px;
+  height: 96px;
+}
+
+.avatar.size-2xl .initials {
+  font-size: var(--theme-font-size-3xl, 30px);
+}
+
+.avatar.size-2xl .fallback svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .avatar.size-2xl {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatar.size-xl {
+    width: 56px;
+    height: 56px;
+  }
+}
+

@@ -3,7 +3,18 @@
  * Generic, router-agnostic navigation bar
  */
 
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
+
+/**
+ * Icon component props interface
+ * Compatible with @spexop/icons components
+ */
+export interface IconComponentProps {
+  size?: number;
+  strokeWidth?: number;
+  color?: string;
+  className?: string;
+}
 
 export interface NavLink {
   /**
@@ -23,12 +34,9 @@ export interface NavLink {
 
   /**
    * Icon component to display before the label
+   * Compatible with @spexop/icons components
    */
-  icon?: React.ComponentType<{
-    size?: number;
-    strokeWidth?: number;
-    className?: string;
-  }>;
+  icon?: ComponentType<IconComponentProps>;
 
   /**
    * Whether this is an external link (opens in new tab)
@@ -53,12 +61,9 @@ export interface NavigationProps {
 
     /**
      * Optional logo icon component
+     * Compatible with @spexop/icons components
      */
-    icon?: React.ComponentType<{
-      size?: number;
-      strokeWidth?: number;
-      className?: string;
-    }>;
+    icon?: ComponentType<IconComponentProps>;
 
     /**
      * Logo click destination (usually "/")

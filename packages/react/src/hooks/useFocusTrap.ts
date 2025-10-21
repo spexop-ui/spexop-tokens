@@ -27,6 +27,42 @@
 
 import { type RefObject, useEffect } from "react";
 
+// Comprehensive selector for focusable elements with ARIA compliance
+const FOCUSABLE_SELECTOR = [
+  'button:not([disabled]):not([aria-hidden="true"])',
+  '[href]:not([aria-hidden="true"])',
+  'input:not([disabled]):not([type="hidden"]):not([aria-hidden="true"])',
+  'select:not([disabled]):not([aria-hidden="true"])',
+  'textarea:not([disabled]):not([aria-hidden="true"])',
+  '[tabindex]:not([tabindex="-1"]):not([aria-hidden="true"])',
+  'audio[controls]:not([aria-hidden="true"])',
+  'video[controls]:not([aria-hidden="true"])',
+  'details:not([aria-hidden="true"])',
+  'summary:not([aria-hidden="true"])',
+  '[contenteditable]:not([contenteditable="false"]):not([aria-hidden="true"])',
+].join(",");
+
+/**
+ * Get all focusable elements within a container
+ * Respects ARIA hidden, inert attribute, and visibility
+ */
+function getFocusableElements(container: HTMLElement): HTMLElement[] {
+  const elements = Array.from(
+    container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
+  );
+
+  // Filter out hidden elements and respect inert
+  return elements.filter((el) => {
+    const style = window.getComputedStyle(el);
+    return (
+      style.display !== "none" &&
+      style.visibility !== "hidden" &&
+      !el.hasAttribute("inert") &&
+      !el.closest("[inert]")
+    );
+  });
+}
+
 export function useFocusTrap(
   containerRef: RefObject<HTMLElement>,
   isActive: boolean,
@@ -41,9 +77,7 @@ export function useFocusTrap(
       if (e.key !== "Tab") return;
 
       // Get all focusable elements
-      const focusableElements = container.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      );
+      const focusableElements = getFocusableElements(container);
 
       if (focusableElements.length === 0) return;
 
@@ -66,21 +100,22 @@ export function useFocusTrap(
     };
 
     // Auto-focus first element when activated
-    const firstFocusable = container.querySelector<HTMLElement>(
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    );
+    // Use requestAnimationFrame for better timing
+    const focusFirstElement = () => {
+      const focusableElements = getFocusableElements(container);
+      if (focusableElements.length > 0) {
+        focusableElements[0]?.focus();
+      }
+    };
 
-    // Small delay to ensure element is visible
-    const focusTimeout = setTimeout(() => {
-      firstFocusable?.focus();
-    }, 100);
+    const rafId = requestAnimationFrame(focusFirstElement);
 
     // Add listener
     document.addEventListener("keydown", handleTab);
 
     // Cleanup
     return () => {
-      clearTimeout(focusTimeout);
+      cancelAnimationFrame(rafId);
       document.removeEventListener("keydown", handleTab);
     };
   }, [isActive, containerRef]);

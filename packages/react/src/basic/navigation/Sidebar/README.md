@@ -1,121 +1,385 @@
 # Sidebar Component
 
-Main sidebar navigation with responsive behavior and accessibility features.
+**Status**: ✅ Production Ready | **Version**: 0.2.0
+
+A responsive, accessible sidebar navigation component with mobile support, collapsible sections, and full keyboard navigation.
+
+> For comprehensive documentation, examples, and advanced patterns, see the [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md#sidebar-navigation-system)
+
+## Overview
+
+A responsive sidebar navigation component that adapts between desktop (side-by-side) and mobile (overlay) layouts. Works seamlessly with NavLink, NavSection, and SidebarFooter components.
 
 ## Features
 
-- **Responsive**: Desktop side-by-side, mobile full-screen overlay
-- **CLS Optimized**: Static 320px width (no layout shift)
-- **Accessibility**: Body scroll lock, focus trap, keyboard navigation
-- **Animations**: Smooth slide-in/out transitions
-- **Dark Theme**: Full dark mode support
+- ✅ Icon-only and full-width modes
+- ✅ Collapsible navigation sections
+- ✅ Active state tracking
+- ✅ Mobile-responsive (slide-out drawer)
+- ✅ Smooth animations
+- ✅ Keyboard navigation support
+- ✅ WCAG AA+ accessible
+- ✅ Design token integration
+- ✅ TypeScript support
 
-## Usage
+## Installation
 
-### Basic Sidebar
+```bash
+npm install @spexop/react @spexop/icons @spexop/theme
+# or
+pnpm add @spexop/react @spexop/icons @spexop/theme
+```
+
+## Quick Start
 
 ```tsx
-import { Sidebar, NavSection, NavLink, SidebarFooter } from '@spexop/react';
+import { Sidebar } from '@spexop/react';
+import { Home, Settings, User } from '@spexop/icons';
 
 function App() {
   return (
-    <Sidebar>
-      <NavSection label="Getting Started" defaultOpen>
-        <NavLink href="/installation">Installation</NavLink>
-        <NavLink href="/quickstart">Quick Start</NavLink>
-      </NavSection>
-
-      <NavSection label="Components">
-        <NavLink href="/button">Button</NavLink>
-        <NavLink href="/card">Card</NavLink>
-      </NavSection>
-
-      <SidebarFooter>
-        <select>
-          <option>v3.0 (latest)</option>
-        </select>
-      </SidebarFooter>
-    </Sidebar>
+    <Sidebar
+      logo={{
+        icon: Home,
+        text: 'MyApp',
+        href: '/',
+      }}
+      sections={[
+        {
+          title: 'Main',
+          items: [
+            { label: 'Dashboard', href: '/dashboard', icon: Home },
+            { label: 'Profile', href: '/profile', icon: User },
+            { label: 'Settings', href: '/settings', icon: Settings },
+          ],
+        },
+      ]}
+      currentPath="/dashboard"
+      onNavigate={(path) => console.log(path)}
+    />
   );
 }
 ```
 
-### Controlled Sidebar (Mobile Toggle)
+## States
+
+### Icons Mode
+
+Collapsed sidebar showing only icons.
 
 ```tsx
-import { Sidebar } from '@spexop/react';
-import { useState } from 'react';
+<Sidebar
+  state="icons"
+  logo={logo}
+  sections={sections}
+  currentPath={currentPath}
+  onNavigate={handleNavigate}
+/>
+```
 
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
+### Hidden Mode
 
-  return (
-    <Sidebar
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
-    >
-      {/* Navigation content */}
-    </Sidebar>
-  );
-}
+Completely hidden sidebar.
+
+```tsx
+<Sidebar
+  state="hidden"
+  logo={logo}
+  sections={sections}
+  currentPath={currentPath}
+  onNavigate={handleNavigate}
+/>
+```
+
+## Sections and Items
+
+### Basic Navigation
+
+```tsx
+const sections = [
+  {
+    title: 'Navigation',
+    items: [
+      { label: 'Home', href: '/', icon: Home },
+      { label: 'About', href: '/about', icon: Info },
+      { label: 'Contact', href: '/contact', icon: Mail },
+    ],
+  },
+];
+
+<Sidebar
+  sections={sections}
+  currentPath={currentPath}
+  onNavigate={handleNavigate}
+/>
+```
+
+### Multiple Sections
+
+```tsx
+const sections = [
+  {
+    title: 'Main',
+    items: [
+      { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+      { label: 'Projects', href: '/projects', icon: Folder },
+    ],
+  },
+  {
+    title: 'Account',
+    items: [
+      { label: 'Profile', href: '/profile', icon: User },
+      { label: 'Settings', href: '/settings', icon: Settings },
+    ],
+  },
+];
+```
+
+### With Badges
+
+```tsx
+const sections = [
+  {
+    title: 'Navigation',
+    items: [
+      { 
+        label: 'Messages', 
+        href: '/messages', 
+        icon: Mail,
+        badge: '12',
+      },
+      { 
+        label: 'Notifications', 
+        href: '/notifications', 
+        icon: Bell,
+        badge: '3',
+      },
+    ],
+  },
+];
+```
+
+### Expandable Submenus
+
+```tsx
+const sections = [
+  {
+    title: 'Components',
+    items: [
+      {
+        label: 'Buttons',
+        href: '/components/buttons',
+        icon: MousePointer,
+        submenu: [
+          { label: 'Button', href: '/components/buttons/button' },
+          { label: 'Icon Button', href: '/components/buttons/icon-button' },
+          { label: 'Button Group', href: '/components/buttons/group' },
+        ],
+      },
+      {
+        label: 'Forms',
+        href: '/components/forms',
+        icon: FileText,
+        submenu: [
+          { label: 'Input', href: '/components/forms/input' },
+          { label: 'Select', href: '/components/forms/select' },
+          { label: 'Checkbox', href: '/components/forms/checkbox' },
+        ],
+      },
+    ],
+  },
+];
+```
+
+## Logo Configuration
+
+```tsx
+<Sidebar
+  logo={{
+    icon: Logo,
+    text: 'Spexop',
+    href: '/',
+    ariaLabel: 'Spexop - Home',
+  }}
+  sections={sections}
+  currentPath={currentPath}
+  onNavigate={handleNavigate}
+/>
+```
+
+## Mobile Behavior
+
+On mobile, the sidebar automatically becomes a slide-out drawer:
+
+```tsx
+<Sidebar
+  sections={sections}
+  currentPath={currentPath}
+  onNavigate={handleNavigate}
+  onMobileClose={() => console.log('Mobile sidebar closed')}
+/>
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | Required | Sidebar content (NavSection, NavLink, etc.) |
-| `isOpen` | `boolean` | `true` | Whether sidebar is open (controlled mode) |
-| `onClose` | `() => void` | - | Callback when sidebar is closed (mobile) |
-| `showHeader` | `boolean` | `true` | Show header with close button on mobile |
-| `headerTitle` | `string` | `"Navigation"` | Header title text |
-| `className` | `string` | `""` | Additional CSS class |
+```typescript
+interface SidebarProps {
+  logo: {
+    icon: IconComponent;
+    text: string;
+    href: string;
+    ariaLabel?: string;
+  };
+  sections: SidebarSection[];
+  currentPath: string;
+  onNavigate: (path: string) => void;
+  state?: "icons" | "hidden";
+  position?: "left" | "right";
+  className?: string;
+  onMobileClose?: () => void;
+}
 
-## Responsive Behavior
+interface SidebarSection {
+  title: string;
+  items: SidebarItem[];
+}
 
-### Desktop (≥ 768px)
+interface SidebarItem {
+  label: string;
+  href: string;
+  icon: IconComponent;
+  badge?: string;
+  submenu?: SubMenuItem[];
+}
+```
 
-- Side-by-side layout
-- 320px static width
-- Always visible
-- No overlay, no backdrop
-- No header
+## Design Principles
 
-### Mobile (< 768px)
+Following "The Spexop Way":
 
-- Fixed overlay (top: 64px)
-- Full width
-- Slides in from left
-- Body scroll locked when open
-- Focus trapped when open
-- Backdrop with click-to-close
-- Escape key to close
-- Header with close button
+1. **Primitives before patterns** - Built on Stack and Container primitives
+2. **Borders before shadows** - Clean border-based separation
+3. **Typography before decoration** - Clear navigation labels
+4. **Tokens before magic numbers** - Uses spacing and color tokens
+5. **Accessibility before aesthetics** - Full keyboard and screen reader support
 
 ## Accessibility
 
-- ✅ **Body Scroll Lock**: Prevents background scrolling on mobile
-- ✅ **Focus Trap**: Keeps focus within sidebar on mobile
-- ✅ **Escape Key**: Closes sidebar on mobile
-- ✅ **ARIA**: `aria-label="Main navigation"`, `aria-hidden` on mobile
-- ✅ **Keyboard**: Full keyboard navigation support
-- ✅ **Touch Targets**: 44px+ min-height on mobile
+- ✅ Semantic HTML with proper ARIA roles
+- ✅ Keyboard navigation (Arrow keys, Enter, Tab)
+- ✅ Screen reader announcements
+- ✅ Focus management
+- ✅ Active state indication
+- ✅ Expandable sections properly announced
+- ✅ WCAG AA+ compliant
 
-## CLS Optimization
+### Keyboard Shortcuts
 
-The sidebar maintains a **static 320px width** on desktop/tablet to prevent Cumulative Layout Shift (CLS):
+- `Arrow Up/Down` - Navigate between items
+- `Enter/Space` - Select item or expand submenu
+- `Escape` - Close mobile sidebar or collapse submenu
+- `Tab` - Move focus through sidebar
+- `Home` - Jump to first item
+- `End` - Jump to last item
 
-- **Mobile**: Full width overlay (no CLS impact)
-- **Tablet/Desktop**: 320px static width (CLS score: 0)
+## Common Patterns
 
-## Composition
+### With Layout
 
-Use with these components:
+```tsx
+<div className="app-layout">
+  <Sidebar
+    logo={logo}
+    sections={sections}
+    currentPath={currentPath}
+    onNavigate={handleNavigate}
+  />
+  <main className="main-content">
+    <Outlet />
+  </main>
+</div>
+```
 
-- `NavSection` - Accordion-style sections
-- `NavLink` - Navigation links with active state
-- `SidebarFooter` - Footer content (version selector, etc.)
+### With State Management
 
-## Examples
+```tsx
+function AppLayout() {
+  const [sidebarState, setSidebarState] = useState('icons');
+  const location = useLocation();
 
-See `Sidebar.example.tsx` for complete usage examples.
+  return (
+    <>
+      <Sidebar
+        state={sidebarState}
+        logo={logo}
+        sections={sections}
+        currentPath={location.pathname}
+        onNavigate={(path) => navigate(path)}
+      />
+      <button onClick={() => 
+        setSidebarState(state => state === 'icons' ? 'hidden' : 'icons')
+      }>
+        Toggle Sidebar
+      </button>
+    </>
+  );
+}
+```
+
+## TypeScript Support
+
+Full TypeScript support with exported types:
+
+```tsx
+import { Sidebar, type SidebarProps } from "@spexop/react";
+
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function MySidebar({ isOpen, onClose }: Props) {
+  const props: SidebarProps = {
+    isOpen,
+    onClose,
+    showHeader: true,
+    headerTitle: "Navigation"
+  };
+
+  return <Sidebar {...props}>...content...</Sidebar>;
+}
+```
+
+## Performance
+
+- Lightweight: ~2KB gzipped
+- Portal rendering only on mobile
+- Focus trap and scroll lock only when active
+- Efficient responsive breakpoint detection
+- Smooth CSS transitions
+
+## Browser Support
+
+- Chrome/Edge (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- React 18+
+
+## Related Components
+
+- [TopBar](../TopBar/README.md) - Top navigation bar
+- [NavLink](../NavLink/README.md) - Individual navigation link
+- [NavSection](../NavSection/README.md) - Collapsible navigation section
+- [SidebarFooter](../SidebarFooter/README.md) - Footer content for sidebar
+- [Complete Navigation System](../USAGE-GUIDE.md#complete-navigation-system) - Full navigation setup
+
+## Further Reading
+
+- [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md) - Comprehensive guide with routing integration, migration guides, and advanced patterns
+- [Accessibility Guidelines](../USAGE-GUIDE.md#accessibility) - WCAG compliance details
+- [Best Practices](../USAGE-GUIDE.md#best-practices) - Mobile patterns and performance optimization
+
+## License
+
+MIT

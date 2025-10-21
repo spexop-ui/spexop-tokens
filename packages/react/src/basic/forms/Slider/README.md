@@ -1,106 +1,87 @@
-# Slider
+# Slider Component
 
-Range slider component for selecting numeric values. Features smooth animations, keyboard navigation, and value display. Perfect for settings, filters, and adjustments.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+An accessible range slider component for selecting numeric values. Features value display, step control, min/max bounds, and full keyboard support.
+
+## Features
+
+- ✅ Horizontal range slider
+- ✅ Min/max value bounds
+- ✅ Step control
+- ✅ Value display with formatting
+- ✅ Label and helper text
+- ✅ Disabled state
+- ✅ Keyboard navigation (Arrow keys)
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { Slider } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
-import { useState } from 'react';
 import { Slider } from '@spexop/react';
+import { useState } from 'react';
 
-function MyComponent() {
-  const [volume, setVolume] = useState(50);
+function App() {
+  const [value, setValue] = useState(50);
   
   return (
     <Slider
-      value={volume}
-      onChange={setVolume}
+      label="Volume"
+      value={value}
+      onChange={setValue}
       min={0}
       max={100}
-      aria-label="Volume control"
+      showValue={true}
     />
   );
 }
 ```
 
-## Props
+## Basic Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `number` | **Required** | Current slider value |
-| `onChange` | `(value: number) => void` | **Required** | Change handler callback |
-| `min` | `number` | `0` | Minimum value |
-| `max` | `number` | `100` | Maximum value |
-| `step` | `number` | `1` | Step size for increments |
-| `disabled` | `boolean` | `false` | Disable the slider |
-| `showValue` | `boolean` | `false` | Display current value |
-| `formatValue` | `(value: number) => string` | `undefined` | Custom value formatter |
-| `density` | `"compact"` \| `"normal"` \| `"spacious"` | `"normal"` | Spacing density |
-| `className` | `string` | `""` | Additional CSS class |
-| `id` | `string` | auto-generated | HTML id attribute |
-| `aria-label` | `string` | `undefined` | ARIA label (required if no label element) |
-| `aria-labelledby` | `string` | `undefined` | ARIA labelledby reference |
-
-## Examples
-
-### Basic Slider
+### Simple Slider
 
 ```tsx
 <Slider
-  value={value}
-  onChange={setValue}
+  label="Brightness"
+  value={brightness}
+  onChange={setBrightness}
   min={0}
   max={100}
-  aria-label="Percentage slider"
 />
 ```
 
-### With Label
-
-```tsx
-<div>
-  <label htmlFor="brightness-slider" style={{ display: 'block', marginBottom: '8px' }}>
-    Brightness
-  </label>
-  <Slider
-    id="brightness-slider"
-    value={brightness}
-    onChange={setBrightness}
-    min={0}
-    max={100}
-  />
-</div>
-```
-
-### Show Current Value
+### With Value Display
 
 ```tsx
 <Slider
+  label="Volume"
   value={volume}
   onChange={setVolume}
   min={0}
   max={100}
   showValue={true}
-  aria-label="Volume"
 />
 ```
 
-### Custom Value Format
+### Custom Format
 
 ```tsx
 <Slider
+  label="Price Range"
   value={price}
   onChange={setPrice}
   min={0}
@@ -108,357 +89,259 @@ function MyComponent() {
   step={10}
   showValue={true}
   formatValue={(val) => `$${val}`}
-  aria-label="Price range"
 />
 ```
 
-### Custom Range and Step
+### With Steps
 
 ```tsx
-// Temperature slider (0-30°C, 0.5° steps)
 <Slider
-  value={temperature}
-  onChange={setTemperature}
+  label="Rating"
+  value={rating}
+  onChange={setRating}
   min={0}
-  max={30}
+  max={5}
   step={0.5}
   showValue={true}
-  formatValue={(val) => `${val}°C`}
-  aria-label="Temperature"
-/>
-
-// Percentage (0-100%, 5% steps)
-<Slider
-  value={opacity}
-  onChange={setOpacity}
-  min={0}
-  max={100}
-  step={5}
-  showValue={true}
-  formatValue={(val) => `${val}%`}
-  aria-label="Opacity"
+  formatValue={(val) => `${val} stars`}
 />
 ```
 
-### Disabled State
+## Common Patterns
+
+### Volume Control
 
 ```tsx
-<Slider
-  value={value}
-  onChange={setValue}
-  disabled={true}
-  aria-label="Disabled slider"
-/>
+function VolumeControl() {
+  const [volume, setVolume] = useState(75);
+
+  return (
+    <Slider
+      label="Volume"
+      value={volume}
+      onChange={setVolume}
+      min={0}
+      max={100}
+      step={1}
+      showValue={true}
+      formatValue={(val) => `${val}%`}
+      aria-label="Adjust volume level"
+    />
+  );
+}
 ```
 
-### Density Variants
+### Price Range Filter
 
 ```tsx
-// Compact - for dashboards
-<Slider
-  value={value}
-  onChange={setValue}
-  density="compact"
-  aria-label="Compact slider"
-/>
+function PriceFilter() {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
-// Normal - default
-<Slider
-  value={value}
-  onChange={setValue}
-  density="normal"
-  aria-label="Normal slider"
-/>
-
-// Spacious - for content pages
-<Slider
-  value={value}
-  onChange={setValue}
-  density="spacious"
-  aria-label="Spacious slider"
-/>
+  return (
+    <Stack direction="vertical" gap={4}>
+      <Slider
+        label="Minimum Price"
+        value={minPrice}
+        onChange={setMinPrice}
+        min={0}
+        max={maxPrice}
+        step={10}
+        showValue={true}
+        formatValue={(val) => `$${val}`}
+      />
+      
+      <Slider
+        label="Maximum Price"
+        value={maxPrice}
+        onChange={setMaxPrice}
+        min={minPrice}
+        max={2000}
+        step={10}
+        showValue={true}
+        formatValue={(val) => `$${val}`}
+      />
+    </Stack>
+  );
+}
 ```
 
 ### Settings Panel
 
 ```tsx
-import { Stack, Slider } from '@spexop/react';
+function DisplaySettings() {
+  const [brightness, setBrightness] = useState(80);
+  const [contrast, setContrast] = useState(50);
+  const [saturation, setSaturation] = useState(100);
 
-function AudioSettings() {
-  const [volume, setVolume] = useState(75);
-  const [bass, setBass] = useState(50);
-  const [treble, setTreble] = useState(50);
-  
   return (
-    <Stack direction="vertical" gap={6}>
-      <div>
-        <label htmlFor="volume">Volume: {volume}%</label>
-        <Slider
-          id="volume"
-          value={volume}
-          onChange={setVolume}
-          min={0}
-          max={100}
-        />
-      </div>
+    <Stack direction="vertical" gap={5}>
+      <Slider
+        label="Brightness"
+        value={brightness}
+        onChange={setBrightness}
+        min={0}
+        max={100}
+        showValue={true}
+        formatValue={(val) => `${val}%`}
+      />
       
-      <div>
-        <label htmlFor="bass">Bass: {bass - 50}</label>
-        <Slider
-          id="bass"
-          value={bass}
-          onChange={setBass}
-          min={0}
-          max={100}
-        />
-      </div>
+      <Slider
+        label="Contrast"
+        value={contrast}
+        onChange={setContrast}
+        min={0}
+        max={100}
+        showValue={true}
+        formatValue={(val) => `${val}%`}
+      />
       
-      <div>
-        <label htmlFor="treble">Treble: {treble - 50}</label>
-        <Slider
-          id="treble"
-          value={treble}
-          onChange={setTreble}
-          min={0}
-          max={100}
-        />
-      </div>
+      <Slider
+        label="Saturation"
+        value={saturation}
+        onChange={setSaturation}
+        min={0}
+        max={200}
+        showValue={true}
+        formatValue={(val) => `${val}%`}
+      />
     </Stack>
   );
 }
 ```
 
-### Filter Controls
+### Text Zoom
 
 ```tsx
-function PriceFilter() {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(500);
-  
+function TextZoomControl() {
+  const [zoom, setZoom] = useState(100);
+
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${zoom}%`;
+  }, [zoom]);
+
   return (
-    <Stack direction="vertical" gap={4}>
-      <div>
-        <label>Min Price: ${minPrice}</label>
-        <Slider
-          value={minPrice}
-          onChange={setMinPrice}
-          min={0}
-          max={maxPrice}
-          step={10}
-        />
-      </div>
-      
-      <div>
-        <label>Max Price: ${maxPrice}</label>
-        <Slider
-          value={maxPrice}
-          onChange={setMaxPrice}
-          min={minPrice}
-          max={1000}
-          step={10}
-        />
-      </div>
-    </Stack>
+    <Slider
+      label="Text Size"
+      value={zoom}
+      onChange={setZoom}
+      min={100}
+      max={200}
+      step={10}
+      showValue={true}
+      formatValue={(val) => `${val}%`}
+      helperText="WCAG 2.2 AA requires support up to 200%"
+    />
   );
 }
 ```
 
-## Keyboard Navigation
+### Rating Selector
 
-| Key | Action |
-|-----|--------|
-| **Arrow Left** | Decrease value by step |
-| **Arrow Right** | Increase value by step |
-| **Arrow Down** | Decrease value by step |
-| **Arrow Up** | Increase value by step |
-| **Home** | Jump to minimum value |
-| **End** | Jump to maximum value |
-| **Page Up** | Increase by 10× step |
-| **Page Down** | Decrease by 10× step |
+```tsx
+function RatingSelector() {
+  const [rating, setRating] = useState(3);
+
+  return (
+    <Slider
+      label="Rate this product"
+      value={rating}
+      onChange={setRating}
+      min={1}
+      max={5}
+      step={1}
+      showValue={true}
+      formatValue={(val) => '⭐'.repeat(val)}
+    />
+  );
+}
+```
+
+## Props
+
+```typescript
+interface SliderProps {
+  /** Current value */
+  value: number;
+  /** Change handler */
+  onChange: (value: number) => void;
+  /** Minimum value */
+  min?: number;
+  /** Maximum value */
+  max?: number;
+  /** Step increment */
+  step?: number;
+  /** Label text */
+  label?: string;
+  /** Helper text */
+  helperText?: string;
+  /** Show current value */
+  showValue?: boolean;
+  /** Format value display */
+  formatValue?: (value: number) => string;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Additional CSS class */
+  className?: string;
+  /** Element ID */
+  id?: string;
+  /** Input name */
+  name?: string;
+  /** ARIA label */
+  "aria-label"?: string;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Borders before shadows** - Clean track and thumb design
+2. **Typography before decoration** - Clear value display
+3. **Tokens before magic numbers** - Uses spacing and color tokens
+4. **Accessibility before aesthetics** - Full keyboard support
 
 ## Accessibility
 
-### ARIA Attributes
+- ✅ Semantic HTML (`<input type="range">`)
+- ✅ Proper label association
+- ✅ Keyboard navigation (Arrow keys, Home, End, Page Up/Down)
+- ✅ Screen reader support with value announcements
+- ✅ Focus indicators
+- ✅ ARIA attributes for current value
+- ✅ WCAG AA+ compliant
 
-- `role="slider"` - Identifies slider behavior
-- `aria-valuenow` - Current value
-- `aria-valuemin` - Minimum value
-- `aria-valuemax` - Maximum value
-- `aria-label` or `aria-labelledby` - Label (required)
-- `aria-disabled` - Disabled state
+### Keyboard Shortcuts
 
-### Focus Management
-
-- ✅ Focus visible on keyboard navigation
-- ✅ Smooth focus outline
-- ✅ Keyboard control fully functional
-- ✅ Disabled sliders skip focus
-
-### Screen Readers
-
-- Announces current value
-- Announces min/max range
-- Announces when value changes
-- Announces when disabled
-
-### Requirements
-
-**Always provide** one of:
-
-- `aria-label` prop
-- Associated `<label>` element with matching `id` or `aria-labelledby`
-
-```tsx
-// Option 1: aria-label
-<Slider aria-label="Volume control" {...props} />
-
-// Option 2: label element (preferred)
-<label htmlFor="volume">Volume</label>
-<Slider id="volume" {...props} />
-```
-
-## Styling
-
-### Custom Styling
-
-```tsx
-<Slider
-  className="my-slider"
-  value={value}
-  onChange={setValue}
-/>
-```
-
-```css
-.my-slider {
-  max-width: 300px;
-}
-```
-
-### Design Tokens
-
-Uses tokens for consistent styling:
-
-- Colors: `--s-color-neutral-*`, `--s-color-red-500`
-- Spacing: `--s-spacing-*`
-- Border radius: `--s-radius-full`
-- Transitions: `--s-transition-base`
-
-## Integration with Forms
-
-### With React Hook Form
-
-```tsx
-import { useForm, Controller } from 'react-hook-form';
-import { Slider } from '@spexop/react';
-
-function Form() {
-  const { control, handleSubmit } = useForm();
-  
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="rating"
-        control={control}
-        render={({ field }) => (
-          <Slider
-            value={field.value}
-            onChange={field.onChange}
-            min={1}
-            max={10}
-            aria-label="Rating"
-          />
-        )}
-      />
-    </form>
-  );
-}
-```
-
-## When to Use
-
-### Use Slider When ✅
-
-- Selecting numeric values
-- Adjusting settings (volume, brightness, etc.)
-- Range/filter controls
-- Visual feedback needed
-- Value can vary continuously
-
-### Use TextInput Instead When
-
-- Precise numeric input needed
-- Users know exact value
-- Value can be very large/small
-- Keyboard entry preferred
-
-### Use Select Instead When
-
-- Discrete values only (e.g., Small/Medium/Large)
-- Predefined options
-- Options have labels
-
-## Best Practices
-
-### Do ✅
-
-```tsx
-// Provide clear labels
-<label htmlFor="volume">Volume</label>
-<Slider id="volume" {...props} />
-
-// Show current value for clarity
-<Slider showValue={true} {...props} />
-
-// Use appropriate steps
-<Slider step={1} {...props} /> // Integer values
-<Slider step={0.1} {...props} /> // Decimal values
-
-// Format displayed values
-<Slider
-  formatValue={(val) => `${val}%`}
-  showValue={true}
-  {...props}
-/>
-```
-
-### Don't ❌
-
-```tsx
-// Don't skip labels
-<Slider value={val} onChange={setVal} /> // No accessibility
-
-// Don't use for precise input
-<Slider min={0} max={999999} /> // Use TextInput
-
-// Don't use unclear ranges
-<Slider min={-50} max={200} /> // Confusing
-
-// Don't forget step for integers
-<Slider step={0.00001} /> // Too precise for UI slider
-```
-
-## Related Components
-
-- **TextInput** - For precise numeric input
-- **Select** - For discrete option selection
-- **Toggle** - For binary on/off
-- **RadioGroup** - For labeled options
+- `Arrow Right/Up` - Increase value by step
+- `Arrow Left/Down` - Decrease value by step
+- `Home` - Jump to minimum value
+- `End` - Jump to maximum value
+- `Page Up` - Increase by larger increment
+- `Page Down` - Decrease by larger increment
 
 ## Browser Support
 
-- Chrome 90+ ✅
-- Firefox 88+ ✅
-- Safari 14+ ✅
-- Edge 90+ ✅
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-## Performance
+## Related Components
 
-- CSS-only visual updates
-- Throttled onChange (smooth performance)
-- No re-renders on drag
-- Lightweight (~300 bytes JS)
+- `TextInput` - Text entry
+- `Select` - Dropdown selection
+- `Toggle` - Binary on/off
+- `RadioGroup` - Discrete options
 
----
+## Best Practices
 
-**Part of Form Components** - Essential form controls with validation and accessibility built-in.
+1. **Show current value** - Use `showValue` for clarity
+2. **Use appropriate steps** - Match precision to use case
+3. **Format values** - Make units clear (%, px, $)
+4. **Provide labels** - Always include label for context
+5. **Set reasonable bounds** - min/max should make sense
+
+## License
+
+MIT

@@ -167,6 +167,11 @@ export function Navigation({
         <div
           className={styles.backdrop}
           onClick={closeMobileMenu}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              closeMobileMenu();
+            }
+          }}
           aria-hidden="true"
         />
       )}

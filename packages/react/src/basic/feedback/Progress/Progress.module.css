@@ -1,0 +1,246 @@
+/**
+ * Progress Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - clear borders
+ * - Principle 3: Typography before decoration - clear labels
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - high contrast
+ */
+
+.container {
+  width: 100%;
+}
+
+.label-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--theme-spacing-2, 8px);
+}
+
+.label {
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+}
+
+/* Progress bar container */
+.progress {
+  position: relative;
+  width: 100%;
+  background: var(--theme-border-subtle, #e5e5e5);
+  border: 1px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  overflow: hidden;
+}
+
+/* Progress bar fill */
+.bar {
+  height: 100%;
+  background: currentColor;
+  border-radius: var(--theme-radius-md, 8px);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+/* Size variants */
+.progress.size-sm {
+  height: 6px;
+}
+
+.progress.size-md {
+  height: 10px;
+}
+
+.progress.size-lg {
+  height: 14px;
+}
+
+/* Color variants */
+.progress.color-primary {
+  color: var(--theme-primary, #3b82f6);
+}
+
+.progress.color-primary .bar {
+  background: linear-gradient(
+    90deg,
+    var(--theme-primary, #3b82f6),
+    var(--theme-primary-hover, #2563eb)
+  );
+}
+
+.progress.color-secondary {
+  color: var(--theme-secondary, #6366f1);
+}
+
+.progress.color-secondary .bar {
+  background: linear-gradient(
+    90deg,
+    var(--theme-secondary, #6366f1),
+    var(--theme-secondary-hover, #4f46e5)
+  );
+}
+
+.progress.color-success {
+  color: var(--theme-success, #22c55e);
+}
+
+.progress.color-success .bar {
+  background: linear-gradient(
+    90deg,
+    var(--theme-success, #22c55e),
+    var(--theme-success-hover, #16a34a)
+  );
+}
+
+.progress.color-warning {
+  color: var(--theme-warning, #eab308);
+}
+
+.progress.color-warning .bar {
+  background: linear-gradient(
+    90deg,
+    var(--theme-warning, #eab308),
+    var(--theme-warning-hover, #ca8a04)
+  );
+}
+
+.progress.color-error {
+  color: var(--theme-error, #ef4444);
+}
+
+.progress.color-error .bar {
+  background: linear-gradient(
+    90deg,
+    var(--theme-error, #ef4444),
+    var(--theme-error-hover, #dc2626)
+  );
+}
+
+/* Striped variant */
+.progress.variant-striped .bar {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+}
+
+/* Animated variant */
+.progress.variant-animated .bar {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+  animation: progressStripes 1s linear infinite;
+}
+
+@keyframes progressStripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 20px 0;
+  }
+}
+
+/* Indeterminate variant */
+.progress.indeterminate .bar {
+  animation: progressIndeterminate 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  width: 30% !important;
+}
+
+/* Pulse animation for near-complete states */
+@keyframes progressPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes progressIndeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(350%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Shimmer effect for loading */
+.progress.indeterminate .bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: progressShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: width 0.1s ease;
+    will-change: auto;
+  }
+
+  .progress.variant-animated .bar {
+    animation: none;
+  }
+
+  .progress.indeterminate .bar {
+    animation: none;
+    width: 100% !important;
+  }
+  
+  .progress.indeterminate .bar::after {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .progress {
+    border-width: 2px;
+  }
+  
+  .progress .bar {
+    background: currentColor !important;
+  }
+}
+

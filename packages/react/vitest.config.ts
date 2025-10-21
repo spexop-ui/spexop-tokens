@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+/// <reference types="@testing-library/jest-dom" />
 import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
@@ -28,7 +30,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@spexop/tokens": "@spexop/tokens",
       "@spexop/utils": resolve(__dirname, "../utils/src"),
       "@spexop/icons": "@spexop/icons",
       "@spexop/react": resolve(__dirname, "./src"),

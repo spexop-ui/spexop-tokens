@@ -1,10 +1,14 @@
 # NavSection Component
 
+**Status**: ✅ Production Ready | **Version**: 0.2.0
+
 A collapsible accordion section for grouping navigation links in a sidebar.
+
+> For comprehensive documentation, examples, and advanced patterns, see the [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md#sidebar-navigation-system)
 
 ## Overview
 
-The `NavSection` component provides an accordion-style container for organizing navigation links into collapsible sections.
+The `NavSection` component provides an accordion-style container for organizing navigation links into collapsible sections within a Sidebar.
 
 ## Features
 
@@ -277,24 +281,40 @@ Group related links logically:
 
 ---
 
+## TypeScript Support
+
+```tsx
+import { NavSection, type NavSectionProps } from "@spexop/react";
+
+const props: NavSectionProps = {
+  label: "Settings",
+  defaultOpen: false,
+  onToggle: (isOpen) => console.log('Section toggled:', isOpen)
+};
+
+<NavSection {...props}>
+  {/* NavLink children */}
+</NavSection>
+```
+
+## Performance
+
+- Lightweight: < 1KB gzipped
+- Smooth CSS transitions
+- No layout shifts
+
 ## Related Components
 
-- **NavLink**: Individual navigation links
-- **Sidebar**: Main navigation container
-- **SidebarFooter**: Footer section
-- **useAccordion**: Hook for managing accordion state
+- [NavLink](../NavLink/README.md) - Individual navigation links
+- [Sidebar](../Sidebar/README.md) - Main navigation container
+- [SidebarFooter](../SidebarFooter/README.md) - Footer section
+- [Complete Navigation System](../USAGE-GUIDE.md#complete-navigation-system) - Full navigation setup
 
----
+## Further Reading
 
-## API Reference
-
-See [`NavSection.types.ts`](./NavSection.types.ts) for complete TypeScript definitions.
-
----
-
-## Version
-
-**v0.1.0** - Initial release with Sidebar refactoring (2025-10-13)
+- [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md) - Comprehensive guide with routing integration, migration guides, and advanced patterns
+- [Accessibility Guidelines](../USAGE-GUIDE.md#accessibility) - WCAG compliance details
+- [Best Practices](../USAGE-GUIDE.md#best-practices) - Mobile patterns and performance optimization
 
 ---
 

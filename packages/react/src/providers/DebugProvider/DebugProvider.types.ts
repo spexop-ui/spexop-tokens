@@ -28,6 +28,21 @@ export interface DebugState {
    * Show composition hierarchy depth
    */
   showHierarchy: boolean;
+
+  /**
+   * Show spacing visualization
+   */
+  showSpacing: boolean;
+
+  /**
+   * Highlight accessibility issues and focus order
+   */
+  showAccessibility: boolean;
+
+  /**
+   * Show performance metrics (render counts)
+   */
+  showPerformance: boolean;
 }
 
 export interface DebugContextValue extends DebugState {
@@ -62,4 +77,14 @@ export interface DebugProviderProps {
    * Default debug options
    */
   defaultOptions?: Partial<Omit<DebugState, "enabled">>;
+
+  /**
+   * localStorage key for persistence (default: "spexop-debug-mode")
+   */
+  storageKey?: string;
+
+  /**
+   * Disable localStorage persistence
+   */
+  disableStorage?: boolean;
 }

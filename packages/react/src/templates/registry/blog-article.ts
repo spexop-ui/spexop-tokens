@@ -14,155 +14,177 @@ export const blogArticle: Template = {
     category: "blog",
     tier: "free",
     thumbnail: "/template-thumbnails/blog-article.webp",
-    tags: ["blog", "article", "content", "reading"],
+    tags: ["blog", "article", "content", "reading", "accessibility-first"],
     author: "Spexop Team",
     version: "1.0.0",
   },
   structure: {
-    type: "Container",
-    props: {
-      maxWidth: "lg",
-      padding: 8,
-    },
+    type: "Article",
+    role: "article",
+    ariaLabel: "Blog article",
+    props: {},
     children: [
       {
-        type: "Stack",
+        type: "Container",
         props: {
-          direction: "vertical",
-          gap: 6,
+          maxWidth: "lg",
+          padding: "lg",
         },
         children: [
           {
             type: "Stack",
             props: {
               direction: "vertical",
-              gap: 3,
+              gap: 6,
             },
             children: [
               {
-                type: "Heading",
-                id: "article-title",
+                type: "Stack",
                 props: {
-                  level: 1,
+                  direction: "vertical",
+                  gap: 3,
                 },
-                content: "Getting Started with Design Systems",
-              },
-              {
-                type: "Text",
-                id: "article-meta",
-                props: {
-                  size: "sm",
-                  variant: "secondary",
-                },
-                content: "Published on January 15, 2025 · 5 min read",
-              },
-            ],
-          },
-          {
-            type: "Stack",
-            props: {
-              direction: "vertical",
-              gap: 4,
-            },
-            children: [
-              {
-                type: "Text",
-                id: "article-intro",
-                props: {
-                  size: "lg",
-                },
-                content:
-                  "Design systems are the foundation of consistent, scalable user interfaces. They provide a shared language between designers and developers.",
-              },
-              {
-                type: "Heading",
-                props: {
-                  level: 2,
-                },
-                content: "What is a Design System?",
-              },
-              {
-                type: "Text",
-                props: {},
-                content:
-                  "A design system is a collection of reusable components, guided by clear standards, that can be assembled to build applications. It includes UI components, design tokens, patterns, and documentation.",
-              },
-              {
-                type: "Heading",
-                props: {
-                  level: 2,
-                },
-                content: "Key Benefits",
+                children: [
+                  {
+                    type: "Heading",
+                    id: "article-title",
+                    props: {
+                      level: 1,
+                      weight: "bold",
+                    },
+                    content: "Getting Started with Design Systems",
+                  },
+                  {
+                    type: "Text",
+                    id: "article-meta",
+                    props: {
+                      size: "sm",
+                      variant: "secondary",
+                      weight: "regular",
+                    },
+                    content: "Published on January 15, 2025 · 5 min read",
+                  },
+                ],
               },
               {
                 type: "Stack",
                 props: {
                   direction: "vertical",
-                  gap: 2,
+                  gap: 4,
                 },
                 children: [
                   {
                     type: "Text",
-                    props: {},
-                    content: "• Consistency across products and platforms",
-                  },
-                  {
-                    type: "Text",
-                    props: {},
-                    content: "• Faster development with reusable components",
-                  },
-                  {
-                    type: "Text",
-                    props: {},
+                    id: "article-intro",
+                    props: {
+                      size: "lg",
+                      weight: "regular",
+                    },
                     content:
-                      "• Better collaboration between design and engineering",
+                      "Design systems are the foundation of consistent, scalable user interfaces. They provide a shared language between designers and developers.",
+                  },
+                  {
+                    type: "Heading",
+                    props: {
+                      level: 2,
+                      weight: "bold",
+                    },
+                    content: "What is a Design System?",
                   },
                   {
                     type: "Text",
-                    props: {},
-                    content: "• Easier maintenance and updates",
+                    props: {
+                      weight: "regular",
+                    },
+                    content:
+                      "A design system is a collection of reusable components, guided by clear standards, that can be assembled to build applications. It includes UI components, design tokens, patterns, and documentation.",
                   },
-                ],
-              },
-              {
-                type: "Heading",
-                props: {
-                  level: 2,
-                },
-                content: "Getting Started",
-              },
-              {
-                type: "Text",
-                props: {},
-                content:
-                  "Start by defining your design tokens: colors, typography, spacing, and other fundamental values. Then build your component library on top of these tokens.",
-              },
-              {
-                type: "Card",
-                props: {
-                  padding: 6,
-                  variant: "subtle",
-                },
-                children: [
+                  {
+                    type: "Heading",
+                    props: {
+                      level: 2,
+                      weight: "bold",
+                    },
+                    content: "Key Benefits",
+                  },
                   {
                     type: "Stack",
                     props: {
                       direction: "vertical",
-                      gap: 3,
+                      gap: 2,
                     },
                     children: [
                       {
-                        type: "Heading",
-                        props: {
-                          level: 3,
-                        },
-                        content: "Quick Tip",
+                        type: "Text",
+                        props: {},
+                        content: "• Consistency across products and platforms",
                       },
                       {
                         type: "Text",
                         props: {},
                         content:
-                          "Use design tokens instead of hard-coded values. This makes theming and updates much easier down the line.",
+                          "• Faster development with reusable components",
+                      },
+                      {
+                        type: "Text",
+                        props: {},
+                        content:
+                          "• Better collaboration between design and engineering",
+                      },
+                      {
+                        type: "Text",
+                        props: {},
+                        content: "• Easier maintenance and updates",
+                      },
+                    ],
+                  },
+                  {
+                    type: "Heading",
+                    props: {
+                      level: 2,
+                      weight: "bold",
+                    },
+                    content: "Getting Started",
+                  },
+                  {
+                    type: "Text",
+                    props: {
+                      weight: "regular",
+                    },
+                    content:
+                      "Start by defining your design tokens: colors, typography, spacing, and other fundamental values. Then build your component library on top of these tokens.",
+                  },
+                  {
+                    type: "Card",
+                    props: {
+                      padding: "md",
+                      variant: "subtle",
+                    },
+                    children: [
+                      {
+                        type: "Stack",
+                        props: {
+                          direction: "vertical",
+                          gap: 3,
+                        },
+                        children: [
+                          {
+                            type: "Heading",
+                            props: {
+                              level: 3,
+                              weight: "semibold",
+                            },
+                            content: "Quick Tip",
+                          },
+                          {
+                            type: "Text",
+                            props: {
+                              weight: "regular",
+                            },
+                            content:
+                              "Use design tokens instead of hard-coded values. This makes theming and updates much easier down the line.",
+                          },
+                        ],
                       },
                     ],
                   },

@@ -1,0 +1,235 @@
+/**
+ * Link Component Styles
+ * Theme-driven with Spexop architecture
+ *
+ * @component Link
+ * @packageName @spexop/react
+ * @description General-purpose link component following "The Spexop Way"
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ * @version 0.1.0
+ * @since 2025-10-21
+ */
+
+/* Base Link Styles */
+.link {
+  font-family: var(--theme-font-family);
+  font-weight: var(--theme-font-weight-semibold);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--theme-spacing-2);
+  border: var(--theme-border-width) solid transparent;
+  /* Performance optimization */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.link:disabled,
+.link[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Accessibility - Enhanced focus indicators */
+.link:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.link:focus-visible {
+  outline: var(--theme-spacing-1) solid var(--theme-primary);
+  outline-offset: var(--theme-spacing-1);
+  border-radius: var(--theme-radius-subtle);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .link {
+    border-width: var(--theme-border-thin);
+  }
+
+  .link:focus-visible {
+    outline-width: var(--theme-spacing-1);
+    outline-offset: var(--theme-spacing-1);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition-duration: 0.01ms;
+  }
+}
+
+/* ========== VARIANTS ========== */
+
+/* Text - Default link with underline on hover */
+.text {
+  color: var(--theme-primary);
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.text:hover:not(:disabled):not([aria-disabled="true"]) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.text:active:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--theme-primary-hover);
+}
+
+/* Ghost - Transparent with hover background */
+.ghost {
+  background: transparent;
+  border: var(--theme-border-width) solid transparent;
+  color: var(--theme-text);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+  border-radius: var(--theme-radius-relaxed);
+}
+
+.ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border);
+}
+
+.ghost:active:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-surface-active);
+  border-color: var(--theme-border-strong);
+}
+
+/* Outline - Border-based link */
+.outline {
+  background: transparent;
+  border: var(--theme-border-width) solid var(--theme-primary);
+  color: var(--theme-primary);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+  border-radius: var(--theme-radius-relaxed);
+}
+
+.outline:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-primary);
+  color: var(--theme-surface);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.outline:active:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-hover);
+  transform: translateY(0) translateZ(0);
+}
+
+/* Secondary - Subtle bordered style */
+.secondary {
+  background: var(--theme-surface);
+  border: var(--theme-border-width) solid var(--theme-border);
+  color: var(--theme-text);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+  border-radius: var(--theme-radius-relaxed);
+}
+
+.secondary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border-strong);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.secondary:active:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-surface-active);
+  border-color: var(--theme-primary);
+  transform: translateY(0) translateZ(0);
+}
+
+/* Primary - Filled with primary color */
+.primary {
+  background: var(--theme-primary);
+  border: var(--theme-border-width) solid var(--theme-primary);
+  color: var(--theme-surface);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+  border-radius: var(--theme-radius-relaxed);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+.primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-primary-hover);
+  border-color: var(--theme-primary-hover);
+  transform: translateY(-1px) translateZ(0);
+}
+
+.primary:active:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--theme-primary-active);
+  border-color: var(--theme-primary-active);
+  transform: translateY(0) translateZ(0);
+}
+
+/* ========== SIZES ========== */
+
+.size-sm {
+  font-size: var(--theme-font-size-sm);
+  padding: var(--theme-spacing-1) var(--theme-spacing-3);
+}
+
+.size-sm.text {
+  padding: 0;
+}
+
+.size-md {
+  font-size: var(--theme-font-size-base);
+  padding: var(--theme-spacing-2) var(--theme-spacing-4);
+}
+
+.size-md.text {
+  padding: 0;
+}
+
+.size-lg {
+  font-size: var(--theme-font-size-lg);
+  padding: var(--theme-spacing-3) var(--theme-spacing-5);
+}
+
+.size-lg.text {
+  padding: 0;
+}
+
+/* ========== STATES ========== */
+
+/* Active state (current page) */
+.active.text {
+  color: var(--theme-primary);
+  font-weight: var(--theme-font-weight-bold);
+}
+
+.active.ghost {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-border);
+}
+
+.active.outline,
+.active.secondary {
+  border-color: var(--theme-primary);
+  background: var(--theme-primary-subtle);
+}
+
+.active.primary {
+  background: var(--theme-primary-hover);
+}
+
+/* Full width */
+.full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+/* External link indicator */
+.external::after {
+  content: "↗";
+  margin-left: var(--theme-spacing-1);
+  font-size: 0.85em;
+}
+

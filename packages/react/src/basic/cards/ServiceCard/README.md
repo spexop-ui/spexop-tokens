@@ -16,7 +16,7 @@ Specialized card component for service/feature showcases with numbered badges, h
 ## Installation
 
 ```bash
-npm install @spexop/react @spexop/tokens
+npm install @spexop/react @spexop/theme
 ```
 
 ---
@@ -271,7 +271,7 @@ Border widths are increased for better visibility:
 
 ## Design Tokens
 
-ServiceCard uses design tokens from `@spexop/tokens`:
+ServiceCard uses design tokens from `@spexop/theme`:
 
 ### Colors
 

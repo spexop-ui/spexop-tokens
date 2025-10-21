@@ -12,6 +12,7 @@
  */
 
 import { useCallback } from "react";
+import { Icon } from "../../display/Icon/Icon.js";
 import styles from "./ButtonGridItem.module.css";
 import type { ButtonGridItemProps } from "./ButtonGridItem.types.js";
 
@@ -84,7 +85,6 @@ export function ButtonGridItem({
   };
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: This is a complex card container that needs to hold media (video/img) and overlay content, cannot be a simple button element
     <div
       className={cardClassName}
       role="button"
@@ -109,23 +109,7 @@ export function ButtonGridItem({
             aria-label={ariaLabelButton || buttonText}
           >
             {buttonText}
-            <svg
-              className={styles.buttonIcon}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M6 12L10 8L6 4"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Icon name="chevronRight" className={styles.buttonIcon} size="sm" />
           </button>
         </div>
       </div>

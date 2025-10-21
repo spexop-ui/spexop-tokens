@@ -75,7 +75,9 @@ function renderNodeToHTML(node: TemplateNode, indentLevel: number): string {
       return renderStack(props, children, indentLevel, indent);
 
     case "Spacer":
-      return `${indent}<div class="spacer" style="height: var(--s-spacing-${props.size || 4})"></div>\n`;
+      return `${indent}<div class="spacer" style="height: var(--s-spacing-${
+        props.size || 4
+      })"></div>\n`;
 
     case "Button":
       return renderButton(props, content, indent);
@@ -102,7 +104,7 @@ function renderNodeToHTML(node: TemplateNode, indentLevel: number): string {
  * Render Container as div with container class
  */
 function renderContainer(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   indentLevel: number,
   indent: string,
@@ -129,7 +131,7 @@ function renderContainer(
  * Render Grid as div with CSS Grid
  */
 function renderGrid(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   indentLevel: number,
   indent: string,
@@ -165,7 +167,7 @@ function renderGrid(
  * Render GridItem as div with grid column span
  */
 function renderGridItem(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   indentLevel: number,
   indent: string,
@@ -191,7 +193,7 @@ function renderGridItem(
  * Render Stack as flex container
  */
 function renderStack(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   indentLevel: number,
   indent: string,
@@ -222,20 +224,22 @@ function renderStack(
  * Render Button
  */
 function renderButton(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   content: string | undefined,
   indent: string,
 ): string {
   const variant = props.variant || "primary";
   const size = props.size || "medium";
-  return `${indent}<button class="button button-${variant} button-${size}">${content || "Button"}</button>\n`;
+  return `${indent}<button class="button button-${variant} button-${size}">${
+    content || "Button"
+  }</button>\n`;
 }
 
 /**
  * Render Card
  */
 function renderCard(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   indentLevel: number,
   indent: string,
@@ -261,7 +265,7 @@ function renderCard(
  * Render Heading
  */
 function renderHeading(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   content: string | undefined,
   indent: string,
 ): string {
@@ -276,7 +280,7 @@ function renderHeading(
  * Render div
  */
 function renderDiv(
-  props: Record<string, any>,
+  props: Record<string, unknown>,
   children: TemplateNode[] | undefined,
   content: string | undefined,
   indentLevel: number,
@@ -304,13 +308,13 @@ function renderDiv(
 /**
  * Format props to HTML attributes
  */
-function formatHTMLProps(props: Record<string, any>): string {
+function formatHTMLProps(props: Record<string, unknown>): string {
   if (!props || Object.keys(props).length === 0) return "";
 
   return Object.entries(props)
     .map(([key, value]) => {
-      if (key === "style" && typeof value === "object") {
-        const styleString = Object.entries(value)
+      if (key === "style" && typeof value === "object" && value !== null) {
+        const styleString = Object.entries(value as Record<string, unknown>)
           .map(([k, v]) => `${k}: ${v}`)
           .join("; ");
         return ` style="${styleString}"`;

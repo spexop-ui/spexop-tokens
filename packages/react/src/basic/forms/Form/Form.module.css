@@ -1,0 +1,104 @@
+/**
+ * Form Component Styles
+ * Theme-driven with Spexop architecture
+ *
+ * @component Form
+ * @packageName @spexop/react
+ * @description Form wrapper component
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ * @version 0.1.0
+ * @since 2025-10-21
+ */
+
+/* Base Form Styles */
+.form {
+  position: relative;
+  width: 100%;
+}
+
+/* Form Variants */
+.variant-card {
+  background: var(--theme-surface);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  padding: var(--theme-spacing-6);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--theme-radius-relaxed);
+  z-index: 10;
+}
+
+/* Dark mode loading overlay */
+@media (prefers-color-scheme: dark) {
+  .loading-overlay {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--theme-border);
+  border-top: 3px solid var(--theme-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+    border: 3px solid var(--theme-primary);
+  }
+}
+
+/* Disabled State */
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Form Errors */
+.form-errors {
+  background: var(--theme-error-bg);
+  border: var(--theme-border-width) solid var(--theme-error);
+  border-radius: var(--theme-radius-relaxed);
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  margin-bottom: var(--theme-spacing-4);
+}
+
+.form-errors ul {
+  margin: 0;
+  padding-left: var(--theme-spacing-5);
+  color: var(--theme-error);
+  font-size: var(--theme-font-size-sm);
+}
+
+.form-errors li {
+  margin-bottom: var(--theme-spacing-1);
+}
+
+.form-errors li:last-child {
+  margin-bottom: 0;
+}
+

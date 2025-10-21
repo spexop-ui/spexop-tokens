@@ -14,118 +14,135 @@ export const portfolioGallery: Template = {
     category: "portfolio",
     tier: "free",
     thumbnail: "/template-thumbnails/portfolio-gallery.webp",
-    tags: ["portfolio", "gallery", "grid", "images"],
+    tags: [
+      "portfolio",
+      "gallery",
+      "grid",
+      "images",
+      "accessibility-first",
+      "mobile-optimized",
+    ],
     author: "Spexop Team",
     version: "1.0.0",
   },
   structure: {
-    type: "Container",
-    props: {
-      maxWidth: "2xl",
-      padding: 8,
-    },
+    type: "Main",
+    role: "main",
+    ariaLabel: "Portfolio gallery",
+    props: {},
     children: [
       {
-        type: "Stack",
+        type: "Container",
         props: {
-          direction: "vertical",
-          gap: 8,
+          maxWidth: "2xl",
+          padding: "lg",
         },
         children: [
           {
             type: "Stack",
             props: {
               direction: "vertical",
-              gap: 3,
-              align: "center",
+              gap: "lg",
             },
             children: [
               {
-                type: "Heading",
-                id: "gallery-title",
+                type: "Stack",
                 props: {
-                  level: 1,
+                  direction: "vertical",
+                  gap: "sm",
                   align: "center",
                 },
-                content: "My Portfolio",
+                children: [
+                  {
+                    type: "Heading",
+                    id: "gallery-title",
+                    props: {
+                      level: 1,
+                      align: "center",
+                      weight: "bold",
+                    },
+                    content: "My Portfolio",
+                  },
+                  {
+                    type: "Text",
+                    id: "gallery-description",
+                    props: {
+                      size: "lg",
+                      align: "center",
+                      weight: "regular",
+                    },
+                    content: "A collection of my recent work and projects",
+                  },
+                ],
               },
               {
-                type: "Text",
-                id: "gallery-description",
+                type: "Grid",
                 props: {
-                  size: "lg",
-                  align: "center",
-                },
-                content: "A collection of my recent work and projects",
-              },
-            ],
-          },
-          {
-            type: "Grid",
-            props: {
-              columns: "auto-fit",
-              minColumnWidth: "300px",
-              gap: 6,
-            },
-            children: [
-              {
-                type: "Card",
-                id: "project-1",
-                props: {
-                  padding: 0,
+                  columns: "auto-fit",
+                  minColumnWidth: "300px",
+                  gap: "md",
                 },
                 children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "project-1",
                     props: {
-                      direction: "vertical",
-                      gap: 0,
+                      padding: 0,
                     },
                     children: [
                       {
-                        type: "Card",
+                        type: "Stack",
                         props: {
-                          padding: 8,
-                          variant: "subtle",
+                          direction: "vertical",
+                          gap: 0,
                         },
                         children: [
                           {
-                            type: "Text",
+                            type: "Card",
                             props: {
-                              align: "center",
-                              size: "base",
-                            },
-                            content: "Project Image",
-                          },
-                        ],
-                      },
-                      {
-                        type: "Container",
-                        props: {
-                          padding: 5,
-                        },
-                        children: [
-                          {
-                            type: "Stack",
-                            props: {
-                              direction: "vertical",
-                              gap: 2,
+                              padding: 8,
+                              variant: "subtle",
                             },
                             children: [
                               {
-                                type: "Heading",
-                                props: {
-                                  level: 3,
-                                },
-                                content: "Project Alpha",
-                              },
-                              {
                                 type: "Text",
                                 props: {
-                                  size: "sm",
-                                  variant: "secondary",
+                                  align: "center",
+                                  size: "base",
                                 },
-                                content: "Web Design • 2025",
+                                content: "Project Image",
+                              },
+                            ],
+                          },
+                          {
+                            type: "Container",
+                            props: {
+                              padding: 5,
+                            },
+                            children: [
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "vertical",
+                                  gap: 2,
+                                },
+                                children: [
+                                  {
+                                    type: "Heading",
+                                    props: {
+                                      level: 3,
+                                    },
+                                    content: "Project Alpha",
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      size: "sm",
+                                      variant: "secondary",
+                                    },
+                                    content: "Web Design • 2025",
+                                  },
+                                ],
                               },
                             ],
                           },
@@ -133,66 +150,66 @@ export const portfolioGallery: Template = {
                       },
                     ],
                   },
-                ],
-              },
-              {
-                type: "Card",
-                id: "project-2",
-                props: {
-                  padding: 0,
-                },
-                children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "project-2",
                     props: {
-                      direction: "vertical",
-                      gap: 0,
+                      padding: 0,
                     },
                     children: [
                       {
-                        type: "Card",
+                        type: "Stack",
                         props: {
-                          padding: 8,
-                          variant: "subtle",
+                          direction: "vertical",
+                          gap: 0,
                         },
                         children: [
                           {
-                            type: "Text",
+                            type: "Card",
                             props: {
-                              align: "center",
-                              size: "base",
-                            },
-                            content: "Project Image",
-                          },
-                        ],
-                      },
-                      {
-                        type: "Container",
-                        props: {
-                          padding: 5,
-                        },
-                        children: [
-                          {
-                            type: "Stack",
-                            props: {
-                              direction: "vertical",
-                              gap: 2,
+                              padding: 8,
+                              variant: "subtle",
                             },
                             children: [
                               {
-                                type: "Heading",
-                                props: {
-                                  level: 3,
-                                },
-                                content: "Project Beta",
-                              },
-                              {
                                 type: "Text",
                                 props: {
-                                  size: "sm",
-                                  variant: "secondary",
+                                  align: "center",
+                                  size: "base",
                                 },
-                                content: "Brand Identity • 2025",
+                                content: "Project Image",
+                              },
+                            ],
+                          },
+                          {
+                            type: "Container",
+                            props: {
+                              padding: 5,
+                            },
+                            children: [
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "vertical",
+                                  gap: 2,
+                                },
+                                children: [
+                                  {
+                                    type: "Heading",
+                                    props: {
+                                      level: 3,
+                                    },
+                                    content: "Project Beta",
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      size: "sm",
+                                      variant: "secondary",
+                                    },
+                                    content: "Brand Identity • 2025",
+                                  },
+                                ],
                               },
                             ],
                           },
@@ -200,66 +217,66 @@ export const portfolioGallery: Template = {
                       },
                     ],
                   },
-                ],
-              },
-              {
-                type: "Card",
-                id: "project-3",
-                props: {
-                  padding: 0,
-                },
-                children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "project-3",
                     props: {
-                      direction: "vertical",
-                      gap: 0,
+                      padding: 0,
                     },
                     children: [
                       {
-                        type: "Card",
+                        type: "Stack",
                         props: {
-                          padding: 8,
-                          variant: "subtle",
+                          direction: "vertical",
+                          gap: 0,
                         },
                         children: [
                           {
-                            type: "Text",
+                            type: "Card",
                             props: {
-                              align: "center",
-                              size: "base",
-                            },
-                            content: "Project Image",
-                          },
-                        ],
-                      },
-                      {
-                        type: "Container",
-                        props: {
-                          padding: 5,
-                        },
-                        children: [
-                          {
-                            type: "Stack",
-                            props: {
-                              direction: "vertical",
-                              gap: 2,
+                              padding: 8,
+                              variant: "subtle",
                             },
                             children: [
                               {
-                                type: "Heading",
-                                props: {
-                                  level: 3,
-                                },
-                                content: "Project Gamma",
-                              },
-                              {
                                 type: "Text",
                                 props: {
-                                  size: "sm",
-                                  variant: "secondary",
+                                  align: "center",
+                                  size: "base",
                                 },
-                                content: "UI/UX Design • 2024",
+                                content: "Project Image",
+                              },
+                            ],
+                          },
+                          {
+                            type: "Container",
+                            props: {
+                              padding: 5,
+                            },
+                            children: [
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "vertical",
+                                  gap: 2,
+                                },
+                                children: [
+                                  {
+                                    type: "Heading",
+                                    props: {
+                                      level: 3,
+                                    },
+                                    content: "Project Gamma",
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      size: "sm",
+                                      variant: "secondary",
+                                    },
+                                    content: "UI/UX Design • 2024",
+                                  },
+                                ],
                               },
                             ],
                           },
@@ -267,66 +284,66 @@ export const portfolioGallery: Template = {
                       },
                     ],
                   },
-                ],
-              },
-              {
-                type: "Card",
-                id: "project-4",
-                props: {
-                  padding: 0,
-                },
-                children: [
                   {
-                    type: "Stack",
+                    type: "Card",
+                    id: "project-4",
                     props: {
-                      direction: "vertical",
-                      gap: 0,
+                      padding: 0,
                     },
                     children: [
                       {
-                        type: "Card",
+                        type: "Stack",
                         props: {
-                          padding: 8,
-                          variant: "subtle",
+                          direction: "vertical",
+                          gap: 0,
                         },
                         children: [
                           {
-                            type: "Text",
+                            type: "Card",
                             props: {
-                              align: "center",
-                              size: "base",
-                            },
-                            content: "Project Image",
-                          },
-                        ],
-                      },
-                      {
-                        type: "Container",
-                        props: {
-                          padding: 5,
-                        },
-                        children: [
-                          {
-                            type: "Stack",
-                            props: {
-                              direction: "vertical",
-                              gap: 2,
+                              padding: 8,
+                              variant: "subtle",
                             },
                             children: [
                               {
-                                type: "Heading",
-                                props: {
-                                  level: 3,
-                                },
-                                content: "Project Delta",
-                              },
-                              {
                                 type: "Text",
                                 props: {
-                                  size: "sm",
-                                  variant: "secondary",
+                                  align: "center",
+                                  size: "base",
                                 },
-                                content: "Mobile App • 2024",
+                                content: "Project Image",
+                              },
+                            ],
+                          },
+                          {
+                            type: "Container",
+                            props: {
+                              padding: 5,
+                            },
+                            children: [
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "vertical",
+                                  gap: 2,
+                                },
+                                children: [
+                                  {
+                                    type: "Heading",
+                                    props: {
+                                      level: 3,
+                                    },
+                                    content: "Project Delta",
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      size: "sm",
+                                      variant: "secondary",
+                                    },
+                                    content: "Mobile App • 2024",
+                                  },
+                                ],
                               },
                             ],
                           },
@@ -345,7 +362,7 @@ export const portfolioGallery: Template = {
   customization: {
     layout: {
       adjustableProps: ["maxWidth", "padding", "gap", "minColumnWidth"],
-      breakpoints: false,
+      breakpoints: true,
     },
     content: {
       editableText: ["gallery-title", "gallery-description"],

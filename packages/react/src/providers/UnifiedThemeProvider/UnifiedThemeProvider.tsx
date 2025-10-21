@@ -373,11 +373,15 @@ export function UnifiedThemeProvider({
     applyModeToDocument(resolvedMode);
   }, [resolvedMode]);
 
+  // Memoize CSS generation to avoid recalculation
+  const themeCSS = useMemo(() => {
+    if (!activeTheme) return null;
+    return generateCSS(activeTheme, scope);
+  }, [activeTheme, scope]);
+
   // Inject theme CSS if theme config is provided
   useEffect(() => {
-    if (!activeTheme) return;
-
-    const css = generateCSS(activeTheme, scope);
+    if (!themeCSS) return;
 
     if (!styleRef.current) {
       styleRef.current = document.createElement("style");
@@ -385,7 +389,7 @@ export function UnifiedThemeProvider({
       document.head.appendChild(styleRef.current);
     }
 
-    styleRef.current.textContent = css;
+    styleRef.current.textContent = themeCSS;
 
     return () => {
       if (styleRef.current && document.head.contains(styleRef.current)) {
@@ -393,7 +397,7 @@ export function UnifiedThemeProvider({
         styleRef.current = null;
       }
     };
-  }, [activeTheme, scope]);
+  }, [themeCSS]);
 
   // Mark initialization complete
   useEffect(() => {

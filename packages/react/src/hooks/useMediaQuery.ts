@@ -8,13 +8,24 @@ import { useEffect, useState } from "react";
  *
  * @example
  * ```tsx
- * import { sMediaMinMd } from '@spexop/tokens';
+ * // Use with breakpoint constants
+ * const isTablet = useMediaQuery('(min-width: 768px)');
  *
- * const isTablet = useMediaQuery(sMediaMinMd);
+ * // Dark mode
+ * const isDark = useMediaQuery('(prefers-color-scheme: dark)');
+ *
+ * // Reduced motion (accessibility)
+ * const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
  * ```
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
+  // SSR-safe initial value - prevents hydration mismatch
+  const getInitialMatches = () => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(query).matches;
+  };
+
+  const [matches, setMatches] = useState(getInitialMatches);
 
   useEffect(() => {
     // Handle server-side rendering
@@ -22,7 +33,7 @@ export function useMediaQuery(query: string): boolean {
 
     const mediaQuery = window.matchMedia(query);
 
-    // Set initial value
+    // Update state with current value
     setMatches(mediaQuery.matches);
 
     // Create event listener
@@ -30,22 +41,12 @@ export function useMediaQuery(query: string): boolean {
       setMatches(event.matches);
     };
 
-    // Add listener with fallback for older browsers
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", handleChange);
-    } else {
-      // Fallback for older browsers
-      mediaQuery.addListener(handleChange);
-    }
+    // Modern browsers only (no deprecated API support)
+    mediaQuery.addEventListener("change", handleChange);
 
     // Cleanup
     return () => {
-      if (mediaQuery.removeEventListener) {
-        mediaQuery.removeEventListener("change", handleChange);
-      } else {
-        // Fallback for older browsers
-        mediaQuery.removeListener(handleChange);
-      }
+      mediaQuery.removeEventListener("change", handleChange);
     };
   }, [query]);
 

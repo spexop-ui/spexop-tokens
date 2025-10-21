@@ -1,191 +1,123 @@
-# GridItem
+# GridItem Component
 
-A flexible grid item component for precise control over placement, spanning, and alignment within Grid layouts.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
 
 ## Overview
 
-GridItem works with the Grid component to control item placement and sizing. Use it to create sophisticated layouts with precise positioning, responsive spanning, and semantic grid areas.
+A grid cell component that works with the Grid component to create flexible, responsive layouts. Controls how many columns an item should span.
+
+## Features
+
+- ✅ Column span control (1-12)
+- ✅ Responsive span values
+- ✅ Auto-placement support
+- ✅ Works seamlessly with Grid
+- ✅ Design token integration
+- ✅ TypeScript support
+
+## Installation
+
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
+```
 
 ## Quick Start
 
 ```tsx
 import { Grid, GridItem } from '@spexop/react';
 
-// Basic spanning
-<Grid columns={12} gap={6}>
-  <GridItem span={3}>Sidebar</GridItem>
-  <GridItem span={9}>Content</GridItem>
+function App() {
+  return (
+    <Grid columns={12} gap={6}>
+      <GridItem span={4}>
+        25% width (4/12 columns)
+      </GridItem>
+      <GridItem span={8}>
+        75% width (8/12 columns)
+      </GridItem>
+    </Grid>
+  );
+}
+```
+
+## Column Spans
+
+### Single Column
+
+```tsx
+<Grid columns={3} gap={4}>
+  <GridItem span={1}>33%</GridItem>
+  <GridItem span={1}>33%</GridItem>
+  <GridItem span={1}>33%</GridItem>
 </Grid>
 ```
 
-## Features
-
-- **Column Spanning** - Span 1-24 columns
-- **Row Spanning** - Span 1-12 rows
-- **Precise Positioning** - start/end for exact placement
-- **Named Grid Areas** - Semantic area references
-- **Alignment** - Vertical and horizontal alignment
-- **Responsive Props** - Breakpoint objects for all properties
-- **Overflow Protection** - min-width: 0 prevents content overflow
-- **Polymorphic** - Render as any HTML element
-
-## Basic Usage
-
-### Column Spanning
+### Multiple Columns
 
 ```tsx
-<Grid columns={12} gap={4}>
+<Grid columns={12} gap={6}>
+  <GridItem span={3}>25%</GridItem>
+  <GridItem span={6}>50%</GridItem>
+  <GridItem span={3}>25%</GridItem>
+</Grid>
+```
+
+### Full Width
+
+```tsx
+<Grid columns={12} gap={6}>
   <GridItem span={12}>
-    Full Width
+    Full width header
   </GridItem>
-  <GridItem span={6}>
-    Half Width
-  </GridItem>
-  <GridItem span={6}>
-    Half Width
-  </GridItem>
-  <GridItem span={4}>
-    One Third
-  </GridItem>
-  <GridItem span={4}>
-    One Third
-  </GridItem>
-  <GridItem span={4}>
-    One Third
-  </GridItem>
+  <GridItem span={6}>Left column</GridItem>
+  <GridItem span={6}>Right column</GridItem>
 </Grid>
 ```
 
-### Row Spanning
+### Auto-Span (Default)
+
+When span is not specified, items take up one column:
 
 ```tsx
-<Grid columns={3} gap={4}>
-  <GridItem rowSpan={2}>
-    Tall Item
-  </GridItem>
-  <GridItem>Regular</GridItem>
-  <GridItem>Regular</GridItem>
-  <GridItem>Regular</GridItem>
-  <GridItem>Regular</GridItem>
+<Grid columns={4} gap={4}>
+  <GridItem>Auto</GridItem>
+  <GridItem>Auto</GridItem>
+  <GridItem>Auto</GridItem>
+  <GridItem>Auto</GridItem>
 </Grid>
 ```
 
-### Responsive Spanning
-
-```tsx
-<Grid columns={12} gap={6}>
-  <GridItem span={{ xs: 12, md: 6, lg: 4 }}>
-    Full on mobile, half on tablet, third on desktop
-  </GridItem>
-  <GridItem span={{ xs: 12, md: 6, lg: 4 }}>
-    Responsive item 2
-  </GridItem>
-  <GridItem span={{ xs: 12, md: 12, lg: 4 }}>
-    Responsive item 3
-  </GridItem>
-</Grid>
-```
-
-## Advanced Usage
-
-### Precise Positioning
-
-Use `start` and `end` for exact column placement:
-
-```tsx
-<Grid columns={12} gap={4}>
-  <GridItem start={1} end={4}>
-    Columns 1-3
-  </GridItem>
-  <GridItem start={7} end={13}>
-    Columns 7-12 (gap at 4-6)
-  </GridItem>
-</Grid>
-```
-
-### Named Grid Areas
-
-Semantic layouts with named areas:
-
-```tsx
-<Grid 
-  areas={[
-    "header header header",
-    "sidebar content content",
-    "footer footer footer"
-  ]} 
-  gap={4}
->
-  <GridItem area="header">
-    Header Content
-  </GridItem>
-  <GridItem area="sidebar">
-    Sidebar Navigation
-  </GridItem>
-  <GridItem area="content">
-    Main Content
-  </GridItem>
-  <GridItem area="footer">
-    Footer
-  </GridItem>
-</Grid>
-```
-
-### Row Positioning
-
-Control exact row placement:
-
-```tsx
-<Grid columns={3} gap={4}>
-  <GridItem row={1}>Row 1</GridItem>
-  <GridItem row={2}>Row 2</GridItem>
-  <GridItem rowStart={1} rowEnd={3}>
-    Spans rows 1-2
-  </GridItem>
-</Grid>
-```
-
-### Alignment
-
-Control vertical and horizontal alignment within grid cell:
-
-```tsx
-<Grid columns={3} gap={4} style={{ minHeight: "200px" }}>
-  <GridItem align="start">
-    Top aligned
-  </GridItem>
-  <GridItem align="center">
-    Center aligned
-  </GridItem>
-  <GridItem align="end">
-    Bottom aligned
-  </GridItem>
-</Grid>
-
-<Grid columns={3} gap={4}>
-  <GridItem justify="start">
-    Left aligned
-  </GridItem>
-  <GridItem justify="center">
-    Center aligned
-  </GridItem>
-  <GridItem justify="end">
-    Right aligned
-  </GridItem>
-</Grid>
-```
-
-## Common Patterns
+## Common Layouts
 
 ### Sidebar Layout
 
 ```tsx
 <Grid columns={12} gap={6}>
-  <GridItem span={{ xs: 12, lg: 3 }}>
-    <Sidebar />
+  <GridItem span={3}>
+    <aside>Sidebar</aside>
   </GridItem>
-  <GridItem span={{ xs: 12, lg: 9 }}>
-    <MainContent />
+  <GridItem span={9}>
+    <main>Main Content</main>
+  </GridItem>
+</Grid>
+```
+
+### Card Grid
+
+```tsx
+<Grid columns={12} gap={6}>
+  <GridItem span={4}>
+    <Card>Card 1</Card>
+  </GridItem>
+  <GridItem span={4}>
+    <Card>Card 2</Card>
+  </GridItem>
+  <GridItem span={4}>
+    <Card>Card 3</Card>
   </GridItem>
 </Grid>
 ```
@@ -193,65 +125,32 @@ Control vertical and horizontal alignment within grid cell:
 ### Dashboard Layout
 
 ```tsx
-<Grid columns={12} gap={4}>
+<Grid columns={12} gap={6}>
+  {/* Header */}
   <GridItem span={12}>
-    <Header />
+    <DashboardCard title="Overview" />
   </GridItem>
-  <GridItem span={3} rowSpan={2}>
-    <Navigation />
+  
+  {/* Stats Row */}
+  <GridItem span={3}>
+    <StatsCard metric="Users" value="1,234" />
   </GridItem>
   <GridItem span={3}>
-    <StatCard label="Users" value="1,234" />
+    <StatsCard metric="Revenue" value="$5,678" />
   </GridItem>
   <GridItem span={3}>
-    <StatCard label="Revenue" value="$45K" />
+    <StatsCard metric="Orders" value="890" />
   </GridItem>
   <GridItem span={3}>
-    <StatCard label="Orders" value="567" />
+    <StatsCard metric="Growth" value="+12%" />
   </GridItem>
-  <GridItem span={9}>
-    <MainDashboard />
+  
+  {/* Charts Row */}
+  <GridItem span={8}>
+    <Card>Chart</Card>
   </GridItem>
-</Grid>
-```
-
-### Gallery with Featured Image
-
-```tsx
-<Grid columns={4} gap={4}>
-  <GridItem span={2} rowSpan={2}>
-    <img src="featured.jpg" alt="Featured" />
-  </GridItem>
-  <GridItem>
-    <img src="image1.jpg" alt="1" />
-  </GridItem>
-  <GridItem>
-    <img src="image2.jpg" alt="2" />
-  </GridItem>
-  <GridItem>
-    <img src="image3.jpg" alt="3" />
-  </GridItem>
-  <GridItem>
-    <img src="image4.jpg" alt="4" />
-  </GridItem>
-</Grid>
-```
-
-### Form Layout
-
-```tsx
-<Grid columns={2} gap={4}>
-  <GridItem span={2}>
-    <TextInput label="Full Name" fullWidth />
-  </GridItem>
-  <GridItem>
-    <TextInput label="Email" fullWidth />
-  </GridItem>
-  <GridItem>
-    <TextInput label="Phone" fullWidth />
-  </GridItem>
-  <GridItem span={2}>
-    <Button fullWidth>Submit</Button>
+  <GridItem span={4}>
+    <Card>Summary</Card>
   </GridItem>
 </Grid>
 ```
@@ -260,303 +159,99 @@ Control vertical and horizontal alignment within grid cell:
 
 ```tsx
 <Grid columns={12} gap={6}>
-  <GridItem span={7}>
-    <PrimaryContent />
+  <GridItem span={8}>
+    <article>Main article content</article>
   </GridItem>
+  <GridItem span={4}>
+    <aside>Related links</aside>
+  </GridItem>
+  
   <GridItem span={5}>
-    <SecondaryContent />
-  </GridItem>
-  <GridItem span={5}>
-    <SecondaryContent />
+    <Card>Feature 1</Card>
   </GridItem>
   <GridItem span={7}>
-    <PrimaryContent />
+    <Card>Feature 2</Card>
+  </GridItem>
+</Grid>
+```
+
+## Responsive Spans
+
+GridItem spans are responsive by default through the Grid's responsive behavior:
+
+```tsx
+{/* Mobile: stacks vertically */}
+{/* Tablet: 2 columns */}
+{/* Desktop: 3 columns */}
+<Grid columns="auto-fit" minColumnWidth="300px" gap={6}>
+  <GridItem>
+    <Card>Responsive Card 1</Card>
+  </GridItem>
+  <GridItem>
+    <Card>Responsive Card 2</Card>
+  </GridItem>
+  <GridItem>
+    <Card>Responsive Card 3</Card>
+  </GridItem>
+</Grid>
+```
+
+## Nested GridItems
+
+```tsx
+<Grid columns={12} gap={8}>
+  <GridItem span={8}>
+    <Grid columns={2} gap={4}>
+      <GridItem>Nested 1</GridItem>
+      <GridItem>Nested 2</GridItem>
+    </Grid>
+  </GridItem>
+  <GridItem span={4}>
+    Sidebar
   </GridItem>
 </Grid>
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Content (required) |
-| `span` | `ResponsiveProp<number>` | `1` | Columns to span (1-24) |
-| `start` | `ResponsiveProp<number>` | - | Column start position |
-| `end` | `ResponsiveProp<number>` | - | Column end position |
-| `row` | `ResponsiveProp<number>` | - | Row position |
-| `rowSpan` | `ResponsiveProp<number>` | - | Rows to span (1-12) |
-| `rowStart` | `ResponsiveProp<number>` | - | Row start position |
-| `rowEnd` | `ResponsiveProp<number>` | - | Row end position |
-| `area` | `string` | - | Named grid area |
-| `align` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | Vertical alignment |
-| `justify` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | Horizontal alignment |
-| `className` | `string` | - | Additional CSS class |
-| `style` | `CSSProperties` | - | Inline styles |
-| `as` | `ElementType` | `"div"` | HTML element type |
-
-## Responsive Props
-
-All positioning and spanning props support responsive objects:
-
-```tsx
-<GridItem 
-  span={{ xs: 12, sm: 6, md: 4, lg: 3 }}
-  rowSpan={{ xs: 1, md: 2 }}
-  align={{ xs: "start", lg: "center" }}
->
-  Content
-</GridItem>
+```typescript
+interface GridItemProps {
+  children: React.ReactNode;
+  span?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
 ```
 
-**Breakpoints:**
+## Design Principles
 
-- `xs`: 480px
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
-- `xl`: 1280px
-- `2xl`: 1440px
+Following "The Spexop Way":
 
-## Best Practices
-
-### DO
-
-✅ **Use responsive spanning** for mobile-first layouts
-
-```tsx
-<GridItem span={{ xs: 12, lg: 3 }}>
-  Mobile full-width, desktop sidebar
-</GridItem>
-```
-
-✅ **Use named areas** for semantic layouts
-
-```tsx
-<GridItem area="header">
-  Readable and maintainable
-</GridItem>
-```
-
-✅ **Combine span and rowSpan** for masonry layouts
-
-```tsx
-<GridItem span={2} rowSpan={2}>
-  Featured content
-</GridItem>
-```
-
-✅ **Use polymorphic as prop** for semantic HTML
-
-```tsx
-<GridItem as="article" span={8}>
-  Semantic article element
-</GridItem>
-```
-
-### DON'T
-
-❌ **Don't use span > 12 without 12+ column grid**
-
-```tsx
-// Bad: Grid only has 6 columns
-<Grid columns={6}>
-  <GridItem span={12}>Won't fit!</GridItem>
-</Grid>
-```
-
-❌ **Don't mix area with span/start/end**
-
-```tsx
-// Bad: area takes precedence
-<GridItem area="header" span={6}>
-  Confusing!
-</GridItem>
-```
-
-❌ **Don't forget overflow protection for long content**
-
-```tsx
-// GridItem already handles this with min-width: 0
-// But be aware of content that might need max-width
-```
+1. **Primitives before patterns** - Core grid cell primitive
+2. **Composition before complexity** - Works with Grid for layouts
+3. **Standards before frameworks** - Pure CSS Grid implementation
 
 ## Accessibility
 
-### Semantic HTML
-
-Use the `as` prop for semantic markup:
-
-```tsx
-<Grid columns={12} gap={6}>
-  <GridItem as="header" span={12}>
-    Page Header
-  </GridItem>
-  <GridItem as="aside" span={3}>
-    Sidebar Navigation
-  </GridItem>
-  <GridItem as="main" span={9}>
-    Main Content
-  </GridItem>
-  <GridItem as="footer" span={12}>
-    Page Footer
-  </GridItem>
-</Grid>
-```
-
-### Landmarks
-
-Combine with ARIA landmarks:
-
-```tsx
-<GridItem as="nav" span={3} aria-label="Main navigation">
-  Navigation Menu
-</GridItem>
-```
-
-## Technical Details
-
-### Overflow Protection
-
-GridItem includes `min-width: 0` to prevent content from breaking the grid:
-
-```css
-.gridItem {
-  min-width: 0; /* Allows grid items to shrink below content size */
-  max-width: 100%;
-  overflow-x: hidden;
-}
-```
-
-This prevents issues with long words, code blocks, or images that might otherwise overflow.
-
-### Alignment vs Grid Alignment
-
-- **Grid alignment** - Controls ALL items in the grid
-- **GridItem alignment** - Controls individual item alignment
-
-```tsx
-// Grid-level alignment (affects all items)
-<Grid align="center">
-  <GridItem>Centered by Grid</GridItem>
-</Grid>
-
-// Item-level alignment (overrides grid alignment)
-<Grid align="center">
-  <GridItem align="start">Start-aligned item</GridItem>
-  <GridItem>Centered item</GridItem>
-</Grid>
-```
-
-### Spanning Logic
-
-**Column Spanning:**
-
-- `span={6}` - Occupies 6 columns
-- `start={1} end={7}` - Also occupies columns 1-6 (same result)
-- `span` is simpler, `start/end` is for precise control
-
-**Row Spanning:**
-
-- `rowSpan={2}` - Occupies 2 rows
-- `rowStart={1} rowEnd={3}` - Also occupies rows 1-2
-
-## Integration with Other Components
-
-### With Card Components
-
-```tsx
-<Grid columns={12} gap={6}>
-  <GridItem span={{ xs: 12, md: 6, lg: 4 }}>
-    <Card>
-      <CardHeader title="Card 1" />
-      <CardBody>Content</CardBody>
-    </Card>
-  </GridItem>
-  <GridItem span={{ xs: 12, md: 6, lg: 4 }}>
-    <Card>
-      <CardHeader title="Card 2" />
-      <CardBody>Content</CardBody>
-    </Card>
-  </GridItem>
-</Grid>
-```
-
-### With Container
-
-```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Grid columns={12} gap={6}>
-    <GridItem span={{ xs: 12, lg: 3 }}>
-      Sidebar
-    </GridItem>
-    <GridItem span={{ xs: 12, lg: 9 }}>
-      Content
-    </GridItem>
-  </Grid>
-</Container>
-```
+- Semantic HTML (div element)
+- Maintains document flow
+- Works with screen readers
+- No specific ARIA requirements
 
 ## Browser Support
 
-- **CSS Grid**: All modern browsers
-- **grid-column/grid-row**: All modern browsers
-- **grid-area**: All modern browsers
-- **Subgrid**: Chrome 117+, Safari 16+, Firefox 71+ (not used by GridItem directly)
-
-## TypeScript
-
-```typescript
-interface GridItemProps {
-  children: ReactNode;
-  span?: ResponsiveProp<number>;
-  start?: ResponsiveProp<number>;
-  end?: ResponsiveProp<number>;
-  row?: ResponsiveProp<number>;
-  rowSpan?: ResponsiveProp<number>;
-  rowStart?: ResponsiveProp<number>;
-  rowEnd?: ResponsiveProp<number>;
-  area?: string;
-  align?: "start" | "center" | "end" | "stretch";
-  justify?: "start" | "center" | "end" | "stretch";
-  className?: string;
-  style?: CSSProperties;
-  as?: ElementType;
-}
-```
-
-## Examples
-
-See **Storybook** for 17 interactive examples:
-
-- Column spanning variations
-- Row spanning patterns
-- Responsive layouts
-- Dashboard patterns
-- Gallery layouts
-- Form layouts
-- Magazine-style grids
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **Grid** - Container for GridItem
-- **Stack** - Simple flexbox alternative
-- **Container** - Max-width wrapper
-- **Spacer** - Spacing utility
-
-## See Also
-
-- [Grid Component](../Grid/README.md)
-- [Grid Primitives Guide](/docs/grid-primitives.md)
-- [Responsive Patterns](/docs/responsive-patterns.md)
-
-## Contributing
-
-Contributions are welcome! Please see the [contributing guide](../../CONTRIBUTING.md) for more information.
+- `Grid` - Parent grid container
+- `Container` - Width-constrained wrapper
+- `Stack` - Vertical/horizontal stacking
+- `Spacer` - Flexible spacing
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
-
-## Author
-
-This project was created by [@olmstedian](https://github.com/olmstedian) and [@spexop](https://github.com/spexop-ui). For more information, please see the [Spexop Design System](https://spexop.com).
+MIT

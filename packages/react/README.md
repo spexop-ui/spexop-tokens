@@ -1,6 +1,6 @@
 # @spexop/react
 
-Production-ready React components for modern web applications. Built with TypeScript, accessibility, and the Primitives-First philosophy.
+React component library for modern web applications. Built with TypeScript, accessibility, and the Primitives-First philosophy.
 
 [![npm version](https://img.shields.io/npm/v/@spexop/react.svg)](https://www.npmjs.com/package/@spexop/react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -8,41 +8,47 @@ Production-ready React components for modern web applications. Built with TypeSc
 
 ## What is Spexop?
 
-Spexop is a **Primitives-First Design System** that emphasizes mastering foundational layout components before building complex interfaces. With 60+ production-ready React components, comprehensive TypeScript support, and built-in accessibility, Spexop helps teams build beautiful, maintainable web applications faster.
+Spexop is a **Primitives-First Design System** that emphasizes mastering foundational layout components before building complex interfaces. With 59 React components, comprehensive TypeScript support, and built-in accessibility, Spexop helps you build maintainable web applications.
 
 ### The Primitives-First Approach
 
 Start with **5 grid primitives** (Grid, GridItem, Stack, Container, Spacer) to master layout fundamentals, then compose them into sophisticated interfaces. This approach leads to more maintainable code and better design consistency.
 
+## Development Status
+
+This is an active development release (v0.3.0). While components follow "The Spexop Way" design principles and include comprehensive documentation and tests, the library is still evolving. APIs may change in future releases. Use at your own discretion.
+
 ## Features
 
-- 🎨 **60+ Components** - Grid primitives, navigation, forms, buttons, cards, layouts, and more
+- 🎨 **59 Components** - Primitives, navigation, forms, buttons, cards, data, feedback, typography, and more
 - 📐 **Grid System** - Powerful responsive grid with named areas and container queries
 - 🎯 **TypeScript-First** - Full type safety with comprehensive type definitions
 - ♿ **Accessibility Built-In** - WCAG AA compliant with keyboard navigation
-- 🎨 **Design Tokens** - Built on [@spexop/tokens](https://npmjs.com/package/@spexop/tokens) with 450+ tokens
+- 🎨 **Design Tokens** - Built on [@spexop/theme](https://npmjs.com/package/@spexop/theme) with 450+ tokens
 - 🔧 **CSS Modules** - Scoped styling with zero runtime overhead
 - 📱 **Responsive** - Mobile-first with breakpoint utilities
 - 🌳 **Tree-Shakeable** - Import only what you need
 - 🎭 **Theme Support** - Light/dark modes with ThemeProvider
-- 🪝 **13+ React Hooks** - Utilities for common patterns
+- 🪝 **33+ React Hooks** - Utilities for common patterns
+- 🔌 **5 Providers** - Theme, Debug, Accessibility, Modal, Toast management
+- 📚 **100% Documentation** - Every component has README + USAGE-GUIDE + tests
 
 ## Installation
 
 ```bash
-npm install @spexop/react @spexop/tokens @spexop/icons
+npm install @spexop/react @spexop/theme @spexop/icons
 ```
 
 Or with pnpm:
 
 ```bash
-pnpm add @spexop/react @spexop/tokens @spexop/icons
+pnpm add @spexop/react @spexop/theme @spexop/icons
 ```
 
 Or with yarn:
 
 ```bash
-yarn add @spexop/react @spexop/tokens @spexop/icons
+yarn add @spexop/react @spexop/theme @spexop/icons
 ```
 
 ## Quick Start
@@ -53,7 +59,7 @@ Add the design tokens CSS to your app entry point:
 
 ```typescript
 // main.tsx or index.tsx
-import '@spexop/tokens/dist/tokens.css';
+import '@spexop/theme/dist/tokens.css';
 import '@spexop/react/dist/index.css';
 ```
 
@@ -490,12 +496,53 @@ import { Motion, FadeIn, SlideIn, ScaleUp, RotateIn, ZoomIn, Stagger, Reveal } f
 - **Reveal** - Reveal on scroll
 - **AnimatedBackground** - Animated backgrounds
 
-### Hooks (13)
+### Data (3)
+
+Data display and visualization components.
+
+```typescript
+import { DataTable, DataGrid, Chart } from '@spexop/react';
+```
+
+- **DataTable** - Sortable, filterable table with pagination
+- **DataGrid** - Advanced grid with virtual scrolling
+- **Chart** - Chart.js integration for data visualization
+
+### Feedback (6)
+
+User feedback and loading states.
+
+```typescript
+import { Alert, Spinner, Progress, Skeleton, Toast, EmptyState } from '@spexop/react';
+```
+
+- **Alert** - Contextual notifications (success, warning, error, info)
+- **Spinner** - Loading indicators with multiple variants
+- **Progress** - Linear and circular progress bars
+- **Skeleton** - Loading placeholders
+- **Toast** - Non-blocking notifications
+- **EmptyState** - No-data states with actions
+
+### Typography (4)
+
+Text and typography components.
+
+```typescript
+import { Heading, Text, Link, Code } from '@spexop/react';
+```
+
+- **Heading** - Semantic headings (h1-h6) with variants
+- **Text** - Paragraph text with size/weight variants
+- **Link** - Standalone link component with variants
+- **Code** - Inline code formatting
+
+### Hooks (33+)
 
 Essential React hooks for common patterns.
 
 ```typescript
 import { 
+  // Layout & UI
   useAccordion, 
   useBodyScrollLock, 
   useFocusTrap, 
@@ -504,21 +551,70 @@ import {
   useMediaQuery, 
   useResponsiveValue,
   useScrollSpy,
+  
+  // Theme & Debug
   useTheme,
   useDebug,
+  useDarkMode,
+  
+  // Animation
   useIntersectionObserver,
   useMotionValue,
-  useSpring
+  useSpring,
+  useReducedMotion,
+  
+  // Interaction
+  useClickOutside,
+  useHover,
+  useKeyPress,
+  useLongPress,
+  
+  // Storage
+  useLocalStorage,
+  useSessionStorage,
+  
+  // Browser APIs
+  useGeolocation,
+  useOnline,
+  usePageVisibility,
+  usePermission,
+  useWindowSize,
+  useScroll,
+  useResizeObserver,
+  
+  // URL Management
+  useHash,
+  useQueryParams,
+  
+  // Utilities
+  useCopyToClipboard,
+  useDebounce,
+  useThrottle,
+  useToggle,
+  usePrevious,
+  useIdle
 } from '@spexop/react';
 ```
 
-### Providers (2)
+### Providers (5)
 
-Context providers for theme and debug utilities.
+Context providers for theme, debug, accessibility, modals, and toasts.
 
 ```typescript
-import { ThemeProvider, DebugProvider } from '@spexop/react';
+import { 
+  ThemeProvider, 
+  DebugProvider, 
+  AccessibilityProvider,
+  ModalProvider,
+  ToastProvider 
+} from '@spexop/react';
 ```
+
+- **ThemeProvider** - Theme context and light/dark mode management
+- **DebugProvider** - Debug mode and development utilities
+- **AccessibilityProvider** - Global accessibility settings and announcements
+- **ModalProvider** - Modal/dialog management with stacking
+- **ToastProvider** - Toast notification system with queue management
 
 ## Documentation
 
@@ -543,7 +639,7 @@ import { ThemeProvider, DebugProvider } from '@spexop/react';
 This package requires the Spexop design tokens and icons:
 
 ```bash
-npm install @spexop/tokens @spexop/icons
+npm install @spexop/theme @spexop/icons
 ```
 
 ### Browser Support
@@ -693,7 +789,7 @@ Seven principles that guide every design decision:
 
 ### Token-Based Design
 
-All components use design tokens from [@spexop/tokens](https://npmjs.com/package/@spexop/tokens):
+All components use design tokens from [@spexop/theme](https://npmjs.com/package/@spexop/theme):
 
 - **379 design tokens** - Colors, spacing, typography, shadows, etc.
 - **Consistent naming** - S-prefix convention (sColorRed500, sSpacing4)
@@ -783,7 +879,7 @@ See [LICENSE](./LICENSE) for details.
 
 ## Related Packages
 
-- [@spexop/tokens](https://npmjs.com/package/@spexop/tokens) - Design tokens (379 tokens)
+- [@spexop/theme](https://npmjs.com/package/@spexop/theme) - Design tokens (379 tokens)
 - [@spexop/icons](https://npmjs.com/package/@spexop/icons) - Icon library (262 icons)
 
 ## Community

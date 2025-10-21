@@ -12,6 +12,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Icon } from "../../display/Icon/Icon.js";
 import styles from "./SplitButton.module.css";
 import type { SplitButtonProps } from "./SplitButton.types.js";
 
@@ -127,7 +128,6 @@ export function SplitButton({
         if (!menuItems || menuItems.length === 0) return;
 
         // Use findIndex to properly handle Element | null type from document.activeElement
-        // biome-ignore lint: required for type safety
         const currentIndex = Array.from(menuItems).findIndex(
           (item) => item === document.activeElement,
         );
@@ -204,23 +204,7 @@ export function SplitButton({
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <svg
-          className={styles.toggleIcon}
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            d="M5 7.5L10 12.5L15 7.5"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <Icon name="chevronDown" className={styles.toggleIcon} size="md" />
       </button>
 
       {/* Dropdown Menu */}

@@ -1,0 +1,305 @@
+/**
+ * FileUpload Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component FileUpload
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-20 - Initial implementation
+ */
+
+.fileUpload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin-bottom: var(--theme-spacing-1);
+}
+
+.required {
+  color: var(--theme-danger);
+  margin-left: var(--theme-spacing-1);
+}
+
+.uploadArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--theme-spacing-8);
+  border: 2px dashed var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  background: var(--theme-surface);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease;
+  position: relative;
+  min-height: 200px;
+}
+
+.uploadArea:hover:not(.disabled) {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface-hover);
+}
+
+.uploadArea:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.uploadArea.dragging {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface-hover);
+}
+
+.input {
+  display: none;
+}
+
+.uploadContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--theme-spacing-3);
+  pointer-events: none;
+}
+
+.uploadIcon {
+  color: var(--theme-text-secondary);
+}
+
+.uploadText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+  text-align: center;
+}
+
+.uploadTextPrimary {
+  font-size: var(--theme-font-size-base);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-primary);
+}
+
+.uploadTextSecondary {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+}
+
+.acceptText,
+.maxSizeText {
+  font-size: var(--theme-font-size-xs);
+  color: var(--theme-text-muted);
+  text-align: center;
+}
+
+/* Size variants */
+.size-sm {
+  padding: var(--theme-spacing-6);
+  min-height: 150px;
+}
+
+.size-sm .uploadIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.size-sm .uploadTextPrimary {
+  font-size: var(--theme-font-size-sm);
+}
+
+.size-sm .uploadTextSecondary {
+  font-size: var(--theme-font-size-xs);
+}
+
+.size-lg {
+  padding: var(--theme-spacing-10);
+  min-height: 250px;
+}
+
+.size-lg .uploadIcon {
+  width: 64px;
+  height: 64px;
+}
+
+.size-lg .uploadTextPrimary {
+  font-size: var(--theme-font-size-lg);
+}
+
+.size-lg .uploadTextSecondary {
+  font-size: var(--theme-font-size-base);
+}
+
+/* File list */
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  margin-top: var(--theme-spacing-2);
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--theme-spacing-3);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  background: var(--theme-surface);
+  transition: background-color 100ms ease;
+}
+
+.fileItem:hover {
+  background: var(--theme-surface-hover);
+}
+
+.fileInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3);
+  flex: 1;
+  min-width: 0;
+}
+
+.fileIcon {
+  color: var(--theme-text-secondary);
+  flex-shrink: 0;
+}
+
+.fileDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-1);
+  min-width: 0;
+}
+
+.fileName {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fileSize {
+  font-size: var(--theme-font-size-xs);
+  color: var(--theme-text-secondary);
+}
+
+.removeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  border-radius: var(--theme-radius-relaxed);
+  transition: background-color 100ms ease, color 100ms ease;
+  flex-shrink: 0;
+}
+
+.removeButton:hover {
+  background: var(--theme-danger-light);
+  color: var(--theme-danger);
+}
+
+.removeButton:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Error state */
+.hasError {
+  border-color: var(--theme-danger);
+}
+
+.hasError:hover:not(.disabled) {
+  border-color: var(--theme-danger);
+}
+
+.errorMessage {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-danger);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 12px;
+}
+
+.helpText {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+}
+
+/* Disabled state */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Dark mode support */
+html[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .uploadArea {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .uploadArea:hover:not(.disabled) {
+  background: var(--theme-surface-hover);
+}
+
+html[data-theme="dark"] .uploadArea.dragging {
+  background: var(--theme-surface-hover);
+}
+
+html[data-theme="dark"] .fileItem {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .fileItem:hover {
+  background: var(--theme-surface-hover);
+}
+
+html[data-theme="dark"] .removeButton:hover {
+  background: var(--theme-danger-dark);
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  .uploadArea {
+    border-width: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .uploadArea,
+  .fileItem,
+  .removeButton {
+    transition: none;
+  }
+}
+

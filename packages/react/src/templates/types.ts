@@ -3,6 +3,23 @@
  * Core type definitions for the Spexop template system
  */
 
+/**
+ * Accessibility metadata for templates
+ * Defines landmarks, skip links, and focus management
+ */
+export interface AccessibilityMetadata {
+  landmarks: Array<{ type: string; label: string }>;
+  skipLinks: Array<{ target: string; label: string }>;
+  focusManagement: {
+    initialFocus?: string;
+    returnFocus?: boolean;
+  };
+}
+
+/**
+ * Template interface
+ * Defines the structure and metadata for a page template
+ */
 export interface Template {
   meta: {
     id: string;
@@ -15,17 +32,28 @@ export interface Template {
       | "blog"
       | "docs"
       | "portfolio"
-      | "ecommerce";
+      | "ecommerce"
+      | "auth"
+      | "error"
+      | "pricing"
+      | "navigation"
+      | "content"
+      | "states";
     tier: "free" | "premium";
     thumbnail: string;
     tags: string[];
     author: string;
     version: string;
+    accessibility?: AccessibilityMetadata;
   };
   structure: TemplateNode;
   customization: CustomizationOptions;
 }
 
+/**
+ * Template node interface
+ * Defines a single component or element in the template tree
+ */
 export interface TemplateNode {
   type:
     | "Container"
@@ -35,30 +63,59 @@ export interface TemplateNode {
     | "Spacer"
     | "Button"
     | "Card"
+    | "Icon"
+    | "Link"
+    | "Input"
+    | "Label"
+    | "Form"
+    | "Nav"
+    | "Footer"
+    | "Header"
+    | "Main"
+    | "Aside"
+    | "Article"
+    | "Section"
     | "Typography"
     | "Text"
     | "Heading"
-    | "Section"
+    | "Checkbox"
+    | "Badge"
     | string;
-  props: Record<string, any>;
+  props: Record<string, unknown>;
   children?: TemplateNode[];
   content?: string;
   slot?: string;
-  id?: string; // For referencing in customization
+  id?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  ariaCurrent?: string;
+  ariaHidden?: boolean;
+  ariaInvalid?: string | boolean;
+  ariaLive?: "polite" | "assertive" | "off";
+  ariaLabelledBy?: string;
+  role?: string;
 }
 
+/**
+ * Customization options for templates
+ * Defines what can be adjusted in the template
+ */
 export interface CustomizationOptions {
   layout: {
-    adjustableProps: string[]; // e.g., ['maxWidth', 'padding', 'gap']
+    adjustableProps: string[];
     breakpoints: boolean;
   };
   content: {
-    editableText: string[]; // IDs of text nodes
-    editableImages: string[]; // IDs of image slots
+    editableText: string[];
+    editableImages: string[];
   };
 }
 
+/**
+ * Template customization values
+ * User-provided customizations to apply to a template
+ */
 export interface TemplateCustomization {
-  props: Record<string, any>;
+  props: Record<string, unknown>;
   content: Record<string, string>;
 }

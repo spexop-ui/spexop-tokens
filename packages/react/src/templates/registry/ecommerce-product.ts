@@ -13,212 +13,309 @@ export const ecommerceProduct: Template = {
     category: "ecommerce",
     tier: "free",
     thumbnail: "/template-thumbnails/ecommerce-product.webp",
-    tags: ["ecommerce", "product", "shop", "store"],
+    tags: [
+      "ecommerce",
+      "product",
+      "shop",
+      "store",
+      "accessibility-first",
+      "icon-enhanced",
+    ],
     author: "Spexop Team",
     version: "1.0.0",
   },
   structure: {
-    type: "Container",
-    props: {
-      maxWidth: "2xl",
-      padding: 8,
-    },
+    type: "Main",
+    role: "main",
+    ariaLabel: "Product details",
+    props: {},
     children: [
       {
-        type: "Grid",
+        type: "Container",
         props: {
-          columns: "auto-fit",
-          minColumnWidth: "350px",
-          gap: 8,
+          maxWidth: "2xl",
+          padding: "lg",
         },
         children: [
           {
-            type: "GridItem",
-            props: {},
+            type: "Grid",
+            props: {
+              columns: "auto-fit",
+              minColumnWidth: "350px",
+              gap: "lg",
+            },
             children: [
               {
-                type: "Stack",
-                props: {
-                  direction: "vertical",
-                  gap: 4,
-                },
-                children: [
-                  {
-                    type: "Card",
-                    id: "product-image",
-                    props: {
-                      padding: 8,
-                      variant: "subtle",
-                    },
-                    children: [
-                      {
-                        type: "Text",
-                        props: {
-                          align: "center",
-                          size: "lg",
-                        },
-                        content: "Product Image",
-                      },
-                    ],
-                  },
-                  {
-                    type: "Grid",
-                    props: {
-                      columns: 4,
-                      gap: 3,
-                    },
-                    children: [
-                      {
-                        type: "Card",
-                        props: {
-                          padding: 4,
-                          variant: "subtle",
-                        },
-                      },
-                      {
-                        type: "Card",
-                        props: {
-                          padding: 4,
-                          variant: "subtle",
-                        },
-                      },
-                      {
-                        type: "Card",
-                        props: {
-                          padding: 4,
-                          variant: "subtle",
-                        },
-                      },
-                      {
-                        type: "Card",
-                        props: {
-                          padding: 4,
-                          variant: "subtle",
-                        },
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "GridItem",
-            props: {},
-            children: [
-              {
-                type: "Stack",
-                props: {
-                  direction: "vertical",
-                  gap: 6,
-                },
+                type: "GridItem",
+                props: {},
                 children: [
                   {
                     type: "Stack",
                     props: {
                       direction: "vertical",
-                      gap: 3,
+                      gap: "sm",
                     },
                     children: [
                       {
-                        type: "Heading",
-                        id: "product-name",
+                        type: "Card",
+                        id: "product-image",
                         props: {
-                          level: 1,
-                        },
-                        content: "Premium Product Name",
-                      },
-                      {
-                        type: "Text",
-                        id: "product-price",
-                        props: {
-                          size: "2xl",
-                          weight: "bold",
-                        },
-                        content: "$99.99",
-                      },
-                      {
-                        type: "Text",
-                        id: "product-description",
-                        props: {
-                          size: "base",
-                        },
-                        content:
-                          "High-quality product with exceptional features. Perfect for your needs with premium materials and craftsmanship.",
-                      },
-                    ],
-                  },
-                  {
-                    type: "Stack",
-                    props: {
-                      direction: "vertical",
-                      gap: 3,
-                    },
-                    children: [
-                      {
-                        type: "Heading",
-                        props: {
-                          level: 3,
-                        },
-                        content: "Features",
-                      },
-                      {
-                        type: "Stack",
-                        props: {
-                          direction: "vertical",
-                          gap: 2,
+                          padding: "lg",
+                          variant: "subtle",
                         },
                         children: [
                           {
                             type: "Text",
-                            props: {},
-                            content: "✓ Premium quality materials",
+                            props: {
+                              align: "center",
+                              size: "lg",
+                              weight: "regular",
+                            },
+                            content: "Product Image",
+                          },
+                        ],
+                      },
+                      {
+                        type: "Grid",
+                        props: {
+                          columns: 4,
+                          gap: "xs",
+                        },
+                        children: [
+                          {
+                            type: "Card",
+                            props: {
+                              padding: "sm",
+                              variant: "subtle",
+                            },
                           },
                           {
-                            type: "Text",
-                            props: {},
-                            content: "✓ Sustainable and eco-friendly",
+                            type: "Card",
+                            props: {
+                              padding: "sm",
+                              variant: "subtle",
+                            },
                           },
                           {
-                            type: "Text",
-                            props: {},
-                            content: "✓ 2-year warranty included",
+                            type: "Card",
+                            props: {
+                              padding: "sm",
+                              variant: "subtle",
+                            },
                           },
                           {
-                            type: "Text",
-                            props: {},
-                            content: "✓ Free shipping worldwide",
+                            type: "Card",
+                            props: {
+                              padding: "sm",
+                              variant: "subtle",
+                            },
                           },
                         ],
                       },
                     ],
                   },
+                ],
+              },
+              {
+                type: "GridItem",
+                props: {},
+                children: [
                   {
                     type: "Stack",
                     props: {
                       direction: "vertical",
-                      gap: 3,
+                      gap: "md",
                     },
                     children: [
                       {
-                        type: "Button",
-                        id: "add-to-cart",
+                        type: "Stack",
                         props: {
-                          variant: "primary",
-                          size: "lg",
-                          fullWidth: true,
+                          direction: "vertical",
+                          gap: "sm",
                         },
-                        content: "Add to Cart",
+                        children: [
+                          {
+                            type: "Heading",
+                            id: "product-name",
+                            props: {
+                              level: 1,
+                              weight: "bold",
+                            },
+                            content: "Premium Product Name",
+                          },
+                          {
+                            type: "Text",
+                            id: "product-price",
+                            props: {
+                              size: "2xl",
+                              weight: "bold",
+                            },
+                            content: "$99.99",
+                          },
+                          {
+                            type: "Text",
+                            id: "product-description",
+                            props: {
+                              size: "base",
+                              weight: "regular",
+                            },
+                            content:
+                              "High-quality product with exceptional features. Perfect for your needs with premium materials and craftsmanship.",
+                          },
+                        ],
                       },
                       {
-                        type: "Button",
-                        id: "buy-now",
+                        type: "Stack",
                         props: {
-                          variant: "secondary",
-                          size: "lg",
-                          fullWidth: true,
+                          direction: "vertical",
+                          gap: "sm",
                         },
-                        content: "Buy Now",
+                        children: [
+                          {
+                            type: "Heading",
+                            props: {
+                              level: 3,
+                              weight: "semibold",
+                            },
+                            content: "Features",
+                          },
+                          {
+                            type: "Stack",
+                            props: {
+                              direction: "vertical",
+                              gap: "xs",
+                            },
+                            children: [
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "horizontal",
+                                  gap: "xs",
+                                  align: "center",
+                                },
+                                children: [
+                                  {
+                                    type: "Icon",
+                                    props: {
+                                      name: "Check",
+                                      size: "sm",
+                                    },
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      weight: "regular",
+                                    },
+                                    content: "Premium quality materials",
+                                  },
+                                ],
+                              },
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "horizontal",
+                                  gap: "xs",
+                                  align: "center",
+                                },
+                                children: [
+                                  {
+                                    type: "Icon",
+                                    props: {
+                                      name: "Check",
+                                      size: "sm",
+                                    },
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      weight: "regular",
+                                    },
+                                    content: "Sustainable and eco-friendly",
+                                  },
+                                ],
+                              },
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "horizontal",
+                                  gap: "xs",
+                                  align: "center",
+                                },
+                                children: [
+                                  {
+                                    type: "Icon",
+                                    props: {
+                                      name: "Check",
+                                      size: "sm",
+                                    },
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      weight: "regular",
+                                    },
+                                    content: "2-year warranty included",
+                                  },
+                                ],
+                              },
+                              {
+                                type: "Stack",
+                                props: {
+                                  direction: "horizontal",
+                                  gap: "xs",
+                                  align: "center",
+                                },
+                                children: [
+                                  {
+                                    type: "Icon",
+                                    props: {
+                                      name: "Check",
+                                      size: "sm",
+                                    },
+                                  },
+                                  {
+                                    type: "Text",
+                                    props: {
+                                      weight: "regular",
+                                    },
+                                    content: "Free shipping worldwide",
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      {
+                        type: "Stack",
+                        props: {
+                          direction: "vertical",
+                          gap: "sm",
+                        },
+                        children: [
+                          {
+                            type: "Button",
+                            id: "add-to-cart",
+                            props: {
+                              variant: "primary",
+                              size: "lg",
+                              fullWidth: true,
+                            },
+                            ariaLabel: "Add product to shopping cart",
+                            content: "Add to Cart",
+                          },
+                          {
+                            type: "Button",
+                            id: "buy-now",
+                            props: {
+                              variant: "secondary",
+                              size: "lg",
+                              fullWidth: true,
+                            },
+                            ariaLabel: "Buy product now",
+                            content: "Buy Now",
+                          },
+                        ],
                       },
                     ],
                   },

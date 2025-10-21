@@ -1,542 +1,238 @@
-# Grid System
+# Grid Component
 
-A modern, fluid-first grid system with container query support and seamless integration with spacing tokens.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
 
 ## Overview
 
-The grid system consists of five complementary components:
+A powerful CSS Grid-based layout component for creating responsive, flexible grid layouts. One of the 5 core grid primitives in the Spexop design system.
 
-- **Grid** - Main container with multiple layout modes
-- **GridItem** - Individual grid items with positioning
-- **Stack** - Simple flexbox utility for stacking
-- **Container** - Max-width content wrapper
-- **Spacer** - Utility for spacing between elements
+## Features
+
+- ✅ 12-column grid system
+- ✅ Auto-fit responsive layouts
+- ✅ Configurable gap spacing
+- ✅ Minimum column width control
+- ✅ Design token integration
+- ✅ TypeScript support
+- ✅ Works seamlessly with GridItem
+
+## Installation
+
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
+```
 
 ## Quick Start
 
 ```tsx
-import { Grid, GridItem, Stack, Container, Spacer } from '@spexop/react';
-
-// 12-column layout grid
-<Grid columns={12} gap={6}>
-  <GridItem span={{ xs: 12, lg: 3 }}>Sidebar</GridItem>
-  <GridItem span={{ xs: 12, lg: 9 }}>Content</GridItem>
-</Grid>
-```
-
-## Grid Component
-
-### Basic Usage
-
-```tsx
-// Default 12-column grid
-<Grid gap={4}>
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Grid>
-
-// Custom column count
-<Grid columns={3} gap={6}>
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</Grid>
-```
-
-### Auto-responsive Grids
-
-The most powerful feature - grids that automatically adjust based on available space:
-
-```tsx
-// Auto-fit: fills with as many items as possible
-<Grid columns="auto-fit" minColumnWidth="300px" gap={4}>
-  <Card>Product 1</Card>
-  <Card>Product 2</Card>
-  <Card>Product 3</Card>
-</Grid>
-
-// Auto-fill: maintains column count even with empty spaces
-<Grid columns="auto-fill" minColumnWidth="250px" gap={4}>
-  <Card>Item 1</Card>
-  <Card>Item 2</Card>
-</Grid>
-```
-
-### Fluid Mode
-
-Enable fluid column sizing with `clamp()` for smooth scaling:
-
-```tsx
-<Grid 
-  columns="auto-fit" 
-  minColumnWidth="250px"
-  maxColumnWidth="400px"
-  fluid
-  gap={4}
->
-  <Card>Smoothly scales</Card>
-  <Card>No breakpoint jumps</Card>
-</Grid>
-```
-
-### Named Grid Areas
-
-Semantic layouts using named areas:
-
-```tsx
-<Grid 
-  areas={[
-    "header header header",
-    "sidebar content content",
-    "footer footer footer"
-  ]} 
-  gap={4}
->
-  <GridItem area="header">
-    <Header />
-  </GridItem>
-  <GridItem area="sidebar">
-    <Sidebar />
-  </GridItem>
-  <GridItem area="content">
-    <Main />
-  </GridItem>
-  <GridItem area="footer">
-    <Footer />
-  </GridItem>
-</Grid>
-```
-
-### Container Queries
-
-Progressive enhancement with container queries:
-
-```tsx
-<Grid container columns="auto-fit" minColumnWidth="300px" gap={4}>
-  {/* Grid responds to container size, not viewport */}
-  <Card>Item 1</Card>
-  <Card>Item 2</Card>
-</Grid>
-```
-
-### Responsive Columns
-
-```tsx
-<Grid columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} gap={4}>
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
-</Grid>
-```
-
-### Alignment and Distribution
-
-Control how grid columns are distributed and how items align within rows:
-
-```tsx
-// Center a 6-column grid within a wider container
-<Grid columns={6} gap={4} justify="center">
-  <Card>Item 1</Card>
-  <Card>Item 2</Card>
-  <Card>Item 3</Card>
-  <Card>Item 4</Card>
-  <Card>Item 5</Card>
-  <Card>Item 6</Card>
-</Grid>
-
-// Distribute columns with space between
-<Grid columns={4} gap={4} justify="space-between">
-  <Card>Left</Card>
-  <Card>Center Left</Card>
-  <Card>Center Right</Card>
-  <Card>Right</Card>
-</Grid>
-
-// Vertical alignment (useful when items have different heights)
-<Grid columns={3} gap={4} align="center">
-  <div style={{ height: '80px' }}>Short</div>
-  <div style={{ height: '120px' }}>Tall</div>
-  <div style={{ height: '100px' }}>Medium</div>
-</Grid>
-```
-
-### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `columns` | `number \| ResponsiveProp<number> \| "auto-fit" \| "auto-fill"` | `12` | Number of columns or auto mode |
-| `gap` | `ResponsiveProp<0-10>` | `4` | Gap between all items |
-| `rowGap` | `ResponsiveProp<0-10>` | - | Gap between rows |
-| `columnGap` | `ResponsiveProp<0-10>` | - | Gap between columns |
-| `areas` | `string[]` | - | Named grid areas |
-| `fluid` | `boolean` | `false` | Enable fluid sizing |
-| `minColumnWidth` | `string` | `"250px"` | Min width for auto grids |
-| `maxColumnWidth` | `string` | `"400px"` | Max width for fluid grids |
-| `align` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | Vertical alignment of items within rows |
-| `justify` | `"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly"` | `"start"` | Horizontal distribution of grid columns (use "center" to center grid, "space-between" to distribute) |
-| `container` | `boolean` | `false` | Enable container queries |
-| `subgrid` | `boolean` | `false` | Use CSS subgrid |
-
-## When to Use GridItem vs Direct Children
-
-Following the **primitives-first philosophy** of using the simplest approach:
-
-### Direct Children (No GridItem Wrapper)
-
-Use plain elements when items flow naturally into the grid (no spanning or positioning needed):
-
-```tsx
-// ✅ Simple: Direct children for natural flow
-<Grid columns={3} gap={6}>
-  <Card>Product 1</Card>
-  <Card>Product 2</Card>
-  <Card>Product 3</Card>
-</Grid>
-
-// ✅ Simple: Auto-fit grid with direct children
-<Grid columns="auto-fit" minColumnWidth="300px" gap={4}>
-  <Card>Feature 1</Card>
-  <Card>Feature 2</Card>
-</Grid>
-```
-
-### GridItem Wrapper (Precise Control)
-
-Wrap in GridItem when you need **positioning or spanning**:
-
-```tsx
-// ✅ Precise: Need column spanning
-<Grid columns={12} gap={6}>
-  <GridItem span={{ xs: 12, lg: 8 }}>
-    <Card>Main content (8 cols on desktop)</Card>
-  </GridItem>
-  <GridItem span={{ xs: 12, lg: 4 }}>
-    <Card>Sidebar (4 cols on desktop)</Card>
-  </GridItem>
-</Grid>
-
-// ✅ Precise: Need specific positioning
-<Grid columns={12} gap={4}>
-  <GridItem start={1} end={4}>Columns 1-3</GridItem>
-  <GridItem start={7} end={13}>Columns 7-12</GridItem>
-</Grid>
-
-// ✅ Precise: Named grid areas
-<Grid areas={["header header", "sidebar content"]} gap={4}>
-  <GridItem area="header">Header</GridItem>
-  <GridItem area="sidebar">Sidebar</GridItem>
-  <GridItem area="content">Content</GridItem>
-</Grid>
-```
-
-**Principle**: Don't over-engineer. Use GridItem only when you need its features (spanning, positioning, areas). For simple grids where items flow naturally, direct children are simpler and cleaner.
-
-## GridItem Component
-
-### Basic Usage of GridItem Component
-
-```tsx
-<Grid columns={12} gap={4}>
-  <GridItem span={3}>Sidebar (3 cols)</GridItem>
-  <GridItem span={9}>Content (9 cols)</GridItem>
-</Grid>
-```
-
-### Responsive Spanning
-
-```tsx
-<Grid columns={12} gap={4}>
-  <GridItem span={{ xs: 12, md: 6, lg: 4 }}>
-    Full width on mobile, half on tablet, third on desktop
-  </GridItem>
-</Grid>
-```
-
-### Precise Positioning
-
-```tsx
-<Grid columns={12} gap={4}>
-  <GridItem start={1} end={4}>Columns 1-3</GridItem>
-  <GridItem start={7} end={13}>Columns 7-12</GridItem>
-</Grid>
-```
-
-### Row Spanning
-
-```tsx
-<Grid columns={3} gap={4}>
-  <GridItem span={1} rowSpan={2}>Tall item</GridItem>
-  <GridItem>Regular</GridItem>
-  <GridItem>Regular</GridItem>
-</Grid>
-```
-
-### Props of GridItem Component
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `span` | `ResponsiveProp<number>` | `1` | Column span (1-24) |
-| `start` | `ResponsiveProp<number>` | - | Column start position |
-| `end` | `ResponsiveProp<number>` | - | Column end position |
-| `row` | `ResponsiveProp<number>` | - | Row position |
-| `rowSpan` | `ResponsiveProp<number>` | - | Row span |
-| `area` | `string` | - | Named grid area |
-| `align` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | Vertical alignment |
-| `justify` | `"start" \| "center" \| "end" \| "stretch"` | `"stretch"` | Horizontal alignment |
-
-## Stack Component
-
-Simple flexbox utility for common stacking patterns.
-
-### Vertical Stack
-
-```tsx
-<Stack direction="vertical" gap={4}>
-  <Card>Item 1</Card>
-  <Card>Item 2</Card>
-  <Card>Item 3</Card>
-</Stack>
-```
-
-### Horizontal Stack
-
-```tsx
-<Stack direction="horizontal" gap={2} wrap>
-  <Button>Action 1</Button>
-  <Button>Action 2</Button>
-  <Button>Action 3</Button>
-</Stack>
-```
-
-### Responsive Direction
-
-```tsx
-<Stack direction={{ xs: "vertical", md: "horizontal" }} gap={4}>
-  <div>Item 1</div>
-  <div>Item 2</div>
-</Stack>
-```
-
-### Props of Stack Component
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `direction` | `ResponsiveProp<"vertical" \| "horizontal">` | `"vertical"` | Stack direction |
-| `gap` | `ResponsiveProp<0-10>` | `4` | Gap between items |
-| `align` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"` | `"stretch"` | Cross-axis alignment |
-| `justify` | `"start" \| "center" \| "end" \| "space-between" \| "space-around" \| "space-evenly"` | `"start"` | Main-axis distribution |
-| `wrap` | `boolean` | `false` | Enable wrapping |
-
-## Container Component
-
-Max-width content wrapper with responsive padding.
-
-**Recent Change** (Oct 2025): Container max-widths now use design tokens for consistency.  
-⚠️ **Breaking**: `maxWidth="xl"` changed from 1536px to 1440px (uses `sBreakpoint2xl` token).
-
-### Basic Usage of Container Component
-
-```tsx
-<Container maxWidth="lg" padding={6}>
-  <h1>Page Content</h1>
-  <p>This content is constrained to a max-width</p>
-</Container>
-```
-
-### Fluid Container
-
-```tsx
-<Container fluid padding={4}>
-  <div>Full-width content</div>
-</Container>
-```
-
-### Responsive Max-Width
-
-```tsx
-<Container maxWidth={{ xs: "full", md: "lg", xl: "xl" }} padding={6}>
-  <div>Responsive container</div>
-</Container>
-```
-
-### Props of Container Component
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `maxWidth` | `ResponsiveProp<"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "full">` | `"xl"` | Maximum width |
-| `padding` | `ResponsiveProp<0-10>` | `4` | Padding around content |
-| `paddingLeft` | `ResponsiveProp<0-10>` | - | Left padding override |
-| `paddingRight` | `ResponsiveProp<0-10>` | - | Right padding override |
-| `paddingTop` | `ResponsiveProp<0-10>` | - | Top padding override |
-| `paddingBottom` | `ResponsiveProp<0-10>` | - | Bottom padding override |
-| `centered` | `boolean` | `true` | Center horizontally |
-| `fluid` | `boolean` | `false` | No max-width constraints |
-
-**Max-Width Values** (token-based):
-
-- `xs`: 640px (sBreakpointSm)
-- `sm`: 768px (sBreakpointMd)
-- `md`: 1024px (sBreakpointLg)
-- `lg`: 1280px (sBreakpointXl)
-- `xl`: 1440px (sBreakpoint2xl) ⚠️ Changed from 1536px
-- `2xl`: 1920px
-- `full`: No max-width
-
-## Spacer Component
-
-Utility for adding space between elements.
-
-### Basic Usage of Spacer Component
-
-```tsx
-<div>
-  <h1>Title</h1>
-  <Spacer size={4} direction="vertical" />
-  <p>Content</p>
-</div>
-```
-
-### Horizontal Spacing
-
-```tsx
-<div style={{ display: 'flex' }}>
-  <Button>Left</Button>
-  <Spacer size={2} direction="horizontal" />
-  <Button>Right</Button>
-</div>
-```
-
-### Responsive Spacing
-
-```tsx
-<Spacer size={{ xs: 2, md: 4, lg: 6 }} direction="vertical" />
-```
-
-### Props of Spacer Component
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `ResponsiveProp<0-10>` | `4` | Size of spacing |
-| `direction` | `"vertical" \| "horizontal"` | `"vertical"` | Direction of spacing |
-
-## Common Patterns
-
-### Page Layout
-
-```tsx
-<Container maxWidth="xl" padding={6}>
-  <Grid columns={12} gap={6}>
-    <GridItem span={{ xs: 12, lg: 3 }}>
-      <Sidebar />
-    </GridItem>
-    <GridItem span={{ xs: 12, lg: 9 }}>
-      <Stack direction="vertical" gap={6}>
-        <Article />
-        <Comments />
-      </Stack>
-    </GridItem>
-  </Grid>
-</Container>
-```
-
-### Product Grid
-
-```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Stack direction="vertical" gap={8}>
-    <h1>Products</h1>
-    <Grid columns="auto-fit" minColumnWidth="300px" fluid gap={6}>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+import { Grid, GridItem } from '@spexop/react';
+
+function App() {
+  return (
+    <Grid columns={3} gap={6}>
+      <GridItem span={1}>Column 1</GridItem>
+      <GridItem span={1}>Column 2</GridItem>
+      <GridItem span={1}>Column 3</GridItem>
     </Grid>
-  </Stack>
-</Container>
+  );
+}
 ```
 
-### Form Layout
+## Column Configurations
+
+### Fixed Columns
 
 ```tsx
-<Container maxWidth="md" padding={6}>
-  <Grid columns={2} gap={4}>
-    <GridItem span={2}>
-      <Input label="Full Name" />
-    </GridItem>
-    <GridItem>
-      <Input label="Email" />
-    </GridItem>
-    <GridItem>
-      <Input label="Phone" />
-    </GridItem>
-    <GridItem span={2}>
-      <Button fullWidth>Submit</Button>
-    </GridItem>
-  </Grid>
-</Container>
+{/* 2-column grid */}
+<Grid columns={2} gap={4}>
+  <GridItem>Col 1</GridItem>
+  <GridItem>Col 2</GridItem>
+</Grid>
+
+{/* 3-column grid */}
+<Grid columns={3} gap={6}>
+  <GridItem>Col 1</GridItem>
+  <GridItem>Col 2</GridItem>
+  <GridItem>Col 3</GridItem>
+</Grid>
+
+{/* 4-column grid */}
+<Grid columns={4} gap={6}>
+  <GridItem>Col 1</GridItem>
+  <GridItem>Col 2</GridItem>
+  <GridItem>Col 3</GridItem>
+  <GridItem>Col 4</GridItem>
+</Grid>
+
+{/* 12-column grid (default) */}
+<Grid columns={12} gap={6}>
+  <GridItem span={3}>25%</GridItem>
+  <GridItem span={6}>50%</GridItem>
+  <GridItem span={3}>25%</GridItem>
+</Grid>
 ```
 
-### Documentation Layout
+### Auto-Fit Responsive
+
+Automatically fits as many columns as possible based on minimum width.
 
 ```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Grid columns={{ xs: 1, lg: 4 }} gap={6}>
-    <GridItem span={{ xs: 1, lg: 1 }}>
-      <TableOfContents />
-    </GridItem>
-    <GridItem span={{ xs: 1, lg: 3 }}>
-      <Stack direction="vertical" gap={6}>
-        <Article />
-        <RelatedLinks />
-      </Stack>
-    </GridItem>
-  </Grid>
-</Container>
+<Grid columns="auto-fit" minColumnWidth="250px" gap={6}>
+  <GridItem>Auto 1</GridItem>
+  <GridItem>Auto 2</GridItem>
+  <GridItem>Auto 3</GridItem>
+  <GridItem>Auto 4</GridItem>
+</Grid>
 ```
 
-## Spacing Scale Reference
+## Gap Spacing
 
-The grid system uses spacing tokens (0-10) from the design system:
+Uses spacing tokens for consistent gaps.
 
-- `0` - 0px
-- `1` - 4px
-- `2` - 8px
-- `3` - 12px
-- `4` - 16px (default)
-- `5` - 20px
-- `6` - 24px
-- `7` - 32px
-- `8` - 40px
-- `9` - 48px
-- `10` - 64px
+```tsx
+{/* No gap */}
+<Grid columns={3} gap={0}>...</Grid>
+
+{/* Small gap (16px) */}
+<Grid columns={3} gap={4}>...</Grid>
+
+{/* Default gap (24px) */}
+<Grid columns={3} gap={6}>...</Grid>
+
+{/* Large gap (32px) */}
+<Grid columns={3} gap={8}>...</Grid>
+```
+
+## Common Layouts
+
+### Two-Column Sidebar
+
+```tsx
+<Grid columns={12} gap={6}>
+  <GridItem span={3}>
+    {/* Sidebar */}
+  </GridItem>
+  <GridItem span={9}>
+    {/* Main content */}
+  </GridItem>
+</Grid>
+```
+
+### Three-Column Equal
+
+```tsx
+<Grid columns={3} gap={6}>
+  <GridItem><Card>Card 1</Card></GridItem>
+  <GridItem><Card>Card 2</Card></GridItem>
+  <GridItem><Card>Card 3</Card></GridItem>
+</Grid>
+```
+
+### Responsive Card Grid
+
+```tsx
+<Grid columns="auto-fit" minColumnWidth="300px" gap={6}>
+  {products.map(product => (
+    <GridItem key={product.id}>
+      <ProductCard {...product} />
+    </GridItem>
+  ))}
+</Grid>
+```
+
+### Dashboard Layout
+
+```tsx
+<Grid columns={12} gap={6}>
+  {/* Full-width header */}
+  <GridItem span={12}>
+    <DashboardCard title="Overview" />
+  </GridItem>
+  
+  {/* Two 50% cards */}
+  <GridItem span={6}>
+    <StatsCard title="Revenue" />
+  </GridItem>
+  <GridItem span={6}>
+    <StatsCard title="Users" />
+  </GridItem>
+  
+  {/* Three 33% cards */}
+  <GridItem span={4}>
+    <Card>Analytics</Card>
+  </GridItem>
+  <GridItem span={4}>
+    <Card>Reports</Card>
+  </GridItem>
+  <GridItem span={4}>
+    <Card>Settings</Card>
+  </GridItem>
+</Grid>
+```
+
+## Nested Grids
+
+```tsx
+<Grid columns={2} gap={8}>
+  <GridItem>
+    <Grid columns={2} gap={4}>
+      <GridItem>Nested 1</GridItem>
+      <GridItem>Nested 2</GridItem>
+    </Grid>
+  </GridItem>
+  <GridItem>
+    Content
+  </GridItem>
+</Grid>
+```
+
+## Props
+
+```typescript
+interface GridProps {
+  children: React.ReactNode;
+  columns?: number | "auto-fit";
+  gap?: number;
+  minColumnWidth?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Primitives before patterns** - Core layout primitive for grid systems
+2. **Tokens before magic numbers** - Uses spacing tokens for gaps
+3. **Composition before complexity** - Works with GridItem for flexible layouts
+4. **Standards before frameworks** - Pure CSS Grid implementation
+
+## Accessibility
+
+- Semantic HTML (div element)
+- Maintains logical document order
+- Works with screen readers
+- Keyboard navigation preserved
 
 ## Browser Support
 
-- **CSS Grid**: All modern browsers
-- **Container Queries**: Chrome 105+, Safari 16+, Firefox 110+ (progressive enhancement)
-- **Subgrid**: Chrome 117+, Safari 16+, Firefox 71+ (progressive enhancement)
-- **Fallback**: Viewport-based media queries for older browsers
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-## Best Practices
+## Related Components
 
-1. **Use auto-fit/auto-fill for component grids** - Let content dictate layout
-2. **Use 12-column grids for page layouts** - Maximum flexibility
-3. **Enable fluid mode for smooth scaling** - Avoid breakpoint jumps
-4. **Leverage named areas for semantic layouts** - Improve readability
-5. **Use direct children when possible** - Only wrap in GridItem when you need spanning/positioning
-6. **Use `justify="center"` to center grids** - Simple, no tricks needed (e.g., center 6 items in 12-column space)
-7. **Use Stack for simple layouts** - Simpler than Grid when you don't need complex positioning
-8. **Wrap sections in Container** - Consistent max-widths across your app
-9. **Use responsive props liberally** - Make layouts adapt to screen size
-
-## Contributing
-
-Contributions are welcome! Please see the [contributing guide](../../CONTRIBUTING.md) for more information.
+- `GridItem` - Grid cell with span control
+- `Container` - Width-constrained wrapper
+- `Stack` - Vertical/horizontal stacking
+- `Spacer` - Flexible spacing
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
-
-## Author
-
-This project was created by [@olmstedian](https://github.com/olmstedian) and [@spexop](https://github.com/spexop-ui). For more information, please see the [Spexop Design System](https://spexop.com).
+MIT

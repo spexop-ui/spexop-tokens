@@ -1,453 +1,381 @@
-# SearchBar
+# SearchBar Component
 
-Search input component with icon, keyboard shortcuts, and clear button. Built for command palettes, navigation search, and content filtering.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A specialized search input component with keyboard shortcut hint, clear button, and loading state. Optimized for search interfaces with debouncing and autocomplete support.
+
+## Features
+
+- ✅ Search icon indicator
+- ✅ Keyboard shortcut hint (⌘K)
+- ✅ Clear button
+- ✅ Loading state
+- ✅ Debounced search
+- ✅ Auto-focus support
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react @spexop/icons
+npm install @spexop/react @spexop/icons @spexop/theme
+# or
+pnpm add @spexop/react @spexop/icons @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { SearchBar } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
-import { useState } from 'react';
 import { SearchBar } from '@spexop/react';
+import { useState } from 'react';
 
-function MyComponent() {
+function App() {
   const [query, setQuery] = useState('');
-  
-  const handleSearch = (searchQuery: string) => {
-    console.log('Searching for:', searchQuery);
-  };
   
   return (
     <SearchBar
       value={query}
-      onChange={setQuery}
-      onSearch={handleSearch}
+      onChange={(e) => setQuery(e.target.value)}
+      onSearch={(value) => console.log('Search:', value)}
       placeholder="Search..."
     />
+  );
+}
+```
+
+## Basic Usage
+
+### Simple Search
+
+```tsx
+<SearchBar
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  onSearch={handleSearch}
+  placeholder="Search products..."
+/>
+```
+
+### With Keyboard Shortcut
+
+```tsx
+<SearchBar
+  value={query}
+  onChange={handleChange}
+  onSearch={handleSearch}
+  placeholder="Search..."
+  showShortcut={true}
+  shortcutKeys={["cmd", "k"]}
+/>
+```
+
+### With Loading State
+
+```tsx
+<SearchBar
+  value={query}
+  onChange={handleChange}
+  onSearch={handleSearch}
+  loading={isSearching}
+  placeholder="Search..."
+/>
+```
+
+### With Clear Button
+
+```tsx
+<SearchBar
+  value={query}
+  onChange={handleChange}
+  onSearch={handleSearch}
+  onClear={() => setQuery('')}
+  showClear={true}
+/>
+```
+
+## Common Patterns
+
+### Debounced Search
+
+```tsx
+import { SearchBar } from '@spexop/react';
+import { useState, useEffect } from 'react';
+
+function SearchWithDebounce() {
+  const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  useEffect(() => {
+    if (debouncedQuery) {
+      performSearch(debouncedQuery);
+    }
+  }, [debouncedQuery]);
+
+  return (
+    <SearchBar
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      onSearch={performSearch}
+      placeholder="Search..."
+      showShortcut={true}
+    />
+  );
+}
+```
+
+### With Autocomplete
+
+```tsx
+function SearchWithAutocomplete() {
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const handleChange = async (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    
+    if (value.length > 2) {
+      const results = await fetchSuggestions(value);
+      setSuggestions(results);
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  return (
+    <div className="search-container">
+      <SearchBar
+        value={query}
+        onChange={handleChange}
+        onSearch={handleSearch}
+        placeholder="Search..."
+      />
+      
+      {showSuggestions && (
+        <div className="suggestions">
+          {suggestions.map(item => (
+            <div
+              key={item.id}
+              onClick={() => {
+                setQuery(item.title);
+                setShowSuggestions(false);
+                handleSearch(item.title);
+              }}
+            >
+              {item.title}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+### Header Search
+
+```tsx
+function HeaderSearch() {
+  const [query, setQuery] = useState('');
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="header-actions">
+      {isExpanded ? (
+        <SearchBar
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onSearch={handleSearch}
+          onClear={() => {
+            setQuery('');
+            setIsExpanded(false);
+          }}
+          autoFocus={true}
+          showClear={true}
+        />
+      ) : (
+        <IconButton
+          icon={Search}
+          label="Search"
+          onClick={() => setIsExpanded(true)}
+        />
+      )}
+    </div>
+  );
+}
+```
+
+### Global Search
+
+```tsx
+function GlobalSearch() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = async (searchQuery) => {
+    setLoading(true);
+    try {
+      const data = await searchAPI(searchQuery);
+      setResults(data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Container maxWidth="md" padding={8}>
+      <SearchBar
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onSearch={handleSearch}
+        loading={loading}
+        placeholder="Search everything..."
+        showShortcut={true}
+      />
+      
+      {results.length > 0 && (
+        <div className="results">
+          {results.map(result => (
+            <Card key={result.id}>
+              <h3>{result.title}</h3>
+              <p>{result.excerpt}</p>
+            </Card>
+          ))}
+        </div>
+      )}
+    </Container>
+  );
+}
+```
+
+### Filter Search
+
+```tsx
+function ProductSearch() {
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('all');
+
+  return (
+    <Stack direction="horizontal" gap={4}>
+      <SearchBar
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onSearch={handleSearch}
+        placeholder="Search products..."
+        style={{ flex: 1 }}
+      />
+      
+      <Select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="all">All Categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="clothing">Clothing</option>
+      </Select>
+    </Stack>
   );
 }
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `placeholder` | `string` | `"Search..."` | Placeholder text |
-| `onSearch` | `(query: string) => void` | `undefined` | Search callback (on submit) |
-| `onClick` | `() => void` | `undefined` | Click callback (for opening modal/palette) |
-| `onChange` | `(query: string) => void` | `undefined` | Real-time change callback |
-| `value` | `string` | `undefined` | Current search value (controlled) |
-| `variant` | `"compact"` \| `"full"` | `"full"` | Visual variant |
-| `showShortcut` | `boolean` | `false` | Show keyboard shortcut hint |
-| `shortcut` | `string` | auto-detected | Custom keyboard shortcut text |
-| `readOnly` | `boolean` | `false` | Make input read-only (for triggers) |
-| `className` | `string` | `""` | Additional CSS class |
-
-## Examples
-
-### Basic Search
-
-```tsx
-<SearchBar
-  value={searchQuery}
-  onChange={setSearchQuery}
-  onSearch={handleSearch}
-  placeholder="Search documentation..."
-/>
-```
-
-### With Keyboard Shortcut
-
-Shows Cmd+K (Mac) or Ctrl+K (Windows/Linux):
-
-```tsx
-<SearchBar
-  onClick={openCommandPalette}
-  showShortcut={true}
-  placeholder="Search..."
-  readOnly
-/>
-```
-
-### Custom Shortcut
-
-```tsx
-<SearchBar
-  onClick={openSearch}
-  showShortcut={true}
-  shortcut="/"
-  placeholder="Press / to search"
-  readOnly
-/>
-```
-
-### Compact Variant
-
-Smaller version for toolbars:
-
-```tsx
-<SearchBar
-  value={query}
-  onChange={setQuery}
-  variant="compact"
-  placeholder="Search"
-/>
-```
-
-### Real-time Search
-
-```tsx
-function LiveSearch() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  
-  const handleChange = (value: string) => {
-    setQuery(value);
-    // Trigger search immediately
-    const filtered = data.filter(item => 
-      item.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setResults(filtered);
-  };
-  
-  return (
-    <div>
-      <SearchBar
-        value={query}
-        onChange={handleChange}
-        placeholder="Search items..."
-      />
-      <ul>
-        {results.map(item => <li key={item.id}>{item.name}</li>)}
-      </ul>
-    </div>
-  );
+```typescript
+interface SearchBarProps {
+  /** Current search value */
+  value: string;
+  /** Change handler */
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /** Search submit handler */
+  onSearch: (value: string) => void;
+  /** Clear handler */
+  onClear?: () => void;
+  /** Placeholder text */
+  placeholder?: string;
+  /** Loading state */
+  loading?: boolean;
+  /** Show clear button */
+  showClear?: boolean;
+  /** Show keyboard shortcut */
+  showShortcut?: boolean;
+  /** Custom shortcut keys */
+  shortcutKeys?: string[];
+  /** Auto-focus on mount */
+  autoFocus?: boolean;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Additional CSS class */
+  className?: string;
+  /** Element ID */
+  id?: string;
+  /** ARIA label */
+  "aria-label"?: string;
 }
 ```
 
-### Command Palette Trigger
+## Design Principles
 
-```tsx
-function AppLayout() {
-  const [paletteOpen, setPaletteOpen] = useState(false);
-  
-  return (
-    <>
-      <SearchBar
-        onClick={() => setPaletteOpen(true)}
-        showShortcut={true}
-        placeholder="Search or jump to..."
-        readOnly
-      />
-      
-      <CommandPalette
-        isOpen={paletteOpen}
-        onClose={() => setPaletteOpen(false)}
-        commands={commands}
-      />
-    </>
-  );
-}
-```
+Following "The Spexop Way":
 
-### In TopBar
-
-```tsx
-import { TopBar } from '@spexop/react';
-
-function Header() {
-  const handleSearchClick = () => {
-    // Open search modal or palette
-  };
-  
-  return (
-    <TopBar
-      logoText="My App"
-      onSearchClick={handleSearchClick}
-    />
-  );
-}
-```
-
-### With Debounced Search
-
-```tsx
-import { debounce } from '@spexop/utils';
-import { useMemo } from 'react';
-
-function DebouncedSearch() {
-  const [query, setQuery] = useState('');
-  
-  const debouncedSearch = useMemo(
-    () => debounce((value: string) => {
-      // API call or expensive search
-      fetchResults(value);
-    }, 300),
-    []
-  );
-  
-  const handleChange = (value: string) => {
-    setQuery(value);
-    debouncedSearch(value);
-  };
-  
-  return (
-    <SearchBar
-      value={query}
-      onChange={handleChange}
-      placeholder="Search..."
-    />
-  );
-}
-```
-
-## Keyboard Navigation
-
-| Key | Action |
-|-----|--------|
-| **Cmd/Ctrl + K** | Focus search (when showShortcut={true}) |
-| **/** | Focus search (alternative shortcut) |
-| **Escape** | Clear search and blur |
-| **Enter** | Submit search (calls onSearch) |
+1. **Borders before shadows** - Clean 2px border design
+2. **Typography before decoration** - Clear placeholder text
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full keyboard support
 
 ## Accessibility
 
-### ARIA Attributes
+- ✅ Semantic HTML with search role
+- ✅ Proper label/placeholder
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ Focus indicators
+- ✅ Loading state announced
+- ✅ WCAG AA+ compliant
 
-- `type="search"` - Identifies search input
-- `role="searchbox"` - Search landmark
-- `aria-label` - Describes input purpose
-- `autocomplete="off"` - Prevents browser autocomplete
+### Keyboard Shortcuts
 
-### Focus Management
-
-- ✅ Focus visible on keyboard navigation
-- ✅ Clear button appears when text entered
-- ✅ Escape clears and blurs input
-- ✅ Keyboard shortcut shown visually
-
-### Screen Readers
-
-- Announces as "search" input
-- Announces placeholder text
-- Announces keyboard shortcuts
-- Announces when value changes
-
-## Styling
-
-### Custom Styling
-
-```tsx
-<SearchBar
-  className="my-search"
-  value={query}
-  onChange={setQuery}
-/>
-```
-
-```css
-.my-search {
-  max-width: 500px;
-}
-```
-
-### Design Tokens
-
-Uses tokens for theming:
-
-- Colors: `--s-color-neutral-*`
-- Spacing: `--s-spacing-*`
-- Border radius: `--s-radius-md`
-- Transitions: `--s-transition-fast`
-
-## Integration Patterns
-
-### With SearchModal
-
-```tsx
-import { SearchBar, SearchModal } from '@spexop/react';
-
-function Search() {
-  const [modalOpen, setModalOpen] = useState(false);
-  
-  return (
-    <>
-      <SearchBar
-        onClick={() => setModalOpen(true)}
-        showShortcut={true}
-        placeholder="Search docs..."
-        readOnly
-      />
-      
-      <SearchModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        results={searchResults}
-      />
-    </>
-  );
-}
-```
-
-### With SearchOverlay
-
-```tsx
-import { SearchBar, SearchOverlay } from '@spexop/react';
-
-function SearchFeature() {
-  const [query, setQuery] = useState('');
-  const [overlayOpen, setOverlayOpen] = useState(false);
-  
-  return (
-    <>
-      <SearchBar
-        value={query}
-        onChange={(val) => {
-          setQuery(val);
-          setOverlayOpen(val.length > 0);
-        }}
-        placeholder="Search..."
-      />
-      
-      {overlayOpen && (
-        <SearchOverlay
-          query={query}
-          content={searchableContent}
-          onSelect={handleSelect}
-          onClose={() => setOverlayOpen(false)}
-        />
-      )}
-    </>
-  );
-}
-```
-
-## When to Use
-
-### Use SearchBar When ✅
-
-- Simple search functionality
-- Trigger for search modal/palette
-- Real-time filtering
-- Navigation search
-- Documentation search
-
-### Use SearchModal Instead When
-
-- Full-screen search needed
-- Advanced search with filters
-- Keyboard-first experience
-- Results need rich display
-
-### Use CommandPalette Instead When
-
-- Action-based interface
-- Keyboard shortcuts important
-- Command execution needed
-- Developer tools
-
-## Best Practices
-
-### Do ✅
-
-```tsx
-// Use onChange for real-time search
-<SearchBar onChange={handleRealTimeSearch} />
-
-// Use onSearch for submit-based search
-<SearchBar onSearch={handleSubmitSearch} />
-
-// Show keyboard shortcut for discoverability
-<SearchBar showShortcut={true} readOnly onClick={openModal} />
-
-// Use compact variant in toolbars
-<SearchBar variant="compact" />
-
-// Debounce expensive searches
-const debouncedSearch = debounce(search, 300);
-```
-
-### Don't ❌
-
-```tsx
-// Don't skip placeholder
-<SearchBar /> // Unclear purpose
-
-// Don't use without onChange or onClick
-<SearchBar value={query} /> // No way to interact
-
-// Don't use for complex filters
-<SearchBar /> // Use dedicated filter UI instead
-
-// Don't skip debouncing for API calls
-<SearchBar onChange={callAPI} /> // Will hammer API
-```
-
-## Common Patterns
-
-### Algolia/Elasticsearch Search
-
-```tsx
-import { SearchBar } from '@spexop/react';
-import { debounce } from '@spexop/utils';
-
-function AlgoliaSearch() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
-  
-  const search = debounce(async (q: string) => {
-    const response = await algoliaClient.search(q);
-    setResults(response.hits);
-  }, 300);
-  
-  return (
-    <>
-      <SearchBar
-        value={query}
-        onChange={(val) => {
-          setQuery(val);
-          if (val.length > 2) search(val);
-        }}
-        placeholder="Search..."
-      />
-      {/* Results display */}
-    </>
-  );
-}
-```
-
-## Related Components
-
-- **SearchModal** - Full search interface
-- **SearchOverlay** - Overlay with search results
-- **CommandPalette** - Command/action palette
-- **TextInput** - Basic text input
-- **TopBar** - Header with built-in search
+- `⌘K` (Mac) / `Ctrl+K` (Windows) - Focus search (global)
+- `Enter` - Submit search
+- `Escape` - Clear and unfocus
+- `Tab` - Move to next element
 
 ## Browser Support
 
-- Chrome 90+ ✅
-- Firefox 88+ ✅
-- Safari 14+ ✅
-- Edge 90+ ✅
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-## Performance
+## Related Components
 
-- Lightweight (~500 bytes JS)
-- CSS-only styling
-- No re-renders on focus
-- Efficient event handlers
+- `TextInput` - Generic text input
+- `CommandPalette` - Quick actions search
+- `SearchModal` - Full-screen search
+- `Select` - Dropdown filters
 
----
+## Best Practices
 
-**Part of Form Components** - Essential form controls with validation and accessibility built-in.
+1. **Debounce input** - Prevent excessive API calls
+2. **Show loading state** - Provide feedback during search
+3. **Include clear button** - Easy way to reset
+4. **Use placeholder wisely** - Guide users on what to search
+5. **Handle empty states** - Show message when no results
+
+## License
+
+MIT

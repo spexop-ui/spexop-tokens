@@ -34,9 +34,81 @@ export { type DebugContextValue, useDebug } from "./useDebug.js";
  */
 
 export {
+  type UseAccordionOptions,
   type UseAccordionReturn,
   useAccordion,
 } from "./useAccordion.js";
 export { useBodyScrollLock } from "./useBodyScrollLock.js";
+export { useClickOutside } from "./useClickOutside.js";
 export { useEscapeKey } from "./useEscapeKey.js";
 export { useFocusTrap } from "./useFocusTrap.js";
+
+/**
+ * State Management Hooks
+ */
+
+export { useToggle } from "./useToggle.js";
+export { usePrevious } from "./usePrevious.js";
+export { useLocalStorage } from "./useLocalStorage.js";
+export { useSessionStorage } from "./useSessionStorage.js";
+
+/**
+ * Performance Hooks
+ */
+
+export { useDebounce } from "./useDebounce.js";
+export { useThrottle } from "./useThrottle.js";
+
+/**
+ * Layout & Measurement Hooks
+ */
+
+export { type WindowSize, useWindowSize } from "./useWindowSize.js";
+export { type Size, useResizeObserver } from "./useResizeObserver.js";
+// Note: useIntersectionObserver is exported from @spexop/react/basic/animations
+export { type ScrollState, useScroll } from "./useScroll.js";
+
+/**
+ * Accessibility Hooks
+ */
+
+export { useReducedMotion } from "./useReducedMotion.js";
+
+/**
+ * Browser & Network Hooks
+ */
+
+export { useOnline } from "./useOnline.js";
+export { usePageVisibility } from "./usePageVisibility.js";
+export {
+  type GeolocationState,
+  type UseGeolocationOptions,
+  useGeolocation,
+} from "./useGeolocation.js";
+export {
+  type PermissionName,
+  type PermissionState,
+  type UsePermissionReturn,
+  usePermission,
+} from "./usePermission.js";
+
+/**
+ * Navigation & URL Hooks
+ */
+
+export { useHash } from "./useHash.js";
+export { useQueryParams } from "./useQueryParams.js";
+export { useDarkMode } from "./useDarkMode.js";
+
+/**
+ * Interaction Hooks
+ */
+
+export { useHover } from "./useHover.js";
+export { useKeyPress } from "./useKeyPress.js";
+export { useIdle } from "./useIdle.js";
+export {
+  type UseLongPressOptions,
+  useLongPress,
+} from "./useLongPress.js";
+export { useCopyToClipboard } from "./useCopyToClipboard.js";

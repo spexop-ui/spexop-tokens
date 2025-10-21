@@ -13,9 +13,26 @@ export const docsNavigation: Template = {
     category: "docs",
     tier: "free",
     thumbnail: "/template-thumbnails/docs-navigation.webp",
-    tags: ["docs", "documentation", "navigation", "sidebar"],
+    tags: [
+      "docs",
+      "documentation",
+      "navigation",
+      "sidebar",
+      "accessibility-first",
+    ],
     author: "Spexop Team",
     version: "1.0.0",
+    accessibility: {
+      landmarks: [
+        { type: "navigation", label: "Documentation navigation" },
+        { type: "main", label: "Documentation content" },
+      ],
+      skipLinks: [{ target: "doc-content", label: "Skip to documentation" }],
+      focusManagement: {
+        initialFocus: "doc-content",
+        returnFocus: false,
+      },
+    },
   },
   structure: {
     type: "Container",
@@ -34,125 +51,143 @@ export const docsNavigation: Template = {
           {
             type: "GridItem",
             props: {
-              span: { xs: 12, lg: 3 },
+              span: { xs: 12, md: 4, lg: 3 },
             },
             children: [
               {
-                type: "Stack",
-                props: {
-                  direction: "vertical",
-                  gap: 6,
-                },
+                type: "Nav",
+                role: "navigation",
+                ariaLabel: "Documentation navigation",
+                props: {},
                 children: [
-                  {
-                    type: "Heading",
-                    id: "docs-title",
-                    props: {
-                      level: 3,
-                    },
-                    content: "Documentation",
-                  },
                   {
                     type: "Stack",
                     props: {
                       direction: "vertical",
-                      gap: 1,
+                      gap: "md",
                     },
                     children: [
                       {
                         type: "Heading",
+                        id: "docs-title",
                         props: {
-                          level: 4,
-                          size: "sm",
+                          level: 3,
+                          weight: "bold",
                         },
-                        content: "Getting Started",
+                        content: "Documentation",
                       },
                       {
                         type: "Stack",
                         props: {
                           direction: "vertical",
-                          gap: 1,
+                          gap: "sm",
                         },
                         children: [
                           {
-                            type: "Button",
+                            type: "Heading",
                             props: {
-                              variant: "ghost",
+                              level: 4,
                               size: "sm",
-                              fullWidth: true,
+                              weight: "semibold",
                             },
-                            content: "Introduction",
+                            content: "Getting Started",
                           },
                           {
-                            type: "Button",
+                            type: "Stack",
                             props: {
-                              variant: "ghost",
-                              size: "sm",
-                              fullWidth: true,
+                              direction: "vertical",
+                              gap: "xs",
                             },
-                            content: "Installation",
-                          },
-                          {
-                            type: "Button",
-                            props: {
-                              variant: "ghost",
-                              size: "sm",
-                              fullWidth: true,
-                            },
-                            content: "Quick Start",
+                            children: [
+                              {
+                                type: "Link",
+                                ariaCurrent: "page",
+                                props: {
+                                  href: "#introduction",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Introduction",
+                              },
+                              {
+                                type: "Link",
+                                props: {
+                                  href: "#installation",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Installation",
+                              },
+                              {
+                                type: "Link",
+                                props: {
+                                  href: "#quick-start",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Quick Start",
+                              },
+                            ],
                           },
                         ],
                       },
-                    ],
-                  },
-                  {
-                    type: "Stack",
-                    props: {
-                      direction: "vertical",
-                      gap: 1,
-                    },
-                    children: [
-                      {
-                        type: "Heading",
-                        props: {
-                          level: 4,
-                          size: "sm",
-                        },
-                        content: "Components",
-                      },
                       {
                         type: "Stack",
                         props: {
                           direction: "vertical",
-                          gap: 1,
+                          gap: "sm",
                         },
                         children: [
                           {
-                            type: "Button",
+                            type: "Heading",
                             props: {
-                              variant: "ghost",
+                              level: 4,
                               size: "sm",
-                              fullWidth: true,
+                              weight: "semibold",
                             },
-                            content: "Button",
+                            content: "Components",
                           },
                           {
-                            type: "Button",
+                            type: "Stack",
                             props: {
-                              variant: "ghost",
-                              size: "sm",
-                              fullWidth: true,
+                              direction: "vertical",
+                              gap: "xs",
                             },
-                            content: "Card",
-                          },
-                          {
-                            type: "Button",
-                            props: {
-                              variant: "ghost",
-                              size: "sm",
-                              fullWidth: true,
-                            },
-                            content: "Grid",
+                            children: [
+                              {
+                                type: "Link",
+                                props: {
+                                  href: "#button",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Button",
+                              },
+                              {
+                                type: "Link",
+                                props: {
+                                  href: "#card",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Card",
+                              },
+                              {
+                                type: "Link",
+                                props: {
+                                  href: "#grid",
+                                  variant: "ghost",
+                                  size: "sm",
+                                  fullWidth: true,
+                                },
+                                content: "Grid",
+                              },
+                            ],
                           },
                         ],
                       },
@@ -165,112 +200,130 @@ export const docsNavigation: Template = {
           {
             type: "GridItem",
             props: {
-              span: { xs: 12, lg: 9 },
+              span: { xs: 12, md: 8, lg: 9 },
             },
             children: [
               {
-                type: "Container",
-                props: {
-                  maxWidth: "lg",
-                  padding: 8,
-                },
+                type: "Main",
+                id: "doc-content",
+                role: "main",
+                ariaLabel: "Documentation content",
+                props: {},
                 children: [
                   {
-                    type: "Stack",
+                    type: "Container",
                     props: {
-                      direction: "vertical",
-                      gap: 6,
+                      maxWidth: "lg",
+                      padding: "lg",
                     },
                     children: [
-                      {
-                        type: "Heading",
-                        id: "page-title",
-                        props: {
-                          level: 1,
-                        },
-                        content: "Introduction",
-                      },
-                      {
-                        type: "Text",
-                        id: "page-intro",
-                        props: {
-                          size: "lg",
-                        },
-                        content:
-                          "Welcome to the documentation. Learn how to build beautiful interfaces with our design system.",
-                      },
                       {
                         type: "Stack",
                         props: {
                           direction: "vertical",
-                          gap: 4,
+                          gap: "md",
                         },
                         children: [
                           {
                             type: "Heading",
+                            id: "page-title",
                             props: {
-                              level: 2,
+                              level: 1,
+                              weight: "bold",
                             },
-                            content: "Overview",
+                            content: "Introduction",
                           },
                           {
                             type: "Text",
-                            props: {},
+                            id: "page-intro",
+                            props: {
+                              size: "lg",
+                              weight: "regular",
+                            },
                             content:
-                              "This design system provides a comprehensive set of components, patterns, and guidelines for building modern user interfaces.",
+                              "Welcome to the documentation. Learn how to build beautiful interfaces with our design system.",
                           },
                           {
-                            type: "Card",
+                            type: "Stack",
                             props: {
-                              padding: 6,
-                              variant: "subtle",
+                              direction: "vertical",
+                              gap: "sm",
                             },
                             children: [
                               {
-                                type: "Stack",
+                                type: "Heading",
                                 props: {
-                                  direction: "vertical",
-                                  gap: 3,
+                                  level: 2,
+                                  weight: "bold",
+                                },
+                                content: "Overview",
+                              },
+                              {
+                                type: "Text",
+                                props: {
+                                  weight: "regular",
+                                },
+                                content:
+                                  "This design system provides a comprehensive set of components, patterns, and guidelines for building modern user interfaces.",
+                              },
+                              {
+                                type: "Card",
+                                props: {
+                                  padding: "md",
+                                  variant: "subtle",
                                 },
                                 children: [
                                   {
-                                    type: "Heading",
-                                    props: {
-                                      level: 3,
-                                    },
-                                    content: "Quick Links",
-                                  },
-                                  {
                                     type: "Stack",
                                     props: {
-                                      direction: "horizontal",
-                                      gap: 2,
-                                      wrap: true,
+                                      direction: "vertical",
+                                      gap: "sm",
                                     },
                                     children: [
                                       {
-                                        type: "Button",
+                                        type: "Heading",
                                         props: {
-                                          variant: "secondary",
-                                          size: "sm",
+                                          level: 3,
+                                          weight: "semibold",
                                         },
-                                        content: "Installation",
+                                        content: "Quick Links",
                                       },
                                       {
-                                        type: "Button",
+                                        type: "Stack",
                                         props: {
-                                          variant: "secondary",
-                                          size: "sm",
+                                          direction: "horizontal",
+                                          gap: "xs",
+                                          wrap: true,
                                         },
-                                        content: "Components",
-                                      },
-                                      {
-                                        type: "Button",
-                                        props: {
-                                          variant: "secondary",
-                                          size: "sm",
-                                        },
-                                        content: "Examples",
+                                        children: [
+                                          {
+                                            type: "Link",
+                                            props: {
+                                              href: "#installation",
+                                              variant: "secondary",
+                                              size: "sm",
+                                            },
+                                            content: "Installation",
+                                          },
+                                          {
+                                            type: "Link",
+                                            props: {
+                                              href: "#components",
+                                              variant: "secondary",
+                                              size: "sm",
+                                            },
+                                            content: "Components",
+                                          },
+                                          {
+                                            type: "Link",
+                                            props: {
+                                              href: "#examples",
+                                              variant: "secondary",
+                                              size: "sm",
+                                            },
+                                            content: "Examples",
+                                          },
+                                        ],
                                       },
                                     ],
                                   },

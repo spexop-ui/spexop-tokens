@@ -1,0 +1,287 @@
+/**
+ * ColorPicker Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component ColorPicker
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-20 - Initial implementation
+ */
+
+.colorPicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin-bottom: var(--theme-spacing-1);
+}
+
+.required {
+  color: var(--theme-danger);
+  margin-left: var(--theme-spacing-1);
+}
+
+.colorPickerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-3);
+}
+
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.colorDisplay {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3);
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  background: var(--theme-surface);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.colorDisplay:hover:not(.disabled *) {
+  border-color: var(--theme-primary);
+  background: var(--theme-surface-hover);
+}
+
+.colorDisplay:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-text-secondary);
+}
+
+.colorSwatch {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.hexInput {
+  flex: 1;
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  font-size: var(--theme-font-size-sm);
+  font-family: monospace;
+  color: var(--theme-text);
+  background: var(--theme-surface);
+  transition: border-color 150ms ease;
+}
+
+.hexInput:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+}
+
+.hexInput::placeholder {
+  color: var(--theme-text-muted);
+}
+
+.hexInput:disabled {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text-secondary);
+  cursor: not-allowed;
+}
+
+/* Size variants */
+.size-sm .colorDisplay {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+}
+
+.size-sm .colorSwatch {
+  width: 32px;
+  height: 32px;
+}
+
+.size-sm .hexInput {
+  font-size: var(--theme-font-size-xs);
+}
+
+.size-lg .colorDisplay {
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+}
+
+.size-lg .colorSwatch {
+  width: 48px;
+  height: 48px;
+}
+
+.size-lg .hexInput {
+  font-size: var(--theme-font-size-base);
+}
+
+/* Presets */
+.presets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: var(--theme-spacing-2);
+  padding: var(--theme-spacing-3);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  background: var(--theme-surface);
+}
+
+.presetSwatch {
+  aspect-ratio: 1;
+  width: 100%;
+  border: 2px solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  cursor: pointer;
+  transition: transform 100ms ease, border-color 100ms ease;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  background: none;
+}
+
+.presetSwatch:hover:not(:disabled) {
+  transform: scale(1.1);
+  border-color: var(--theme-primary);
+}
+
+.presetSwatch:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.presetSwatch:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.presetSelected {
+  border-color: var(--theme-primary);
+  border-width: 3px;
+  transform: scale(1.05);
+}
+
+.size-sm .presets {
+  grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+}
+
+.size-lg .presets {
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+}
+
+/* Error state */
+.hasError .colorDisplay {
+  border-color: var(--theme-danger);
+}
+
+.hasError .colorDisplay:hover {
+  border-color: var(--theme-danger);
+}
+
+.errorMessage {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-danger);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 12px;
+}
+
+.helpText {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+}
+
+/* Disabled state */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.disabled .colorDisplay {
+  cursor: not-allowed;
+}
+
+/* Dark mode support */
+html[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .colorDisplay {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .colorDisplay:hover:not(.disabled *) {
+  background: var(--theme-surface-hover);
+}
+
+html[data-theme="dark"] .colorSwatch {
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .hexInput {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .hexInput:focus {
+  border-color: var(--theme-primary);
+}
+
+html[data-theme="dark"] .presets {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .presetSwatch {
+  border-color: var(--theme-border);
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  .colorDisplay,
+  .hexInput,
+  .presets {
+    border-width: var(--theme-border-thick);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colorDisplay,
+  .hexInput,
+  .presetSwatch {
+    transition: none;
+  }
+}
+

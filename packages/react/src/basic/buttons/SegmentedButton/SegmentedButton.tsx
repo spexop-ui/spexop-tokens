@@ -96,7 +96,6 @@ export function SegmentedButton({
         const isActive = value === option.value;
 
         return (
-          // biome-ignore lint/a11y/useSemanticElements: Using button with role="radio" provides better styling control and interaction handling than native radio inputs for this segmented control pattern
           <button
             key={option.value}
             type="button"

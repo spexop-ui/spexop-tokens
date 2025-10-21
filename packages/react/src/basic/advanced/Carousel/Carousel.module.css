@@ -29,6 +29,15 @@
 	/* NO box-shadow - we use borders only */
 }
 
+.viewportPeek {
+	overflow: visible;
+}
+
+.viewportPeek .slidesContainer {
+	overflow: hidden;
+	border-radius: var(--theme-radius-medium);
+}
+
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
 	.viewport {
@@ -46,11 +55,45 @@
 	transition-property: transform;
 	transition-timing-function: ease-in-out;
 	will-change: transform;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.dragging {
+	cursor: grabbing;
+}
+
+/* Fade variant */
+.slidesFade {
+	position: relative;
+}
+
+.slidesFade .slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition-property: opacity;
+	transition-timing-function: ease-in-out;
+}
+
+.slideActive {
+	z-index: 2;
+	pointer-events: auto;
+}
+
+.slideInactive {
+	z-index: 1;
+	pointer-events: none;
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
 	.slidesContainer {
+		transition-duration: 0ms !important;
+	}
+	
+	.slidesFade .slide {
 		transition-duration: 0ms !important;
 	}
 }
@@ -155,8 +198,8 @@
 }
 
 .dot {
-	width: 14px;
-	height: 14px;
+	width: var(--theme-spacing-3);
+	height: var(--theme-spacing-3);
 	border-radius: 999px;
 	/* BOLD BORDER - Never subtle gray */
 	border: 3px solid var(--theme-text);
@@ -203,7 +246,7 @@
    ============================================ */
 
 .counter {
-	font-size: 14px;
+	font-size: var(--theme-font-size-sm);
 	font-weight: var(--theme-font-weight-semibold);
 	color: var(--theme-text);
 	letter-spacing: 0.5px;
@@ -240,6 +283,160 @@
 }
 
 /* ============================================
+   Thumbnail Navigation - SPEXOP DESIGN PRINCIPLES
+   Bold borders, high contrast, keyboard accessible
+   ============================================ */
+
+.thumbnails {
+	display: flex;
+	gap: var(--theme-spacing-2);
+	margin-top: var(--theme-spacing-4);
+	overflow-x: auto;
+	padding: var(--theme-spacing-2) 0;
+	/* Hide scrollbar but keep functionality */
+	scrollbar-width: thin;
+	scrollbar-color: var(--theme-border) transparent;
+}
+
+.thumbnails::-webkit-scrollbar {
+	height: 4px;
+}
+
+.thumbnails::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.thumbnails::-webkit-scrollbar-thumb {
+	background: var(--theme-border);
+	border-radius: 2px;
+}
+
+.thumbnail {
+	min-width: 80px;
+	width: 80px;
+	height: 60px;
+	border: 2px solid var(--theme-border);
+	border-radius: var(--theme-radius-subtle);
+	cursor: pointer;
+	opacity: 0.6;
+	transition-property: opacity, border-color, border-width, transform;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.thumbnail:hover {
+	opacity: 0.8;
+	border-color: var(--theme-border-strong);
+	transform: scale(1.05);
+}
+
+.thumbnail:focus-visible {
+	outline: 3px solid var(--theme-primary);
+	outline-offset: 2px;
+}
+
+.thumbnailActive {
+	opacity: 1;
+	border-color: var(--theme-primary);
+	border-width: 3px;
+}
+
+.thumbnailImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.thumbnailPlaceholder {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--theme-surface);
+	color: var(--theme-text);
+	font-weight: var(--theme-font-weight-semibold);
+	font-size: var(--theme-font-size-sm);
+}
+
+/* Side layout for thumbnails */
+.carouselWithSideThumbnails {
+	display: flex;
+	gap: var(--theme-spacing-4);
+	align-items: flex-start;
+}
+
+.carouselMain {
+	flex: 1;
+	min-width: 0; /* Prevent flex item overflow */
+}
+
+.thumbnailsSide {
+	display: flex;
+	flex-direction: column;
+	gap: var(--theme-spacing-2);
+	max-height: 500px;
+	overflow-y: auto;
+	padding: var(--theme-spacing-2);
+	flex-shrink: 0;
+	width: 120px;
+	/* Custom scrollbar */
+	scrollbar-width: thin;
+	scrollbar-color: var(--theme-border) transparent;
+}
+
+.thumbnailsSide::-webkit-scrollbar {
+	width: 4px;
+}
+
+.thumbnailsSide::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.thumbnailsSide::-webkit-scrollbar-thumb {
+	background: var(--theme-border);
+	border-radius: 2px;
+}
+
+/* ============================================
+   Touch Device Optimizations
+   Ensures 44px minimum touch targets
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+	.viewport {
+		touch-action: pan-y pinch-zoom;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	.arrowButton {
+		/* Ensure 44px minimum on touch devices */
+		min-width: 44px;
+		min-height: 44px;
+	}
+
+	.dot {
+		/* Larger dots for touch */
+		min-width: 44px;
+		min-height: 44px;
+		/* Keep visual size with padding trick */
+		padding: 15px;
+		width: var(--theme-spacing-3);
+		height: var(--theme-spacing-3);
+	}
+
+	.thumbnail {
+		/* Ensure adequate touch target */
+		min-width: 60px;
+		min-height: 60px;
+	}
+}
+
+/* ============================================
    High Contrast Mode Support
    Increases border widths for better visibility
    ============================================ */
@@ -255,5 +452,13 @@
 
 	.dot {
 		border-width: 4px;
+	}
+
+	.thumbnail {
+		border-width: 4px;
+	}
+
+	.thumbnailActive {
+		border-width: 5px;
 	}
 }

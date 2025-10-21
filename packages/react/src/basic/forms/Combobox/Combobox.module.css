@@ -1,0 +1,298 @@
+/**
+ * Combobox Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component Combobox
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-20 - Initial implementation
+ */
+
+.combobox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin-bottom: var(--theme-spacing-1);
+}
+
+.required {
+  color: var(--theme-danger);
+  margin-left: var(--theme-spacing-1);
+}
+
+.comboboxContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  padding-right: calc(var(--theme-spacing-4) + 20px);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  font-size: var(--theme-font-size-base);
+  line-height: var(--theme-line-height-normal);
+  color: var(--theme-text);
+  background: var(--theme-surface);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  font-family: var(--theme-font-family);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+}
+
+.input::placeholder {
+  color: var(--theme-text-muted);
+}
+
+.input:disabled {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text-secondary);
+  cursor: not-allowed;
+  border-color: var(--theme-border-subtle);
+}
+
+/* Size variants */
+.size-sm .input {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  padding-right: calc(var(--theme-spacing-3) + 20px);
+  font-size: var(--theme-font-size-sm);
+}
+
+.size-lg .input {
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+  padding-right: calc(var(--theme-spacing-5) + 20px);
+  font-size: var(--theme-font-size-lg);
+}
+
+/* Icon positioning */
+.leftIcon {
+  position: absolute;
+  left: var(--theme-spacing-3);
+  color: var(--theme-text-secondary);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputWithIcon {
+  padding-left: calc(var(--theme-spacing-3) + 20px + var(--theme-spacing-2)) !important;
+}
+
+.size-sm .leftIcon {
+  left: var(--theme-spacing-2);
+}
+
+.size-lg .leftIcon {
+  left: var(--theme-spacing-4);
+}
+
+.chevron {
+  position: absolute;
+  right: var(--theme-spacing-3);
+  color: var(--theme-text-secondary);
+  pointer-events: none;
+  transition: transform 150ms ease;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+.size-sm .chevron {
+  right: var(--theme-spacing-2);
+}
+
+.size-lg .chevron {
+  right: var(--theme-spacing-4);
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + var(--theme-spacing-2));
+  left: 0;
+  right: 0;
+  background: var(--theme-surface);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: var(--theme-shadow-lg);
+  animation: slideDown 150ms ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  cursor: pointer;
+  transition: background-color 100ms ease;
+  border-bottom: 1px solid var(--theme-border-subtle);
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover,
+.option.focused {
+  background: var(--theme-surface-hover);
+}
+
+.option.selected {
+  background: var(--theme-surface-secondary);
+  font-weight: var(--theme-font-weight-semibold);
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-1);
+  flex: 1;
+}
+
+.optionLabel {
+  color: var(--theme-text);
+  font-size: var(--theme-font-size-base);
+  line-height: var(--theme-line-height-tight);
+}
+
+.optionDescription {
+  color: var(--theme-text-secondary);
+  font-size: var(--theme-font-size-sm);
+  line-height: var(--theme-line-height-tight);
+}
+
+.checkmark {
+  color: var(--theme-primary);
+  flex-shrink: 0;
+  margin-left: var(--theme-spacing-2);
+}
+
+.noResults {
+  padding: var(--theme-spacing-4);
+  text-align: center;
+  color: var(--theme-text-secondary);
+  font-size: var(--theme-font-size-sm);
+}
+
+/* Error state */
+.hasError .input {
+  border-color: var(--theme-danger);
+}
+
+.hasError .input:focus {
+  border-color: var(--theme-danger);
+}
+
+.errorMessage {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-danger);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 12px;
+}
+
+.helpText {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+}
+
+/* Dark mode support */
+html[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .input {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .input:focus {
+  border-color: var(--theme-primary);
+}
+
+html[data-theme="dark"] .dropdown {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .option:hover,
+html[data-theme="dark"] .option.focused {
+  background: var(--theme-surface-hover);
+}
+
+/* Focus within for icon color changes */
+.comboboxContainer:focus-within .leftIcon {
+  color: var(--theme-primary);
+}
+
+.hasError .leftIcon {
+  color: var(--theme-danger);
+}
+
+/* Disabled state */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  .input {
+    border-width: var(--theme-border-thick);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .chevron,
+  .option {
+    transition: none;
+  }
+  
+  .dropdown {
+    animation: none;
+  }
+}
+

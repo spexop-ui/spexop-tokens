@@ -1,193 +1,220 @@
-# PanelSection
+# PanelSection Component
 
-Collapsible panel section component for organizing content. Features smooth animations, optional icons, and accordion behavior. Perfect for FAQs, settings groups, and expandable content.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A semantic section component for organizing content into distinct areas within panels, sidebars, or pages. Features optional title, border separation, and consistent padding.
+
+## Features
+
+- ✅ Optional section title
+- ✅ Visual border separation
+- ✅ Consistent padding
+- ✅ Collapsible variant
+- ✅ Theme-aware styling
+- ✅ Flexible content area
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { PanelSection } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
-import { useState } from 'react';
 import { PanelSection } from '@spexop/react';
 
-function MyComponent() {
-  const [isOpen, setIsOpen] = useState(false);
-  
+function App() {
   return (
-    <PanelSection
-      title="Section Title"
-      isOpen={isOpen}
-      onToggle={() => setIsOpen(!isOpen)}
-    >
-      <p>Collapsible content goes here...</p>
+    <PanelSection title="Account Information">
+      <p>Your account details go here...</p>
     </PanelSection>
   );
 }
 ```
 
-## Props
+## Basic Usage
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `string` | **Required** | Section title |
-| `children` | `ReactNode` | **Required** | Section content |
-| `isOpen` | `boolean` | **Required** | Whether section is expanded |
-| `onToggle` | `() => void` | **Required** | Toggle callback |
-| `icon` | `ReactNode` | `undefined` | Optional icon |
-| `disabled` | `boolean` | `false` | Disable toggling |
-| `className` | `string` | `""` | Additional CSS class |
-
-## Examples
-
-### Basic Collapsible
+### Simple Section
 
 ```tsx
-<PanelSection
-  title="Additional Information"
-  isOpen={showInfo}
-  onToggle={() => setShowInfo(!showInfo)}
->
-  <p>Detailed information content...</p>
+<PanelSection title="Profile">
+  <TextInput label="Name" value={name} onChange={setName} />
+  <TextInput label="Email" value={email} onChange={setEmail} />
 </PanelSection>
 ```
 
-### With Icon
+### Without Title
 
 ```tsx
-import { Settings } from '@spexop/icons';
-
-<PanelSection
-  title="Settings"
-  icon={<Settings size={20} />}
-  isOpen={settingsOpen}
-  onToggle={() => setSettingsOpen(!settingsOpen)}
->
-  {/* Settings content */}
+<PanelSection>
+  <p>Content without a title</p>
 </PanelSection>
 ```
 
-### FAQ Accordion
+### With Border
 
 ```tsx
-import { Stack, PanelSection } from '@spexop/react';
+<PanelSection title="Preferences" bordered={true}>
+  <SettingItem label="Theme">
+    <Select value={theme} onChange={setTheme}>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </Select>
+  </SettingItem>
+</PanelSection>
+```
 
-function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  
-  const faqs = [
-    { q: 'What is Spexop?', a: 'A React design system...' },
-    { q: 'How do I install?', a: 'Run npm install...' },
-    { q: 'Is it free?', a: 'Yes, MIT licensed...' }
-  ];
-  
+## Common Patterns
+
+### Settings Sections
+
+```tsx
+function SettingsPage() {
   return (
-    <Stack direction="vertical" gap={2}>
-      {faqs.map((faq, index) => (
-        <PanelSection
-          key={index}
-          title={faq.q}
-          isOpen={openIndex === index}
-          onToggle={() => setOpenIndex(openIndex === index ? null : index)}
-        >
-          <p>{faq.a}</p>
+    <Container maxWidth="lg" padding={8}>
+      <Stack direction="vertical" gap={6}>
+        <PanelSection title="ACCOUNT" bordered={true}>
+          <Stack direction="vertical" gap={4}>
+            <TextInput label="Username" value={username} onChange={setUsername} />
+            <TextInput label="Email" type="email" value={email} onChange={setEmail} />
+          </Stack>
         </PanelSection>
-      ))}
-    </Stack>
+        
+        <PanelSection title="PREFERENCES" bordered={true}>
+          <Stack direction="vertical" gap={4}>
+            <SettingItem label="Language">
+              <Select value={language} onChange={handleLanguageChange}>
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+              </Select>
+            </SettingItem>
+            
+            <SettingItem label="Notifications">
+              <Toggle checked={notifications} onChange={setNotifications} />
+            </SettingItem>
+          </Stack>
+        </PanelSection>
+      </Stack>
+    </Container>
   );
 }
 ```
 
-### Settings Groups
+### Sidebar Sections
 
 ```tsx
-<Stack direction="vertical" gap={4}>
-  <PanelSection
-    title="General"
-    icon={<Settings size={20} />}
-    isOpen={generalOpen}
-    onToggle={() => setGeneralOpen(!generalOpen)}
-  >
-    <Toggle label="Auto-save" checked={autoSave} onChange={setAutoSave} />
-    <Toggle label="Notifications" checked={notifications} onChange={setNotifications} />
-  </PanelSection>
-  
-  <PanelSection
-    title="Privacy"
-    icon={<Lock size={20} />}
-    isOpen={privacyOpen}
-    onToggle={() => setPrivacyOpen(!privacyOpen)}
-  >
-    <Toggle label="Public profile" checked={publicProfile} onChange={setPublicProfile} />
-    <Toggle label="Show activity" checked={showActivity} onChange={setShowActivity} />
-  </PanelSection>
-</Stack>
+function SidebarContent() {
+  return (
+    <div className="sidebar">
+      <PanelSection title="NAVIGATION">
+        <Stack direction="vertical" gap={2}>
+          <NavLink href="/" label="Home" icon={Home} />
+          <NavLink href="/projects" label="Projects" icon={Folder} />
+          <NavLink href="/team" label="Team" icon={Users} />
+        </Stack>
+      </PanelSection>
+      
+      <PanelSection title="RECENT">
+        <Stack direction="vertical" gap={2}>
+          {recentItems.map(item => (
+            <NavLink key={item.id} href={item.href} label={item.label} />
+          ))}
+        </Stack>
+      </PanelSection>
+    </div>
+  );
+}
 ```
 
-## Keyboard Navigation
+### Form Sections
 
-| Key | Action |
-|-----|--------|
-| **Enter** / **Space** | Toggle section |
-| **Arrow Down** | Move to next section |
-| **Arrow Up** | Move to previous section |
+```tsx
+<form>
+  <PanelSection title="Personal Information" bordered={true}>
+    <Grid columns={2} gap={4}>
+      <GridItem>
+        <TextInput label="First Name" value={firstName} onChange={setFirstName} required />
+      </GridItem>
+      <GridItem>
+        <TextInput label="Last Name" value={lastName} onChange={setLastName} required />
+      </GridItem>
+    </Grid>
+    <TextInput label="Email" type="email" value={email} onChange={setEmail} required />
+  </PanelSection>
+  
+  <PanelSection title="Address" bordered={true}>
+    <TextInput label="Street" value={street} onChange={setStreet} />
+    <Grid columns={2} gap={4}>
+      <GridItem>
+        <TextInput label="City" value={city} onChange={setCity} />
+      </GridItem>
+      <GridItem>
+        <TextInput label="ZIP" value={zip} onChange={setZip} />
+      </GridItem>
+    </Grid>
+  </PanelSection>
+  
+  <Button type="submit" variant="primary">Submit</Button>
+</form>
+```
+
+## Props
+
+```typescript
+interface PanelSectionProps {
+  /** Section title */
+  title?: string;
+  /** Section content */
+  children: React.ReactNode;
+  /** Show border separator */
+  bordered?: boolean;
+  /** Collapsible section */
+  collapsible?: boolean;
+  /** Initially collapsed */
+  defaultCollapsed?: boolean;
+  /** Additional CSS class */
+  className?: string;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Primitives before patterns** - Simple section wrapper
+2. **Borders before shadows** - Clean border separation
+3. **Typography before decoration** - Bold section titles
+4. **Tokens before magic numbers** - Uses spacing tokens
+5. **Composition before complexity** - Flexible content container
 
 ## Accessibility
 
-- `role="button"` - Clickable header
-- `aria-expanded` - Current state
-- `aria-controls` - Points to content
-- Keyboard accessible
-- Focus visible
+- ✅ Semantic HTML (`<section>` element)
+- ✅ Proper heading hierarchy
+- ✅ Logical content grouping
+- ✅ Screen reader friendly
 
-## Best Practices
+## Browser Support
 
-### Do ✅
-
-```tsx
-// Use for grouping related content
-<PanelSection title="Advanced Options" {...props}>
-  {/* Related settings */}
-</PanelSection>
-
-// Provide clear titles
-<PanelSection title="Payment Methods" {...props} />
-
-// Use icons for visual hierarchy
-<PanelSection title="Security" icon={<Lock />} {...props} />
-```
-
-### Don't ❌
-
-```tsx
-// Don't nest too many levels
-<PanelSection>
-  <PanelSection> // Confusing
-  </PanelSection>
-</PanelSection>
-
-// Don't use for single items
-<PanelSection title="One thing">
-  <p>Just one item</p> // Not worth collapsing
-</PanelSection>
-```
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **Section** - Page sections
-- **Card** - Content containers
-- **NavSection** - Sidebar accordion
-- **Accordion** - Multiple collapsible panels
+- `Section` - Page-level sections
+- `Card` - Content containers
+- `Stack` - Vertical layout
 
----
+## License
 
-**Part of Layout Components** - Collapsible sections for organized content.
+MIT

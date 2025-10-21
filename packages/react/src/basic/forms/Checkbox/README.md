@@ -1,224 +1,336 @@
 # Checkbox Component
 
-@author @spexop-ui | github.com/spexop-ui | @olmstedian | github.com/olmstedian
-@version 1.0.0
-@since 2025-10-15
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
 
-Clean checkbox component following Spexop's Refined Minimalism aesthetic.
+## Overview
+
+An accessible checkbox component with label support, indeterminate state, and full keyboard navigation. Features clean border-based design following "The Spexop Way".
 
 ## Features
 
-- ✅ **Border-Based Design** - No heavy shadows, clean 1px borders
-- ✅ **Density Variants** - Compact, normal, spacious sizing
-- ✅ **Theme-Aware** - Automatic light/dark theme support
-- ✅ **Keyboard Accessible** - Space and Enter key support
-- ✅ **Smooth Animations** - GPU-accelerated checkmark appearance
-- ✅ **Optional Description** - Support for helper text
-- ✅ **WCAG 2.2 AA** - Full accessibility compliance
+- ✅ Checked, unchecked, and indeterminate states
+- ✅ Label and helper text support
+- ✅ Disabled state
+- ✅ Error state with validation
+- ✅ Keyboard navigation (Space to toggle)
+- ✅ WCAG AA+ accessible
+- ✅ Custom styling support
+- ✅ TypeScript support
 
-## Basic Usage
+## Installation
+
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
+```
+
+## Quick Start
 
 ```tsx
 import { Checkbox } from '@spexop/react';
+import { useState } from 'react';
 
-function MyForm() {
-  const [accepted, setAccepted] = useState(false);
-
+function App() {
+  const [checked, setChecked] = useState(false);
+  
   return (
     <Checkbox
-      checked={accepted}
-      onChange={setAccepted}
-      label="I accept the terms and conditions"
+      checked={checked}
+      onChange={setChecked}
+      label="Accept terms and conditions"
     />
   );
 }
 ```
 
-## With Description
+## States
 
-```tsx
-<Checkbox
-  checked={notifications}
-  onChange={setNotifications}
-  label="Enable notifications"
-  description="Receive email updates about your account activity"
-/>
-```
-
-## Density Variants
-
-```tsx
-{/* Compact - Dashboard context */}
-<Checkbox density="compact" checked={value} onChange={setValue} label="Compact" />
-
-{/* Normal - Default */}
-<Checkbox density="normal" checked={value} onChange={setValue} label="Normal" />
-
-{/* Spacious - Blog/Content context */}
-<Checkbox density="spacious" checked={value} onChange={setValue} label="Spacious" />
-```
-
-## Disabled State
+### Checked
 
 ```tsx
 <Checkbox
   checked={true}
-  onChange={() => {}}
-  label="Disabled checkbox"
-  disabled
+  onChange={handleChange}
+  label="Enabled feature"
 />
 ```
 
-## Without Label (Use aria-label)
+### Unchecked
 
 ```tsx
 <Checkbox
-  checked={selected}
-  onChange={setSelected}
-  aria-label="Select this item"
+  checked={false}
+  onChange={handleChange}
+  label="Disabled feature"
 />
+```
+
+### Indeterminate
+
+Used when some but not all child items are selected.
+
+```tsx
+<Checkbox
+  checked={false}
+  indeterminate={true}
+  onChange={handleChange}
+  label="Select all"
+/>
+```
+
+### Disabled
+
+```tsx
+<Checkbox
+  checked={true}
+  disabled={true}
+  onChange={handleChange}
+  label="Cannot change"
+/>
+```
+
+### Error State
+
+```tsx
+<Checkbox
+  checked={false}
+  onChange={handleChange}
+  label="Required agreement"
+  error="You must accept to continue"
+/>
+```
+
+### With Helper Text
+
+```tsx
+<Checkbox
+  checked={emailNotifications}
+  onChange={setEmailNotifications}
+  label="Email notifications"
+  helperText="Receive updates about your account via email"
+/>
+```
+
+## Common Patterns
+
+### Form Integration
+
+```tsx
+function SignupForm() {
+  const [formData, setFormData] = useState({
+    terms: false,
+    newsletter: false,
+    privacy: false,
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = () => {
+    if (!formData.terms || !formData.privacy) {
+      setErrors({
+        terms: !formData.terms ? 'Required' : '',
+        privacy: !formData.privacy ? 'Required' : '',
+      });
+      return;
+    }
+    // Submit form
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Checkbox
+        checked={formData.terms}
+        onChange={(checked) =>
+          setFormData({ ...formData, terms: checked })
+        }
+        label="I accept the terms and conditions"
+        error={errors.terms}
+      />
+      
+      <Checkbox
+        checked={formData.privacy}
+        onChange={(checked) =>
+          setFormData({ ...formData, privacy: checked })
+        }
+        label="I agree to the privacy policy"
+        error={errors.privacy}
+      />
+      
+      <Checkbox
+        checked={formData.newsletter}
+        onChange={(checked) =>
+          setFormData({ ...formData, newsletter: checked })
+        }
+        label="Send me promotional emails"
+        helperText="Optional - you can unsubscribe anytime"
+      />
+      
+      <button type="submit">Sign Up</button>
+    </form>
+  );
+}
+```
+
+### Select All with Indeterminate
+
+```tsx
+function ItemList() {
+  const [items, setItems] = useState([
+    { id: 1, name: 'Item 1', selected: false },
+    { id: 2, name: 'Item 2', selected: true },
+    { id: 3, name: 'Item 3', selected: false },
+  ]);
+
+  const allSelected = items.every(item => item.selected);
+  const someSelected = items.some(item => item.selected) && !allSelected;
+
+  const handleSelectAll = (checked) => {
+    setItems(items.map(item => ({ ...item, selected: checked })));
+  };
+
+  const handleSelectItem = (id, checked) => {
+    setItems(items.map(item => 
+      item.id === id ? { ...item, selected: checked } : item
+    ));
+  };
+
+  return (
+    <div>
+      <Checkbox
+        checked={allSelected}
+        indeterminate={someSelected}
+        onChange={handleSelectAll}
+        label="Select all items"
+      />
+      
+      <div style={{ marginLeft: '24px' }}>
+        {items.map(item => (
+          <Checkbox
+            key={item.id}
+            checked={item.selected}
+            onChange={(checked) => handleSelectItem(item.id, checked)}
+            label={item.name}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+### Checkbox Group
+
+```tsx
+function PreferencesForm() {
+  const [preferences, setPreferences] = useState({
+    email: true,
+    sms: false,
+    push: true,
+    newsletter: false,
+  });
+
+  return (
+    <Stack direction="vertical" gap={3}>
+      <h3>Notification Preferences</h3>
+      
+      <Checkbox
+        checked={preferences.email}
+        onChange={(checked) =>
+          setPreferences({ ...preferences, email: checked })
+        }
+        label="Email notifications"
+      />
+      
+      <Checkbox
+        checked={preferences.sms}
+        onChange={(checked) =>
+          setPreferences({ ...preferences, sms: checked })
+        }
+        label="SMS notifications"
+      />
+      
+      <Checkbox
+        checked={preferences.push}
+        onChange={(checked) =>
+          setPreferences({ ...preferences, push: checked })
+        }
+        label="Push notifications"
+      />
+      
+      <Checkbox
+        checked={preferences.newsletter}
+        onChange={(checked) =>
+          setPreferences({ ...preferences, newsletter: checked })
+        }
+        label="Weekly newsletter"
+      />
+    </Stack>
+  );
+}
 ```
 
 ## Props
 
-### `checked` (required)
-
-**Type:** `boolean`
-
-Whether the checkbox is checked.
-
-### `onChange` (required)
-
-**Type:** `(checked: boolean) => void`
-
-Callback when checkbox state changes.
-
-### `label`
-
-**Type:** `string`
-
-Optional label text displayed next to the checkbox.
-
-### `description`
-
-**Type:** `string`
-
-Optional description text displayed below the label.
-
-### `density`
-
-**Type:** `"compact" | "normal" | "spacious"`  
-**Default:** `"normal"`
-
-Density variant for different contexts:
-
-- `compact`: Dashboard context (16px checkbox, smaller text)
-- `normal`: Default (20px checkbox, balanced sizing)
-- `spacious`: Blog/Content context (24px checkbox, larger text)
-
-### `disabled`
-
-**Type:** `boolean`  
-**Default:** `false`
-
-Whether the checkbox is disabled.
-
-### `className`
-
-**Type:** `string`
-
-Additional CSS class names for custom styling.
-
-### `id`
-
-**Type:** `string`
-
-Custom ID for the checkbox element. Auto-generated if not provided.
-
-### `aria-label`
-
-**Type:** `string`
-
-ARIA label for accessibility. Required if no `label` prop is provided.
-
-### `aria-labelledby`
-
-**Type:** `string`
-
-ARIA labelledby attribute for accessibility.
-
-## Styling
-
-The Checkbox component uses:
-
-- **Borders** instead of heavy shadows (Refined Minimalism)
-- **Design tokens** for all spacing, colors, and typography
-- **Theme-aware colors** (Red in light theme, Blue in dark theme)
-- **Smooth animations** that respect `prefers-reduced-motion`
-
-## Accessibility
-
-- ✅ Native checkbox input for screen readers
-- ✅ Keyboard navigation (Space, Enter)
-- ✅ Focus indicators (2px outline, 2px offset)
-- ✅ ARIA labels and descriptions
-- ✅ High contrast mode support
-- ✅ Reduced motion support
-- ✅ Proper label associations
-
-## Integration with Grid
-
-```tsx
-import { Grid, Checkbox } from '@spexop/react';
-
-<Grid columns={{ xs: 1, md: 2 }} gap={4}>
-  <Checkbox
-    checked={option1}
-    onChange={setOption1}
-    label="Option 1"
-    description="First option description"
-  />
-  <Checkbox
-    checked={option2}
-    onChange={setOption2}
-    label="Option 2"
-    description="Second option description"
-  />
-</Grid>
+```typescript
+interface CheckboxProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label?: string;
+  helperText?: string;
+  error?: string;
+  disabled?: boolean;
+  indeterminate?: boolean;
+  className?: string;
+  id?: string;
+  name?: string;
+  value?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+}
 ```
 
 ## Design Principles
 
-This component follows Spexop's **Refined Minimalism** aesthetic:
+Following "The Spexop Way":
 
-1. **Borders before shadows** - Clean 1px borders, no drop shadows
-2. **Typography before decoration** - Clear labels and descriptions
-3. **Tokens before magic numbers** - All values from design tokens
-4. **Accessibility before aesthetics** - WCAG 2.2 AA compliant
-5. **Standards before frameworks** - Semantic HTML with progressive enhancement
+1. **Borders before shadows** - Clean 2px border design
+2. **Typography before decoration** - Clear label text
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full keyboard and screen reader support
+
+## Accessibility
+
+- ✅ Semantic HTML with proper ARIA roles
+- ✅ Keyboard navigation (Space to toggle)
+- ✅ Screen reader announcements
+- ✅ Focus indicators
+- ✅ Label association
+- ✅ Error state announcements
+- ✅ Indeterminate state properly communicated
+- ✅ WCAG AA+ compliant
+
+### Keyboard Shortcuts
+
+- `Space` - Toggle checkbox
+- `Tab` - Move to next checkbox
+- `Shift + Tab` - Move to previous checkbox
+
+## Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- [Toggle](../Toggle/README.md) - Switch-style toggle for on/off states
-- [RadioGroup](../RadioGroup/README.md) - Mutually exclusive selection
-- [Select](../Select/README.md) - Dropdown selection
-
-## See Also
-
-- [Checkbox Component Types](./Checkbox.types.md) - Checkbox component types.
-- [Checkbox Component](./Checkbox.tsx) - Checkbox component implementation.
-- [Checkbox Component Index](./index.ts) - Checkbox component index.
-- [Checkbox Component Styles](./Checkbox.module.css) - Checkbox component styles.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit an issue or pull request.
+- `RadioGroup` - Single-select options
+- `Toggle` - On/off switch
+- `Select` - Dropdown selection
+- `TextInput` - Text entry
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-## Credits
-
-- [@spexop-ui](https://github.com/spexop-ui) - Spexop UI
-- [@olmstedian](https://github.com/olmstedian) - Olmstedian
+MIT

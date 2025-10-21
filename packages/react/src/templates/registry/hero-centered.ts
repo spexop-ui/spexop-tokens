@@ -14,69 +14,79 @@ export const heroCentered: Template = {
     category: "hero",
     tier: "free",
     thumbnail: "/template-thumbnails/hero-centered.webp",
-    tags: ["hero", "landing", "cta", "centered"],
+    tags: ["hero", "landing", "cta", "centered", "accessibility-first"],
     author: "Spexop Team",
     version: "1.0.0",
   },
   structure: {
-    type: "Container",
-    props: {
-      maxWidth: "2xl",
-      padding: 10,
-    },
+    type: "Main",
+    role: "main",
+    ariaLabel: "Hero section",
+    props: {},
     children: [
       {
-        type: "Stack",
+        type: "Container",
         props: {
-          direction: "vertical",
-          gap: 6,
-          align: "center",
+          maxWidth: "2xl",
+          padding: "lg",
         },
         children: [
           {
-            type: "Heading",
-            id: "hero-title",
-            props: {
-              level: 1,
-              align: "center",
-            },
-            content: "Build Beautiful Interfaces",
-          },
-          {
-            type: "Text",
-            id: "hero-description",
-            props: {
-              size: "lg",
-              align: "center",
-            },
-            content:
-              "Create stunning, responsive layouts with our powerful design system. Configure your brand, export to any platform.",
-          },
-          {
             type: "Stack",
             props: {
-              direction: "horizontal",
-              gap: 3,
+              direction: "vertical",
+              gap: 6,
               align: "center",
             },
             children: [
               {
-                type: "Button",
-                id: "hero-cta-primary",
+                type: "Heading",
+                id: "hero-title",
                 props: {
-                  variant: "primary",
-                  size: "lg",
+                  level: 1,
+                  align: "center",
+                  weight: "bold",
                 },
-                content: "Get Started",
+                content: "Build Beautiful Interfaces",
               },
               {
-                type: "Button",
-                id: "hero-cta-secondary",
+                type: "Text",
+                id: "hero-description",
                 props: {
-                  variant: "secondary",
                   size: "lg",
+                  align: "center",
+                  weight: "regular",
                 },
-                content: "Learn More",
+                content:
+                  "Create stunning, responsive layouts with our powerful design system. Configure your brand, export to any platform.",
+              },
+              {
+                type: "Stack",
+                props: {
+                  direction: "horizontal",
+                  gap: 3,
+                  align: "center",
+                },
+                children: [
+                  {
+                    type: "Button",
+                    id: "hero-cta-primary",
+                    props: {
+                      variant: "primary",
+                      size: "lg",
+                    },
+                    content: "Get Started",
+                  },
+                  {
+                    type: "Button",
+                    id: "hero-cta-secondary",
+                    props: {
+                      variant: "secondary",
+                      size: "lg",
+                    },
+                    content: "Learn More",
+                  },
+                ],
               },
             ],
           },

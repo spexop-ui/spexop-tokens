@@ -1,2 +1,2 @@
-export type { ThemeToggleProps } from "./ThemeToggle.js";
+export type { ThemeToggleProps } from "./ThemeToggle.types.js";
 export { ThemeToggle } from "./ThemeToggle.js";

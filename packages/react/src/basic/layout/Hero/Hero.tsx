@@ -62,13 +62,13 @@ export function Hero({
     if (media?.type === "video" && media.autoplay && videoRef.current) {
       const observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((entry) => {
+          for (const entry of entries) {
             if (entry.isIntersecting) {
               videoRef.current?.play();
             } else {
               videoRef.current?.pause();
             }
-          });
+          }
         },
         { threshold: 0.5 },
       );

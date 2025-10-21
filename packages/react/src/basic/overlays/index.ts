@@ -7,6 +7,9 @@
 
 export * from "./CommandPalette/index.js";
 export * from "./Drawer/index.js";
+export * from "./Dropdown/index.js";
+export * from "./Modal/index.js";
+export * from "./Popover/index.js";
 export type {
   QuickLink,
   SearchModalProps,
@@ -14,3 +17,4 @@ export type {
 } from "./SearchModal/index.js";
 export { SearchModal } from "./SearchModal/index.js";
 export * from "./Snackbar/index.js";
+export * from "./Tooltip/index.js";

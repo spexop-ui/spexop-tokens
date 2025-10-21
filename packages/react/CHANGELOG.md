@@ -5,9 +5,243 @@ All notable changes to @spexop/react will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.4] - 2025-10-20
+## [0.3.0] - 2025-10-21
+
+### Added - New Component Categories
+
+- **Data Components (3 new)**
+
+- DataTable - Sortable, filterable table with pagination
+- DataGrid - Advanced grid with virtual scrolling
+- Chart - Chart.js integration for data visualization
+
+- **Feedback Components (6 new)**
+
+- Alert - Contextual notifications (success, warning, error, info)
+- Spinner - Loading indicators with multiple variants
+- Progress - Linear and circular progress bars
+- Skeleton - Loading placeholders
+- Toast - Non-blocking notifications (via ToastProvider)
+- EmptyState - No-data states with actions
+
+- **Typography Components (4 new)**
+
+- Heading - Semantic headings (h1-h6) with variants
+- Text - Paragraph text with size/weight variants
+- Link - Standalone link component with variants
+- Code - Inline code formatting
+
+### Added - New Advanced Components
+
+- **Carousel** - Slideshow component with touch/swipe, keyboard navigation, thumbnails, auto-play
+  - Borders before shadows (3px bold borders, zero shadows)
+  - High-contrast controls (WCAG AAA)
+  - Aspect ratio control, lazy loading, peek mode
+  - Transition variants (slide, fade)
+
+### Added - Hooks Expansion (13 → 33+)
+
+**20+ new hooks added:**
+
+- useClickOutside - Detect clicks outside element
+- useCopyToClipboard - Copy text with feedback
+- useDarkMode - Dark mode management
+- useDebounce - Debounce values
+- useGeolocation - Browser geolocation API
+- useHash - URL hash management
+- useHover - Hover state detection
+- useIdle - User inactivity detection
+- useIntersectionObserver - Intersection Observer API
+- useKeyPress - Keyboard key detection
+- useLocalStorage - LocalStorage with sync
+- useLongPress - Long press gesture
+- useOnline - Network status detection
+- usePageVisibility - Page visibility API
+- usePermission - Browser permissions API
+- usePrevious - Previous value tracking
+- useQueryParams - URL query params management
+- useReducedMotion - Motion preference detection
+- useResizeObserver - Element resize detection
+- useScroll - Scroll position tracking
+- useSessionStorage - SessionStorage with sync
+- useThrottle - Throttle values
+- useToggle - Boolean toggle utility
+- useWindowSize - Window dimensions tracking
+
+### Added - New Providers
+
+**AccessibilityProvider** - Global accessibility settings
+
+- Screen reader announcements
+- Focus management
+- Reduced motion preferences
+
+**ModalProvider** - Modal/dialog management
+
+- Stacked modal support
+- Focus trap
+- Scroll lock
+
+**ToastProvider** - Toast notification system
+
+- Queue management
+- Positioning options
+- Auto-dismiss
+
+### Added - Documentation & Testing
+
+100% Documentation Coverage (59/59 components)
+
+Each component now includes:
+
+- Comprehensive README.md with API documentation
+- USAGE-GUIDE.md with practical examples and patterns
+- Component tests with Vitest
+- TypeScript .types.ts files
+
+**Documentation includes:**
+
+- Features list with checkmarks
+- Installation instructions
+- Quick start examples
+- API documentation
+- Design principles applied
+- Accessibility notes
+- Best practices (Do's and Don'ts)
+- Browser support
+
+### Enhanced - Existing Components
+
+**CodeBlock v3** - Complete redesign
+
+- Custom lightweight syntax highlighting (no external dependencies)
+- Theme integration with real-time switching
+- Multi-framework support (React, Vue, Angular, Vanilla JS)
+- Enhanced keyboard navigation (arrow keys, Home, End)
+- Improved accessibility (ARIA live regions, focus management)
+- Performance optimized (memoized highlighting)
+- Icons from @spexop/icons
+
+**Card** - New sub-component API
+
+- CardHeader, CardBody, CardFooter composition
+- Backward compatible with old API (deprecated)
+- Density variants (compact, normal, spacious)
+- 6+ visual variants
+
+**Button** - New semantic variants
+
+- danger, success, warning, info, neutral variants
+- Complete theme token coverage
+- Fixed CSS transition bug
+
+### Changed
+
+**Component Organization:**
+
+- Removed duplicate `src/animations/` folder
+- All animations now in `src/basic/animations/`
+- Cleaner folder structure with no duplication
+
+**Type Coverage:**
+
+- 100% TypeScript coverage (59/59 components have .types.ts files)
+- Extracted inline types to separate files
+- Improved type exports
+
+**Build System:**
+
+- Enhanced Vite configuration
+- Better source maps generation
+- Optimized bundle output
 
 ### Fixed
+
+- BadgeProps type export path corrected
+- Template ARIA attributes properly typed (ariaHidden, ariaInvalid, ariaLive)
+- Duplicate export conflicts resolved (useIntersectionObserver, Modal, Toast)
+- All TypeScript declaration errors eliminated (13 errors → 0)
+- 0 linter errors across 681 files
+- All formatting issues resolved
+- Import path corrections
+- Export consistency across all components
+
+### Breaking Changes
+
+**Animations Import Path Change:**
+
+```typescript
+// ❌ OLD (no longer works)
+import { FadeIn, Motion } from '@spexop/react/animations';
+
+// ✅ NEW (correct path)
+import { FadeIn, Motion } from '@spexop/react';
+// or
+import { FadeIn, Motion } from '@spexop/react/basic/animations';
+```
+
+**Migration**: Update any imports from `'@spexop/react/animations'` or `'../animations/'` to `'@spexop/react'` or `'../basic/animations/'`.
+
+### Non-Breaking Changes
+
+**Provider Type Renames:**
+
+For better clarity and to avoid naming conflicts with components:
+
+- `Modal` type → `ModalData` (from ModalProvider)
+- `Toast` type → `ToastData` (from ToastProvider)
+
+Components are unchanged. This only affects direct type imports:
+
+```typescript
+// Components (unchanged)
+import { Modal, Toast } from '@spexop/react';
+
+// Provider types (new names)
+import type { ModalData, ToastData } from '@spexop/react';
+
+// Provider hooks (unchanged)
+import { useModal, useToast } from '@spexop/react';
+```
+
+### Deprecated
+
+**Card Component Old API:**
+
+Props `icon`, `title`, `description` are deprecated in favor of CardHeader sub-component. Still works with deprecation warnings in development.
+
+```typescript
+// ⚠️ DEPRECATED (still works)
+<Card icon={<Icon />} title="Title" description="Description" />
+
+// ✅ RECOMMENDED (new API)
+<Card>
+  <CardHeader title="Title" subtitle="Description" icon={<Icon />} />
+</Card>
+```
+
+### Migration from v0.2.4
+
+See [MIGRATION-GUIDE.md](./MIGRATION-GUIDE.md) for detailed migration instructions.
+
+### Package Statistics
+
+- **Components**: 59 (up from ~45)
+- **Hooks**: 33+ (up from 13)
+- **Providers**: 5 (up from 2)
+- **Documentation Coverage**: 100% (59/59 components with README + USAGE-GUIDE)
+- **Test Coverage**: 100% (59/59 components with tests)
+- **Type Coverage**: 100% (59/59 components with .types.ts)
+- **Linter Errors**: 0
+- **Bundle Size**: ~280KB JS + ~210KB CSS (uncompressed)
+
+### Development Status
+
+This is an active development release. While components follow "The Spexop Way" design principles and include comprehensive documentation, the library is still evolving. APIs may change in future releases. Use in production at your own discretion.
+
+## [0.2.4] - 2025-10-20
+
+### Fixed in 0.3.0
 
 - **CRITICAL**: Added missing TypeScript definition files (.d.ts) to build output
 - Installed and configured `vite-plugin-dts` to generate type definitions
@@ -60,15 +294,15 @@ Version 0.2.3 was published without TypeScript definitions due to missing Vite p
 - ThemeProvider export (alias for UnifiedThemeProvider)
 - useTheme hook for accessing theme context
 
-### Changed
+### Changed in 0.2.0
 
 - All components now support theme system with --theme-* CSS variables
 - Updated component styling to be fully themeable
 - Improved TypeScript types for theme integration
 
-### Removed
+### Removed in 0.2.0
 
-- Dependency on @spexop/tokens (deprecated in favor of @spexop/theme)
+- Dependency on @spexop/theme (deprecated in favor of @spexop/theme)
 - Dependency on @spexop/utils (unused, private package)
 
 ### Migration from v0.1.0
@@ -214,7 +448,7 @@ Initial release of @spexop/react with 60+ production-ready components.
 - Accessibility built-in (WCAG AA compliant)
 - Tree-shakeable ESM bundle
 - Theme support (light/dark modes)
-- Integration with @spexop/tokens (452 design tokens)
+- Integration with @spexop/theme (452 design tokens)
 - Integration with @spexop/icons (262 icons)
 
 ### Known Limitations
@@ -225,7 +459,7 @@ Initial release of @spexop/react with 60+ production-ready components.
 
 ### Dependencies
 
-- @spexop/tokens: ^0.2.2
+- @spexop/theme: ^0.2.2
 - @spexop/icons: ^0.1.1
 - react: ^18.2.0 || ^19.0.0 (peer)
 - react-dom: ^18.2.0 || ^19.0.0 (peer)

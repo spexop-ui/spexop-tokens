@@ -1,0 +1,171 @@
+/**
+ * Text Component Styles
+ * Theme-driven typography with Spexop architecture
+ *
+ * @component Text
+ * @packageName @spexop/react
+ * @description Paragraph and body text component
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ * @version 0.1.0
+ * @since 2025-10-21
+ */
+
+/* Base Text Styles */
+.text {
+  font-family: var(--theme-font-family);
+  color: var(--theme-text);
+  margin: 0;
+  line-height: var(--theme-line-height-relaxed);
+}
+
+/* Default margin for paragraphs */
+.text:not(.no-margin) {
+  margin-bottom: var(--theme-spacing-3);
+}
+
+/* ========== SIZES ========== */
+
+.size-xs {
+  font-size: var(--theme-font-size-xs);
+  line-height: 1.5;
+}
+
+.size-sm {
+  font-size: var(--theme-font-size-sm);
+  line-height: 1.5;
+}
+
+.size-base {
+  font-size: var(--theme-font-size-base);
+  line-height: 1.6;
+}
+
+.size-lg {
+  font-size: var(--theme-font-size-lg);
+  line-height: 1.6;
+}
+
+.size-xl {
+  font-size: var(--theme-font-size-xl);
+  line-height: 1.5;
+}
+
+.size-2xl {
+  font-size: var(--theme-font-size-2xl);
+  line-height: 1.4;
+}
+
+.size-3xl {
+  font-size: var(--theme-font-size-3xl);
+  line-height: 1.3;
+}
+
+.size-4xl {
+  font-size: var(--theme-font-size-4xl);
+  line-height: 1.2;
+}
+
+/* ========== WEIGHTS ========== */
+
+.weight-regular {
+  font-weight: var(--theme-font-weight-regular);
+}
+
+.weight-semibold {
+  font-weight: var(--theme-font-weight-semibold);
+}
+
+.weight-bold {
+  font-weight: var(--theme-font-weight-bold);
+}
+
+/* ========== ALIGNMENT ========== */
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-justify {
+  text-align: justify;
+}
+
+/* ========== VARIANTS ========== */
+
+.variant-default {
+  color: var(--theme-text);
+}
+
+.variant-secondary {
+  color: var(--theme-text-secondary);
+}
+
+.variant-success {
+  color: var(--theme-success);
+}
+
+.variant-error {
+  color: var(--theme-error);
+}
+
+.variant-warning {
+  color: var(--theme-warning);
+}
+
+/* ========== TEXT UTILITIES ========== */
+
+/* Truncate with ellipsis */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Multi-line clamp */
+.clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.clamp-5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+

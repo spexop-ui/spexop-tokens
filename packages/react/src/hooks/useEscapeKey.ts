@@ -30,9 +30,17 @@
  * @param isActive - Whether the hook is active (default: true)
  */
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function useEscapeKey(onEscape: () => void, isActive = true): void {
+  // Store callback in ref to prevent listener churn
+  const callbackRef = useRef(onEscape);
+
+  // Update ref when callback changes
+  useEffect(() => {
+    callbackRef.current = onEscape;
+  });
+
   useEffect(() => {
     // Only run when active
     if (!isActive) return;
@@ -42,7 +50,7 @@ export function useEscapeKey(onEscape: () => void, isActive = true): void {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onEscape();
+        callbackRef.current();
       }
     };
 
@@ -52,5 +60,5 @@ export function useEscapeKey(onEscape: () => void, isActive = true): void {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onEscape, isActive]);
+  }, [isActive]); // Only depends on isActive now
 }

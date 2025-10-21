@@ -16,6 +16,7 @@
  * Features:
  * - Locks body scroll when isLocked is true
  * - Compensates for scrollbar width (prevents layout shift)
+ * - Supports nested overlays with lock stacking
  * - Cleans up on unmount
  * - SSR-safe (checks for browser environment)
  *
@@ -24,33 +25,46 @@
 
 import { useEffect } from "react";
 
+// Global lock counter for nested overlays
+let lockCount = 0;
+
 export function useBodyScrollLock(isLocked: boolean): void {
   useEffect(() => {
     // Only run in browser
     if (typeof window === "undefined") return;
 
     if (isLocked) {
-      // Calculate scrollbar width to prevent layout shift
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
+      // Increment lock counter
+      lockCount += 1;
 
-      // Lock scroll
-      document.body.style.overflow = "hidden";
+      // Only apply lock on first lock
+      if (lockCount === 1) {
+        // Calculate scrollbar width to prevent layout shift
+        const scrollbarWidth =
+          window.innerWidth - document.documentElement.clientWidth;
 
-      // Compensate for scrollbar disappearing
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        // Lock scroll
+        document.body.style.overflow = "hidden";
+
+        // Compensate for scrollbar disappearing
+        if (scrollbarWidth > 0) {
+          document.body.style.paddingRight = `${scrollbarWidth}px`;
+        }
       }
-    } else {
-      // Unlock scroll
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
     }
 
-    // Cleanup on unmount
+    // Cleanup function
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
+      if (isLocked) {
+        // Decrement lock counter
+        lockCount -= 1;
+
+        // Only unlock when all locks are removed
+        if (lockCount === 0) {
+          document.body.style.overflow = "";
+          document.body.style.paddingRight = "";
+        }
+      }
     };
   }, [isLocked]);
 }

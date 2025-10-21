@@ -1,0 +1,159 @@
+/**
+ * Divider Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - simple border-based divider
+ * - Principle 3: Typography before decoration - clear labels
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - semantic and clear
+ */
+
+/* Base divider */
+.divider {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--theme-border, #d4d4d4);
+}
+
+/* Horizontal orientation */
+.divider.orientation-horizontal {
+  width: 100%;
+  height: 1px;
+  margin: var(--theme-spacing-4, 16px) 0;
+}
+
+/* Vertical orientation */
+.divider.orientation-vertical {
+  width: 1px;
+  height: 100%;
+  margin: 0 var(--theme-spacing-4, 16px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* With label */
+.divider.with-label {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3, 12px);
+  background: transparent;
+}
+
+.divider.with-label.orientation-horizontal {
+  height: auto;
+}
+
+/* Label */
+.label {
+  flex-shrink: 0;
+  padding: 0 var(--theme-spacing-2, 8px);
+  color: var(--theme-text-secondary, #404040);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-regular, 400);
+  white-space: nowrap;
+}
+
+/* Line (for labeled dividers) */
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--theme-border, #d4d4d4);
+}
+
+/* Label alignment */
+.divider.label-left .line:first-child {
+  flex: 0 0 var(--theme-spacing-4, 16px);
+}
+
+.divider.label-right .line:last-child {
+  flex: 0 0 var(--theme-spacing-4, 16px);
+}
+
+/* Variant styles */
+.divider.variant-dashed {
+  border-style: dashed;
+}
+
+.divider.variant-dashed.orientation-horizontal {
+  border-top: 1px dashed var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+.divider.variant-dashed.orientation-vertical {
+  border-left: 1px dashed var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+.divider.variant-dashed.with-label .line {
+  border-top: 1px dashed var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+.divider.variant-dotted {
+  border-style: dotted;
+}
+
+.divider.variant-dotted.orientation-horizontal {
+  border-top: 2px dotted var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+.divider.variant-dotted.orientation-vertical {
+  border-left: 2px dotted var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+.divider.variant-dotted.with-label .line {
+  border-top: 2px dotted var(--theme-border, #d4d4d4);
+  background: transparent;
+}
+
+/* Thickness variants */
+.divider.thickness-thin.orientation-horizontal:not(.with-label) {
+  height: 1px;
+}
+
+.divider.thickness-thin.orientation-vertical {
+  width: 1px;
+}
+
+.divider.thickness-normal.orientation-horizontal:not(.with-label) {
+  height: 1px;
+}
+
+.divider.thickness-normal.orientation-vertical {
+  width: 1px;
+}
+
+.divider.thickness-thick.orientation-horizontal:not(.with-label) {
+  height: 2px;
+}
+
+.divider.thickness-thick.orientation-vertical {
+  width: 2px;
+}
+
+.divider.thickness-thin .line {
+  height: 1px;
+}
+
+.divider.thickness-normal .line {
+  height: 1px;
+}
+
+.divider.thickness-thick .line {
+  height: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .divider.orientation-horizontal {
+    margin: var(--theme-spacing-3, 12px) 0;
+  }
+
+  .label {
+    font-size: var(--theme-font-size-xs, 12px);
+  }
+}
+

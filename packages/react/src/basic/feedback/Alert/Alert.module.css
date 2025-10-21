@@ -1,0 +1,148 @@
+/**
+ * Alert Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - strong semantic borders
+ * - Principle 3: Typography before decoration - bold title, clear hierarchy
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - high contrast, semantic colors
+ */
+
+.alert {
+  display: flex;
+  gap: var(--theme-spacing-3, 12px);
+  padding: var(--theme-spacing-4, 16px);
+  border: 2px solid;
+  border-radius: var(--theme-radius-md, 8px);
+  font-size: var(--theme-font-size-base, 16px);
+  line-height: 1.5;
+  animation: alertSlideIn 0.3s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@keyframes alertSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Icon */
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  margin-bottom: var(--theme-spacing-1, 4px);
+  font-size: var(--theme-font-size-base, 16px);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  line-height: 1.4;
+}
+
+.message {
+  color: inherit;
+}
+
+/* Dismiss button */
+.dismiss-button {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--theme-radius-sm, 4px);
+  color: currentColor;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dismiss-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: currentColor;
+}
+
+.dismiss-button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.dismiss-button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dismiss-button:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Info variant */
+.alert.variant-info {
+  background: var(--theme-info-light, #dbeafe);
+  border-color: var(--theme-info, #3b82f6);
+  color: var(--theme-info-dark, #1e3a8a);
+}
+
+/* Success variant */
+.alert.variant-success {
+  background: var(--theme-success-light, #dcfce7);
+  border-color: var(--theme-success, #22c55e);
+  color: var(--theme-success-dark, #14532d);
+}
+
+/* Warning variant */
+.alert.variant-warning {
+  background: var(--theme-warning-light, #fef3c7);
+  border-color: var(--theme-warning, #eab308);
+  color: var(--theme-warning-dark, #713f12);
+}
+
+/* Error variant */
+.alert.variant-error {
+  background: var(--theme-error-light, #fee2e2);
+  border-color: var(--theme-error, #ef4444);
+  color: var(--theme-error-dark, #7f1d1d);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .alert {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .alert {
+    padding: var(--theme-spacing-3, 12px);
+    gap: var(--theme-spacing-2, 8px);
+    font-size: var(--theme-font-size-sm, 14px);
+  }
+
+  .title {
+    font-size: var(--theme-font-size-sm, 14px);
+  }
+
+  .icon {
+    padding-top: 0;
+  }
+}
+

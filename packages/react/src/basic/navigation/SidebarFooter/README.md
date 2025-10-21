@@ -1,10 +1,14 @@
 # SidebarFooter Component
 
+**Status**: ✅ Production Ready | **Version**: 0.2.0
+
 A footer section for sidebar content, typically used for version selectors, quick links, or utility actions.
+
+> For comprehensive documentation, examples, and advanced patterns, see the [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md#sidebar-navigation-system)
 
 ## Overview
 
-The `SidebarFooter` provides a styled footer area at the bottom of a sidebar navigation.
+The `SidebarFooter` provides a styled footer area at the bottom of a Sidebar navigation, perfect for version selectors and utility links.
 
 ## Features
 
@@ -285,24 +289,39 @@ The footer should be lightweight and not distract from main navigation:
 
 ---
 
+## TypeScript Support
+
+```tsx
+import { SidebarFooter, type SidebarFooterProps } from "@spexop/react";
+
+const props: SidebarFooterProps = {
+  className: "custom-footer"
+};
+
+<SidebarFooter {...props}>
+  <p>Version 1.0.0</p>
+</SidebarFooter>
+```
+
+## Performance
+
+- Lightweight: < 0.5KB gzipped
+- No JavaScript dependencies
+- Pure CSS styling
+
 ## Related Components
 
-- **Sidebar**: Main navigation container
-- **NavSection**: Collapsible navigation sections
-- **NavLink**: Individual navigation links
-- **TopBar**: Top navigation bar
+- [Sidebar](../Sidebar/README.md) - Main navigation container
+- [NavSection](../NavSection/README.md) - Collapsible navigation sections
+- [NavLink](../NavLink/README.md) - Individual navigation links
+- [TopBar](../TopBar/README.md) - Top navigation bar
+- [Complete Navigation System](../USAGE-GUIDE.md#complete-navigation-system) - Full navigation setup
 
----
+## Further Reading
 
-## API Reference
-
-See [`SidebarFooter.tsx`](./SidebarFooter.tsx) for implementation details.
-
----
-
-## Version
-
-**v0.1.0** - Initial release with Sidebar refactoring (2025-10-13)
+- [Navigation USAGE-GUIDE.md](../USAGE-GUIDE.md) - Comprehensive guide with routing integration, migration guides, and advanced patterns
+- [Accessibility Guidelines](../USAGE-GUIDE.md#accessibility) - WCAG compliance details
+- [Best Practices](../USAGE-GUIDE.md#best-practices) - Mobile patterns and performance optimization
 
 ---
 

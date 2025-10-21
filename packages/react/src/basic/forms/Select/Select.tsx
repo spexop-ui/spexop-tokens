@@ -1,3 +1,4 @@
+import { Check, ChevronDown } from "@spexop/icons";
 import type React from "react";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./Select.module.css";
@@ -265,23 +266,12 @@ export function Select({
         aria-labelledby={ariaLabelledby}
       >
         <span className={styles.value}>{selectedLabel}</span>
-        <svg
+        <ChevronDown
           className={styles.chevron}
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <path
-            d="M4 6L8 10L12 6"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+          size={16}
+          strokeWidth={2}
+          color="currentColor"
+        />
       </button>
 
       {isOpen && (
@@ -290,6 +280,7 @@ export function Select({
           className={styles.dropdown}
           role="listbox"
           aria-labelledby={id}
+          tabIndex={-1}
         >
           {options.map((option) => {
             const enabledIndex = enabledOptions.findIndex(
@@ -321,23 +312,12 @@ export function Select({
               >
                 {option.label}
                 {isSelected && (
-                  <svg
+                  <Check
                     className={styles.checkmark}
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M13 4L6 11L3 8"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                    size={16}
+                    strokeWidth={2}
+                    color="currentColor"
+                  />
                 )}
               </div>
             );

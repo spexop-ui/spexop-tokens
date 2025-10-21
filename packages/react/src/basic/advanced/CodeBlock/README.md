@@ -7,7 +7,7 @@ A redesigned code block component following "The Spexop Way" with refined minima
 - ✅ **Custom Syntax Highlighting** - Lightweight highlighting with full control over styling
 - ✅ **Theme Integration** - Uses theme tokens for seamless integration
 - ✅ **No External Dependencies** - Built-in highlighting system
-- ✅ **Borders Before Shadows** - Strong 2-3px borders for separation
+- ✅ **Borders Before Shadows** - Strong 2px borders for separation
 - ✅ **Typography Before Decoration** - Font weight for hierarchy (600/700)
 - ✅ **High Contrast** - WCAG AAA compliance
 - ✅ **Token-Based** - All values from theme system
@@ -15,8 +15,11 @@ A redesigned code block component following "The Spexop Way" with refined minima
 - ✅ **Line Numbers** - Optional line numbering with high contrast
 - ✅ **Actions** - Copy, download, share buttons with clear hierarchy
 - ✅ **Variants** - Default, compact, minimal layouts
-- ✅ **Responsive** - Mobile-first design with touch-friendly targets
-- ✅ **Accessible** - ARIA labels, keyboard navigation, reduced motion
+- ✅ **Responsive** - Mobile-first design with 44px touch targets
+- ✅ **Keyboard Navigation** - Full arrow key support for tabs
+- ✅ **Accessible** - Enhanced ARIA attributes, live regions, focus management
+- ✅ **Performance Optimized** - Memoized highlighting with efficient rendering
+- ✅ **Icons from @spexop/icons** - Consistent icon usage across design system
 
 ## Installation
 
@@ -72,7 +75,7 @@ function Example() {
       language="typescript"
       title="Button Example"
       meta="19 lines • 486 bytes"
-      enableSyntaxHighlighting  // VS Code-style colors (enabled by default)
+      enableSyntaxHighlighting  // Custom lightweight highlighting (enabled by default)
       showLineNumbers
       showCopy
       showDownload
@@ -150,7 +153,7 @@ function Example() {
 | `language` | `CodeLanguage` | `"javascript"` | Programming language for syntax highlighting |
 | `title` | `string` | - | Title displayed in header |
 | `meta` | `string` | - | Meta info (file size, line count, etc.) |
-| `enableSyntaxHighlighting` | `boolean` | `true` | Enable VS Code-style syntax highlighting |
+| `enableSyntaxHighlighting` | `boolean` | `true` | Enable custom syntax highlighting |
 | `showLineNumbers` | `boolean` | `false` | Show line numbers |
 | `showCopy` | `boolean` | `true` | Show copy button |
 | `showDownload` | `boolean` | `false` | Show download button |
@@ -293,17 +296,26 @@ CodeBlock follows WCAG AAA guidelines:
 
 ### Keyboard Navigation
 
-- **Tab**: Focus code block
-- **Tab**: Navigate action buttons
+**Full keyboard support for all interactions:**
+
+- **Tab**: Focus code block and navigate action buttons
 - **Enter/Space**: Activate buttons
-- **Arrow Keys**: Navigate framework tabs
+- **Arrow Right**: Move to next framework tab
+- **Arrow Left**: Move to previous framework tab
+- **Home**: Jump to first framework tab
+- **End**: Jump to last framework tab
+
+**Roving tabindex** ensures only the active tab is in tab order for efficient navigation.
 
 ### Screen Readers
 
 - Semantic HTML (`<section>`, `<h3>`, `<button>`)
 - ARIA labels on all interactive elements
-- Role="tablist" for framework tabs
-- Role="tabpanel" for code content
+- `role="tablist"` for framework tabs with `aria-label`
+- `role="tabpanel"` for code content
+- `aria-describedby` linking code to language badge
+- `aria-live="polite"` for copy status announcements
+- `aria-selected` state for active tab
 
 ### Reduced Motion
 
@@ -360,7 +372,7 @@ color: var(--s-color-neutral-300);  /* #d4d4d4 (dark theme) */
 
 ### 4. Token-Based Design
 
-All values from `@spexop/tokens`:
+All values from `@spexop/theme`:
 
 ```tsx
 // Spacing
@@ -420,12 +432,14 @@ color: var(--s-color-neutral-900);
 
 CodeBlock includes **custom lightweight syntax highlighting** with full control over styling and spacing.
 
-### What's New in v3.0
+### What's New in v3.1
 
 - **Custom highlighting engine** - Built-in lightweight syntax highlighter
 - **Full control over styling** - No external dependencies or inline style conflicts
 - **Perfect spacing control** - Custom letter-spacing and token spacing
 - **Theme token integration** - Uses your design system colors directly
+- **Performance optimized** - Memoized with `useMemo` for efficient re-renders
+- **Error resilient** - Graceful fallback to plain text on highlighting errors
 
 ### Supported Languages
 
@@ -458,6 +472,47 @@ If you prefer plain monospace text:
   code={code}
   language="typescript"
   enableSyntaxHighlighting={false}  // Disable colored syntax
+/>
+```
+
+## Performance
+
+CodeBlock v3.1 is optimized for efficient rendering:
+
+### Memoization
+
+- **Syntax highlighting** uses `useMemo` to cache results
+- Only re-highlights when code, language, or highlighting setting changes
+- Prevents unnecessary re-computation on parent re-renders
+
+### Error Handling
+
+- Highlighting errors fail gracefully with plain text fallback
+- No console errors in production
+- Silent recovery maintains user experience
+
+### Rendering Optimization
+
+- Line numbers rendered only when enabled
+- Tokens generated once and reused
+- Efficient token rendering with stable keys
+
+### Best Practices for Performance
+
+```tsx
+// ✅ Good: Stable code string
+const code = `const hello = 'world';`;
+<CodeBlock code={code} language="javascript" />
+
+// ❌ Avoid: Inline code (creates new string on every render)
+<CodeBlock code={`const hello = 'world';`} language="javascript" />
+
+// ✅ Good: Controlled framework switching
+const [framework, setFramework] = useState('react');
+<CodeBlock 
+  code={frameworkCode}
+  activeFramework={framework}
+  onFrameworkChange={setFramework}
 />
 ```
 
@@ -537,33 +592,39 @@ If you prefer plain monospace text:
 
 ## Comparison with Previous Versions
 
-| Feature | CodeBlock v1 | CodeBlock v2 (Prism) | CodeBlock v3 (Shiki) |
-|---------|--------------|----------------------|----------------------|
-| **Syntax Engine** | Prism.js | Prism-react-renderer | Shiki (VSCode) ✅ |
+| Feature | CodeBlock v1 | CodeBlock v2 (Prism) | CodeBlock v3 (Current) |
+|---------|--------------|----------------------|------------------------|
+| **Syntax Engine** | Prism.js | Prism-react-renderer | Custom lightweight ✅ |
 | **Theme Integration** | Hardcoded colors | Hardcoded colors | Theme tokens ✅ |
 | **Theme Switching** | Static | Static | Real-time ✅ |
 | **Background Highlights** | Yes (buggy) | Yes (ugly white) | None ✅ |
-| **Language Support** | 50+ languages | 50+ languages | 200+ languages ✅ |
+| **Language Support** | 50+ languages | 50+ languages | Extensible ✅ |
 | **Language badge** | Overlay on code | Header (no overlap) | Header (no overlap) ✅ |
 | **Line numbers** | Low contrast | High contrast | High contrast ✅ |
 | **Action bar** | Top + Bottom | Single bottom bar | Single bottom bar ✅ |
 | **Copy button** | Floating over code | Clean action bar | Clean action bar ✅ |
 | **Header** | No separation | Strong 2px border | Strong 2px border ✅ |
 | **Spacing** | Inconsistent | Token-based | Theme tokens ✅ |
-| **Borders** | 1px subtle | 2-3px strong | 2-3px strong ✅ |
+| **Borders** | 1px subtle | 2-3px strong | 2px strong ✅ |
 | **Typography** | Color-based | Weight-based | Weight-based ✅ |
+| **Keyboard Navigation** | None | None | Full arrow key support ✅ |
+| **Touch Targets** | Variable | Variable | 44px minimum (WCAG) ✅ |
+| **Performance** | Basic | Basic | Memoized + optimized ✅ |
+| **Icons** | Inline SVG | Inline SVG | @spexop/icons ✅ |
 
 ## Best Practices
 
 ### DO ✅
 
-- Use token-based spacing (`sSpacing4`, `sSpacing5`)
+- Use token-based spacing from theme system
 - Use font weight for hierarchy (600/700), not lighter colors
 - Show line numbers for longer code examples (10+ lines)
 - Provide descriptive `title` and `meta` information
 - Use `infoBadge` for version/compatibility info
-- Test keyboard navigation (Tab, Enter, Space)
-- Ensure 44px minimum touch targets on mobile
+- Test keyboard navigation (Tab, Arrow keys, Home, End, Enter, Space)
+- Ensure 44px minimum touch targets (automatically handled)
+- Use stable code strings (avoid inline template literals)
+- Leverage memoization for performance
 
 ### DON'T ❌
 
@@ -591,7 +652,9 @@ If you prefer plain monospace text:
 
 ## Migration Guide
 
-### From v2 (Prism) to v3 (Shiki)
+**See [USAGE-GUIDE.md](./USAGE-GUIDE.md) for detailed backward compatibility information and upgrade instructions.**
+
+### From v2 (Prism) to v3 (Current)
 
 **Good news!** The API is completely compatible. No code changes needed! Just upgrade:
 
@@ -601,10 +664,12 @@ pnpm update @spexop/react
 
 The component will automatically:
 
-- ✅ Use Shiki instead of Prism
+- ✅ Use custom lightweight highlighting instead of Prism
 - ✅ Adapt to your site's theme system
 - ✅ Remove background highlight issues
-- ✅ Support 200+ languages
+- ✅ Provide better performance with memoization
+- ✅ Add full keyboard navigation support
+- ✅ Use @spexop/icons for consistent design
 
 ### From v1 to v3
 
@@ -631,13 +696,22 @@ The component will automatically:
 
 **None!** v2 → v3 is backward compatible.
 
+### New Features in v3.1
+
+- ✅ **Keyboard Navigation**: Arrow keys, Home, End for tab navigation
+- ✅ **Enhanced ARIA**: Live regions, better screen reader support
+- ✅ **Performance**: Memoized syntax highlighting
+- ✅ **Touch Targets**: 44px minimum for WCAG compliance
+- ✅ **Icons**: Migrated to @spexop/icons library
+- ✅ **Accessibility**: Improved focus management and keyboard support
+
 ## Contributing
 
 When contributing to CodeBlock:
 
 1. Follow "The Spexop Way" design principles
 2. Maintain WCAG AAA contrast ratios
-3. Use tokens from `@spexop/tokens` only
+3. Use tokens from `@spexop/theme` only
 4. Test keyboard navigation and screen readers
 5. Add tests for new features
 6. Update documentation with examples

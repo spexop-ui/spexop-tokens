@@ -1,3 +1,4 @@
+import { Search } from "@spexop/icons";
 import {
   type ReactElement,
   useCallback,
@@ -345,34 +346,33 @@ export function CommandPalette({
   const paletteContent = (
     <>
       {/* Backdrop */}
-      {/* biome-ignore lint/a11y/noStaticElementInteractions: Backdrop click is intentional, ESC key already handled */}
-      {/* biome-ignore lint/a11y/useKeyWithClickEvents: Backdrop click is intentional, ESC key already handled */}
-      <div className={styles.backdrop} onClick={handleBackdropClick}>
+      <div
+        className={styles.backdrop}
+        onClick={handleBackdropClick}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            onClose();
+          }
+        }}
+      >
         {/* Command Palette Container */}
-        {/* biome-ignore lint/a11y/useKeyWithClickEvents: Container click stops propagation */}
         <div
           role="dialog"
           aria-modal="true"
           aria-label={ariaLabel}
           className={`${styles.palette} ${className}`}
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
           style={style}
         >
           {/* Search Input */}
           <div className={styles.searchContainer}>
             {/* Search Icon */}
-            <svg
+            <Search
+              size={20}
               className={styles.searchIcon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
               aria-hidden="true"
-            >
-              <title>Search</title>
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" strokeLinecap="round" />
-            </svg>
+            />
 
             {/* Input */}
             <input
@@ -400,6 +400,7 @@ export function CommandPalette({
             role="listbox"
             aria-label="Commands"
             className={styles.commandList}
+            tabIndex={-1}
           >
             {filteredCommands.length === 0 ? (
               // Empty state

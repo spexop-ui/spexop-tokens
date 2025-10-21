@@ -1,12 +1,14 @@
 /**
- * CodeBlock - Redesigned code block component with Shiki
+ * CodeBlock - Redesigned code block component with custom highlighting
  *
  * A refined minimalist code block following "The Spexop Way":
  * - Borders before shadows (strong 2-3px borders)
  * - Typography before decoration (font weight for hierarchy)
  * - High contrast (WCAG AAA compliance)
  * - Token-based design (no magic numbers)
- * - VSCode-powered syntax highlighting with Shiki
+ * - Custom lightweight syntax highlighting
+ * - Full keyboard navigation support
+ * - Enhanced accessibility with ARIA
  *
  * @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
  *
@@ -20,7 +22,8 @@
  * ```
  */
 
-import { useEffect, useId, useState } from "react";
+import { Check, Copy, Download, Share } from "@spexop/icons";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { cn } from "../../../utils/index.js";
 import styles from "./CodeBlock.module.css";
 import type {
@@ -256,60 +259,10 @@ function isVariable(word: string): boolean {
 }
 
 /**
- * Copy icon SVG
- */
-function CopyIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-    </svg>
-  );
-}
-
-/**
- * Download icon SVG
- */
-function DownloadIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
-    </svg>
-  );
-}
-
-/**
- * Share icon SVG
- */
-function ShareIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="18" cy="5" r="3" />
-      <circle cx="6" cy="12" r="3" />
-      <circle cx="18" cy="19" r="3" />
-      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-    </svg>
-  );
-}
-
-/**
- * Check icon SVG (for copied state)
- */
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  );
-}
-
-/**
  * CodeBlock Component
- * Redesigned code block with refined minimalism and Shiki highlighting
- * @version 3.0.0
+ * Redesigned code block with refined minimalism and custom highlighting
+ * Enhanced with full keyboard navigation and accessibility features
+ * @version 3.1.0
  */
 export function CodeBlock({
   code,
@@ -341,12 +294,17 @@ export function CodeBlock({
 }: CodeBlockProps) {
   // Generate unique ID for accessibility
   const codeId = useId();
+  const languageBadgeId = useId();
+  const copyStatusId = useId();
 
   // Determine if we have multi-framework code
   const isMultiFramework = Array.isArray(code);
   const frameworks = isMultiFramework
     ? (code as FrameworkTab[]).map((tab) => tab.framework)
     : [];
+
+  // Refs for keyboard navigation on tabs
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   // State for active framework, copied status, and highlighted tokens
   const [state, setState] = useState<
@@ -379,8 +337,7 @@ export function CodeBlock({
 
     const observer = new MutationObserver(() => {
       // Theme change detection - can be used for future enhancements
-      const theme = document.documentElement.getAttribute("data-theme");
-      console.log("Theme changed to:", theme);
+      // Triggers re-render when theme changes for syntax highlighting
     });
 
     observer.observe(document.documentElement, {
@@ -408,21 +365,19 @@ export function CodeBlock({
     }
   }, [activeFramework, code, isMultiFramework]);
 
-  // Custom syntax highlighting
-  useEffect(() => {
+  // Optimized syntax highlighting with useMemo
+  const highlightedTokens = useMemo(() => {
     if (!enableSyntaxHighlighting) {
-      setState((prev) => ({ ...prev, tokens: undefined }));
-      return;
+      return undefined;
     }
 
     try {
       const codeString =
         typeof state.code === "string" ? state.code : String(state.code || "");
-      const tokens = highlightCode(codeString, state.language);
-      setState((prev) => ({ ...prev, tokens }));
+      return highlightCode(codeString, state.language);
     } catch (error) {
-      console.error("Failed to highlight code:", error);
-      setState((prev) => ({ ...prev, tokens: undefined }));
+      // Silently fail and return undefined - component will show plain code
+      return undefined;
     }
   }, [state.code, state.language, enableSyntaxHighlighting]);
 
@@ -481,6 +436,41 @@ export function CodeBlock({
     const textToShare =
       typeof state.code === "string" ? state.code : String(state.code || "");
     onShare?.(textToShare);
+  };
+
+  // Handle keyboard navigation for framework tabs
+  const handleTabKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    currentIndex: number,
+  ) => {
+    const tabCount = frameworks.length;
+    let newIndex = currentIndex;
+
+    switch (event.key) {
+      case "ArrowRight":
+        event.preventDefault();
+        newIndex = (currentIndex + 1) % tabCount;
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        newIndex = (currentIndex - 1 + tabCount) % tabCount;
+        break;
+      case "Home":
+        event.preventDefault();
+        newIndex = 0;
+        break;
+      case "End":
+        event.preventDefault();
+        newIndex = tabCount - 1;
+        break;
+      default:
+        return;
+    }
+
+    // Focus the new tab
+    tabRefs.current[newIndex]?.focus();
+    // Change to the new framework
+    handleFrameworkChange(frameworks[newIndex]);
   };
 
   // Ensure code is always a string
@@ -545,7 +535,9 @@ export function CodeBlock({
         <div className={styles.header}>
           <div className={styles.titleGroup}>
             {title && <h3 className={styles.title}>{title}</h3>}
-            <span className={styles.languageBadge}>{displayLanguage}</span>
+            <span className={styles.languageBadge} id={languageBadgeId}>
+              {displayLanguage}
+            </span>
           </div>
           {meta && <span className={styles.meta}>{meta}</span>}
         </div>
@@ -553,24 +545,31 @@ export function CodeBlock({
 
       {/* Framework Tabs */}
       {isMultiFramework && frameworks.length > 1 && (
-        <div className={styles.tabs} role="tablist">
-          {frameworks.map((framework) => {
+        <div
+          className={styles.tabs}
+          role="tablist"
+          aria-label="Framework selection"
+        >
+          {frameworks.map((framework, index) => {
             const tabs = code as FrameworkTab[];
             const tab = tabs.find((t) => t.framework === framework);
             const label = tab?.label || framework;
+            const isActive = state.activeFramework === framework;
 
             return (
               <button
                 key={framework}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
                 type="button"
                 role="tab"
-                aria-selected={state.activeFramework === framework}
+                aria-selected={isActive}
                 aria-controls={codeId}
-                className={cn(
-                  styles.tab,
-                  state.activeFramework === framework && styles["tab--active"],
-                )}
+                tabIndex={isActive ? 0 : -1}
+                className={cn(styles.tab, isActive && styles["tab--active"])}
                 onClick={() => handleFrameworkChange(framework)}
+                onKeyDown={(e) => handleTabKeyDown(e, index)}
               >
                 {label}
               </button>
@@ -586,6 +585,7 @@ export function CodeBlock({
           style={{ maxHeight: maxHeightValue }}
           id={codeId}
           role="tabpanel"
+          aria-describedby={languageBadgeId}
           // biome-ignore lint/a11y/noNoninteractiveTabindex: Tabpanel role requires tabIndex for keyboard accessibility
           tabIndex={0}
         >
@@ -610,8 +610,8 @@ export function CodeBlock({
             </code>
           ) : (
             <code className={styles.codeContent}>
-              {enableSyntaxHighlighting && state.tokens
-                ? renderHighlightedTokens(state.tokens)
+              {highlightedTokens
+                ? renderHighlightedTokens(highlightedTokens)
                 : codeString}
             </code>
           )}
@@ -620,7 +620,7 @@ export function CodeBlock({
 
       {/* Action Bar */}
       {shouldShowActions && (
-        <div className={styles.actions}>
+        <div className={styles.actions} role="group" aria-label="Code actions">
           <div className={styles.actionsLeft}>
             {showCopy && (
               <button
@@ -631,15 +631,25 @@ export function CodeBlock({
                 )}
                 onClick={handleCopy}
                 aria-label={state.copied ? copiedLabel : copyButtonLabel}
+                aria-live="polite"
+                aria-atomic="true"
               >
                 {state.copied ? (
                   <>
-                    <CheckIcon className={styles.btnIcon} />
-                    {copiedLabel}
+                    <Check
+                      className={styles.btnIcon}
+                      size={16}
+                      strokeWidth={2}
+                    />
+                    <span id={copyStatusId}>{copiedLabel}</span>
                   </>
                 ) : (
                   <>
-                    <CopyIcon className={styles.btnIcon} />
+                    <Copy
+                      className={styles.btnIcon}
+                      size={16}
+                      strokeWidth={2}
+                    />
                     {copyButtonLabel}
                   </>
                 )}
@@ -653,7 +663,11 @@ export function CodeBlock({
                 onClick={handleDownload}
                 aria-label={downloadButtonLabel}
               >
-                <DownloadIcon className={styles.btnIcon} />
+                <Download
+                  className={styles.btnIcon}
+                  size={16}
+                  strokeWidth={2}
+                />
                 {downloadButtonLabel}
               </button>
             )}
@@ -665,7 +679,7 @@ export function CodeBlock({
                 onClick={handleShare}
                 aria-label={shareButtonLabel}
               >
-                <ShareIcon className={styles.btnIcon} />
+                <Share className={styles.btnIcon} size={16} strokeWidth={2} />
                 {shareButtonLabel}
               </button>
             )}

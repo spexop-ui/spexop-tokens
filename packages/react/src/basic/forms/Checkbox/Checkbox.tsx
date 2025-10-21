@@ -17,6 +17,7 @@
  * ```
  */
 
+import { Check } from "@spexop/icons";
 import type React from "react";
 import { useId } from "react";
 import styles from "./Checkbox.module.css";
@@ -151,23 +152,12 @@ export function Checkbox({
         />
         <span className={`${styles.checkbox} ${checked ? styles.checked : ""}`}>
           {checked && (
-            <svg
+            <Check
               className={styles.checkmark}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M13 4L6 11L3 8"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+              strokeWidth={2}
+              size={16}
+              color="currentColor"
+            />
           )}
         </span>
         {(label || description) && (

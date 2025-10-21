@@ -1,151 +1,121 @@
-# RadioGroup
+# RadioGroup Component
 
-Radio button group component for mutually exclusive selections. Perfect for 2-5 visible options with descriptions. Built with accessibility and keyboard navigation.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+An accessible radio button group component for single-select options. Features clean design, keyboard navigation, and full ARIA support.
+
+## Features
+
+- ✅ Single selection from multiple options
+- ✅ Vertical and horizontal layouts
+- ✅ Label and helper text support
+- ✅ Error state with validation
+- ✅ Disabled state (group or individual options)
+- ✅ Keyboard navigation (Arrow keys)
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { RadioGroup } from '@spexop/react';
-import type { RadioOption } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
-import { useState } from 'react';
 import { RadioGroup } from '@spexop/react';
+import { useState } from 'react';
 
-function MyComponent() {
-  const [selected, setSelected] = useState('option1');
-  
-  const options = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' }
-  ];
+function App() {
+  const [value, setValue] = useState('option1');
   
   return (
     <RadioGroup
-      value={selected}
-      onChange={setSelected}
-      options={options}
-      aria-label="Select an option"
+      label="Choose an option"
+      value={value}
+      onChange={setValue}
+      options={[
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+        { value: 'option3', label: 'Option 3' },
+      ]}
     />
   );
 }
 ```
 
-## Props
+## Layouts
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | **Required** | Currently selected value |
-| `onChange` | `(value: string) => void` | **Required** | Change handler callback |
-| `options` | `RadioOption[]` | **Required** | Array of radio options |
-| `disabled` | `boolean` | `false` | Disable entire group |
-| `density` | `"compact"` \| `"normal"` \| `"spacious"` | `"normal"` | Spacing density |
-| `className` | `string` | `""` | Additional CSS class |
-| `id` | `string` | auto-generated | HTML id attribute |
-| `aria-label` | `string` | `undefined` | ARIA label for accessibility |
-| `aria-labelledby` | `string` | `undefined` | ARIA labelledby reference |
-
-### RadioOption Type
-
-```typescript
-interface RadioOption {
-  value: string;          // Unique value identifier
-  label: string;          // Display text
-  description?: string;   // Optional helper text below label
-  disabled?: boolean;     // Disable this specific option
-}
-```
-
-## Examples
-
-### Basic Radio Group
+### Vertical (Default)
 
 ```tsx
 <RadioGroup
-  value={plan}
-  onChange={setPlan}
+  label="Delivery Method"
+  value={deliveryMethod}
+  onChange={setDeliveryMethod}
+  direction="vertical"
   options={[
-    { value: 'free', label: 'Free Plan' },
-    { value: 'pro', label: 'Pro Plan' },
-    { value: 'enterprise', label: 'Enterprise Plan' }
+    { value: 'standard', label: 'Standard Shipping' },
+    { value: 'express', label: 'Express Shipping' },
+    { value: 'overnight', label: 'Overnight Shipping' },
   ]}
-  aria-label="Select plan"
 />
 ```
 
-### With Descriptions
+### Horizontal
 
 ```tsx
 <RadioGroup
-  value={tier}
-  onChange={setTier}
+  label="Size"
+  value={size}
+  onChange={setSize}
+  direction="horizontal"
   options={[
-    { 
-      value: 'starter', 
-      label: 'Starter',
-      description: 'Perfect for individuals and small projects' 
-    },
-    { 
-      value: 'professional', 
-      label: 'Professional',
-      description: 'For growing teams and businesses' 
-    },
-    { 
-      value: 'enterprise', 
-      label: 'Enterprise',
-      description: 'Advanced features and dedicated support' 
-    }
+    { value: 'sm', label: 'Small' },
+    { value: 'md', label: 'Medium' },
+    { value: 'lg', label: 'Large' },
   ]}
-  aria-label="Select subscription tier"
 />
 ```
 
-### With Label
+## States
 
-```tsx
-<div>
-  <label id="payment-label" style={{ display: 'block', marginBottom: '12px' }}>
-    Payment Method
-  </label>
-  <RadioGroup
-    value={paymentMethod}
-    onChange={setPaymentMethod}
-    options={[
-      { value: 'card', label: 'Credit Card' },
-      { value: 'paypal', label: 'PayPal' },
-      { value: 'bank', label: 'Bank Transfer' }
-    ]}
-    aria-labelledby="payment-label"
-  />
-</div>
-```
-
-### Disabled Options
+### With Helper Text
 
 ```tsx
 <RadioGroup
+  label="Payment Method"
+  helperText="Choose how you'd like to pay"
+  value={paymentMethod}
+  onChange={setPaymentMethod}
+  options={[
+    { value: 'card', label: 'Credit Card' },
+    { value: 'paypal', label: 'PayPal' },
+    { value: 'bank', label: 'Bank Transfer' },
+  ]}
+/>
+```
+
+### Error State
+
+```tsx
+<RadioGroup
+  label="Subscription Plan"
   value={plan}
   onChange={setPlan}
+  error="Please select a plan to continue"
   options={[
-    { value: 'free', label: 'Free', description: 'Basic features' },
-    { 
-      value: 'premium', 
-      label: 'Premium', 
-      description: 'Coming soon',
-      disabled: true 
-    }
+    { value: 'basic', label: 'Basic' },
+    { value: 'pro', label: 'Pro' },
+    { value: 'enterprise', label: 'Enterprise' },
   ]}
-  aria-label="Plan selection"
 />
 ```
 
@@ -153,420 +123,272 @@ interface RadioOption {
 
 ```tsx
 <RadioGroup
+  label="Unavailable Options"
   value={value}
   onChange={setValue}
-  options={options}
   disabled={true}
-  aria-label="Disabled radio group"
+  options={[
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+  ]}
 />
 ```
 
-### Density Variants
-
-```tsx
-// Compact - for dashboards
-<RadioGroup
-  value={value}
-  onChange={setValue}
-  options={options}
-  density="compact"
-  aria-label="Compact radio group"
-/>
-
-// Normal - default
-<RadioGroup
-  value={value}
-  onChange={setValue}
-  options={options}
-  density="normal"
-  aria-label="Normal radio group"
-/>
-
-// Spacious - for content pages
-<RadioGroup
-  value={value}
-  onChange={setValue}
-  options={options}
-  density="spacious"
-  aria-label="Spacious radio group"
-/>
-```
-
-### In a Form
-
-```tsx
-import { Stack, RadioGroup, TextInput, Button } from '@spexop/react';
-
-function PreferencesForm() {
-  const [theme, setTheme] = useState('light');
-  const [language, setLanguage] = useState('en');
-  
-  return (
-    <form onSubmit={handleSubmit}>
-      <Stack direction="vertical" gap={6}>
-        <div>
-          <label id="theme-label">Theme</label>
-          <RadioGroup
-            value={theme}
-            onChange={setTheme}
-            options={[
-              { value: 'light', label: 'Light', description: 'Bright and clean' },
-              { value: 'dark', label: 'Dark', description: 'Easy on the eyes' },
-              { value: 'auto', label: 'Auto', description: 'Match system preference' }
-            ]}
-            aria-labelledby="theme-label"
-          />
-        </div>
-        
-        <div>
-          <label id="language-label">Language</label>
-          <RadioGroup
-            value={language}
-            onChange={setLanguage}
-            options={[
-              { value: 'en', label: 'English' },
-              { value: 'es', label: 'Español' },
-              { value: 'fr', label: 'Français' }
-            ]}
-            aria-labelledby="language-label"
-          />
-        </div>
-        
-        <Button variant="primary" type="submit">
-          Save Preferences
-        </Button>
-      </Stack>
-    </form>
-  );
-}
-```
-
-## Keyboard Navigation
-
-| Key | Action |
-|-----|--------|
-| **Tab** | Move focus to first/next radio button |
-| **Shift + Tab** | Move focus to previous radio button |
-| **Arrow Down** / **Arrow Right** | Select next option (wraps to first) |
-| **Arrow Up** / **Arrow Left** | Select previous option (wraps to last) |
-| **Space** | Select focused option |
-
-## Accessibility
-
-### ARIA Attributes
-
-- `role="radiogroup"` - Container for radio buttons
-- `aria-label` or `aria-labelledby` - Group label (required)
-- `role="radio"` - Each option
-- `aria-checked` - Current selection state
-- `aria-disabled` - Disabled options
-- `aria-describedby` - Option descriptions
-
-### Focus Management
-
-- ✅ Only one radio in group is focusable at a time
-- ✅ Arrow keys change selection AND move focus
-- ✅ Focus visible on keyboard navigation
-- ✅ Disabled options skip keyboard navigation
-
-### Screen Readers
-
-- Announces group label
-- Announces option count (e.g., "1 of 3")
-- Announces selection state
-- Reads option descriptions
-- Announces when options are disabled
-
-### Requirements
-
-**Always provide** one of:
-
-- `aria-label` prop
-- Associated `<label>` with `aria-labelledby`
-
-```tsx
-// Option 1: aria-label
-<RadioGroup aria-label="Payment method" {...props} />
-
-// Option 2: label element
-<label id="payment-label">Payment Method</label>
-<RadioGroup aria-labelledby="payment-label" {...props} />
-```
-
-## Common Use Cases
-
-### Plan Selection
+### Individual Disabled Options
 
 ```tsx
 <RadioGroup
+  label="Plan Selection"
   value={plan}
   onChange={setPlan}
   options={[
-    { 
-      value: 'free', 
-      label: 'Free',
-      description: '$0/month - Basic features'
-    },
-    { 
-      value: 'pro', 
-      label: 'Professional',
-      description: '$29/month - All features'
-    },
-    { 
-      value: 'enterprise', 
-      label: 'Enterprise',
-      description: '$99/month - Priority support'
-    }
+    { value: 'free', label: 'Free Plan' },
+    { value: 'pro', label: 'Pro Plan' },
+    { value: 'enterprise', label: 'Enterprise Plan', disabled: true },
   ]}
-  density="spacious"
-  aria-label="Subscription plan"
 />
 ```
 
-### Shipping Method
+## With Descriptions
 
 ```tsx
 <RadioGroup
-  value={shipping}
-  onChange={setShipping}
+  label="Billing Frequency"
+  value={frequency}
+  onChange={setFrequency}
   options={[
     { 
-      value: 'standard', 
-      label: 'Standard Shipping',
-      description: '5-7 business days - Free'
+      value: 'monthly',
+      label: 'Monthly',
+      description: '$29/month - Billed monthly'
     },
     { 
-      value: 'express', 
-      label: 'Express Shipping',
-      description: '2-3 business days - $9.99'
+      value: 'annual',
+      label: 'Annual',
+      description: '$290/year - Save 17%'
     },
-    { 
-      value: 'overnight', 
-      label: 'Overnight',
-      description: 'Next business day - $24.99'
-    }
   ]}
-  aria-label="Shipping method"
 />
 ```
 
-### Privacy Settings
+## Common Patterns
+
+### Form Integration
 
 ```tsx
-<RadioGroup
-  value={visibility}
-  onChange={setVisibility}
-  options={[
-    { 
-      value: 'public', 
-      label: 'Public',
-      description: 'Anyone can see your profile'
-    },
-    { 
-      value: 'friends', 
-      label: 'Friends Only',
-      description: 'Only friends can see your profile'
-    },
-    { 
-      value: 'private', 
-      label: 'Private',
-      description: 'Only you can see your profile'
+function ShippingForm() {
+  const [formData, setFormData] = useState({
+    shipping: 'standard',
+    gift: 'no',
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = () => {
+    const newErrors = {};
+    if (!formData.shipping) {
+      newErrors.shipping = 'Please select a shipping method';
     }
-  ]}
-  aria-label="Profile visibility"
-/>
-```
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
+    // Submit form
+  };
 
-## Integration with Forms
-
-### With React Hook Form
-
-```tsx
-import { useForm, Controller } from 'react-hook-form';
-import { RadioGroup } from '@spexop/react';
-
-function Form() {
-  const { control, handleSubmit } = useForm();
-  
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="plan"
-        control={control}
-        render={({ field }) => (
-          <RadioGroup
-            value={field.value}
-            onChange={field.onChange}
-            options={planOptions}
-            aria-label="Select plan"
-          />
-        )}
+    <form onSubmit={handleSubmit}>
+      <RadioGroup
+        label="Shipping Method"
+        value={formData.shipping}
+        onChange={(value) =>
+          setFormData({ ...formData, shipping: value })
+        }
+        error={errors.shipping}
+        options={[
+          { 
+            value: 'standard',
+            label: 'Standard',
+            description: '5-7 business days - Free'
+          },
+          { 
+            value: 'express',
+            label: 'Express',
+            description: '2-3 business days - $9.99'
+          },
+          { 
+            value: 'overnight',
+            label: 'Overnight',
+            description: 'Next business day - $24.99'
+          },
+        ]}
       />
+      
+      <RadioGroup
+        label="Is this a gift?"
+        value={formData.gift}
+        onChange={(value) =>
+          setFormData({ ...formData, gift: value })
+        }
+        direction="horizontal"
+        options={[
+          { value: 'yes', label: 'Yes' },
+          { value: 'no', label: 'No' },
+        ]}
+      />
+      
+      <button type="submit">Continue</button>
     </form>
   );
 }
 ```
 
-### With Formik
+### Settings Panel
 
 ```tsx
-import { Formik, Form, Field } from 'formik';
-import { RadioGroup } from '@spexop/react';
+function SettingsPanel() {
+  const [theme, setTheme] = useState('light');
+  const [notifications, setNotifications] = useState('all');
 
-function MyForm() {
   return (
-    <Formik initialValues={{ plan: 'free' }} onSubmit={handleSubmit}>
-      <Form>
-        <Field name="plan">
-          {({ field }) => (
-            <RadioGroup
-              value={field.value}
-              onChange={(value) => field.onChange({ target: { name: 'plan', value } })}
-              options={planOptions}
-              aria-label="Plan"
-            />
-          )}
-        </Field>
-      </Form>
-    </Formik>
+    <Stack direction="vertical" gap={6}>
+      <RadioGroup
+        label="Theme"
+        value={theme}
+        onChange={setTheme}
+        options={[
+          { value: 'light', label: 'Light' },
+          { value: 'dark', label: 'Dark' },
+          { value: 'auto', label: 'System' },
+        ]}
+      />
+      
+      <RadioGroup
+        label="Notifications"
+        value={notifications}
+        onChange={setNotifications}
+        options={[
+          { value: 'all', label: 'All notifications' },
+          { value: 'important', label: 'Important only' },
+          { value: 'none', label: 'None' },
+        ]}
+      />
+    </Stack>
   );
 }
 ```
 
-## Styling
-
-### Custom Styling
+### Survey Question
 
 ```tsx
-<RadioGroup
-  className="my-radio-group"
-  value={value}
-  onChange={setValue}
-  options={options}
-/>
-```
+function SurveyQuestion() {
+  const [rating, setRating] = useState('');
 
-```css
-.my-radio-group {
-  max-width: 400px;
-  padding: var(--s-spacing-4);
+  return (
+    <RadioGroup
+      label="How satisfied are you with our service?"
+      value={rating}
+      onChange={setRating}
+      direction="horizontal"
+      options={[
+        { value: '1', label: '1 - Very Unsatisfied' },
+        { value: '2', label: '2' },
+        { value: '3', label: '3 - Neutral' },
+        { value: '4', label: '4' },
+        { value: '5', label: '5 - Very Satisfied' },
+      ]}
+    />
+  );
 }
 ```
 
-### Design Tokens
+## Props
 
-Uses design tokens for consistent styling:
-
-- Colors: `--s-color-neutral-*`, `--s-color-red-*`
-- Spacing: `--s-spacing-*`
-- Border radius: `--s-radius-md`
-- Transitions: `--s-transition-fast`
-
-## When to Use
-
-### Use RadioGroup When ✅
-
-- You have 2-5 mutually exclusive options
-- All options should be visible at once
-- Users need to compare options
-- Descriptions help decision-making
-- Single selection required
-
-### Use Select Instead When
-
-- You have 5+ options
-- Options can grow dynamically
-- Space is limited (dropdown saves space)
-- Options don't need descriptions
-- Users know what they're looking for
-
-### Use SegmentedButton Instead When
-
-- You have 2-3 toggle-style options
-- Button-style appearance preferred
-- Options are short (1 word)
-- More compact presentation needed
-
-## Related Components
-
-- **Select** - Dropdown for 5+ options
-- **SegmentedButton** - Button-style radio selection
-- **SegmentedControl** - iOS-style control
-- **Toggle** - For boolean on/off choices
-
-## Best Practices
-
-### Do ✅
-
-```tsx
-// Provide descriptive labels
-{ value: 'pro', label: 'Professional Plan' }
-
-// Add helpful descriptions
-{ 
-  value: 'pro', 
-  label: 'Professional',
-  description: 'For growing businesses'
+```typescript
+interface RadioGroupProps {
+  /** Group label */
+  label?: string;
+  /** Current selected value */
+  value: string;
+  /** Change handler */
+  onChange: (value: string) => void;
+  /** Radio options */
+  options: RadioOption[];
+  /** Layout direction */
+  direction?: "vertical" | "horizontal";
+  /** Helper text */
+  helperText?: string;
+  /** Error message */
+  error?: string;
+  /** Disabled state */
+  disabled?: boolean;
+  /** Custom className */
+  className?: string;
+  /** ID for the group */
+  id?: string;
+  /** Name for the radio inputs */
+  name?: string;
 }
 
-// Use aria-label or label element
-<label id="plan-label">Choose Plan</label>
-<RadioGroup aria-labelledby="plan-label" {...props} />
-
-// Keep options to 2-5 for best UX
-const options = [ /* 2-5 options */ ];
-
-// Pre-select a sensible default
-const [value, setValue] = useState('free'); // Default selected
+interface RadioOption {
+  value: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
 ```
 
-### Don't ❌
+## Design Principles
 
-```tsx
-// Don't use for binary choices (use Toggle instead)
-<RadioGroup options={[
-  { value: 'yes', label: 'Yes' },
-  { value: 'no', label: 'No' }
-]} />
-// Use Toggle instead for on/off
+Following "The Spexop Way":
 
-// Don't use for 10+ options (use Select instead)
-<RadioGroup options={[/* 15 options */]} />
-// Dropdown is better UX
+1. **Borders before shadows** - Clean radio button design
+2. **Typography before decoration** - Clear labels
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full ARIA and keyboard support
 
-// Don't skip aria-label
-<RadioGroup {...props} />
-// Always provide accessibility label
+## Accessibility
 
-// Don't use long descriptions
-{ value: 'option', label: 'Option', description: 'Very long paragraph...' }
-// Keep descriptions concise (1-2 sentences max)
-```
+- ✅ ARIA role="radiogroup"
+- ✅ Proper radio button pattern
+- ✅ Keyboard navigation (Arrow keys, Space)
+- ✅ Focus management
+- ✅ Screen reader announcements
+- ✅ Disabled state indication
+- ✅ Error state announcements
+- ✅ WCAG AA+ compliant
 
-## Design System Integration
+### Keyboard Shortcuts
 
-RadioGroup follows Spexop principles:
-
-- **Typography-driven** - Clear, readable labels
-- **Borders before shadows** - Clean design
-- **Token-based** - All values from @spexop/tokens
-- **Accessible** - WCAG AA compliant
-- **Minimal decoration** - Focus on content
+- `Arrow Up/Down` - Navigate options (vertical)
+- `Arrow Left/Right` - Navigate options (horizontal)
+- `Space` - Select focused option
+- `Tab` - Move to next form field
+- `Shift + Tab` - Move to previous field
 
 ## Browser Support
 
-- Chrome 90+ ✅
-- Firefox 88+ ✅
-- Safari 14+ ✅
-- Edge 90+ ✅
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
-## Performance
+## Related Components
 
-- Zero runtime overhead
-- No re-renders on hover/focus
-- CSS-only hover states
-- Lightweight DOM structure
+- `Checkbox` - Multi-select options
+- `Select` - Dropdown selection
+- `SegmentedButton` - Visual radio alternative
+- `Toggle` - Binary on/off
 
----
+## Best Practices
 
-**Part of Form Components** - Essential form controls with validation and accessibility built-in.
+1. **Use for 2-7 options** - Too many options? Use Select instead
+2. **Provide labels** - Always include label for the group
+3. **Clear option text** - Keep labels short and descriptive
+4. **Use descriptions sparingly** - Only when needed for clarity
+5. **Horizontal for few options** - 2-3 options work well horizontally
+
+## License
+
+MIT

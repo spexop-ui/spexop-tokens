@@ -11,6 +11,7 @@
  */
 
 import { forwardRef, useEffect, useRef, useState } from "react";
+import { Icon } from "../../display/Icon/Icon.js";
 import styles from "./ContextNav.module.css";
 
 export interface ContextNavLink {
@@ -255,23 +256,7 @@ export const ContextNav = forwardRef<HTMLDivElement, ContextNavProps>(
             aria-label={isExpanded ? "Close navigation" : "Open navigation"}
             aria-expanded={isExpanded}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              {isExpanded ? (
-                <path d="m18 15-6-6-6 6" />
-              ) : (
-                <path d="m6 9 6 6 6-6" />
-              )}
-            </svg>
+            <Icon name={isExpanded ? "ChevronUp" : "ChevronDown"} size="md" />
           </button>
         )}
 

@@ -1,55 +1,49 @@
 # SegmentedButton Component
 
-**Radio-style button group with exclusive selection and keyboard navigation.**
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
 
-**component** SegmentedButton  
-**packageName** @spexop/react  
-**description** Radio-style button selection with keyboard navigation  
-**author** @spexop-ui | github.com/spexop-ui | @olmstedian | github.com/olmstedian  
-**version** 0.1.0  
-**since** 2025-10-13
+## Overview
 
----
+A radio-style button group with exclusive selection, perfect for view modes, filters, and option selection. Features smooth animations and full keyboard navigation.
 
 ## Features
 
-- ✅ **Radio-Style Selection**: Only one option selected at a time
-- ✅ **Controlled Component**: value + onChange pattern
-- ✅ **Keyboard Navigation**: Arrow keys to navigate options
-- ✅ **Icon Support**: Optional icons before labels
-- ✅ **Disabled Options**: Individual options can be disabled
-- ✅ **Full Accessibility**: ARIA radiogroup pattern, keyboard support
-- ✅ **primitives-Aligned**: Uses spacing tokens, semantic colors
-- ✅ **Theme-Aware**: Works in light and dark modes
-- ✅ **Palette Integration**: Active state shows colored accent border that adapts to selected palette
-
----
+- ✅ Exclusive selection (radio behavior)
+- ✅ Icon support
+- ✅ Horizontal layout
+- ✅ Keyboard navigation (Arrow keys)
+- ✅ Smooth animations
+- ✅ Disabled options
+- ✅ WCAG AA+ accessible
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-pnpm add @spexop/react
+npm install @spexop/react @spexop/icons @spexop/theme
+# or
+pnpm add @spexop/react @spexop/icons @spexop/theme
 ```
 
----
-
-## Basic Usage
+## Quick Start
 
 ```tsx
 import { SegmentedButton } from '@spexop/react';
 import { useState } from 'react';
 
-function MyComponent() {
-  const [view, setView] = useState('list');
-
+function App() {
+  const [value, setValue] = useState('list');
+  
   return (
     <SegmentedButton
-      value={view}
-      onChange={setView}
+      value={value}
+      onChange={setValue}
       options={[
         { value: 'list', label: 'List' },
         { value: 'grid', label: 'Grid' },
-        { value: 'table', label: 'Table' }
+        { value: 'table', label: 'Table' },
       ]}
       aria-label="View mode"
     />
@@ -57,464 +51,288 @@ function MyComponent() {
 }
 ```
 
----
-
 ## With Icons
 
 ```tsx
-import { SegmentedButton } from '@spexop/react';
 import { List, Grid, Table } from '@spexop/icons';
-import { useState } from 'react';
 
-function ViewSelector() {
-  const [view, setView] = useState('list');
-
-  return (
-    <SegmentedButton
-      value={view}
-      onChange={setView}
-      options={[
-        { value: 'list', label: 'List', icon: <List size={20} /> },
-        { value: 'grid', label: 'Grid', icon: <Grid size={20} /> },
-        { value: 'table', label: 'Table', icon: <Table size={20} /> }
-      ]}
-      aria-label="Display mode"
-    />
-  );
-}
+<SegmentedButton
+  value={viewMode}
+  onChange={setViewMode}
+  options={[
+    { value: 'list', label: 'List', icon: <List size={16} /> },
+    { value: 'grid', label: 'Grid', icon: <Grid size={16} /> },
+    { value: 'table', label: 'Table', icon: <Table size={16} /> },
+  ]}
+  aria-label="Select view mode"
+/>
 ```
 
----
-
-## With Disabled Options
+## Icon Only
 
 ```tsx
-import { SegmentedButton } from '@spexop/react';
-import { useState } from 'react';
+<SegmentedButton
+  value={alignment}
+  onChange={setAlignment}
+  options={[
+    { value: 'left', icon: <AlignLeft size={16} />, 'aria-label': 'Align left' },
+    { value: 'center', icon: <AlignCenter size={16} />, 'aria-label': 'Align center' },
+    { value: 'right', icon: <AlignRight size={16} />, 'aria-label': 'Align right' },
+  ]}
+  aria-label="Text alignment"
+/>
+```
 
-function TimePeriodSelector() {
-  const [period, setPeriod] = useState('week');
+## Disabled Options
+
+```tsx
+<SegmentedButton
+  value={plan}
+  onChange={setPlan}
+  options={[
+    { value: 'free', label: 'Free' },
+    { value: 'pro', label: 'Pro' },
+    { value: 'enterprise', label: 'Enterprise', disabled: true },
+  ]}
+  aria-label="Plan selection"
+/>
+```
+
+## Common Patterns
+
+### View Mode Toggle
+
+```tsx
+function ProductList() {
+  const [viewMode, setViewMode] = useState('grid');
 
   return (
-    <SegmentedButton
-      value={period}
-      onChange={setPeriod}
-      options={[
-        { value: 'day', label: 'Day' },
-        { value: 'week', label: 'Week' },
-        { value: 'month', label: 'Month' },
-        { value: 'year', label: 'Year', disabled: true }  // Coming soon
-      ]}
-      aria-label="Time period"
-    />
+    <Container maxWidth="xl" padding={8}>
+      <div className="toolbar">
+        <h1>Products</h1>
+        <SegmentedButton
+          value={viewMode}
+          onChange={setViewMode}
+          options={[
+            { value: 'list', label: 'List', icon: <List size={16} /> },
+            { value: 'grid', label: 'Grid', icon: <Grid size={16} /> },
+          ]}
+          aria-label="Change view mode"
+        />
+      </div>
+      
+      {viewMode === 'grid' ? (
+        <ProductGrid products={products} />
+      ) : (
+        <ProductList products={products} />
+      )}
+    </Container>
   );
 }
 ```
 
----
+### Sort Control
+
+```tsx
+function SortedList() {
+  const [sortBy, setSortBy] = useState('recent');
+
+  return (
+    <>
+      <SegmentedButton
+        value={sortBy}
+        onChange={setSortBy}
+        options={[
+          { value: 'recent', label: 'Recent' },
+          { value: 'popular', label: 'Popular' },
+          { value: 'trending', label: 'Trending' },
+        ]}
+        aria-label="Sort by"
+      />
+      
+      <ItemList items={sortedItems} />
+    </>
+  );
+}
+```
+
+### Filter Tabs
+
+```tsx
+function FilteredContent() {
+  const [filter, setFilter] = useState('all');
+  const counts = { all: 42, active: 28, archived: 14 };
+
+  return (
+    <>
+      <SegmentedButton
+        value={filter}
+        onChange={setFilter}
+        options={[
+          { value: 'all', label: `All (${counts.all})` },
+          { value: 'active', label: `Active (${counts.active})` },
+          { value: 'archived', label: `Archived (${counts.archived})` },
+        ]}
+        aria-label="Filter items"
+      />
+      
+      <FilteredList filter={filter} />
+    </>
+  );
+}
+```
+
+### Text Formatting
+
+```tsx
+function EditorToolbar() {
+  const [alignment, setAlignment] = useState('left');
+
+  return (
+    <div className="toolbar">
+      <SegmentedButton
+        value={alignment}
+        onChange={setAlignment}
+        options={[
+          { 
+            value: 'left',
+            icon: <AlignLeft size={16} />,
+            'aria-label': 'Align left'
+          },
+          { 
+            value: 'center',
+            icon: <AlignCenter size={16} />,
+            'aria-label': 'Align center'
+          },
+          { 
+            value: 'right',
+            icon: <AlignRight size={16} />,
+            'aria-label': 'Align right'
+          },
+          { 
+            value: 'justify',
+            icon: <AlignJustify size={16} />,
+            'aria-label': 'Justify'
+          },
+        ]}
+        aria-label="Text alignment"
+      />
+    </div>
+  );
+}
+```
+
+### Chart Type Selector
+
+```tsx
+function ChartControls() {
+  const [chartType, setChartType] = useState('bar');
+
+  return (
+    <Card>
+      <div className="chart-header">
+        <h3>Sales Data</h3>
+        <SegmentedButton
+          value={chartType}
+          onChange={setChartType}
+          options={[
+            { value: 'bar', label: 'Bar', icon: <BarChart size={16} /> },
+            { value: 'line', label: 'Line', icon: <LineChart size={16} /> },
+            { value: 'pie', label: 'Pie', icon: <PieChart size={16} /> },
+          ]}
+          aria-label="Chart type"
+        />
+      </div>
+      
+      {chartType === 'bar' && <BarChart data={data} />}
+      {chartType === 'line' && <LineChart data={data} />}
+      {chartType === 'pie' && <PieChart data={data} />}
+    </Card>
+  );
+}
+```
 
 ## Props
 
-### SegmentedButtonProps
+```typescript
+interface SegmentedButtonProps {
+  /** Current selected value */
+  value: string;
+  /** Change handler */
+  onChange: (value: string) => void;
+  /** Button options */
+  options: SegmentedButtonOption[];
+  /** Additional CSS class */
+  className?: string;
+  /** ARIA label for accessibility */
+  "aria-label"?: string;
+  /** ARIA labelledby */
+  "aria-labelledby"?: string;
+}
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | required | Current selected value (controlled) |
-| `onChange` | `(value: string) => void` | required | Change handler |
-| `options` | `SegmentedButtonOption[]` | required | Array of button options |
-| `className` | `string` | - | Additional CSS class |
-| `aria-label` | `string` | required | ARIA label describing the group |
-| `aria-labelledby` | `string` | - | Alternative to aria-label |
-
-### SegmentedButtonOption
-
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `value` | `string` | required | Unique value identifier |
-| `label` | `string` | required | Display label |
-| `icon` | `ReactNode` | - | Optional icon before label |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `aria-label` | `string` | - | Optional ARIA label override |
-
----
-
-## Keyboard Navigation
-
-- **Arrow Left**: Select previous option
-- **Arrow Right**: Select next option
-- **Tab**: Navigate to/from component
-- **Enter/Space**: Select focused option (native behavior)
-
-**Behavior**:
-
-- Arrow keys wrap around (last → first, first → last)
-- Disabled options are skipped during navigation
-- Only active option is in tab order (tabIndex={0})
-
----
-
-## Examples
-
-### View Mode Selector
-
-```tsx
-import { SegmentedButton } from '@spexop/react';
-import { List, Grid, Table } from '@spexop/icons';
-import { useState } from 'react';
-
-function ViewModeSelector() {
-  const [viewMode, setViewMode] = useState('list');
-
-  return (
-    <SegmentedButton
-      value={viewMode}
-      onChange={setViewMode}
-      options={[
-        { value: 'list', label: 'List', icon: <List size={20} /> },
-        { value: 'grid', label: 'Grid', icon: <Grid size={20} /> },
-        { value: 'table', label: 'Table', icon: <Table size={20} /> }
-      ]}
-      aria-label="View mode selection"
-    />
-  );
+interface SegmentedButtonOption {
+  value: string;
+  label?: string;
+  icon?: React.ReactNode;
+  disabled?: boolean;
+  "aria-label"?: string;
 }
 ```
 
-### Time Period Filter
+## Design Principles
 
-```tsx
-import { SegmentedButton } from '@spexop/react';
-import { useState } from 'react';
+Following "The Spexop Way":
 
-function TimePeriodFilter() {
-  const [period, setPeriod] = useState('week');
-
-  return (
-    <SegmentedButton
-      value={period}
-      onChange={setPeriod}
-      options={[
-        { value: 'day', label: 'Day' },
-        { value: 'week', label: 'Week' },
-        { value: 'month', label: 'Month' },
-        { value: 'year', label: 'Year' }
-      ]}
-      aria-label="Time period"
-    />
-  );
-}
-```
-
-### Alignment Controls
-
-```tsx
-import { SegmentedButton } from '@spexop/react';
-import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from '@spexop/icons';
-import { useState } from 'react';
-
-function AlignmentControls() {
-  const [align, setAlign] = useState('left');
-
-  return (
-    <SegmentedButton
-      value={align}
-      onChange={setAlign}
-      options={[
-        { value: 'left', label: 'Left', icon: <AlignLeft size={18} /> },
-        { value: 'center', label: 'Center', icon: <AlignCenter size={18} /> },
-        { value: 'right', label: 'Right', icon: <AlignRight size={18} /> },
-        { value: 'justify', label: 'Justify', icon: <AlignJustify size={18} /> }
-      ]}
-      aria-label="Text alignment"
-    />
-  );
-}
-```
-
----
+1. **Borders before shadows** - Clean button borders
+2. **Typography before decoration** - Clear labels
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full ARIA support
 
 ## Accessibility
 
-### ARIA Pattern
+- ✅ ARIA role="radiogroup"
+- ✅ Proper radio pattern (role="radio")
+- ✅ Keyboard navigation (Arrow Left/Right)
+- ✅ Focus management (roving tabindex)
+- ✅ Screen reader announcements
+- ✅ Disabled state indication
+- ✅ WCAG AA+ compliant
 
-SegmentedButton implements the **radiogroup** ARIA pattern:
+### Keyboard Shortcuts
 
-```tsx
-<div role="radiogroup" aria-label="View mode">
-  <button role="radio" aria-checked="true">List</button>
-  <button role="radio" aria-checked="false">Grid</button>
-</div>
-```
+- `Arrow Left` - Select previous option
+- `Arrow Right` - Select next option
+- `Tab` - Move focus to/from control
+- `Space/Enter` - Select focused option
 
-### Required Attributes
+## Animation
 
-```tsx
-// ✅ CORRECT - aria-label is required
-<SegmentedButton
-  value={value}
-  onChange={setValue}
-  options={options}
-  aria-label="View mode"
-/>
+- **Selection indicator** - Smooth slide animation
+- **Hover effect** - Subtle background change
+- **Active state** - Clear visual feedback
 
-// ❌ INCORRECT - Missing aria-label
-<SegmentedButton
-  value={value}
-  onChange={setValue}
-  options={options}
-/>
+## Browser Support
 
-// ✅ CORRECT - Using aria-labelledby
-<div>
-  <span id="view-label">View Mode</span>
-  <SegmentedButton
-    value={value}
-    onChange={setValue}
-    options={options}
-    aria-labelledby="view-label"
-  />
-</div>
-```
-
-### Keyboard Behavior
-
-- **Arrow Keys**: Navigate between options
-- **Tab**: Enter/exit component
-- **Only active option in tab order**: tabIndex={0} for selected, -1 for others
-- **Disabled options skipped**: Arrow keys jump over disabled items
-
----
-
-## Foundation Integration
-
-### With Stack
-
-```tsx
-import { Stack, SegmentedButton } from '@spexop/react';
-
-<Stack direction="vertical" gap={4}>
-  <label htmlFor="view-selector">Choose View</label>
-  
-  <SegmentedButton
-    id="view-selector"
-    value={view}
-    onChange={setView}
-    options={options}
-    aria-label="View mode"
-  />
-</Stack>
-```
-
-### In Forms
-
-```tsx
-import { Stack, SegmentedButton } from '@spexop/react';
-
-<form onSubmit={handleSubmit}>
-  <Stack direction="vertical" gap={6}>
-    <div>
-      <label>Display Mode</label>
-      <SegmentedButton
-        value={displayMode}
-        onChange={setDisplayMode}
-        options={[
-          { value: 'compact', label: 'Compact' },
-          { value: 'normal', label: 'Normal' },
-          { value: 'spacious', label: 'Spacious' }
-        ]}
-        aria-label="Display mode selection"
-      />
-    </div>
-    
-    <Button type="submit" variant="primary">Save Preferences</Button>
-  </Stack>
-</form>
-```
-
----
-
-## Design Tokens Used
-
-```css
-/* Container */
---s-color-subtle-bg: #f5f5f5        /* Background pill */
---s-color-border: #e5e5e5           /* Container border */
---s-radius-md: 6px                   /* Container radius */
---s-spacing-1: 4px                   /* Container padding & gap */
-
-/* Options */
---s-color-surface: #ffffff           /* Active background */
---s-color-text: #171717              /* Active text */
---s-color-text-secondary: #525252    /* Default text */
---s-color-primary-500: #ef4444       /* Active accent border (palette-aware) */
---s-spacing-2: 8px                   /* Button padding */
---s-spacing-4: 16px                  /* Button padding */
---s-radius-sm: 4px                   /* Button radius */
-
-/* Typography */
---s-font-size-base: 16px
---s-font-weight-semibold: 600
-
-/* Transitions */
---s-transition-fast: 150ms ease-in-out
-```
-
-**Palette Integration**: The active state uses `--s-color-primary-500` for the accent border, which automatically adapts when users switch between color palettes (Red, Blue, Green, Purple, Neutral).
-
----
-
-## Best Practices
-
-### ✅ DO
-
-```tsx
-// Use for mutually exclusive choices
-<SegmentedButton
-  value={view}
-  onChange={setView}
-  options={[
-    { value: 'list', label: 'List' },
-    { value: 'grid', label: 'Grid' }
-  ]}
-  aria-label="View mode"
-/>
-
-// Provide aria-label
-<SegmentedButton
-  aria-label="Selection type"
-  {...props}
-/>
-
-// Use controlled component pattern
-const [value, setValue] = useState('option1');
-<SegmentedButton value={value} onChange={setValue} {...props} />
-
-// Add icons for better UX
-<SegmentedButton
-  options={[
-    { value: 'a', label: 'Option A', icon: <Icon /> }
-  ]}
-  {...props}
-/>
-```
-
-### ❌ DON'T
-
-```tsx
-// Don't forget aria-label
-<SegmentedButton {...props} />  // Missing aria-label!
-
-// Don't use for non-exclusive actions
-<SegmentedButton  // Use ButtonGroup instead
-  options={[
-    { value: 'bold', label: 'Bold' },
-    { value: 'italic', label: 'Italic' }
-  ]}
-/>
-
-// Don't use uncontrolled
-<SegmentedButton options={options} />  // Missing value and onChange!
-
-// Don't disable all options
-<SegmentedButton
-  options={options.map(o => ({ ...o, disabled: true }))}  // Bad UX
-/>
-```
-
----
-
-## vs ButtonGroup
-
-**Use SegmentedButton when**:
-
-- ✅ Only ONE option can be selected (radio behavior)
-- ✅ Visual emphasis on selected state (elevated)
-- ✅ Compact visual grouping in a pill container
-
-**Use ButtonGroup when**:
-
-- ✅ Multiple buttons can be active independently (toolbar)
-- ✅ Each button triggers different actions
-- ✅ Connected border appearance desired
-
----
-
-## TypeScript
-
-Full TypeScript support:
-
-```tsx
-import type { SegmentedButtonOption, SegmentedButtonProps } from '@spexop/react';
-
-const options: SegmentedButtonOption[] = [
-  { value: 'a', label: 'Option A' },
-  { value: 'b', label: 'Option B' }
-];
-
-const MySegmentedButton: React.FC<SegmentedButtonProps> = (props) => {
-  return <SegmentedButton {...props} />;
-};
-```
-
----
-
-## Testing
-
-### Keyboard Testing
-
-- [ ] Arrow Left navigates to previous option
-- [ ] Arrow Right navigates to next option
-- [ ] Navigation wraps around (last → first, first → last)
-- [ ] Disabled options are skipped
-- [ ] Tab enters/exits component
-- [ ] Only active option has tabIndex={0}
-
-### Visual Testing
-
-- [ ] Active option has elevated appearance
-- [ ] Hover shows visual feedback
-- [ ] Disabled options appear dimmed
-- [ ] Focus indicators visible (3px outline)
-- [ ] Icons display correctly
-- [ ] Mobile: Horizontal scroll if overflow
-
-### Screen Reader Testing
-
-- [ ] Group purpose announced (radiogroup)
-- [ ] Current selection announced
-- [ ] aria-checked states correct
-- [ ] Disabled options communicated
-
----
-
-## Design System Alignment
-
-This component follows **Spexop's Refined Minimalism** principles:
-
-1. ✅ **Border-based separation** - 2px border on container
-2. ✅ **Typography-driven** - Semibold text, clear labels
-3. ✅ **High-contrast** - Active state clearly visible
-4. ✅ **Minimal decoration** - Subtle shadow on active only
-5. ✅ **Primitives-First** - Uses spacing and color tokens
-
----
-
-## Performance
-
-- **Bundle Size**: ~1.5KB (gzipped)
-- **Render Time**: < 16ms
-- **Keyboard Response**: < 50ms
-
----
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **ButtonGroup**: For independent multi-button toolbars
-- **RadioGroup**: For traditional radio button forms
-- **Select**: For dropdown selections with many options
+- `SegmentedControl` - Similar with different styling
+- `RadioGroup` - Traditional radio buttons
+- `ButtonGroup` - Generic button grouping
+- `Tabs` - Content switching
 
----
+## Best Practices
+
+1. **Use 2-5 options** - Too many becomes unwieldy
+2. **Keep labels short** - One or two words
+3. **Use icons consistently** - All or none
+4. **Provide aria-label** - Required for screen readers
+5. **Consider mobile** - Ensure options fit
 
 ## License
 
-MIT © Spexop Design System
+MIT

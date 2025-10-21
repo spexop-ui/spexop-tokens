@@ -1,36 +1,112 @@
 /**
  * ThemeToggle - Theme switcher component
  *
- * A button that cycles through light, dark, and auto themes.
- * Shows appropriate icon based on current theme.
+ * A purpose-built button that cycles through light, dark, and auto theme modes.
+ * Provides a clean, accessible interface with automatic icon selection from @spexop/icons
+ * (Sun for light, Moon for dark, Monitor for auto/system theme).
+ *
+ * Following "The Spexop Way":
+ * - Principle 5: Composition before complexity - Built using IconButton primitive
+ * - Principle 7: Accessibility before aesthetics - WCAG AA+ with clear ARIA labels
+ *
+ * Features:
+ * - Cycles through light → dark → auto → light
+ * - Automatic icon selection based on theme state
+ * - Two variants: icon-only and button with outline
+ * - Three sizes: small, medium, large
+ * - Full keyboard navigation (Tab, Enter, Space)
+ * - WCAG AA+ accessible with proper ARIA attributes
+ * - Theme-aware styling using design tokens
+ * - TypeScript support with full type safety
+ *
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
  *
  * @example
+ * Basic usage with icon variant
  * ```tsx
  * import { ThemeToggle } from '@spexop/react';
+ * import { useState } from 'react';
  *
+ * function App() {
+ *   const [theme, setTheme] = useState('light');
+ *
+ *   return (
+ *     <ThemeToggle
+ *       currentTheme={theme}
+ *       onThemeChange={setTheme}
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * Button variant with size in settings panel
+ * ```tsx
  * <ThemeToggle
- *   currentTheme="light"
- *   onThemeChange={(theme) => setTheme(theme)}
- *   variant="icon"
+ *   currentTheme={theme}
+ *   onThemeChange={setTheme}
+ *   variant="button"
+ *   size="lg"
  * />
+ * ```
+ *
+ * @example
+ * With localStorage persistence
+ * ```tsx
+ * import { ThemeToggle } from '@spexop/react';
+ * import { useState, useEffect } from 'react';
+ *
+ * function App() {
+ *   const [theme, setTheme] = useState(() =>
+ *     localStorage.getItem('theme') || 'light'
+ *   );
+ *
+ *   useEffect(() => {
+ *     localStorage.setItem('theme', theme);
+ *   }, [theme]);
+ *
+ *   return (
+ *     <ThemeToggle
+ *       currentTheme={theme}
+ *       onThemeChange={setTheme}
+ *     />
+ *   );
+ * }
+ * ```
+ *
+ * @example
+ * With system preference detection for auto theme
+ * ```tsx
+ * import { ThemeToggle } from '@spexop/react';
+ * import { useState, useEffect } from 'react';
+ *
+ * function App() {
+ *   const [theme, setTheme] = useState('auto');
+ *   const [systemTheme, setSystemTheme] = useState('light');
+ *
+ *   useEffect(() => {
+ *     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+ *     setSystemTheme(mediaQuery.matches ? 'dark' : 'light');
+ *
+ *     const handler = (e) => setSystemTheme(e.matches ? 'dark' : 'light');
+ *     mediaQuery.addEventListener('change', handler);
+ *     return () => mediaQuery.removeEventListener('change', handler);
+ *   }, []);
+ *
+ *   const effectiveTheme = theme === 'auto' ? systemTheme : theme;
+ *
+ *   return (
+ *     <div data-theme={effectiveTheme}>
+ *       <ThemeToggle currentTheme={theme} onThemeChange={setTheme} />
+ *     </div>
+ *   );
+ * }
  * ```
  */
 
 import { Monitor, Moon, Sun } from "@spexop/icons";
 import { IconButton } from "../../display/IconButton/index.js";
-
-export interface ThemeToggleProps {
-  /** Current theme */
-  currentTheme: "light" | "dark" | "auto";
-  /** Theme change callback */
-  onThemeChange: (theme: "light" | "dark" | "auto") => void;
-  /** Visual variant */
-  variant?: "icon" | "button";
-  /** Size */
-  size?: "sm" | "md" | "lg";
-  /** Additional CSS class */
-  className?: string;
-}
+import type { ThemeToggleProps } from "./ThemeToggle.types.js";
 
 /**
  * ThemeToggle Component

@@ -7,7 +7,6 @@
 
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-// biome-ignore lint:reason: This is a test file
 import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { ServiceCard } from "./ServiceCard.js";

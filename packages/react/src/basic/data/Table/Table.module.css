@@ -1,0 +1,337 @@
+/**
+ * Table Component Styles
+ * Border-first design with high contrast and typography hierarchy
+ *
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - Strong 2px borders for separation
+ * - Principle 3: Typography before decoration - Font weight (600/700) for hierarchy
+ * - Principle 4: Theme variables before magic numbers - Design tokens throughout
+ * - Principle 7: Accessibility before aesthetics - WCAG AA+ compliance
+ *
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ */
+
+/* ========================================
+   Container & Wrapper
+   ======================================== */
+
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--theme-surface, #ffffff);
+  color: var(--theme-text, #171717);
+  font-family: var(--theme-font-family, system-ui, sans-serif);
+  font-size: var(--theme-font-size-sm, 14px);
+  line-height: var(--theme-line-height-normal, 1.5);
+}
+
+/* ========================================
+   Layout Variants
+   ======================================== */
+
+.layoutFixed {
+  table-layout: fixed;
+}
+
+.layoutAuto {
+  table-layout: auto;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ========================================
+   Table Variants - Border-First Design
+   ======================================== */
+
+/* Default variant - clean 2px borders */
+.variantDefault {
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.variantDefault thead {
+  border-bottom: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+/* Bordered variant - all cells with borders */
+.variantBordered {
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.variantBordered th,
+.variantBordered td {
+  border: 1px solid var(--theme-border, #d4d4d4);
+}
+
+.variantBordered thead th {
+  border-bottom: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+/* Striped variant - alternating row backgrounds */
+.variantStriped {
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.variantStriped thead {
+  border-bottom: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+.variantStriped tbody tr:nth-child(even) {
+  background: var(--theme-surface-hover, #fafafa);
+}
+
+/* Hover variant - row hover effects */
+.variantHover {
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.variantHover thead {
+  border-bottom: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+.variantHover tbody tr:hover {
+  background: var(--theme-surface-secondary, #f5f5f5);
+  cursor: pointer;
+}
+
+/* Minimal variant - ultra clean */
+.variantMinimal {
+  border: none;
+}
+
+.variantMinimal thead {
+  border-bottom: 1px solid var(--theme-border, #d4d4d4);
+}
+
+/* Compact variant - reduced spacing */
+.variantCompact {
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-sm, 4px);
+}
+
+.variantCompact thead {
+  border-bottom: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+/* ========================================
+   Size Variants
+   ======================================== */
+
+/* Small size - tight padding */
+.sizeSm th,
+.sizeSm td {
+  padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  font-size: var(--theme-font-size-xs, 12px);
+}
+
+/* Medium size (default) */
+.sizeMd th,
+.sizeMd td {
+  padding: var(--theme-spacing-3, 12px) var(--theme-spacing-4, 16px);
+  font-size: var(--theme-font-size-sm, 14px);
+}
+
+/* Large size - generous padding */
+.sizeLg th,
+.sizeLg td {
+  padding: var(--theme-spacing-4, 16px) var(--theme-spacing-6, 24px);
+  font-size: var(--theme-font-size-base, 16px);
+}
+
+/* ========================================
+   Header Styles - Typography Hierarchy
+   ======================================== */
+
+.header {
+  background: var(--theme-surface-hover, #fafafa);
+}
+
+.header th {
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* Sticky header */
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: var(--theme-z-sticky, 1100);
+  background: var(--theme-surface-hover, #fafafa);
+}
+
+/* ========================================
+   Body Styles
+   ======================================== */
+
+.body {
+  background: var(--theme-surface, #ffffff);
+}
+
+.body td {
+  font-weight: var(--theme-font-weight-regular, 400);
+  color: var(--theme-text, #171717);
+  vertical-align: middle;
+}
+
+/* ========================================
+   Footer Styles
+   ======================================== */
+
+.footer {
+  background: var(--theme-surface-hover, #fafafa);
+  border-top: 2px solid var(--theme-border-strong, #a3a3a3);
+}
+
+.footer td {
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+}
+
+/* ========================================
+   Row Styles
+   ======================================== */
+
+.row {
+  transition: background 0.15s ease;
+}
+
+.rowSelected {
+  background: var(--theme-primary-light, #eff6ff);
+  border-left: 3px solid var(--theme-primary, #3b82f6);
+}
+
+.rowClickable {
+  cursor: pointer;
+}
+
+.rowClickable:hover {
+  background: var(--theme-surface-secondary, #f5f5f5);
+}
+
+/* ========================================
+   Cell Styles
+   ======================================== */
+
+.cell {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.cellHeader {
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+}
+
+/* Alignment */
+.alignLeft {
+  text-align: left;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+/* ========================================
+   Responsive Scrolling
+   ======================================== */
+
+.responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.responsive::-webkit-scrollbar-track {
+  background: var(--theme-surface-secondary, #f5f5f5);
+  border-radius: var(--theme-radius-sm, 4px);
+}
+
+.responsive::-webkit-scrollbar-thumb {
+  background: var(--theme-border-strong, #a3a3a3);
+  border-radius: var(--theme-radius-sm, 4px);
+}
+
+.responsive::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-text-muted, #737373);
+}
+
+/* ========================================
+   Accessibility Focus States
+   ======================================== */
+
+.row:focus-within,
+.cell:focus-within {
+  outline: 2px solid var(--theme-primary, #3b82f6);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* ========================================
+   Dark Mode Support (if theme provider supports it)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .table {
+    background: var(--theme-text, #171717);
+    color: var(--theme-surface-hover, #fafafa);
+  }
+
+  .header {
+    background: var(--theme-text, #262626);
+  }
+
+  .header th {
+    color: var(--theme-surface-hover, #fafafa);
+  }
+
+  .body {
+    background: var(--theme-text, #171717);
+  }
+
+  .body td {
+    color: var(--theme-surface-hover, #fafafa);
+  }
+
+  .footer {
+    background: var(--theme-text, #262626);
+  }
+
+  .footer td {
+    color: var(--theme-surface-hover, #fafafa);
+  }
+
+  .variantStriped tbody tr:nth-child(even) {
+    background: var(--theme-text, #262626);
+  }
+
+  .variantHover tbody tr:hover {
+    background: var(--theme-text, #262626);
+  }
+
+  .rowSelected {
+    background: var(--theme-primary-dark, #1e3a8a);
+    border-left-color: var(--theme-primary, #60a5fa);
+  }
+}
+

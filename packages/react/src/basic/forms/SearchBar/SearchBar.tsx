@@ -121,7 +121,6 @@ export function SearchBar({
   };
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: form with role="search" is the standard accessible pattern
     <form
       className={`${styles.searchBar} ${styles[variant]} ${className}`}
       onSubmit={handleSubmit}

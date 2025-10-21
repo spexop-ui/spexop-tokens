@@ -1,0 +1,363 @@
+/**
+ * DatePicker Component Styles
+ * Theme-driven with Spexop architecture
+ * 
+ * @component DatePicker
+ * @packageName @spexop/react
+ * @version 0.3.0
+ * @updated 2025-10-20 - Initial implementation
+ */
+
+.datePicker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-2);
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  font-size: var(--theme-font-size-sm);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+  line-height: var(--theme-line-height-tight);
+  margin-bottom: var(--theme-spacing-1);
+}
+
+.required {
+  color: var(--theme-danger);
+  margin-left: var(--theme-spacing-1);
+}
+
+.datePickerContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: var(--theme-spacing-3) var(--theme-spacing-4);
+  padding-right: calc(var(--theme-spacing-4) + 20px);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  font-size: var(--theme-font-size-base);
+  line-height: var(--theme-line-height-normal);
+  color: var(--theme-text);
+  background: var(--theme-surface);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  font-family: var(--theme-font-family);
+  cursor: pointer;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  background: var(--theme-surface);
+}
+
+.input::placeholder {
+  color: var(--theme-text-muted);
+}
+
+.input:disabled {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text-secondary);
+  cursor: not-allowed;
+  border-color: var(--theme-border-subtle);
+}
+
+/* Size variants */
+.size-sm .input {
+  padding: var(--theme-spacing-2) var(--theme-spacing-3);
+  padding-right: calc(var(--theme-spacing-3) + 20px);
+  font-size: var(--theme-font-size-sm);
+}
+
+.size-lg .input {
+  padding: var(--theme-spacing-4) var(--theme-spacing-5);
+  padding-right: calc(var(--theme-spacing-5) + 20px);
+  font-size: var(--theme-font-size-lg);
+}
+
+/* Icon positioning */
+.leftIcon {
+  position: absolute;
+  left: var(--theme-spacing-3);
+  color: var(--theme-text-secondary);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputWithIcon {
+  padding-left: calc(var(--theme-spacing-3) + 20px + var(--theme-spacing-2)) !important;
+}
+
+.size-sm .leftIcon {
+  left: var(--theme-spacing-2);
+}
+
+.size-lg .leftIcon {
+  left: var(--theme-spacing-4);
+}
+
+.calendarIcon {
+  position: absolute;
+  right: var(--theme-spacing-3);
+  color: var(--theme-text-secondary);
+  pointer-events: none;
+}
+
+.size-sm .calendarIcon {
+  right: var(--theme-spacing-2);
+}
+
+.size-lg .calendarIcon {
+  right: var(--theme-spacing-4);
+}
+
+/* Calendar dropdown */
+.calendar {
+  position: absolute;
+  top: calc(100% + var(--theme-spacing-2));
+  left: 0;
+  background: var(--theme-surface);
+  border: var(--theme-border-width) solid var(--theme-border);
+  border-radius: var(--theme-radius-relaxed);
+  padding: var(--theme-spacing-4);
+  z-index: 1000;
+  box-shadow: var(--theme-shadow-lg);
+  animation: slideDown 150ms ease;
+  min-width: 280px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--theme-spacing-3);
+}
+
+.monthYear {
+  font-size: var(--theme-font-size-base);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text);
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  border-radius: var(--theme-radius-relaxed);
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+.navButton:hover {
+  background: var(--theme-surface-hover);
+  color: var(--theme-text);
+}
+
+.navButton:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--theme-spacing-1);
+}
+
+.weekday {
+  text-align: center;
+  font-size: var(--theme-font-size-xs);
+  font-weight: var(--theme-font-weight-semibold);
+  color: var(--theme-text-secondary);
+  padding: var(--theme-spacing-2);
+}
+
+.day,
+.emptyDay {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--theme-font-size-sm);
+  border: none;
+  background: transparent;
+  color: var(--theme-text);
+  cursor: pointer;
+  border-radius: var(--theme-radius-relaxed);
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+.emptyDay {
+  cursor: default;
+}
+
+.day:hover:not(:disabled) {
+  background: var(--theme-surface-hover);
+}
+
+.day:focus {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: -2px;
+}
+
+.day.selected {
+  background: var(--theme-primary);
+  color: var(--theme-surface);
+  font-weight: var(--theme-font-weight-semibold);
+}
+
+.day.selected:hover {
+  background: var(--theme-primary);
+}
+
+.day.today {
+  position: relative;
+  font-weight: var(--theme-font-weight-semibold);
+}
+
+.day.today::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--theme-primary);
+}
+
+.day.selected.today::after {
+  background: var(--theme-surface);
+}
+
+.day:disabled,
+.day.disabled {
+  color: var(--theme-text-muted);
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.day:disabled:hover,
+.day.disabled:hover {
+  background: transparent;
+}
+
+/* Error state */
+.hasError .input {
+  border-color: var(--theme-danger);
+}
+
+.hasError .input:focus {
+  border-color: var(--theme-danger);
+}
+
+.errorMessage {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-danger);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-1);
+}
+
+.errorMessage::before {
+  content: "⚠";
+  font-size: 12px;
+}
+
+.helpText {
+  font-size: var(--theme-font-size-sm);
+  color: var(--theme-text-secondary);
+  line-height: var(--theme-line-height-tight);
+  margin-top: var(--theme-spacing-1);
+}
+
+/* Dark mode support */
+html[data-theme="dark"] .label {
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .input {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+html[data-theme="dark"] .input:focus {
+  border-color: var(--theme-primary);
+}
+
+html[data-theme="dark"] .calendar {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .navButton:hover {
+  background: var(--theme-surface-hover);
+}
+
+html[data-theme="dark"] .day:hover:not(:disabled) {
+  background: var(--theme-surface-hover);
+}
+
+/* Focus within for icon color changes */
+.datePickerContainer:focus-within .leftIcon {
+  color: var(--theme-primary);
+}
+
+.hasError .leftIcon {
+  color: var(--theme-danger);
+}
+
+/* Disabled state */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  .input {
+    border-width: var(--theme-border-thick);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .navButton,
+  .day {
+    transition: none;
+  }
+  
+  .calendar {
+    animation: none;
+  }
+}
+

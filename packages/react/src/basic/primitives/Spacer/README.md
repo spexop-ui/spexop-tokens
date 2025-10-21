@@ -222,7 +222,7 @@ import { Stack, Spacer } from '@spexop/react';
 
 ## Design Tokens
 
-Spacer uses the spacing scale from @spexop/tokens:
+Spacer uses the spacing scale from @spexop/theme:
 
 ```typescript
 import { 
@@ -237,7 +237,7 @@ import {
   sSpacing8,  // 40px
   sSpacing9,  // 48px
   sSpacing10  // 64px
-} from '@spexop/tokens';
+} from '@spexop/theme';
 ```
 
 ## TypeScript

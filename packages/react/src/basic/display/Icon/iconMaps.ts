@@ -11,6 +11,10 @@
 import {
   Box,
   Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
   Copy,
   Download,
   Droplet,
@@ -99,6 +103,10 @@ export const ICON_MAP: Record<string, IconComponent> = {
   book: FileText,
   docs: FileText,
   foundations: Droplet,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  chevronDown: ChevronDown,
+  chevronUp: ChevronUp,
 };
 
 /**

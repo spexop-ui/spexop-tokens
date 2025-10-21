@@ -1,0 +1,393 @@
+/**
+ * DataTable Component Styles
+ * Advanced table with sorting, filtering, and pagination
+ *
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - Strong 2px borders
+ * - Principle 3: Typography before decoration - Font weight for hierarchy
+ * - Principle 4: Theme variables before magic numbers - Design tokens throughout
+ * - Principle 7: Accessibility before aesthetics - WCAG AA+ compliance
+ *
+ * @author @olmstedian | github.com/olmstedian | @spexop | github.com/spexop-ui
+ */
+
+/* ========================================
+   Container
+   ======================================== */
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--theme-spacing-4, 16px);
+}
+
+/* ========================================
+   Toolbar - Search & Filters
+   ======================================== */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--theme-spacing-3, 12px);
+  padding: var(--theme-spacing-4, 16px);
+  background: var(--theme-surface-hover, #fafafa);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.searchContainer {
+  flex: 1;
+  max-width: 400px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--theme-spacing-3, 12px) var(--theme-spacing-4, 16px);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-family: var(--theme-font-family, system-ui, sans-serif);
+  color: var(--theme-text, #171717);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  transition: border-color 0.15s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--theme-primary, #3b82f6);
+}
+
+.searchInput::placeholder {
+  color: var(--theme-text-muted, #737373);
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3, 12px);
+}
+
+/* ========================================
+   Column Filters
+   ======================================== */
+
+.columnFilters {
+  display: flex;
+  gap: var(--theme-spacing-3, 12px);
+  padding: var(--theme-spacing-4, 16px);
+  background: var(--theme-surface-hover, #fafafa);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  overflow-x: auto;
+}
+
+.filterInput {
+  min-width: 150px;
+  padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  font-size: var(--theme-font-size-xs, 12px);
+  font-family: var(--theme-font-family, system-ui, sans-serif);
+  color: var(--theme-text, #171717);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-sm, 4px);
+  transition: border-color 0.15s ease;
+}
+
+.filterInput:focus {
+  outline: none;
+  border-color: var(--theme-primary, #3b82f6);
+}
+
+/* ========================================
+   Table Container
+   ======================================== */
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: var(--theme-surface, #ffffff);
+}
+
+/* ========================================
+   Sortable Column Headers
+   ======================================== */
+
+.sortableHeader {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2, 8px);
+  transition: background 0.15s ease;
+}
+
+.sortableHeader:hover {
+  background: var(--theme-surface-secondary, #f5f5f5);
+}
+
+.sortableHeader:active {
+  background: var(--theme-border-subtle, #e5e5e5);
+}
+
+.sortIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--theme-text-muted, #737373);
+  transition: color 0.15s ease;
+}
+
+.sortIconNeutral {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  line-height: 0;
+  margin-top: -2px;
+  margin-bottom: -2px;
+}
+
+.sortIconActive {
+  color: var(--theme-primary, #3b82f6);
+}
+
+/* ========================================
+   Selection Checkbox
+   ======================================== */
+
+.checkboxCell {
+  width: 40px;
+  padding: var(--theme-spacing-3, 12px);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--theme-primary, #3b82f6);
+}
+
+/* ========================================
+   Loading & Empty States
+   ======================================== */
+
+.loadingContainer,
+.emptyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--theme-spacing-8, 32px) var(--theme-spacing-4, 16px);
+  text-align: center;
+  color: var(--theme-text-muted, #525252);
+  font-size: var(--theme-font-size-sm, 14px);
+}
+
+.loadingSpinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--theme-border-subtle, #e5e5e5);
+  border-top-color: var(--theme-primary, #3b82f6);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.emptyIcon {
+  display: inline-block;
+  margin-bottom: var(--theme-spacing-2, 8px);
+  font-size: var(--theme-font-size-4xl, 36px);
+  color: var(--theme-border-strong, #a3a3a3);
+}
+
+/* ========================================
+   Pagination
+   ======================================== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--theme-spacing-4, 16px);
+  padding: var(--theme-spacing-4, 16px);
+  background: var(--theme-surface-hover, #fafafa);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+}
+
+.paginationInfo {
+  font-size: var(--theme-font-size-sm, 14px);
+  color: var(--theme-text-secondary, #404040);
+  font-weight: var(--theme-font-weight-semibold, 600);
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-3, 12px);
+}
+
+.pageSizeSelect {
+  padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-family: var(--theme-font-family, system-ui, sans-serif);
+  color: var(--theme-text, #171717);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.pageSizeSelect:focus {
+  outline: none;
+  border-color: var(--theme-primary, #3b82f6);
+}
+
+.pageButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--theme-spacing-2, 8px);
+}
+
+.pageButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--theme-spacing-3, 12px);
+  font-size: var(--theme-font-size-sm, 14px);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  color: var(--theme-text, #171717);
+  background: var(--theme-surface, #ffffff);
+  border: 2px solid var(--theme-border, #d4d4d4);
+  border-radius: var(--theme-radius-md, 8px);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+  background: var(--theme-surface-secondary, #f5f5f5);
+  border-color: var(--theme-border-strong, #a3a3a3);
+}
+
+.pageButton:active:not(:disabled) {
+  background: var(--theme-border-subtle, #e5e5e5);
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageButtonActive {
+  background: var(--theme-primary, #3b82f6);
+  color: var(--theme-surface, #ffffff);
+  border-color: var(--theme-primary, #3b82f6);
+}
+
+.pageButtonActive:hover {
+  background: var(--theme-primary-hover, #2563eb);
+  border-color: var(--theme-primary-hover, #2563eb);
+}
+
+/* ========================================
+   Sticky Columns
+   ======================================== */
+
+.stickyColumn {
+  position: sticky;
+  left: 0;
+  z-index: var(--theme-z-sticky, 1100);
+  background: var(--theme-surface, #ffffff);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   Responsive Behavior
+   ======================================== */
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchContainer {
+    max-width: none;
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .paginationControls {
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   Dark Mode Support
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  .toolbar,
+  .columnFilters,
+  .pagination {
+    background: var(--theme-text, #262626);
+    border-color: var(--theme-text-secondary, #404040);
+  }
+
+  .searchInput,
+  .filterInput,
+  .pageSizeSelect,
+  .pageButton {
+    background: var(--theme-text, #171717);
+    color: var(--theme-surface-hover, #fafafa);
+    border-color: var(--theme-text-secondary, #404040);
+  }
+
+  .table {
+    background: var(--theme-text, #171717);
+  }
+
+  .sortableHeader:hover {
+    background: var(--theme-text, #262626);
+  }
+
+  .sortableHeader:active {
+    background: var(--theme-text-secondary, #404040);
+  }
+
+  .stickyColumn {
+    background: var(--theme-text, #171717);
+  }
+
+  .loadingContainer,
+  .emptyContainer {
+    color: var(--theme-border-strong, #a3a3a3);
+  }
+
+  .paginationInfo {
+    color: var(--theme-border, #d4d4d4);
+  }
+}
+

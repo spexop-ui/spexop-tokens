@@ -1,26 +1,39 @@
-# Toggle
+# Toggle Component
 
-Modern toggle/switch component for boolean on/off selections. Features smooth animations, keyboard accessibility, and theme-aware styling.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+An accessible toggle switch component for binary on/off states. Features smooth animations, multiple sizes, and full keyboard support.
+
+## Features
+
+- ✅ 3 sizes (sm, md, lg)
+- ✅ Checked and unchecked states
+- ✅ Disabled state support
+- ✅ Keyboard navigation (Space, Enter)
+- ✅ Smooth animations
+- ✅ WCAG AA+ accessible
+- ✅ Label association
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { Toggle } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
-import { useState } from 'react';
 import { Toggle } from '@spexop/react';
+import { useState } from 'react';
 
-function MyComponent() {
+function App() {
   const [enabled, setEnabled] = useState(false);
   
   return (
@@ -33,510 +46,219 @@ function MyComponent() {
 }
 ```
 
-## Props
+## Sizes
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `checked` | `boolean` | **Required** | Whether toggle is on/off |
-| `onChange` | `(checked: boolean) => void` | **Required** | Change handler callback |
-| `disabled` | `boolean` | `false` | Disable the toggle |
-| `label` | `string` | `undefined` | Optional label text |
-| `density` | `"compact"` \| `"normal"` \| `"spacious"` | `"normal"` | Spacing density |
-| `className` | `string` | `""` | Additional CSS class |
-| `id` | `string` | auto-generated | HTML id attribute |
-| `aria-label` | `string` | `undefined` | ARIA label (required if no label prop) |
-| `aria-labelledby` | `string` | `undefined` | ARIA labelledby reference |
+### Small (sm)
 
-### Density Variants
-
-| Density | Height | Use Case |
-|---------|--------|----------|
-| `compact` | 20px | Dashboards, toolbars, dense UIs |
-| `normal` | 24px | Default, forms, settings |
-| `spacious` | 28px | Content pages, prominent toggles |
-
-## Examples
-
-### Basic Toggle
+Compact toggle for dense layouts.
 
 ```tsx
 <Toggle
-  checked={isEnabled}
-  onChange={setIsEnabled}
-  label="Enable feature"
+  size="sm"
+  checked={value}
+  onChange={setValue}
+  label="Small toggle"
 />
 ```
 
-### Without Label (Requires aria-label)
+### Medium (md) - Default
+
+Standard toggle size.
 
 ```tsx
 <Toggle
-  checked={darkMode}
-  onChange={setDarkMode}
-  aria-label="Dark mode toggle"
+  size="md"
+  checked={value}
+  onChange={setValue}
+  label="Medium toggle"
 />
 ```
 
-### With External Label
+### Large (lg)
+
+Larger toggle for emphasis.
 
 ```tsx
-<div>
-  <label htmlFor="notifications-toggle" style={{ display: 'block', marginBottom: '8px' }}>
-    Email Notifications
-  </label>
-  <Toggle
-    id="notifications-toggle"
-    checked={emailNotifications}
-    onChange={setEmailNotifications}
-  />
-</div>
+<Toggle
+  size="lg"
+  checked={value}
+  onChange={setValue}
+  label="Large toggle"
+/>
 ```
 
-### Disabled State
+## States
+
+### Checked
+
+```tsx
+<Toggle
+  checked={true}
+  onChange={handleChange}
+  label="Enabled feature"
+/>
+```
+
+### Unchecked
+
+```tsx
+<Toggle
+  checked={false}
+  onChange={handleChange}
+  label="Disabled feature"
+/>
+```
+
+### Disabled
 
 ```tsx
 <Toggle
   checked={value}
-  onChange={setValue}
-  label="This feature is disabled"
+  onChange={handleChange}
   disabled={true}
+  label="Cannot change"
 />
 ```
 
-### Density Variants (Compact, Normal, Spacious)
-
-```tsx
-// Compact - for toolbars
-<Toggle
-  checked={compact}
-  onChange={setCompact}
-  label="Compact view"
-  density="compact"
-/>
-
-// Normal - default
-<Toggle
-  checked={normal}
-  onChange={setNormal}
-  label="Normal toggle"
-  density="normal"
-/>
-
-// Spacious - for content pages
-<Toggle
-  checked={spacious}
-  onChange={setSpacious}
-  label="Spacious toggle"
-  density="spacious"
-/>
-```
+## Common Use Cases
 
 ### Settings Panel
 
 ```tsx
-import { Stack, Toggle } from '@spexop/react';
-
 function SettingsPanel() {
   const [notifications, setNotifications] = useState(true);
-  const [autoSave, setAutoSave] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  
+  const [autoSave, setAutoSave] = useState(true);
+
   return (
     <Stack direction="vertical" gap={4}>
       <Toggle
         checked={notifications}
         onChange={setNotifications}
-        label="Email notifications"
+        label="Push notifications"
       />
-      
-      <Toggle
-        checked={autoSave}
-        onChange={setAutoSave}
-        label="Auto-save"
-      />
-      
       <Toggle
         checked={darkMode}
         onChange={setDarkMode}
         label="Dark mode"
       />
+      <Toggle
+        checked={autoSave}
+        onChange={setAutoSave}
+        label="Auto-save"
+      />
     </Stack>
   );
 }
 ```
 
-### With Descriptions
+### With Description
 
 ```tsx
-<div>
+<SettingItem
+  label="Beta Features"
+  description="Enable experimental features (may be unstable)"
+>
   <Toggle
-    checked={analytics}
-    onChange={setAnalytics}
-    label="Analytics"
-    id="analytics-toggle"
+    checked={betaEnabled}
+    onChange={setBetaEnabled}
   />
-  <p style={{ marginTop: '4px', fontSize: '14px', color: 'var(--s-color-neutral-600)' }}>
-    Help us improve by sharing anonymous usage data
-  </p>
-</div>
+</SettingItem>
 ```
 
-### Privacy Settings
+### Controlled Form
 
 ```tsx
-function PrivacySettings() {
-  const [publicProfile, setPublicProfile] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
-  const [allowMessages, setAllowMessages] = useState(true);
-  
+function Form() {
+  const [formData, setFormData] = useState({
+    emailNotifications: true,
+    smsNotifications: false,
+    newsletter: false,
+  });
+
   return (
-    <Stack direction="vertical" gap={6}>
-      <div>
-        <Toggle
-          checked={publicProfile}
-          onChange={setPublicProfile}
-          label="Public profile"
-        />
-        <p className="helper-text">
-          Allow others to see your profile
-        </p>
-      </div>
-      
-      <div>
-        <Toggle
-          checked={showEmail}
-          onChange={setShowEmail}
-          label="Show email address"
-          disabled={!publicProfile}
-        />
-        <p className="helper-text">
-          Display your email on your public profile
-        </p>
-      </div>
-      
-      <div>
-        <Toggle
-          checked={allowMessages}
-          onChange={setAllowMessages}
-          label="Allow messages"
-        />
-        <p className="helper-text">
-          Let other users send you messages
-        </p>
-      </div>
-    </Stack>
+    <form>
+      <Toggle
+        checked={formData.emailNotifications}
+        onChange={(checked) =>
+          setFormData({ ...formData, emailNotifications: checked })
+        }
+        label="Email notifications"
+      />
+      <Toggle
+        checked={formData.smsNotifications}
+        onChange={(checked) =>
+          setFormData({ ...formData, smsNotifications: checked })
+        }
+        label="SMS notifications"
+      />
+      <Toggle
+        checked={formData.newsletter}
+        onChange={(checked) =>
+          setFormData({ ...formData, newsletter: checked })
+        }
+        label="Subscribe to newsletter"
+      />
+    </form>
   );
 }
 ```
 
-## Keyboard Navigation
+## Props
 
-| Key | Action |
-|-----|--------|
-| **Space** | Toggle on/off |
-| **Enter** | Toggle on/off |
-| **Tab** | Move to next focusable element |
-| **Shift + Tab** | Move to previous focusable element |
+```typescript
+interface ToggleProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label?: string;
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
+  className?: string;
+  id?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+}
+```
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Borders before shadows** - Clean border-based design
+2. **Typography before decoration** - Clear labels
+3. **Tokens before magic numbers** - Uses design tokens
+4. **Accessibility before aesthetics** - Full keyboard and screen reader support
 
 ## Accessibility
 
-### ARIA Attributes
+- ✅ Semantic HTML with proper ARIA roles
+- ✅ Keyboard navigation (Space/Enter to toggle)
+- ✅ Screen reader announcements
+- ✅ Focus indicators
+- ✅ Label association
+- ✅ Disabled state properly communicated
+- ✅ WCAG AA+ compliant
 
-- `role="switch"` - Identifies toggle behavior
-- `aria-checked` - Current checked state (true/false)
-- `aria-label` or `aria-labelledby` - Label for screen readers
-- `aria-disabled` - Disabled state
+### Keyboard Shortcuts
 
-### Focus Management
-
-- ✅ Focus visible on keyboard navigation
-- ✅ Smooth focus outline
-- ✅ Disabled toggles skip focus
-- ✅ Consistent focus behavior
-
-### Screen Readers
-
-- Announces role as "switch"
-- Announces checked state ("on" or "off")
-- Announces label text
-- Announces when disabled
-
-### Requirements
-
-**Always provide** one of:
-
-- `label` prop (rendered next to toggle)
-- `aria-label` prop (for screen readers only)
-- Associated `<label>` element with `aria-labelledby`
-
-```tsx
-// Option 1: label prop
-<Toggle label="Dark mode" {...props} />
-
-// Option 2: aria-label
-<Toggle aria-label="Dark mode" {...props} />
-
-// Option 3: label element
-<label id="dark-mode-label">Dark Mode</label>
-<Toggle aria-labelledby="dark-mode-label" {...props} />
-```
-
-## Integration with Forms
-
-### Controlled Component
-
-```tsx
-function Form() {
-  const [agreeToTerms, setAgreeToTerms] = useState(false);
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!agreeToTerms) {
-      alert('Please agree to terms');
-      return;
-    }
-    // Submit form
-  };
-  
-  return (
-    <form onSubmit={handleSubmit}>
-      <Toggle
-        checked={agreeToTerms}
-        onChange={setAgreeToTerms}
-        label="I agree to the terms and conditions"
-      />
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-```
-
-### With React Hook Form
-
-```tsx
-import { useForm, Controller } from 'react-hook-form';
-import { Toggle } from '@spexop/react';
-
-function Form() {
-  const { control, handleSubmit } = useForm();
-  
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="emailNotifications"
-        control={control}
-        render={({ field }) => (
-          <Toggle
-            checked={field.value}
-            onChange={field.onChange}
-            label="Email notifications"
-          />
-        )}
-      />
-    </form>
-  );
-}
-```
-
-## Styling
-
-### Custom Styling
-
-```tsx
-<Toggle
-  className="my-toggle"
-  checked={value}
-  onChange={setValue}
-  label="Custom styled toggle"
-/>
-```
-
-```css
-.my-toggle {
-  /* Override spacing, colors, etc. */
-}
-```
-
-### Design Tokens
-
-Uses design tokens for theming:
-
-- Colors: `--s-color-neutral-*`, `--s-color-red-500`
-- Spacing: `--s-spacing-*`
-- Border radius: `--s-radius-full`
-- Transitions: `--s-transition-fast`
-
-## When to Use
-
-### Use Toggle When ✅
-
-- Binary on/off choice
-- Immediate effect (no save button needed)
-- Settings or preferences
-- Feature enable/disable
-- Visibility controls
-
-### Use Checkbox Instead When
-
-- Multiple selections allowed
-- Part of a list or group
-- Requires save/submit action
-- Traditional form submission
-
-### Use RadioGroup Instead When
-
-- Mutually exclusive choice between 2+ options
-- Options are not binary
-- All options should be visible
-- Need option descriptions
-
-## Best Practices
-
-### Do ✅
-
-```tsx
-// Use for immediate actions
-<Toggle label="Dark mode" checked={darkMode} onChange={setDarkMode} />
-
-// Provide clear labels
-<Toggle label="Enable email notifications" {...props} />
-
-// Use for settings
-<Toggle label="Auto-save" checked={autoSave} onChange={setAutoSave} />
-
-// Include helper text for clarity
-<div>
-  <Toggle label="Public profile" {...props} />
-  <p className="helper-text">Others can see your profile</p>
-</div>
-```
-
-### Don't ❌
-
-```tsx
-// Don't use for destructive actions without confirmation
-<Toggle label="Delete account" /> // Bad - use confirmation dialog
-
-// Don't use for multi-step processes
-<Toggle label="Submit form" /> // Bad - use Button instead
-
-// Don't skip labels
-<Toggle checked={value} onChange={setValue} /> // Bad - no accessibility
-
-// Don't use for more than 2 options
-<Toggle label="Small/Medium/Large" /> // Bad - use RadioGroup
-```
-
-## Common Patterns
-
-### Dark Mode Toggle
-
-```tsx
-import { Toggle } from '@spexop/react';
-import { Moon, Sun } from '@spexop/icons';
-
-<Toggle
-  checked={darkMode}
-  onChange={setDarkMode}
-  label="Dark mode"
-  aria-label="Toggle dark mode"
-/>
-```
-
-### Feature Flags
-
-```tsx
-function FeatureSettings() {
-  const [betaFeatures, setBetaFeatures] = useState(false);
-  
-  return (
-    <div>
-      <Toggle
-        checked={betaFeatures}
-        onChange={setBetaFeatures}
-        label="Beta features"
-      />
-      <p style={{ marginTop: '8px', fontSize: '14px' }}>
-        {betaFeatures 
-          ? '✓ Beta features enabled - you may see experimental functionality' 
-          : 'Enable to try new features before they\'re released'}
-      </p>
-    </div>
-  );
-}
-```
-
-### Privacy Controls
-
-```tsx
-<Stack direction="vertical" gap={6}>
-  <div>
-    <Toggle
-      checked={publicProfile}
-      onChange={setPublicProfile}
-      label="Public profile"
-    />
-    <p className="description">Allow anyone to view your profile</p>
-  </div>
-  
-  <div>
-    <Toggle
-      checked={showActivity}
-      onChange={setShowActivity}
-      label="Show activity"
-      disabled={!publicProfile}
-    />
-    <p className="description">Display your recent activity</p>
-  </div>
-</Stack>
-```
-
-## Design System Integration
-
-Toggle follows Spexop principles:
-
-- **Minimal decoration** - Clean, simple design
-- **Token-based** - All values from @spexop/tokens
-- **Accessible** - WCAG AA compliant
-- **Smooth animations** - GPU-accelerated transitions
-- **Theme-aware** - Works with light/dark modes
+- `Space` - Toggle the switch
+- `Enter` - Toggle the switch
+- `Tab` - Move focus to/from toggle
 
 ## Browser Support
 
-- Chrome 90+ ✅
-- Firefox 88+ ✅
-- Safari 14+ ✅
-- Edge 90+ ✅
-
-## Performance
-
-- Zero runtime overhead (beyond React)
-- CSS-only animations
-- No re-renders on hover
-- Lightweight component (~200 bytes JS)
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **Checkbox** - For multi-select or form submission
-- **RadioGroup** - For mutually exclusive options
-- **SegmentedButton** - For button-style selection
-- **Select** - For dropdown selection
+- `Checkbox` - For multi-select options
+- `RadioGroup` - For single-select options
+- `Select` - For dropdown selections
+- `SettingItem` - For settings layout
 
-## TypeScript
+## License
 
-Full TypeScript support:
-
-```typescript
-import type { ToggleProps, ToggleDensity } from '@spexop/react';
-
-const props: ToggleProps = {
-  checked: true,
-  onChange: (checked) => console.log(checked),
-  label: 'Dark mode',
-  density: 'normal'
-};
-```
-
----
-
-**Part of Form Components** - Essential form controls with validation and accessibility built-in.
+MIT

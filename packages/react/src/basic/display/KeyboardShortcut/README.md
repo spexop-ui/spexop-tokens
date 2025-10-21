@@ -1,228 +1,327 @@
-# KeyboardShortcut
+# KeyboardShortcut Component
 
-Visual display component for keyboard shortcuts. Shows key combinations in a clean, readable format. Perfect for documentation, tooltips, and command palettes.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
+
+## Overview
+
+A component for displaying keyboard shortcuts with platform-specific formatting. Auto-detects the user's operating system and shows appropriate keys (⌘ for Mac, Ctrl for Windows/Linux).
+
+## Features
+
+- ✅ Platform detection (Mac, Windows, Linux)
+- ✅ Automatic key formatting (⌘K vs Ctrl+K)
+- ✅ Predefined shortcuts (search, command-palette, settings)
+- ✅ Custom key combinations
+- ✅ 2 sizes (sm, md)
+- ✅ Clean, minimal design
+- ✅ TypeScript support
 
 ## Installation
 
 ```bash
-npm install @spexop/react
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
 ```
 
-## Import
-
-```typescript
-import { KeyboardShortcut } from '@spexop/react';
-```
-
-## Basic Usage
+## Quick Start
 
 ```tsx
 import { KeyboardShortcut } from '@spexop/react';
 
-<KeyboardShortcut keys={['Cmd', 'K']} />
-<KeyboardShortcut keys={['Ctrl', 'S']} />
-<KeyboardShortcut keys={['Shift', 'Enter']} />
+function App() {
+  return (
+    <div>
+      <span>Search</span>
+      <KeyboardShortcut keys={["cmd", "k"]} />
+    </div>
+  );
+}
 ```
 
-## Props
+## Predefined Shortcuts
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `keys` | `string[]` | **Required** | Array of key names |
-| `separator` | `string` | `"+"` | Separator between keys |
-| `size` | `"sm"` \| `"md"` \| `"lg"` | `"md"` | Visual size |
-| `className` | `string` | `""` | Additional CSS class |
+### Search
 
-## Examples
+Automatically shows ⌘K (Mac) or Ctrl+K (Windows/Linux)
+
+```tsx
+<KeyboardShortcut shortcut="search" />
+```
+
+### Command Palette
+
+Shows ⌘⇧P (Mac) or Ctrl+Shift+P (Windows/Linux)
+
+```tsx
+<KeyboardShortcut shortcut="command-palette" />
+```
+
+### Settings
+
+Shows ⌘, (Mac) or Ctrl+, (Windows/Linux)
+
+```tsx
+<KeyboardShortcut shortcut="settings" />
+```
+
+## Custom Key Combinations
 
 ### Single Key
 
 ```tsx
-<KeyboardShortcut keys={['/']} />
-<KeyboardShortcut keys={['Esc']} />
-<KeyboardShortcut keys={['Enter']} />
+<KeyboardShortcut keys={["esc"]} />
+{/* Shows: Esc */}
 ```
 
-### Key Combinations
+### Modifier + Key
 
 ```tsx
-// Cmd+K (Mac) or Ctrl+K (Windows/Linux)
-<KeyboardShortcut keys={['Cmd', 'K']} />
-<KeyboardShortcut keys={['Ctrl', 'K']} />
+<KeyboardShortcut keys={["cmd", "s"]} />
+{/* Mac: ⌘S, Windows: Ctrl+S */}
 
-// Shift+Enter
-<KeyboardShortcut keys={['Shift', 'Enter']} />
-
-// Ctrl+Alt+Delete
-<KeyboardShortcut keys={['Ctrl', 'Alt', 'Delete']} />
+<KeyboardShortcut keys={["ctrl", "shift", "p"]} />
+{/* Shows: Ctrl+Shift+P */}
 ```
 
-### Custom Separator
+### Multiple Modifiers
 
 ```tsx
-// Space separator
-<KeyboardShortcut keys={['Cmd', 'K']} separator=" " />
-
-// Arrow separator
-<KeyboardShortcut keys={['Ctrl', 'P']} separator=" → " />
-
-// Then separator
-<KeyboardShortcut keys={['G', 'H']} separator=" then " />
+<KeyboardShortcut keys={["cmd", "shift", "k"]} />
+{/* Mac: ⌘⇧K, Windows: Ctrl+Shift+K */}
 ```
 
-### Different Sizes
+## Sizes
+
+### Small (sm) - Default
+
+Compact for inline use.
 
 ```tsx
-// Small - for inline text
-<KeyboardShortcut keys={['Cmd', 'K']} size="sm" />
-
-// Medium (default)
-<KeyboardShortcut keys={['Cmd', 'K']} size="md" />
-
-// Large - for emphasis
-<KeyboardShortcut keys={['Cmd', 'K']} size="lg" />
+<KeyboardShortcut keys={["cmd", "k"]} size="sm" />
 ```
 
-### In SearchBar
+### Medium (md)
+
+Larger for emphasis.
 
 ```tsx
-import { SearchBar, KeyboardShortcut } from '@spexop/react';
-
-<SearchBar
-  placeholder="Search..."
-  onClick={openPalette}
-  rightElement={<KeyboardShortcut keys={['Cmd', 'K']} size="sm" />}
-  readOnly
-/>
+<KeyboardShortcut keys={["enter"]} size="md" />
 ```
 
-### In Command Palette
+## Common Patterns
+
+### Menu Items
 
 ```tsx
-const commands = [
-  {
-    id: 'search',
-    label: 'Search',
-    shortcut: <KeyboardShortcut keys={['Cmd', 'K']} size="sm" />,
-    action: openSearch
-  },
-  {
-    id: 'settings',
-    label: 'Settings',
-    shortcut: <KeyboardShortcut keys={['Cmd', ',']} size="sm" />,
-    action: openSettings
-  }
-];
-```
-
-### In Documentation
-
-```tsx
-<p>
-  Press <KeyboardShortcut keys={['Cmd', 'K']} /> to open the command palette.
-</p>
-
-<p>
-  Use <KeyboardShortcut keys={['Arrow', 'Down']} /> and{' '}
-  <KeyboardShortcut keys={['Arrow', 'Up']} /> to navigate.
-</p>
-```
-
-## Common Key Names
-
-### Modifier Keys
-
-- `Cmd` / `⌘` - Mac command key
-- `Ctrl` - Control key
-- `Alt` / `Option` / `⌥` - Alt/Option key
-- `Shift` / `⇧` - Shift key
-
-### Special Keys
-
-- `Enter` / `Return` / `↵`
-- `Esc` / `Escape`
-- `Tab` / `⇥`
-- `Space` / `␣`
-- `Backspace` / `Delete`
-
-### Arrow Keys
-
-- `Arrow Up` / `↑`
-- `Arrow Down` / `↓`
-- `Arrow Left` / `←`
-- `Arrow Right` / `→`
-
-### Function Keys
-
-- `F1` through `F12`
-
-## Platform Detection
-
-For cross-platform shortcuts:
-
-```tsx
-const isMac = navigator.platform.includes('Mac');
-
-<KeyboardShortcut 
-  keys={isMac ? ['Cmd', 'K'] : ['Ctrl', 'K']} 
-/>
-```
-
-## Styling
-
-### Custom Styling
-
-```tsx
-<KeyboardShortcut
-  className="my-shortcut"
-  keys={['Cmd', 'K']}
-/>
-```
-
-```css
-.my-shortcut {
-  background: var(--s-color-neutral-100);
-  border-color: var(--s-color-neutral-300);
+function MenuItems() {
+  return (
+    <Stack direction="vertical" gap={2}>
+      <div className="menu-item">
+        <span>Search</span>
+        <KeyboardShortcut shortcut="search" />
+      </div>
+      
+      <div className="menu-item">
+        <span>Command Palette</span>
+        <KeyboardShortcut shortcut="command-palette" />
+      </div>
+      
+      <div className="menu-item">
+        <span>Settings</span>
+        <KeyboardShortcut shortcut="settings" />
+      </div>
+    </Stack>
+  );
 }
 ```
 
-## Best Practices
-
-### Do ✅
+### Command Palette Usage
 
 ```tsx
-// Use clear, standard key names
-<KeyboardShortcut keys={['Cmd', 'K']} />
+function CommandPalette() {
+  const commands = [
+    { label: 'Open file', shortcut: ['cmd', 'o'] },
+    { label: 'Save', shortcut: ['cmd', 's'] },
+    { label: 'Close', shortcut: ['cmd', 'w'] },
+    { label: 'Find', shortcut: ['cmd', 'f'] },
+  ];
 
-// Platform-appropriate naming
-<KeyboardShortcut keys={isMac ? ['Cmd'] : ['Ctrl']} />
-
-// Include in tooltips
-<button title="Save (Cmd+S)">
-  Save <KeyboardShortcut keys={['Cmd', 'S']} size="sm" />
-</button>
+  return (
+    <div>
+      {commands.map(cmd => (
+        <div key={cmd.label} className="command-item">
+          <span>{cmd.label}</span>
+          <KeyboardShortcut keys={cmd.shortcut} />
+        </div>
+      ))}
+    </div>
+  );
+}
 ```
 
-### Don't ❌
+### Tooltip with Shortcut
 
 ```tsx
-// Don't use unclear abbreviations
-<KeyboardShortcut keys={['C', 'K']} /> // Use 'Cmd' or 'Ctrl'
-
-// Don't use lowercase for modifiers
-<KeyboardShortcut keys={['cmd', 'k']} /> // Use 'Cmd', 'K'
-
-// Don't overcomplicate
-<KeyboardShortcut keys={['Ctrl', 'Alt', 'Shift', 'K']} /> // Too complex
+<Tooltip content={
+  <div>
+    <div>Search</div>
+    <KeyboardShortcut keys={["cmd", "k"]} />
+  </div>
+}>
+  <IconButton icon={Search} label="Search" />
+</Tooltip>
 ```
+
+### Help Dialog
+
+```tsx
+function KeyboardShortcutsHelp() {
+  const shortcuts = [
+    { 
+      category: 'Navigation',
+      items: [
+        { action: 'Go to dashboard', keys: ['g', 'd'] },
+        { action: 'Go to projects', keys: ['g', 'p'] },
+        { action: 'Go to settings', keys: ['g', 's'] },
+      ]
+    },
+    {
+      category: 'Actions',
+      items: [
+        { action: 'Search', keys: ['cmd', 'k'] },
+        { action: 'Create new', keys: ['cmd', 'n'] },
+        { action: 'Save', keys: ['cmd', 's'] },
+      ]
+    },
+  ];
+
+  return (
+    <Modal isOpen={isOpen} onClose={handleClose}>
+      <h2>Keyboard Shortcuts</h2>
+      
+      {shortcuts.map(section => (
+        <div key={section.category}>
+          <h3>{section.category}</h3>
+          {section.items.map(item => (
+            <div key={item.action} className="shortcut-row">
+              <span>{item.action}</span>
+              <KeyboardShortcut keys={item.keys} />
+            </div>
+          ))}
+        </div>
+      ))}
+    </Modal>
+  );
+}
+```
+
+### Button with Hint
+
+```tsx
+<Button variant="primary" onClick={handleSave}>
+  Save
+  <KeyboardShortcut keys={["cmd", "s"]} size="sm" />
+</Button>
+```
+
+## Platform Detection
+
+The component automatically detects the user's platform and shows appropriate keys:
+
+| Platform | Modifier Key | Display |
+|----------|-------------|---------|
+| macOS | cmd | ⌘ |
+| macOS | shift | ⇧ |
+| macOS | alt/option | ⌥ |
+| macOS | ctrl | ⌃ |
+| Windows/Linux | ctrl | Ctrl |
+| Windows/Linux | shift | Shift |
+| Windows/Linux | alt | Alt |
+
+## Props
+
+```typescript
+interface KeyboardShortcutProps {
+  /** Array of keys (e.g., ["cmd", "k"] or ["ctrl", "shift", "p"]) */
+  keys?: string[];
+  /** Predefined shortcut name (auto-detects platform) */
+  shortcut?: "search" | "command-palette" | "settings";
+  /** Raw text to display (bypasses formatting) */
+  children?: string;
+  /** Size variant */
+  size?: "sm" | "md";
+  /** Additional CSS class */
+  className?: string;
+}
+```
+
+## Supported Keys
+
+**Modifiers:**
+
+- `cmd` (Mac) / `ctrl` (Windows/Linux)
+- `shift`
+- `alt` / `option`
+- `ctrl` (Mac only, shown as ⌃)
+
+**Special Keys:**
+
+- `enter`, `return`
+- `esc`, `escape`
+- `tab`
+- `space`
+- `backspace`, `delete`
+- `arrow-up`, `arrow-down`, `arrow-left`, `arrow-right`
+- `home`, `end`
+- `page-up`, `page-down`
+
+**Standard Keys:**
+
+- Letters: `a-z`
+- Numbers: `0-9`
+- Symbols: `+`, `-`, `=`, etc.
+
+## Design Principles
+
+Following "The Spexop Way":
+
+1. **Borders before shadows** - Clean border-based design
+2. **Typography before decoration** - Clear, monospace font
+3. **Tokens before magic numbers** - Uses spacing and color tokens
+4. **Standards before frameworks** - Platform detection built-in
+
+## Accessibility
+
+- ✅ Semantic HTML
+- ✅ Proper text formatting
+- ✅ Screen reader compatible
+- ✅ High contrast display
+
+## Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **SearchBar** - Search with shortcut display
-- **CommandPalette** - Command interface with shortcuts
-- **Tooltip** - Tooltips with shortcuts
-- **Button** - Buttons with shortcut hints
+- `CommandPalette` - Quick actions with shortcuts
+- `Tooltip` - Hover hints
+- `Button` - Action buttons
+- `IconButton` - Icon-only buttons
 
----
+## Best Practices
 
-**Part of Display Components** - Visual indicators for keyboard shortcuts.
+1. **Use platform detection** - Let the component handle platform differences
+2. **Keep combinations simple** - 2-3 keys maximum
+3. **Follow conventions** - Use standard shortcuts when possible
+4. **Document shortcuts** - Provide help/reference
+5. **Test on all platforms** - Verify shortcuts work correctly
+
+## License
+
+MIT

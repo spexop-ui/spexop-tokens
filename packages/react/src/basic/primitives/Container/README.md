@@ -1,384 +1,146 @@
-# Container
+# Container Component
 
-A max-width wrapper for page content with responsive padding using design tokens.
+**Version**: 0.1.0  
+**Package**: `@spexop/react`  
+**Status**: Production Ready
 
 ## Overview
 
-Container constrains content width and provides consistent padding. Use it to wrap page sections and maintain readable line lengths and proper margins across different screen sizes.
+A responsive container component that constrains content width and provides consistent padding. One of the 5 core grid primitives in the Spexop design system.
+
+## Features
+
+- ✅ Responsive max-width breakpoints
+- ✅ Configurable padding
+- ✅ Center alignment
+- ✅ Design token integration
+- ✅ Fluid to fixed-width control
+- ✅ TypeScript support
+- ✅ Composable with Grid, Stack, and other primitives
+
+## Installation
+
+```bash
+npm install @spexop/react @spexop/theme
+# or
+pnpm add @spexop/react @spexop/theme
+```
 
 ## Quick Start
 
 ```tsx
 import { Container } from '@spexop/react';
 
-// Default container (xl max-width, centered)
-<Container>
-  <h1>Page Content</h1>
-  <p>This content is constrained to 1440px max-width</p>
-</Container>
+function App() {
+  return (
+    <Container maxWidth="xl" padding={6}>
+      <h1>Page Content</h1>
+      <p>Constrained to max-width with consistent padding.</p>
+    </Container>
+  );
+}
+```
 
-// Medium container for articles
-<Container maxWidth="md" padding={8}>
-  <article>Blog post content</article>
+## Max Width Options
+
+### xs (480px)
+
+Extra small container for narrow content.
+
+```tsx
+<Container maxWidth="xs">
+  <p>Narrow content</p>
 </Container>
 ```
 
-## Features
+### sm (640px)
 
-- **7 Max-Width Options** - xs, sm, md, lg, xl (default), 2xl, full
-- **Padding Control** - Spacing scale 0-10 (0px to 64px)
-- **Individual Padding** - Override left, right, top, bottom independently
-- **Auto-Centering** - Centered by default
-- **Fluid Mode** - No max-width constraints
-- **Responsive Props** - All props support breakpoint objects
-- **Token-Based** - Uses design system breakpoint tokens
-
-## Basic Usage
-
-### Default Container
+Small container for mobile-optimized content.
 
 ```tsx
-<Container>
-  <h1>Page Title</h1>
-  <p>Content automatically centered with xl max-width (1440px)</p>
-</Container>
-```
-
-### Custom Max-Width
-
-```tsx
-// Article/blog content (optimal reading width)
-<Container maxWidth="md">
-  <article>Blog content</article>
-</Container>
-
-// Dashboard/data displays (wide)
-<Container maxWidth="2xl">
-  <DashboardContent />
-</Container>
-
-// Narrow forms
 <Container maxWidth="sm">
-  <form>Login form</form>
+  <form>...</form>
 </Container>
 ```
 
-### Custom Padding
+### md (768px)
+
+Medium container for tablet layouts.
 
 ```tsx
-// Tight padding
-<Container padding={2}>
-  Compact layout
-</Container>
-
-// Generous padding
-<Container padding={8}>
-  Spacious layout
-</Container>
-
-// No padding
-<Container padding={0}>
-  Edge-to-edge content
-</Container>
-```
-
-## Advanced Usage
-
-### Individual Padding Overrides
-
-```tsx
-<Container
-  maxWidth="lg"
-  padding={4}
-  paddingTop={8}
-  paddingBottom={8}
->
-  More vertical spacing, normal horizontal
-</Container>
-
-<Container
-  maxWidth="lg"
-  paddingLeft={2}
-  paddingRight={2}
-  paddingTop={6}
-  paddingBottom={6}
->
-  Tight horizontal, generous vertical
-</Container>
-```
-
-### Fluid Container
-
-No max-width, full viewport width:
-
-```tsx
-<Container fluid padding={6}>
-  <div>Full-width content, still has padding</div>
-</Container>
-```
-
-### Not Centered
-
-Left-aligned container:
-
-```tsx
-<Container maxWidth="lg" centered={false}>
-  <div>Left-aligned container</div>
-</Container>
-```
-
-### Responsive Max-Width
-
-Different widths at different breakpoints:
-
-```tsx
-<Container
-  maxWidth={{ xs: "full", sm: "sm", md: "md", lg: "lg", xl: "xl" }}
-  padding={6}
->
-  Adapts width based on screen size
-</Container>
-```
-
-### Responsive Padding
-
-Tighter on mobile, generous on desktop:
-
-```tsx
-<Container
-  maxWidth="lg"
-  padding={{ xs: 2, sm: 4, md: 6, lg: 8 }}
->
-  Mobile: 8px, Desktop: 40px
-</Container>
-```
-
-## Common Patterns
-
-### Page Layout
-
-```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Stack direction="vertical" gap={8}>
-    <header>
-      <h1>Page Title</h1>
-      <p>Subtitle</p>
-    </header>
-    <main>
-      <p>Main content</p>
-    </main>
-    <footer>
-      <p>Footer content</p>
-    </footer>
-  </Stack>
-</Container>
-```
-
-### Article/Blog Post
-
-```tsx
-<Container maxWidth="md" padding={{ xs: 4, md: 8 }}>
-  <article>
-    <h1>Article Title</h1>
-    <p>Optimal reading width for long-form content.</p>
-    <p>Medium container (1024px) provides comfortable line length.</p>
-  </article>
-</Container>
-```
-
-### Form Container
-
-```tsx
-<Container maxWidth="sm" padding={6}>
-  <Stack direction="vertical" gap={6}>
-    <h2>Sign Up</h2>
-    <TextInput label="Email" fullWidth />
-    <TextInput label="Password" type="password" fullWidth />
-    <Button fullWidth variant="primary">Create Account</Button>
-  </Stack>
-</Container>
-```
-
-### Dashboard
-
-```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Grid columns={12} gap={6}>
-    <GridItem span={12}>
-      <h1>Dashboard</h1>
-    </GridItem>
-    <GridItem span={{ xs: 12, md: 3 }}>
-      <Sidebar />
-    </GridItem>
-    <GridItem span={{ xs: 12, md: 9 }}>
-      <MainContent />
-    </GridItem>
-  </Grid>
-</Container>
-```
-
-### Marketing Page
-
-```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Stack direction="vertical" gap={10}>
-    <Hero />
-    <Grid columns={{ xs: 1, md: 3 }} gap={6}>
-      <ServiceCard />
-      <ServiceCard />
-      <ServiceCard />
-    </Grid>
-    <Footer />
-  </Stack>
-</Container>
-```
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `ReactNode` | - | Content (required) |
-| `maxWidth` | `ResponsiveProp<"xs" \| "sm" \| "md" \| "lg" \| "xl" \| "2xl" \| "full">` | `"xl"` | Maximum width |
-| `padding` | `ResponsiveProp<0-10>` | `4` | Padding around content |
-| `paddingLeft` | `ResponsiveProp<0-10>` | - | Left padding override |
-| `paddingRight` | `ResponsiveProp<0-10>` | - | Right padding override |
-| `paddingTop` | `ResponsiveProp<0-10>` | - | Top padding override |
-| `paddingBottom` | `ResponsiveProp<0-10>` | - | Bottom padding override |
-| `centered` | `boolean` | `true` | Center horizontally |
-| `fluid` | `boolean` | `false` | No max-width constraints |
-| `className` | `string` | - | Additional CSS class |
-| `style` | `CSSProperties` | - | Inline styles |
-| `as` | `ElementType` | `"div"` | HTML element type |
-
-## Max-Width Values (Token-Based)
-
-All max-widths use design system breakpoint tokens:
-
-- `xs`: 640px (sBreakpointSm)
-- `sm`: 768px (sBreakpointMd)
-- `md`: 1024px (sBreakpointLg)
-- `lg`: 1280px (sBreakpointXl)
-- `xl`: 1440px (sBreakpoint2xl) - **default**
-- `2xl`: 1920px
-- `full`: No max-width
-
-## Spacing Scale Reference
-
-- `0` - 0px
-- `1` - 4px
-- `2` - 8px
-- `3` - 12px
-- `4` - 16px (default)
-- `5` - 20px
-- `6` - 24px
-- `7` - 32px
-- `8` - 40px
-- `9` - 48px
-- `10` - 64px
-
-## Best Practices
-
-### DO
-
-✅ **Wrap page content in Container**
-
-```tsx
-<Container maxWidth="2xl">
-  Consistent max-width across your app
-</Container>
-```
-
-✅ **Use appropriate max-width for content type**
-
-```tsx
-// Articles: md (1024px)
 <Container maxWidth="md">
-  <article>Long-form content</article>
+  <article>...</article>
 </Container>
+```
 
-// Dashboard: 2xl (1920px)
+### lg (1024px)
+
+Large container for desktop content.
+
+```tsx
+<Container maxWidth="lg">
+  <div>...</div>
+</Container>
+```
+
+### xl (1280px) - Default
+
+Extra large container for wide layouts.
+
+```tsx
+<Container maxWidth="xl">
+  <main>...</main>
+</Container>
+```
+
+### 2xl (1536px)
+
+Double extra large for very wide content.
+
+```tsx
 <Container maxWidth="2xl">
-  <Dashboard />
+  <section>...</section>
 </Container>
 ```
 
-✅ **Use responsive padding**
+### full
+
+No max-width constraint, full viewport width.
 
 ```tsx
-<Container padding={{ xs: 2, md: 6 }}>
-  Tighter on mobile, generous on desktop
+<Container maxWidth="full">
+  <div>Full width content</div>
 </Container>
 ```
 
-### DON'T
+## Padding
 
-❌ **Don't use fluid with specific maxWidth**
+Uses spacing tokens for consistent padding.
 
 ```tsx
-// Bad: Conflicting props
-<Container maxWidth="lg" fluid>
-  Fluid overrides maxWidth
-</Container>
+{/* No padding */}
+<Container padding={0}>...</Container>
 
-// Good: Use one or the other
-<Container maxWidth="lg">Constrained</Container>
-<Container fluid>Full-width</Container>
+{/* Small padding */}
+<Container padding={4}>...</Container>
+
+{/* Default padding */}
+<Container padding={6}>...</Container>
+
+{/* Large padding */}
+<Container padding={8}>...</Container>
 ```
 
-❌ **Don't nest Containers**
-
-```tsx
-// Bad: Unnecessary nesting
-<Container>
-  <Container>Double-wrapped</Container>
-</Container>
-
-// Good: One container per section
-<Container>
-  <Grid>Layout content</Grid>
-</Container>
-```
-
-## Accessibility
-
-### Semantic HTML
-
-Use the `as` prop for semantic landmarks:
-
-```tsx
-<Container as="main" maxWidth="2xl">
-  Main page content
-</Container>
-
-<Container as="article" maxWidth="md">
-  Article content
-</Container>
-
-<Container as="section" maxWidth="lg">
-  Page section
-</Container>
-```
-
-### Landmarks
-
-Combine with ARIA:
-
-```tsx
-<Container as="main" aria-label="Main content" maxWidth="2xl">
-  Page content
-</Container>
-```
-
-## Integration with Other Components
+## Composition
 
 ### With Grid
 
 ```tsx
-<Container maxWidth="2xl" padding={6}>
-  <Grid columns={12} gap={6}>
-    <GridItem span={12}>Header</GridItem>
-    <GridItem span={3}>Sidebar</GridItem>
-    <GridItem span={9}>Content</GridItem>
+<Container maxWidth="xl" padding={6}>
+  <Grid columns={3} gap={6}>
+    <GridItem span={1}>Column 1</GridItem>
+    <GridItem span={1}>Column 2</GridItem>
+    <GridItem span={1}>Column 3</GridItem>
   </Grid>
 </Container>
 ```
@@ -387,69 +149,67 @@ Combine with ARIA:
 
 ```tsx
 <Container maxWidth="lg" padding={8}>
-  <Stack direction="vertical" gap={6}>
+  <Stack direction="vertical" gap={4}>
     <h1>Title</h1>
-    <Card>Content</Card>
-    <Card>More content</Card>
+    <p>Content</p>
+    <button>Action</button>
   </Stack>
 </Container>
 ```
 
-## Browser Support
+### Nested Containers
 
-- **max-width**: All browsers
-- **margin: 0 auto**: All browsers (for centering)
-- **padding**: All browsers
+```tsx
+<Container maxWidth="2xl" padding={8}>
+  <Container maxWidth="lg" padding={0}>
+    <p>Nested narrower content</p>
+  </Container>
+</Container>
+```
 
-## TypeScript
+## Props
 
 ```typescript
 interface ContainerProps {
-  children: ReactNode;
-  maxWidth?: ResponsiveProp<"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full">;
-  padding?: ResponsiveProp<0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10>;
-  paddingLeft?: ResponsiveProp<SpacingScale>;
-  paddingRight?: ResponsiveProp<SpacingScale>;
-  paddingTop?: ResponsiveProp<SpacingScale>;
-  paddingBottom?: ResponsiveProp<SpacingScale>;
-  centered?: boolean;
-  fluid?: boolean;
+  children: React.ReactNode;
+  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+  padding?: number;
   className?: string;
-  style?: CSSProperties;
-  as?: ElementType;
+  style?: React.CSSProperties;
 }
 ```
 
-## Examples
+## Design Principles
 
-See **Storybook** for 12 interactive examples:
+Following "The Spexop Way":
 
-- Max-width variations
-- Padding variations
-- Responsive sizing
-- Page layouts
-- Article layouts
-- Dashboard layouts
+1. **Primitives before patterns** - Core layout primitive
+2. **Tokens before magic numbers** - Uses breakpoint and spacing tokens
+3. **Composition before complexity** - Designed to wrap other components
+4. **Standards before frameworks** - Standard div with constrained width
+
+## Accessibility
+
+- Semantic HTML (div element)
+- No specific ARIA requirements
+- Maintains document structure
+- Works with screen readers
+
+## Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- React 18+
 
 ## Related Components
 
-- **Grid** - Layout system
-- **Stack** - Simple stacking
-- **Spacer** - Spacing utility
-
-## See Also
-
-- [Grid Primitives Guide](/docs/grid-primitives.md)
-- [Responsive Patterns](/docs/responsive-patterns.md)
-
-## Contributing
-
-Contributions are welcome! Please see the [contributing guide](../../CONTRIBUTING.md) for more information.
+- `Grid` - Grid layout system
+- `GridItem` - Grid cell
+- `Stack` - Vertical/horizontal stacking
+- `Spacer` - Flexible spacing
+- `Section` - Semantic sections
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](../../LICENSE) file for details.
-
-## Author
-
-This project was created by [@olmstedian](https://github.com/olmstedian) and [@spexop](https://github.com/spexop-ui). For more information, please see the [Spexop Design System](https://spexop.com).
+MIT

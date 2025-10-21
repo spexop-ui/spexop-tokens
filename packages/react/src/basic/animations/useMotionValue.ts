@@ -14,13 +14,24 @@ export const EASINGS = {
   easeOut: (t: number) => t * (2 - t),
   easeInOut: (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
   easeInCubic: (t: number) => t * t * t,
-  easeOutCubic: (t: number) => --t * t * t + 1,
+  easeOutCubic: (t: number) => {
+    const t1 = t - 1;
+    return t1 * t1 * t1 + 1;
+  },
   easeInOutCubic: (t: number) =>
     t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
   easeInQuart: (t: number) => t * t * t * t,
-  easeOutQuart: (t: number) => 1 - --t * t * t * t,
-  easeInOutQuart: (t: number) =>
-    t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+  easeOutQuart: (t: number) => {
+    const t1 = t - 1;
+    return 1 - t1 * t1 * t1 * t1;
+  },
+  easeInOutQuart: (t: number) => {
+    if (t < 0.5) {
+      return 8 * t * t * t * t;
+    }
+    const t1 = t - 1;
+    return 1 - 8 * t1 * t1 * t1 * t1;
+  },
   easeInExpo: (t: number) => (t === 0 ? 0 : 2 ** (10 * (t - 1))),
   easeOutExpo: (t: number) => (t === 1 ? 1 : 1 - 2 ** (-10 * t)),
   easeInOutExpo: (t: number) => {

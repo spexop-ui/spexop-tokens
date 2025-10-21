@@ -127,7 +127,7 @@ export function AnimatedBackground({
     ) => {
       ctx.clearRect(0, 0, width, height);
 
-      particlesRef.current.forEach((particle) => {
+      for (const particle of particlesRef.current) {
         // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
@@ -144,7 +144,7 @@ export function AnimatedBackground({
         ctx.fillStyle = particle.color;
         ctx.globalAlpha = particle.opacity;
         ctx.fill();
-      });
+      }
 
       ctx.globalAlpha = 1;
     };

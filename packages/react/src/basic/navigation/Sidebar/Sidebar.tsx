@@ -128,6 +128,11 @@ export function Sidebar({
           <div
             className={styles.backdrop}
             onClick={handleBackdropClick}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                handleBackdropClick();
+              }
+            }}
             aria-hidden="true"
           />
         )}

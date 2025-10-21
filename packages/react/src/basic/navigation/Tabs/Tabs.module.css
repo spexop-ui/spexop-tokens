@@ -1,0 +1,164 @@
+/**
+ * Tabs Styles
+ * 
+ * Following "The Spexop Way":
+ * - Principle 2: Borders before shadows - strong borders for active state
+ * - Principle 3: Typography before decoration - bold for active tabs
+ * - Principle 4: Theme variables before magic numbers - all values use theme variables
+ * - Principle 7: Accessibility before aesthetics - high contrast, keyboard focus
+ */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Tab List */
+.tab-list {
+  display: flex;
+  gap: var(--theme-spacing-1, 4px);
+  border-bottom: 2px solid var(--theme-border-subtle, #e5e5e5);
+}
+
+.tabs.full-width .tab-list {
+  border-bottom: none;
+}
+
+.tabs.full-width .tab {
+  flex: 1;
+}
+
+/* Tab Button */
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-spacing-2, 8px);
+  padding: var(--theme-spacing-3, 12px) var(--theme-spacing-4, 16px);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--theme-text-secondary, #404040);
+  font-size: var(--theme-font-size-base, 16px);
+  font-weight: var(--theme-font-weight-regular, 400);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab:hover:not(.disabled) {
+  color: var(--theme-text, #171717);
+  background: var(--theme-surface-hover, #fafafa);
+}
+
+.tab:focus {
+  outline: 2px solid var(--theme-primary, #3b82f6);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.tab.active {
+  color: var(--theme-text, #171717);
+  font-weight: var(--theme-font-weight-semibold, 600);
+  border-bottom: 2px solid var(--theme-primary, #3b82f6);
+}
+
+.tab.disabled {
+  color: var(--theme-border-strong, #a3a3a3);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Icon */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Size variants */
+.tabs.size-sm .tab {
+  padding: var(--theme-spacing-2, 8px) var(--theme-spacing-3, 12px);
+  font-size: var(--theme-font-size-sm, 14px);
+}
+
+.tabs.size-lg .tab {
+  padding: var(--theme-spacing-4, 16px) var(--theme-spacing-6, 24px);
+  font-size: var(--theme-font-size-lg, 18px);
+}
+
+/* Pills variant */
+.tabs.variant-pills .tab-list {
+  gap: var(--theme-spacing-2, 8px);
+  border-bottom: none;
+}
+
+.tabs.variant-pills .tab {
+  border-radius: var(--theme-radius-lg, 12px);
+  border: 1px solid transparent;
+}
+
+.tabs.variant-pills .tab.active {
+  background: var(--theme-primary, #3b82f6);
+  color: var(--theme-surface, #ffffff);
+  border-color: var(--theme-primary, #3b82f6);
+  border-bottom: 1px solid var(--theme-primary, #3b82f6);
+}
+
+.tabs.variant-pills .tab:hover:not(.disabled) {
+  border-color: var(--theme-border, #d4d4d4);
+}
+
+/* Underline variant */
+.tabs.variant-underline .tab {
+  border-bottom: 2px solid transparent;
+}
+
+.tabs.variant-underline .tab.active {
+  border-bottom-color: var(--theme-primary, #3b82f6);
+  background: transparent;
+}
+
+/* Tab Panel */
+.tab-panel {
+  padding: var(--theme-spacing-6, 24px) 0;
+  color: var(--theme-text, #171717);
+}
+
+.tab-panel:focus {
+  outline: 2px solid var(--theme-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.tab-panel[hidden] {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .tab-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-list::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .tab-list::-webkit-scrollbar-track {
+    background: var(--theme-surface-secondary, #f5f5f5);
+  }
+
+  .tab-list::-webkit-scrollbar-thumb {
+    background: var(--theme-border-strong, #a3a3a3);
+    border-radius: var(--theme-radius-sm, 4px);
+  }
+
+  .tabs.size-lg .tab {
+    padding: var(--theme-spacing-3, 12px) var(--theme-spacing-4, 16px);
+    font-size: var(--theme-font-size-base, 16px);
+  }
+}
+
